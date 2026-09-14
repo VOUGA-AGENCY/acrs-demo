@@ -1,0 +1,587 @@
+--- Página 1 ---
+C o n f i d e n t i a l  ·  F o r  i n t e r n a l  u s e  o n l y
+A C R S
+C o n t e x t o  O p e r a c i o n a l
+Vouga  Agency  
+
+--- Página 2 ---
+CONTEXTO ACRS
+Estrutura
+1 Enquadramento 2
+2 Funcionamento atual 4
+3 Ponto e mão de obra 7
+4 Armazém e ferramentaria 9
+5 Faturas, compras e digitalização 15
+6 Obras, custos, orçamento e margem 17
+7 Controlo e análise 19
+8 Perfis e utilização 21
+9 Princípios funcionais da solução 22
+10 Pontos ainda por fechar 24
+11 Resultado esperado 26
+1
+
+--- Página 3 ---
+CONTEXTO ACRS
+SECÇÃO 1
+Enquadramento
+A ACRS é uma empresa metalomecânica da região de Aveiro, com atividade ligada a
+projeto, fabrico, montagem, reparação e execução de obras. A operação organiza-se,
+em grande medida, em torno daobra: pessoas, materiais, consumíveis, ferramentas,
+máquinas e despesas são mobilizados para diferentes frentes de trabalho e precisam
+de ser refletidos economicamente no custo de cada obra.
+A empresa é relativamente jovem e cresceu de forma significativa, mas esse crescimento
+não foi acompanhado por uma plataforma operacional integrada.
+A ACRS já possui dados e capacidade de análise. O problema central é
+a falta de ligação entre partes da operação que hoje vivem separadas:
+administração, orçamentação, ponto, faturas e armazém/ferramenta-
+ria.
+Duas realidades da mesma operação
+Durante o levantamento ficaram visíveis duas perspetivas complementares:
+• uma realidadeoperacional, onde acontecem as obras e circulam pessoas, materiais,
+ferramentas e máquinas;
+• uma realidadeadministrativa e de controlo, onde são registados pontos, faturas,
+custos e informação de acompanhamento económico.
+Estas duas realidades devem convergir na mesma entidade central:a obra.
+Interlocutores da sessão
+A sessão foi conduzida principalmente com dois sócios da ACRS:
+• João Catalão, que apresentou grande parte da vertente administrativa, custos, ponto,
+faturas, orçamento e controlo económico;
+2
+
+--- Página 4 ---
+CONTEXTO ACRS
+• Vítor, que apresentou grande parte da vertente operacional, obras, armazém/ferra-
+mentaria, equipamentos, viaturas e utilização de recursos;
+• Dra. Helena, gerente da empresa, não presente na sessão, mas referida em decisões
+de gestão e classificação de custos.
+A distinção acima descreve a perspetiva observada na sessão, não uma separação
+rígida de responsabilidades.
+Fontes de informação disponíveis
+Para além do levantamento presencial e dos registos de áudio, foram disponibilizados:
+✓ um ficheiro Excel operacional com folhas dePonto,Faturas,Colaboradores,Lista
+Pessoas,Lista Obrase tabelas de apoio;
+✓um Power BI alimentado por esse Excel;
+✓um ficheiro separado utilizado na orçamentação;
+✓ um inventário de armazém referente ao mês de agosto, com código, família, material,
+tamanho, descrição, marca/representante, quantidade, preço unitário, preço total e
+localização;
+✓ o inventário de agosto apresenta um valor registado de aproximadamente46.325,87
+euros.
+3
+
+--- Página 5 ---
+CONTEXTO ACRS
+SECÇÃO 2
+Funcionamento atual
+Administração: Excel + Power BI
+A ACRS não utiliza hoje um ERP operacional integrado. A base administrativa funciona
+através deExcel + Power BI: o Excel é utilizado para introdução e estruturação de dados
+e o Power BI para análise posterior.
+A folha dePontoregista, entre outros campos: nome, data, entradas e saídas de manhã,
+tarde e noite, obra, local, tempo de viagem, total de horas, horas extra e cálculo de
+tempo de viagem.
+A folha deFaturasregista data, fornecedor, número da fatura, número da obra, categoria
+de despesa, valor e informação de cartão.
+A folha deColaboradorescontém nome, preço/hora, número de horas/dia, horários
+normais e noturnos e parâmetros usados no cálculo de suplementos.
+Existem ainda listas auxiliares de pessoas, obras, categorias de despesa e fornecedores.
+Estes dados já representam um ativo relevante e devem ser reaproveitados na futura
+plataforma.
+O que o Power BI já permite ver
+O Power BI atual já responde a várias perguntas importantes de gestão. A futura
+plataforma deve preservar estas leituras, simplificando-as quando necessário.
+2.2.1 Posição integrada
+Visão global de obras, custos, horas, salários/despesas e deslocações, com filtros por
+período, colaborador e obra/local. Entre os indicadores e análises existentes encontram-
+se:
+•número de obras e colaboradores;
+•total de horas gastas;
+•tempo de viagem;
+4
+
+--- Página 6 ---
+CONTEXTO ACRS
+•custo real/hora;
+•valor de despesas/salários;
+•custo de mão de obra por obra;
+•horas trabalhadas por obra;
+•despesas por obra;
+•tempo de viagem por obra.
+2.2.2 Relatório Man Hour
+Focado na utilização da mão de obra: total de horas trabalhadas, total e rácio de horas
+extra, peso do tempo de viagem, evolução mensal de horas e custo médio hora/obra.
+2.2.3 Relatório Ponto
+Permite analisar o registo de ponto por colaborador, obra, data e semana, incluindo
+horas trabalhadas, horas extra e distribuição do trabalho por obra.
+2.2.4 Relatório de Obra
+Permite analisar custo total da obra, despesas por categoria, custo de colaboradores,
+despesa por cartão e evolução temporal dos gastos.
+2.2.5 Detalhe de despesa por obra
+Permite descer ao detalhe de fornecedor, categoria, valor de fatura e associação entre
+obra e tipo de despesa.
+2.2.6 Despesa por colaborador
+Permite analisar horas, custos e viagens por colaborador e perceber em que obras esse
+custo foi imputado.
+Leitura do sistema atual
+A ACRS já possui capacidade relevante de análise. O problema não é começar
+do zero. É integrar informação que hoje fica de fora, reduzir trabalho manual e
+5
+
+--- Página 7 ---
+CONTEXTO ACRS
+transformar a análise posterior num sistema operacional que acompanha a obra
+enquanto ela acontece.
+Orçamentação separada
+A orçamentação é feita por João Catalão num ficheiro separado do sistema Excel +
+Power BI utilizado para acompanhar custos.
+Existem duas formas principais:
+• orçamento discriminado, mais adequado quando faz sentido detalhar mão de obra,
+materiais, transportes, alimentação e outras componentes;
+• orçamento global ou por unidade, utilizado em determinadas obras maiores, por
+exemplo através de preço por quilograma ou tonelada, já incorporando diferentes
+componentes de custo no valor vendido.
+Atualmente, orçamento e execução não estão ligados de forma automática. Isto impede
+uma leitura contínua devalor vendido, custo máximo admissível, custo atual, margem
+e risco.
+Foi referido um caso em que uma obra teve de ser interrompida depois de se perceber
+que o custo já estava a comprometer a viabilidade económica. O objetivo futuro é
+permitir intervenção antes desse ponto.
+6
+
+--- Página 8 ---
+CONTEXTO ACRS
+SECÇÃO 3
+Ponto e mão de obra
+Processo atual de ponto
+O ponto é atualmente realizado em papel ou por registo manual e posteriormente
+transcrito para o sistema administrativo.
+A ACRS já testou uma solução de ponto por telemóvel. O processo não resultou ope-
+racionalmente: esquecimentos, correções e retificações acabavam por aumentar o
+trabalho do escritório.
+Por esse motivo, a prioridade inicial não é obrigar todos os trabalhadores a utilizar
+uma app de ponto. A prioridade ésimplificar o processo administrativo e calcular
+corretamente os custos.
+Trabalhadores internos e subcontratados
+A ACRS trabalha com trabalhadores internos e trabalhadores provenientes de quatro
+empresas externas/subcontratadas.
+A futura plataforma deve permitir navegar por empresa e perceber trabalhadores, horas,
+obras, custos, horas extra, trabalho noturno e viagens associadas.
+Regras de custo identificadas
+A regra deve ser parametrizada por empresa, e não codificada individualmente por
+trabalhador.
+3.3.1 ACRS
+A informação de trabalho mais recente aponta para:
+•hora extra a partir da9.ªhora: acréscimo de 50%;
+•trabalho noturno: acréscimo de 25%;
+•sábado: acréscimo de 50%;
+7
+
+--- Página 9 ---
+CONTEXTO ACRS
+• domingo e feriados: referência mais recente de acréscimo de 50%, a confirmar
+formalmente.
+3.3.2 Empresas subcontratadas
+A referência de trabalho mais recente aponta para hora extra a partir da11.ªhora, com
+acréscimo de 50%. Durante o levantamento surgiu também uma referência à 12.ªhora.
+Esta regra deve ser confirmada antes de implementação.
+As quatro empresas devem ser identificadas formalmente. Para efeitos de análise
+interna podem ser tratadas temporariamente como Empresa A, Empresa B, Empresa C
+e Empresa D.
+Tempo de viagem
+O Power BI atual já permite visualizar tempo de viagem. O problema identificado é
+garantir que essa componente entra corretamente nocusto económico da obra.
+O sistema futuro deve distinguir e calcular, de forma consistente, horas normais, horas
+extra, horas noturnas, tempo de viagem e respetivo custo imputado à obra.
+Regra a confirmar
+É necessário validar se suplementos como hora extra, noturno, sábado e domin-
+go/feriado acumulam entre si ou seguem alguma regra de prioridade.
+8
+
+--- Página 10 ---
+CONTEXTO ACRS
+SECÇÃO 4
+Armazém e ferramentaria
+Uma única realidade operacional
+A ACRS possui umarmazém/ferramentariaonde coexistem matéria-prima, consu-
+míveis, EPI, ferramentas, caixas de ferramentas, máquinas e outros equipamentos
+utilizados nas obras.
+Para quem opera esta área, todos estes elementos fazem parte do mesmo fluxo físico:
+podem entrar, sair, ser atribuídos a uma obra, regressar, ficar indisponíveis ou necessitar
+de reposição.
+A separação entre consumíveis, ferramentas e máquinas deve existir
+nas regras de negócio e no cálculo de custo, mas não deve obrigar o
+utilizador a trabalhar em experiências visuais completamente separa-
+das.
+Uma organização funcional coerente é:
+•Armazém / Ferramentariacomo área principal;
+•um único inventário/catálogo;
+• tipos de artigo discretos, como material, consumível, ferramenta, máquina ou equi-
+pamento;
+•movimentos comuns de entrada, saída, devolução e ajuste;
+•regras específicas aplicadas automaticamente consoante o tipo de artigo.
+Problema económico atual
+Hoje, a ferramentaria assume compras, mas as saídas para obras não são registadas
+de forma equivalente.
+Na prática:
+9
+
+--- Página 11 ---
+CONTEXTO ACRS
+1. material ou equipamento é comprado;
+2. a compra entra como custo do armazém/ferramentaria;
+3. o recurso sai fisicamente para uma obra;
+4. essa saída não alimenta o custo da obra com o mesmo rigor.
+O resultado é uma leitura distorcida: a ferramentaria pode aparecer com dezenas de
+milhares de euros negativos, apesar de o material ter sido efetivamente utilizado pelas
+obras.
+Metáfora utilizada na sessão
+A ferramentaria foi descrita como uma espécie de “empresa dentro da empresa”.
+Esta expressão deve ser entendida como uma lógica de gestão interna, não como
+faturação real entre entidades jurídicas: a ferramentaria compra e disponibiliza
+recursos, e as obras devem absorver economicamente aquilo que utilizam.
+Foi referida uma margem de erro estimada de aproximadamente7%na leitura dos
+custos das obras, em parte porque informação relevante não está integrada ou chega
+tarde.
+Registo através de tablet
+A solução operacional considerada mais simples foi a instalação de umtablet no
+armazém/ferramentaria.
+Foi descartada como abordagem principal a necessidade de QR Code, NFC ou lei-
+tura individual para cada pequeno consumível, por não ser prática para artigos como
+parafusos, discos e outros consumíveis de elevada rotação.
+O fluxo pretendido é semelhante a um catálogo visual:
+1. selecionar a obra;
+2. abrir a lista/catálogo;
+3. escolher família ou pesquisar o artigo;
+4. visualizar nome, código/referência e, quando possível, fotografia;
+5. selecionar o artigo;
+6. indicar quantidade ou ação aplicável;
+10
+
+--- Página 12 ---
+CONTEXTO ACRS
+7. indicar a data efetiva;
+8. confirmar o movimento.
+O sistema adapta o formulário consoante o tipo de artigo selecionado.
+Movimentos comuns
+01 Entrada
+Material comprado passa a existir no inventário do armazém.
+EXEMPLOCompra de 200 kg de ferro.
+02 Saída / atribuição a obra
+Material, consumível, ferramenta ou equipamento é associado a uma obra. O
+impacto depende da regra do artigo.
+EXEMPLODos 200 kg comprados, 5 kg são atribuídos à obra X.
+03 Devolução
+Um recurso inicialmente enviado para obra pode regressar ao armazém quando
+a sua regra o permitir.
+EXEMPLOSaem 20 discos e regressam 10; o stock é reposto e o custo da obra
+é corrigido de acordo com a regra definida.
+04 Ajuste
+Deve existir capacidade administrativa de corrigir inventário, perdas, danos ou
+situações excecionais, mantendo histórico e rastreabilidade.
+Adata efetivado movimento deve ser diferente da data de criação do registo. Deve ser
+possível introduzir hoje um movimento ocorrido ontem ou agendar uma saída com data
+futura.
+Materiais e consumíveis
+Materiais e consumíveis são tratados por quantidade ou unidade de medida. Quando
+saem para uma obra, o stock disponível diminui e o valor definido é imputado ao custo
+11
+
+--- Página 13 ---
+CONTEXTO ACRS
+da obra.
+Foi dado o exemplo de um artigo comprado por 1 euro e transferido internamente para
+a obra por 1,10 euros. Os valores e margens reais serão definidos posteriormente pela
+ACRS.
+Entre os artigos mencionados encontram-se discos, parafusos, cintas, caixas de brocas,
+luvas, capacetes, EPI, matéria-prima, sprays e consumíveis diversos. As nomenclaturas
+e códigos já existentes devem ser reaproveitados.
+Máquinas e equipamentos
+Máquinas e equipamentos vivem no mesmo inventário operacional, mas seguem regras
+diferentes.
+Cada máquina deve ter identificação própria e permitir saber estado atual, obra/locali-
+zação atual, data de saída, data de devolução, utilizador que registou os movimentos e
+custo diário aplicável.
+A regra indicada écusto por dia, não por hora. Uma máquina ocupada por um dia gera
+um dia de custo para a obra.
+Ferramentas e caixas
+Caixas de ferramentas podem ser geridas como uma única unidade. Não é neces-
+sário parametrizar cada ferramenta dentro da caixa. Na devolução, o responsável
+confirma a integridade do conjunto. Material danificado ou em falta pode ser lançado
+separadamente como custo adicional da obra.
+Bobines
+As bobines constituem uma regra especial. Quando uma bobine sai pela primeira vez
+para uma obra, é considerada integralmente consumida, o seu custo é imputado à
+primeira obra e deixa de existir no stock disponível do sistema.
+Mesmo que fisicamente regresse com material remanescente, não deve voltar a ser
+imputada a outra obra. A intenção é impedir dupla contabilização e manter simples a
+leitura de reposição.
+12
+
+--- Página 14 ---
+CONTEXTO ACRS
+Reparações, perdas e danos
+Danos resultantes de uma obra devem poder ser imputados diretamente a essa obra.
+Foi referido que alguns componentes regressam danificados e podem gerar custos de
+reparação relevantes.
+Cintas e caixas de brocas foram tratadas operacionalmente como consumíveis, uma
+vez que a vida útil é imprevisível e podem regressar muito degradadas ou incompletas.
+Artigos não catalogados
+O sistema deve permitir associar à obra artigos ou despesas que ainda não existam no
+catálogo, através de uma opção de registo manual/“Outro”, com descrição e valor.
+Stock mínimo e apoio à compra
+A ACRS pretende definir níveis mínimos de stock.
+EXEMPLOSe existirem 200 discos e o stock descer para 50, o sistema deve alertar
+para necessidade de reposição.
+A plataforma deve ainda permitir analisar consumo histórico, nomeadamente artigos
+mais consumidos nos últimos meses, quantidades consumidas, tendência de consumo
+e cobertura aproximada de stock.
+Inventário inicial
+A ACRS já possui uma base parcial de artigos com códigos, nomes e outros atributos.
+As quantidades terão de ser reconciliadas fisicamente antes de um arranque fiável do
+novo sistema. Foi referida a possibilidade de realizar esse acerto no final do ano.
+Contentores em obra
+Vítor levantou a possibilidade de utilizar lógica semelhante à do armazém em contentores
+existentes nas obras.
+A arquitetura deverá admitir múltiplas localizações de stock, mas falta confirmar se estes
+contentores serão apenas localizações secundárias ou unidades com fluxo operacional
+próprio. É importante evitar dupla imputação de custo quando um artigo passa do
+armazém central para um contentor e só depois é efetivamente consumido.
+13
+
+--- Página 15 ---
+CONTEXTO ACRS
+Viaturas
+Foi discutida a possibilidade de alocar viaturas às obras e aplicar um valor diário.
+A questão ficou em aberto porque os custos das viaturas já são tratados, em determi-
+nados casos, como não produtivos. Imputar simultaneamente um custo diário à obra
+poderia duplicar custos e distorcer resultados.
+A orientação mais segura para a fase inicial é não integrar ainda uma regra fixa de custo
+diário de viaturas, manter combustível e outras despesas diretas associáveis à obra e
+fechar posteriormente uma metodologia de reclassificação sem duplicação.
+14
+
+--- Página 16 ---
+CONTEXTO ACRS
+SECÇÃO 5
+Faturas, compras e digitalização
+Problema atual
+As faturas são introduzidas manualmente. A equipa administrativa recebe um volume
+significativo de documentos de trabalhadores no terreno, especialmente relacionados
+com refeições, combustível, alojamento e outras despesas de obra, para além das
+compras realizadas centralmente.
+Digitalização através de fotografia
+Foi identificada uma oportunidade clara de reduzir introdução manual através de foto-
+grafia ou upload do documento.
+O fluxo desejado é:
+1. fotografia ou upload da fatura;
+2. leitura OCR e extração assistida por IA;
+3. extração de fornecedor, número do documento, data, valor, IVA e, quando possível,
+linhas/artigos;
+4. validação humana;
+5. escolha do destino económico.
+A automação deve reduzir trabalho, mas não assumir leitura 100% correta sem valida-
+ção.
+Dois destinos económicos
+5.3.1 Despesa direta da obra
+Despesas como refeições, alojamento e combustível podem ser imputadas diretamente
+à obra. A despesa pertence àobra, não ao trabalhador que submeteu a fotografia. O
+utilizador deve ser guardado para rastreabilidade.
+15
+
+--- Página 17 ---
+CONTEXTO ACRS
+5.3.2 Compra para armazém
+Quando a fatura representa compra de material operacional, a compra é registada,
+os artigos entram no inventário e posteriormente são atribuídos às obras através dos
+movimentos do armazém.
+Todo o material operacional deve passar pelo stock no sistema, mesmo quando fisica-
+mente é entregue diretamente numa obra.
+16
+
+--- Página 18 ---
+CONTEXTO ACRS
+SECÇÃO 6
+Obras, custos, orçamento e margem
+A obra como centro
+A futura plataforma deve organizar a operação em torno da obra.
+Uma obra deve conseguir reunir, num único local:
+✓valor comercial/orçamentado;
+✓margem alvo;
+✓custo máximo admissível;
+✓mão de obra;
+✓horas extra e noturnas;
+✓tempo de viagem;
+✓alimentação e alojamento;
+✓combustível;
+✓materiais e consumíveis;
+✓ferramentas, máquinas e equipamentos;
+✓reparações e perdas;
+✓faturas e outras despesas;
+✓custo atual e margem.
+Perguntas que o sistema deve responder
+Ao abrir uma obra, deve ser possível perceber rapidamente quanto foi vendido, qual a
+margem pretendida, quanto pode ser gasto sem a comprometer, quanto já foi gasto,
+onde foi gasto, quanto ainda está disponível e se a obra está saudável, em atenção ou
+em risco.
+17
+
+--- Página 19 ---
+CONTEXTO ACRS
+Margem e alertas
+Exemplo
+Uma obra é vendida por 100.000 euros e a margem alvo é 20%.
+O custo máximo admissível é 80.000 euros.
+Se o custo realizado chegar a 70.000 euros, o sistema deve tornar evidente que
+restam apenas 10.000 euros até ao limite definido para proteger a margem.
+O objetivo é permitir intervenção durante a execução, e não descobrir desvios apenas
+depois de a obra terminar.
+18
+
+--- Página 20 ---
+CONTEXTO ACRS
+SECÇÃO 7
+Controlo e análise
+A futura plataforma não deve eliminar as perguntas de gestão que o Power BI atual já
+responde. Deve preservá-las e acrescentar dimensões que hoje não estão integradas.
+Análises a preservar
+✓custos e despesas por obra;
+✓custo de mão de obra por obra;
+✓horas trabalhadas e horas extra;
+✓rácio de horas extra;
+✓custo médio/hora;
+✓tempo de viagem e respetivo peso;
+✓custos por colaborador;
+✓despesas por categoria e fornecedor;
+✓detalhe de faturas;
+✓evolução temporal dos gastos.
+Novas dimensões de controlo
+✓orçamento vs. realizado;
+✓margem alvo, margem atual e custo máximo;
+✓risco por obra;
+✓inventário e movimentos de armazém;
+✓consumo de materiais;
+19
+
+--- Página 21 ---
+CONTEXTO ACRS
+✓utilização de máquinas;
+✓danos e reparações;
+✓cobertura de stock;
+✓artigos mais consumidos;
+✓leitura económica da ferramentaria.
+20
+
+--- Página 22 ---
+CONTEXTO ACRS
+SECÇÃO 8
+Perfis e utilização
+A estimativa dada durante a sessão foi de7–8 utilizadores simultâneosno núcleo
+administrativo e operacional, para além de acessos simplificados de campo.
+PerfilNecessidade principal Interação esperada
+Administração /
+controlo
+Obras, custos, faturas, ponto, or-
+çamento e margem
+Consulta e registo detalhado
+Operação Obras, disponibilidade e acompa-
+nhamento de recursos
+Consulta operacional
+Armazém /
+Ferramentaria
+Inventário, entradas, saídas, de-
+voluções e atribuições
+Registo rápido em tablet
+Gerência Visibilidade global, custos, mar-
+gem e risco
+Consulta executiva
+CampoSubmissão de faturas/despesas Interação mínima através de tele-
+móvel
+21
+
+--- Página 23 ---
+CONTEXTO ACRS
+SECÇÃO 9
+Princípios funcionais da solução
+Esta secção traduz o levantamento numa direção funcional para análise interna da
+equipa Vouga. Não substitui decisões que ainda precisam de validação com a ACRS.
+Uma única plataforma
+A direção proposta é substituir a fragmentação atual por uma plataforma onde a obra é
+a entidade central e ponto, faturas, orçamento e armazém alimentam a mesma visão de
+custo.
+O objetivo é registar a informação no ponto mais próximo de onde ela acontece e reduzir
+a reconstrução posterior em múltiplos ficheiros.
+Armazém unificado
+A experiência operacional do armazém/ferramentaria deve ser única.
+Uma organização possível:
+•Visão geral;
+•Inventário;
+•Movimentos;
+•Consumo e reposição;
+•Tablet.
+Dentro deInventário, filtros permitem distinguir materiais, consumíveis, ferramentas,
+máquinas e equipamentos.
+A separação financeira continua a existir nas rubricas de custo, mas não precisa de
+criar experiências isoladas para o utilizador do armazém.
+22
+
+--- Página 24 ---
+CONTEXTO ACRS
+Rastreabilidade
+Cada movimento relevante deve conservar obra, recurso/artigo, quantidade quando
+aplicável, data efetiva, data de criação, utilizador responsável, origem/destino, valor
+imputado e ligação ao documento ou movimento que lhe deu origem.
+23
+
+--- Página 25 ---
+CONTEXTO ACRS
+SECÇÃO 10
+Pontos ainda por fechar
+01 — Empresas subcontratadas
+Confirmar formalmente os nomes das quatro empresas e os respetivos trabalha-
+dores.
+02 — Limite de hora extra dos subcontratados
+A referência de trabalho mais recente é 11.ªhora, mas surgiu também a referência
+à 12.ªhora. É necessário fechar a regra.
+03 — Domingo e feriados
+A informação inicial apontava para 100%. Uma clarificação posterior apontou
+para 50%. Confirmar formalmente antes de implementação.
+04 — Acumulação de suplementos
+Confirmar se hora extra, noturno, sábado e domingo/feriado acumulam ou obe-
+decem a uma prioridade.
+05 — Valores internos da ferramentaria
+A ACRS deve validar custos base, preços internos, margens por artigo/família e
+custos diários de máquinas.
+06 — Inventário inicial
+Reconciliar fisicamente as quantidades existentes antes do arranque operacional.
+24
+
+--- Página 26 ---
+CONTEXTO ACRS
+07 — Contentores em obra
+Confirmar esta ideia. Querem? Funcionam apenas como localizações de stock
+ou se terão processos próprios de entrada, saída e consumo.
+08 — Viaturas
+Definir uma metodologia que permita atribuição às obras sem duplicar custos já
+tratados como não produtivos.
+09 — Ferramentaria: lógica de margem interna
+Confirmar como a gestão pretende interpretar a margem interna da ferramen-
+taria e distinguir transferência interna de resultado económico consolidado da
+empresa.
+25
+
+--- Página 27 ---
+CONTEXTO ACRS
+SECÇÃO 11
+Resultado esperado
+Ter uma plataforma única onde cada obra reúna, em tempo útil, orça-
+mento, mão de obra, viagens, despesas, materiais, ferramentas, máqui-
+nas e restantes custos, enquanto o armazém/ferramentaria mantém
+controlo real do que entra, do que sai, do que regressa e do que precisa
+de ser reposto.
+A ambição indicada é preparar o sistema para umarranque operacional completo
+em janeiro, com o armazém/ferramentaria ligado ao custo das obras e a informação
+administrativa concentrada na mesma plataforma.
+O objetivo final não é apenas substituir Excel e Power BI. É ligar partes da operação
+que hoje não comunicam com o rigor necessário e dar à ACRS capacidade de atuar
+antes de um desvio operacional se transformar num problema económico.
+26

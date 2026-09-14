@@ -1,0 +1,110 @@
+{
+  "Menu": {
+    "maxRows": 31,
+    "maxCols": 12,
+    "nonemptyRows": 2,
+    "formulas": 0,
+    "formulaExamples": [],
+    "errors": [],
+    "errorCount": 0,
+    "tables": {},
+    "state": "visible"
+  },
+  "Ponto": {
+    "maxRows": 8906,
+    "maxCols": 14,
+    "nonemptyRows": 8906,
+    "formulas": 26715,
+    "formulaExamples": [
+      "=IF(OR(Table1[[#This Row],[Entrada manhã]]=\"\", Table1[[#This Row],[Saída manhã]]=\"\", Table1[[#This Row],[Entrada manhã]]=Table1[[#This Row],[Saída manhã]]), 0, MOD(Table1[[#This Row],[Saída manhã]]-Table1[[#This Row],[Entrada manhã]], 1)) + IF(OR(Table1[[#This Row],[Entrada tarde ]]=\"\", Table1[[#This Row],[Saída tarde]]=\"\", Table1[[#This Row],[Entrada tarde ]]=Table1[[#This Row],[Saída tarde]]), 0, MOD(Table1[[#This Row],[Saída tarde]]-Table1[[#This Row],[Entrada tarde ]], 1)) + IF(OR(Table1[[#This Row],[Entrada noite]]=\"\", Table1[[#This Row],[Saída noite]]=\"\", Table1[[#This Row],[Entrada noite]]=Table1[[#This Row],[Saída noite]]), 0, MOD(Table1[[#This Row],[Saída noite]]-Table1[[#This Row],[Entrada noite]], 1))",
+      "=IF(_xlfn.XLOOKUP(Table1[[#This Row],[Nome]],'Lista Pessoas'!A:A,'Lista Pessoas'!C:C,)=1,MAX(0, Table1[[#This Row],[Total horas]] - _xlfn.XLOOKUP(Table1[[#This Row],[Nome]], Colaboradores!A:A, Colaboradores!D:D)),0)",
+      "=IF(TRIM(Table1[[#This Row],[Tempo Viagem]])=\"\", 0, IFERROR(VALUE(TRIM(Table1[[#This Row],[Tempo Viagem]])), 0))"
+    ],
+    "errors": [],
+    "errorCount": 0,
+    "tables": {
+      "Table1": "A1:N8906"
+    },
+    "state": "visible"
+  },
+  "Faturas": {
+    "maxRows": 4245,
+    "maxCols": 14,
+    "nonemptyRows": 4245,
+    "formulas": 0,
+    "formulaExamples": [],
+    "errors": [],
+    "errorCount": 0,
+    "tables": {
+      "Faturas": "A1:G4245"
+    },
+    "state": "visible"
+  },
+  "Colaboradores": {
+    "maxRows": 202,
+    "maxCols": 12,
+    "nonemptyRows": 202,
+    "formulas": 1,
+    "formulaExamples": [
+      "=_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn._xlws.FILTER('Lista Pessoas'!A:B,('Lista Pessoas'!A:A<>\"\")*('Lista Pessoas'!A:A<>'Lista Pessoas'!A1)*('Lista Pessoas'!B:B<>'Lista Pessoas'!B1))))"
+    ],
+    "errors": [],
+    "errorCount": 0,
+    "tables": {},
+    "state": "visible"
+  },
+  "Lista Pessoas": {
+    "maxRows": 202,
+    "maxCols": 3,
+    "nonemptyRows": 202,
+    "formulas": 1,
+    "formulaExamples": [
+      "=_xlfn.UNIQUE(_xlfn._xlws.FILTER(Ponto!A:A,Ponto!A:A<>\"\"))"
+    ],
+    "errors": [],
+    "errorCount": 0,
+    "tables": {},
+    "state": "visible"
+  },
+  "Lista Obras": {
+    "maxRows": 184,
+    "maxCols": 1,
+    "nonemptyRows": 184,
+    "formulas": 1,
+    "formulaExamples": [
+      "=_xlfn.LET(\n_xlpm.data,_xlfn.UNIQUE(_xlfn._xlws.FILTER(Ponto!I:J,Ponto!J:J<>\"\")),\n_xlfn.BYROW(_xlpm.data,_xlfn.LAMBDA(_xlpm.r,_xlfn.TEXTJOIN(\" - \",,_xlpm.r))))"
+    ],
+    "errors": [],
+    "errorCount": 0,
+    "tables": {},
+    "state": "visible"
+  },
+  "Tabelas Apoio": {
+    "maxRows": 189,
+    "maxCols": 14,
+    "nonemptyRows": 189,
+    "formulas": 1,
+    "formulaExamples": [
+      "=TEXT(_xlfn.UNIQUE(_xlfn._xlws.FILTER(Faturas!G:G, Faturas!G:G<>\"\")),\"#\")"
+    ],
+    "errors": [],
+    "errorCount": 0,
+    "tables": {
+      "Tabela_Horario": "A1:E5",
+      "Categoria": "H1:H46",
+      "Fornecedores": "J1:J189"
+    },
+    "state": "visible"
+  },
+  "Lista Pessoas (backup)": {
+    "maxRows": 42,
+    "maxCols": 12,
+    "nonemptyRows": 38,
+    "formulas": 0,
+    "formulaExamples": [],
+    "errors": [],
+    "errorCount": 0,
+    "tables": {},
+    "state": "hidden"
+  }
+}

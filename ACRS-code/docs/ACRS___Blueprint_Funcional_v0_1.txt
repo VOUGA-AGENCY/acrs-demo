@@ -1,0 +1,733 @@
+PAGE 1
+Vouga  Agency  
+C o n f i d e n t i a l  ·  F o r  i n t e r n a l  u s e  o n l y
+A C R S
+B l u e p r i n t  F u n c i o n a l
+
+PAGE 2
+BLUEPRINT ACRS
+Estrutura
+1 Visão da solução 2
+2 Transição do sistema atual 3
+3 Mapa funcional 6
+4 Módulos 8
+5 Modelo de dados inicial 10
+6 Páginas e interação 13
+7 Regras operacionais 20
+8 Perfis e experiência 22
+9 Arquitetura técnica inicial 25
+10 Escopo funcional inicial 26
+11 Decisões a validar antes de desenvolvimento 28
+12 Resultado pretendido 30
+1
+
+PAGE 3
+BLUEPRINT ACRS
+SECÇÃO 1
+Visão da solução
+A solução proposta é umERP operacional à medida da ACRS, concentrado numa única
+plataforma web. O objetivo não é replicar um ERP genérico com dezenas de módulos
+administrativos; é criar o sistema que falta entre a operação real da empresa e o controlo
+económico de cada obra.
+A obra é o centro do sistema. Pessoas, faturas, consumíveis, máqui-
+nas, reparações e orçamento convergem numa única visão de custo e
+margem por obra.
+O Excel e o Power BI atuais deixam de ser o núcleo operacional. Servem como fonte
+histórica e de migração, mas o novo sistema passa a ser a fonte de verdade.
+Princípios de desenho
+✓Uma única plataformapara obras, armazém, faturas, pessoas e controlo;
+✓Uma única base de dadospartilhada por todos os módulos;
+✓Uma única lógica de custos, evitando cálculos diferentes em diferentes páginas;
+✓interfaces diferentes por perfil, mantendo os mesmos dados por baixo;
+✓operação de armazém simples e rápida em tablet;
+✓rastreabilidade: cada movimento deve guardar origem, obra, data e utilizador;
+✓regras configuráveis sempre que possível, evitando lógica fixa no código.
+2
+
+PAGE 4
+BLUEPRINT ACRS
+SECÇÃO 2
+Transição do sistema atual
+O sistema atual da ACRS deve ser tratado como uma fonte de requisitos e de histórico,
+não como base tecnológica da nova solução. A análise do ficheiro Power BI confirma
+que a estrutura atual está concentrada emcustos e atividade realizada. Não existe
+atualmente uma camada de orçamento, margem alvo ou custo máximo admissível
+integrada no modelo.
+O novo ERP deve preservar a leitura de custos que a ACRS já utiliza,
+mas integrar essa informação com operação, stock, ferramentaria e,
+como capacidade nova, orçamento e controlo de margem.
+O que deve ser mantido
+A nova plataforma deve conservar os indicadores e leituras que já são úteis à ACRS,
+nomeadamente:
+✓custo total por obra;
+✓custos e horas por colaborador;
+✓horas normais, horas extra e tempo de viagem;
+✓custo médio/hora e análise de mão de obra;
+✓despesas por obra e por categoria;
+✓despesas por fornecedor;
+✓detalhe de faturas associado à obra;
+✓evolução temporal por data, semana, mês e ano;
+✓análise individual de colaboradores e distribuição do respetivo trabalho por obra.
+3
+
+PAGE 5
+BLUEPRINT ACRS
+Estas leituras deixam de existir como relatórios isolados em Power BI e passam a estar
+disponíveis diretamente nos contextos onde são necessárias: obra, pessoa, fatura,
+fornecedor e controlo.
+O que deve mudar
+•eliminar a dependência operacional de Excel + Power BI;
+• substituir introdução duplicada e atualização manual por registo direto numa base
+de dados central;
+•integrar armazém e ferramentaria, atualmente ausentes do modelo analítico;
+• fazer com que movimentos de stock, máquinas, ponto e faturas atualizem automati-
+camente o custo da obra;
+• incorporar orçamento, margem alvo, custo máximo e alertas de desvio, inexistentes
+no sistema atual;
+• permitir rastrear qualquer valor agregado até ao movimento ou documento que o
+originou;
+• validar as regras de cálculo existentes antes de as reproduzir, em vez de copiar
+automaticamente fórmulas ou medidas do sistema atual.
+Princípio de migração
+O objetivo não é reproduzir visualmente o Power BI dentro do ERP. Devem
+ser preservadas as métricas e perguntas de gestão que continuam válidas,
+reorganizando-as numa experiência operacional integrada. O histórico exis-
+tente deverá ser migrado ou disponibilizado de forma compatível sempre que a
+qualidade dos dados o permita.
+Capacidades novas face ao sistema atual
+São capacidades novas, e não funcionalidades existentes a migrar:
+•orçamento associado à obra;
+•margem objetivo e custo máximo admissível;
+•alertas de consumo do orçamento de custo;
+4
+
+PAGE 6
+BLUEPRINT ACRS
+•stock e movimentos de armazém;
+•aluguer interno e alocação de máquinas;
+•valorização interna da ferramentaria;
+•OCR e submissão simplificada de faturas;
+•alertas de stock mínimo e análise de consumo;
+•visão integrada e em tempo real de todos os custos que compõem uma obra.
+5
+
+PAGE 7
+BLUEPRINT ACRS
+SECÇÃO 3
+Mapa funcional
+Desenho inicial do sistema
+Pessoas
+& Ponto
+Armazém
+& Stock
+Faturas
+& Compras Orçamentos
+OBRAS
+Motor único de custos
+Ferramentaria
+& Máquinas
+Controlo
+Margem & Alertas
+Base de dados central
+A lógica é simples: cada módulo regista factos operacionais. Sempre que um facto
+tem impacto económico numa obra, é criado ou atualizado ummovimento de custo. O
+dashboard da obra lê esses movimentos e apresenta a situação atual.
+Exemplo de ligação entre módulos
+01 Armazém
+Saem 20 discos para a obra 25094.
+EFEITOstock reduz 20 unidades e é criado custo na obra.
+02 Ponto
+José Cardoso trabalha na obra 25094 e são registadas as horas do dia.
+EFEITOo motor aplica o custo/hora e as regras de suplemento aplicáveis.
+6
+
+PAGE 8
+BLUEPRINT ACRS
+03 Fatura
+É digitalizada uma fatura de alojamento e associada à obra 25094.
+EFEITOa despesa entra diretamente no custo da obra.
+04 Controlo
+Todos os movimentos anteriores aparecem automaticamente na mesma obra.
+SAÍDAcusto atual, custo disponível, margem e alertas atualizados.
+7
+
+PAGE 9
+BLUEPRINT ACRS
+SECÇÃO 4
+Módulos
+MóduloResponsabilidade Ligações principais
+Obras Núcleo do ERP: cliente, estado, or-
+çamento, custos, margem e histó-
+rico
+Todos os módulos
+Armazém Stock, entradas, saídas, devolu-
+ções, mínimos e consumo
+Obras, Faturas/Compras
+Ferramentaria Máquinas, caixas, aluguer diário,
+devoluções e danos
+Obras, Armazém
+Faturas &
+Compras
+OCR, fornecedor, despesa direta
+ou compra para stock
+Obras, Armazém
+Pessoas & Ponto Pessoas, empresas, horários, ex-
+tras, noturno, viagem e custo
+Obras
+Orçamentos Valor proposto, margem alvo, custo
+máximo e estrutura de orçamento
+Obras, Controlo
+Controlo Margens, desvios, alertas, con-
+sumo e rentabilidade
+Obras, Armazém
+Configuração Artigos, preços, regras, utilizado-
+res, empresas e permissões
+Todos os módulos
+Leitura visual de cada módulo
+Cada módulo tem uma função própria, mas todos utilizam as mesmas entidades centrais.
+Os esquemas seguintes mostram o percurso principal da informação em cada área.
+Obras
+Criar obra
+cliente, local, estado
+Definir orçamento
+e margem alvo
+Receber custos
+de todos os módulos
+Consultar detalhe
+por origem
+Margem, disponível
+e alertas
+8
+
+PAGE 10
+BLUEPRINT ACRS
+Armazém
+Stock disponível Selecionar obra
+e artigo
+Saída, entrada
+ou devolução
+Atualizar quantidade
+e localização
+Atualizar custo
+da obra
+Ferramentaria e máquinas
+Equipamento
+disponível
+Alocar à obra
+com data de saída
+Calcular custo
+diário
+Devolver, reparar
+ou manter em obra
+Fechar custo
+e histórico
+Faturas e compras
+Fotografar ou
+carregar fatura
+Extrair dados
+com OCR
+Validar fornecedor,
+valor e categoria
+Escolher destino
+stock ou obra
+Gerar entrada
+ou custo
+Pessoas e ponto
+Pessoa e empresa
+de origem
+Registar horas,
+obra e viagem
+Aplicar regras
+de custo
+Separar normal, extra,
+noturno e viagem
+Gerar custo
+na obra
+Orçamentos
+Definir valor
+da obra
+Definir margem
+alvo
+Calcular custo
+máximo admissível
+Comparar custo
+realizado
+Gerar alertas
+de desvio
+Controlo
+Dados operacionais
+em tempo real
+Agregar por obra,
+categoria e período
+Detetar desvios
+e risco
+Abrir origem
+do valor Decidir e agir
+Configuração
+Dados mestre
+artigos, pessoas, empresas
+Regras
+preços, horários, mínimos
+Utilizadores
+e permissões
+Aplicar regras
+aos módulos
+Histórico e
+rastreabilidade
+9
+
+PAGE 11
+BLUEPRINT ACRS
+SECÇÃO 5
+Modelo de dados inicial
+O modelo seguinte não pretende fechar a base de dados final. Serve para garantir que
+os módulos partilham entidades comuns e que as relações essenciais são tratadas
+desde o início.
+Entidades centrais
+Obra
+Número de obra, cliente, local, estado, datas, responsável, valor orçamentado,
+margem objetivo e custo máximo.
+Movimento de custo
+Obra, origem, categoria, descrição, quantidade, valor unitário, valor total, data
+efetiva, data de criação e utilizador. É a camada comum entre todos os módulos
+e o controlo económico.
+Artigo
+ID interno, código ACRS, família, material, tamanho, descrição, marca, fotografia,
+unidade, stock mínimo, custo e valor interno de transferência.
+Movimento de stock
+Artigo, tipo de movimento, quantidade, obra quando aplicável, localização de
+origem/destino, data efetiva e utilizador.
+Equipamento
+Número de máquina, tipo, marca/modelo, estado, custo diário e localização atual.
+10
+
+PAGE 12
+BLUEPRINT ACRS
+Alocação de equipamento
+Equipamento, obra, data de saída, data de devolução, custo diário aplicado e
+responsáveis pelos movimentos.
+Pessoa e empresa
+Pessoa, empresa de origem, tipo de vínculo, custo/hora e política horária. A em-
+presa permite agrupar colaboradores ACRS e trabalhadores de subcontratados.
+Fatura
+Fornecedor, número, data, valor, documento original, resultado do OCR, tipo de
+destino e obra ou entrada de stock associada.
+Relações essenciais
+OBRA
+Cliente Orçamento Movimentos de custo
+Ponto Faturas
+Movimentos de stock Alocações de equipamento Alertas e controlo
+11
+
+PAGE 13
+BLUEPRINT ACRS
+OrigemRelação Cardinalidade
+Clientetem várias obras 1:N
+Obratem movimentos de custo 1:N
+Obratem registos de ponto 1:N
+Obrarecebe despesas/faturas 1:N
+Artigotem movimentos de stock 1:N
+Equipamentotem alocações a obras 1:N
+Empresatem trabalhadores 1:N
+Pessoatem registos de ponto 1:N
+12
+
+PAGE 14
+BLUEPRINT ACRS
+SECÇÃO 6
+Páginas e interação
+Navegação principal
+A navegação base deve manter-se curta:
+Dashboard | Obras | Armazém | Faturas & Compras |
+Pessoas | Orçamentos | Controlo | Configuração
+As opções apresentadas podem variar conforme o perfil do utilizador.
+Dashboard
+Obras Armazém Faturas Pessoas
+Orçamentos Controlo Configuração
+Dashboard
+O dashboard não deve tentar mostrar tudo. Deve apresentar apenas informação que
+ajuda o perfil em causa a decidir ou agir.
+Elementos possíveis:
+•número de obras ativas;
+•obras com margem ou custo em risco;
+•custo acumulado e valor orçamentado;
+•alertas de stock;
+13
+
+PAGE 15
+BLUEPRINT ACRS
+•máquinas em obra ou pendentes de devolução;
+•faturas por validar;
+•atalhos para ações frequentes.
+Obras: lista
+Rota conceptual:/obras
+A página apresenta as obras com pesquisa e filtros por estado, cliente, responsável e
+risco.
+Cada linha ou cartão deverá mostrar, no mínimo:
+•número e nome da obra;
+•cliente;
+•estado;
+•orçamento;
+•custo atual;
+•custo máximo admissível;
+•margem ou indicador de risco.
+Ao carregar numa obra, o utilizador entra no respetivo detalhe.
+Obra: detalhe
+Rota conceptual:/obras/{id}
+No topo ficam sempre visíveis os indicadores essenciais:
+IndicadorSignificado Exemplo
+Orçamentovalor comercial previsto da obra 120.000 euros
+Margem alvoobjetivo definido no orçamento 20%
+Custo máximolimite compatível com a margem 96.000 euros
+Custo atualcusto já registado 61.420 euros
+Disponívelcusto ainda disponível 34.580 euros
+14
+
+PAGE 16
+BLUEPRINT ACRS
+A seguir, a obra divide-se em separadores:
+Resumo | Custos | Pessoas | Materiais | Equipamentos
+| Faturas | Orçamento
+OBRA 25094
+visão financeira e operacional
+Pessoas Materiais Equipamentos Faturas Orçamento
+Custo atual + disponível + margem + alertas
+Resumoapresenta distribuição de custos e alertas.Custosmostra uma timeline deta-
+lhada de movimentos. Os restantes separadores filtram a mesma realidade pela origem
+do custo.
+Princípio de transparência
+Qualquer valor apresentado no resumo da obra deve poder ser aberto até ao
+movimento que o originou. O utilizador deve conseguir perceber de onde veio o
+número sem recorrer a outro ficheiro.
+Armazém: tablet
+O perfil de armazém deve ter uma interface própria, otimizada para toque e com o
+mínimo de passos.
+Ecrã inicial:
+SAÍDA DE MATERIAL | DEVOLUÇÃO | ENTRADA | MÁQUI-
+NAS | CONSULTAR STOCK
+15
+
+PAGE 17
+BLUEPRINT ACRS
+Fluxo de saída:
+1. Obra 2. Família 3. Artigo
+foto + código
+4. Quantidade
+e data 5. Confirmar
+1. selecionar a obra;
+2. selecionar família;
+3. selecionar artigo por nome, fotografia ou código;
+4. indicar quantidade;
+5. escolher data efetiva;
+6. confirmar.
+O sistema atualiza stock e obra no mesmo momento.
+Armazém: stock
+Rota conceptual:/armazem/stock
+A lista deve permitir pesquisar por código, descrição, família ou marca e mostrar:
+•stock atual;
+•stock mínimo;
+•custo unitário;
+•valor interno de saída;
+•localização;
+•estado de reposição.
+Deverá existir uma área de alertas para artigos abaixo do mínimo e uma análise de
+consumo por período.
+Ferramentaria: máquinas
+Rota conceptual:/armazem/maquinas
+Cada equipamento deve apresentar estado e localização atual:
+16
+
+PAGE 18
+BLUEPRINT ACRS
+•disponível;
+•em obra;
+•em reparação;
+•indisponível.
+Ao abrir uma máquina, deve ser possível consultar histórico de alocações e custos por
+obra.
+Faturas e compras
+Rota conceptual:/faturas
+A primeira ação deve serAdicionar fatura. O utilizador pode fotografar ou carregar o
+documento. O sistema tenta extrair os campos e apresenta-os para validação.
+Depois existe uma decisão simples:
+Fatura validada
+Compra para stock Despesa direta de obra
+No primeiro caso, a compra gera entrada em armazém. No segundo, gera diretamente
+um custo na obra selecionada.
+Pessoas e ponto
+Rota conceptual:/pessoas/ponto
+A primeira versão mantém o registo administrativo, mas simplifica a introdução. A
+interface deve permitir trabalhar por dia ou semana e introduzir rapidamente horas,
+obra, local e viagem.
+O cálculo aplica a política associada à pessoa/empresa e gera o respetivo custo de
+obra.
+17
+
+PAGE 19
+BLUEPRINT ACRS
+Empresas subcontratadas
+Rota conceptual:/pessoas/empresas
+Ao abrir uma empresa, deve ser possível consultar:
+•trabalhadores ativos;
+•custo/hora e regras aplicáveis;
+•horas registadas no período;
+•custos gerados;
+•distribuição por obra.
+Orçamentos
+Rota conceptual:/orcamentos
+O sistema deve suportar dois níveis de detalhe:
+•orçamento simples/global, definindo valor da obra e margem alvo;
+•orçamento discriminado, com componentes de custo quando necessário.
+Em ambos os casos, a obra recebe umcusto máximo admissívela partir do qual o
+controlo de execução pode gerar alertas.
+Controlo
+Rota conceptual:/controlo
+Área transversal para consultar:
+•obras em risco;
+•margem por obra;
+•custo por categoria;
+•consumo de stock;
+•rentabilidade interna da ferramentaria;
+•custos por empresa de mão de obra;
+18
+
+PAGE 20
+BLUEPRINT ACRS
+•tendências de consumo e reposição.
+19
+
+PAGE 21
+BLUEPRINT ACRS
+SECÇÃO 7
+Regras operacionais
+Consumíveis
+Consumíveis saem por unidade ou unidade de medida. A saída reduz stock e cria custo
+na obra utilizando o valor interno parametrizado.
+Devoluções repõem stock e corrigem o valor imputado quando aplicável.
+Máquinas
+Máquinas são alocadas por dia. O custo é calculado a partir da data de saída até à
+devolução. O valor diário aplicado deve ficar registado na alocação para preservar o
+histórico mesmo que o preço seja alterado posteriormente.
+Caixas de ferramentas
+A caixa é tratada como unidade única. Não é necessário controlar individualmente
+cada ferramenta contida. Falhas ou danos identificados na devolução são lançados
+manualmente como custo adicional da obra.
+Bobines
+Bobines seguem uma regra específica: na primeira saída são consideradas integral-
+mente consumidas no sistema e deixam de estar disponíveis em stock. Não são nova-
+mente cobradas numa segunda utilização física.
+Compras
+Material comprado entra no stock antes de ser atribuído a obras, mesmo quando a
+movimentação é apenas virtual por o material seguir fisicamente do fornecedor para a
+obra.
+Despesas como alimentação, alojamento ou combustível podem entrar diretamente na
+20
+
+PAGE 22
+BLUEPRINT ACRS
+obra.
+Datas efetivas
+Cada movimento deve guardar pelo menos duas datas:
+•data efetiva: quando a entrada, saída ou despesa aconteceu;
+•data de registo: quando foi introduzida no sistema.
+Stock mínimo
+Cada artigo pode ter um nível mínimo configurável. Quando o stock disponível fica
+abaixo desse valor, é gerado um alerta de reposição.
+Artigos fora de catálogo
+Deve existir a possibilidade de lançar um artigo/serviço extraordinário com descrição e
+valor manual, associado diretamente à obra, sem obrigar à criação prévia de um artigo
+permanente.
+21
+
+PAGE 23
+BLUEPRINT ACRS
+SECÇÃO 8
+Perfis e experiência
+Mapa de acesso por perfil
+ERP ACRS
+João Catalão
+Obras, Faturas,
+Ponto, Orçamen-
+tos, Controlo
+Vítor
+Obras, Recur-
+sos, Armazém,
+Equipamentos
+Armazém
+Entradas, Saídas,
+Devoluções, Stock
+Gerência
+Visão global, risco,
+custos, margem
+Campo
+Submissão simpli-
+ficada de faturas
+João Catalão: administrativo e controlo
+ENTRADA
+Dashboard focado em obras, custos, margem, faturas pendentes e ponto por introduzir.
+INTERAÇÕES PRINCIPAIS
+• abrir uma obra e perceber imediatamente quanto já custou e quanto ainda pode
+gastar;
+•validar faturas digitalizadas;
+•introduzir ou corrigir ponto;
+•criar/editar orçamento;
+•analisar custos por categoria e empresa;
+•receber alertas de desvio de margem.
+22
+
+PAGE 24
+BLUEPRINT ACRS
+Vítor: operações
+ENTRADA
+Dashboard orientado a obras em curso, pessoas, equipamentos e movimentos operaci-
+onais.
+INTERAÇÕES PRINCIPAIS
+•consultar recursos associados a uma obra;
+•ver máquinas disponíveis ou alocadas;
+•acompanhar material e stock crítico;
+•abrir uma obra e consultar custos operacionais;
+•identificar equipamentos pendentes ou em reparação.
+Responsável de armazém
+O perfil pode entrar diretamente na interface de tablet, sem navegar pelo ERP adminis-
+trativo.
+INTERAÇÕES PRINCIPAIS
+•saída;
+•devolução;
+•entrada;
+•alocação/devolução de máquina;
+•consulta rápida de stock;
+•identificação de artigos abaixo do mínimo.
+Dra. Helena: gerência
+Perfil predominantemente de leitura e controlo.
+INTERAÇÕES PRINCIPAIS
+•visão global de obras, custos e margens;
+•obras em risco;
+23
+
+PAGE 25
+BLUEPRINT ACRS
+•evolução de custos;
+•rentabilidade da ferramentaria;
+•custos de pessoal e compras.
+Campo
+Interface mínima, desenhada para telemóvel. O principal caso de uso inicial é a submis-
+são de faturas/despesas.
+Fluxo esperado:
+1. tirar fotografia;
+2. selecionar obra;
+3. confirmar categoria quando necessário;
+4. submeter.
+O trabalhador não necessita de acesso aos custos ou margem da obra.
+24
+
+PAGE 26
+BLUEPRINT ACRS
+SECÇÃO 9
+Arquitetura técnica inicial
+A arquitetura técnica pode manter-se simples, uma vez que o número esperado de
+utilizadores simultâneos é reduzido.
+Aplicação Web / PWA
+Desktop + Tablet + Telemóvel
+Backend / API
+Regras de negócio e permissões
+Motor de custos
+Obras, stock, ponto e faturas
+Base de dados
+relacional
+Documentos
+faturas e fotografias
+OCR / leitura
+de faturas
+Decisão arquitetural
+O sistema deve ser construído sobre uma base de dados própria. O Excel atual
+é utilizado para migração e validação histórica, não como backend da nova
+plataforma.
+25
+
+PAGE 27
+BLUEPRINT ACRS
+SECÇÃO 10
+Escopo funcional inicial
+A primeira versão deve cobrir o fluxo central de ponta a ponta. Não é necessário
+implementar todas as exceções antes de provar o funcionamento do sistema.
+✓obras e respetivo dashboard;
+✓orçamento, margem alvo e alertas básicos;
+✓stock e catálogo de artigos;
+✓tablet para entradas, saídas e devoluções;
+✓máquinas com alocação e custo diário;
+✓compras e faturas com digitalização/OCR;
+✓despesas diretas por obra;
+✓pessoas, empresas e registo administrativo de ponto;
+✓motor central de custos;
+✓dashboards e perfis de acesso;
+✓alertas de stock e análise simples de consumo.
+Fora da primeira versão
+Para reduzir risco e evitar scope prematuro, algumas áreas devem ficar preparadas na
+arquitetura, mas não necessitam de entrar na primeira entrega funcional:
+•imputação diária de custo fixo das viaturas;
+•novo sistema de picagem móvel de ponto pelos trabalhadores;
+•previsão de orçamento através de IA;
+•contabilidade oficial e fiscal;
+26
+
+PAGE 28
+BLUEPRINT ACRS
+•processamento salarial;
+• módulos genéricos de CRM ou faturação comercial sem relação direta com o pro-
+blema identificado.
+27
+
+PAGE 29
+BLUEPRINT ACRS
+SECÇÃO 11
+Decisões a validar antes de desenvol-
+vimento
+01: Hora extra de subcontratados
+Confirmar a partir de que hora começa o suplemento e como se distingue por
+empresa ou trabalhador.
+02: Acumulação de suplementos
+Confirmar o comportamento quando se sobrepõem hora extra, trabalho noturno,
+sábado, domingo e feriado.
+03: Viaturas
+Decidir se o custo fixo é reclassificado para obras, mantido como não produtivo ou
+tratado através de outra metodologia. Até essa decisão, combustível e despesas
+diretamente identificáveis podem continuar a ser imputados às obras.
+04: Preços internos da ferramentaria
+Definir por artigo/família o custo de aquisição, valor de transferência interna e
+custos diários de máquinas.
+05: Inventário inicial
+Validar códigos, variantes, quantidades e localizações antes da entrada em
+produção. O sistema deve utilizar um identificador interno único, mesmo quando
+existam códigos ACRS repetidos entre marcas ou variantes.
+28
+
+PAGE 30
+BLUEPRINT ACRS
+06: Contentores
+Decidir se os contentores em obra serão localizações de stock dentro do mesmo
+sistema e que movimentos necessitam de ser registados nesses pontos.
+29
+
+PAGE 31
+BLUEPRINT ACRS
+SECÇÃO 12
+Resultado pretendido
+Acontece na operação É registado uma vez
+no ponto de origem
+Base de dados
+central
+Motor de custos
+atualiza a obra
+Gestão vê
+e decide
+O ERP deve permitir que a mesma informação seja introduzidauma única vezno ponto
+onde acontece e fique imediatamente disponível onde é necessária.
+Se um consumível sai no armazém, a obra deve sabê-lo. Se uma fatura
+é digitalizada, a obra deve sabê-lo. Se uma pessoa trabalha na obra, o
+custo deve aparecer. O utilizador deixa de reconstruir a realidade em
+Excel e passa a consultar a realidade diretamente no sistema.
+A experiência final deve ser simples: o responsável do armazém regista movimentos
+em poucos toques; o administrativo valida informação e controla custos; operações
+acompanha recursos; a gerência vê risco e rentabilidade. Todos trabalham sobre a
+mesma base de dados e sobre a mesma obra.
+30

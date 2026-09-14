@@ -1,0 +1,212 @@
+{
+  "sourceFile": "data/STOCK ARMAZEM MÊS AGOSTO.pdf",
+  "referenceMonth": "Agosto",
+  "referenceYear": null,
+  "sourceRowConvention": "1-based PDF table row including the header; first article is row 2",
+  "pageCount": 9,
+  "rowCount": 485,
+  "rowsPerPage": {
+    "1": 57,
+    "2": 57,
+    "3": 57,
+    "4": 57,
+    "5": 57,
+    "6": 57,
+    "7": 57,
+    "8": 57,
+    "9": 29
+  },
+  "uniqueCodeCount": 442,
+  "familyCounts": {
+    "ANILHA": 52,
+    "ARNES": 1,
+    "BUCHA": 3,
+    "CERRA CABOS": 6,
+    "DISCO": 20,
+    "EPI": 19,
+    "ESTICADOR": 6,
+    "FARDA": 27,
+    "GAS": 3,
+    "GRAMPO": 1,
+    "HOLOFOT": 1,
+    "OLHAL": 1,
+    "PARAFUSO": 220,
+    "PERNO": 1,
+    "PINTURA": 2,
+    "PORCA": 48,
+    "SOLDA": 10,
+    "SPITS": 7,
+    "SPRAY": 7,
+    "SPTIS": 16,
+    "TUBO": 33,
+    "VEDANTE": 1
+  },
+  "materialCounts": {
+    "(ausente)": 20,
+    "ALGODAO": 15,
+    "ARCO 20": 1,
+    "ARGOM": 1,
+    "AÇO GALVANIZADO": 38,
+    "BORRACHA": 2,
+    "COLA": 1,
+    "COURO": 4,
+    "ELETRODO": 7,
+    "FERRO": 52,
+    "GALVANIZADO PRETO": 27,
+    "INOX": 115,
+    "NEOPRENE": 1,
+    "NYLON": 4,
+    "OXIGENIO": 1,
+    "PENETRANTE": 1,
+    "PLASTICO": 2,
+    "POLIBUTANO": 1,
+    "POLIESTER": 1,
+    "POLIESTER/PVC": 1,
+    "POLIETILENO": 2,
+    "REVELADOR": 1,
+    "ROST-OFF": 1,
+    "SOLVENTE": 1,
+    "TUNGSTENIO": 1,
+    "ZINCADO": 184
+  },
+  "brandCounts": {
+    "(ausente)": 465,
+    "BERNER": 5,
+    "EURO TRODO": 4,
+    "MAC FER": 5,
+    "VITO": 1,
+    "VULCAN": 1,
+    "WURTH": 4
+  },
+  "locationCounts": {
+    "ARMAZÉM": 485
+  },
+  "zeroStockCount": 14,
+  "fractionalQuantityCount": 20,
+  "missingByColumn": {
+    "codigoACRS": 0,
+    "familia": 0,
+    "material": 20,
+    "tamanho": 8,
+    "descricao": 0,
+    "marca": 465,
+    "quantidade": 0,
+    "precoUnitario": 0,
+    "precoTotal": 0,
+    "localizacao": 0
+  },
+  "sourcePrintedTotals": [
+    46325.87
+  ],
+  "sumOfLineTotals": 46325.87,
+  "lineSumMinusPrintedTotal": 0,
+  "lineArithmeticMismatches": [],
+  "duplicateCodes": {
+    "AM10ALZN": [
+      "inv-p05-r025",
+      "inv-p05-r027"
+    ],
+    "AM20ALZN": [
+      "inv-p05-r039",
+      "inv-p05-r040"
+    ],
+    "BOTAS PROTECAO": [
+      "inv-p09-r002",
+      "inv-p09-r003",
+      "inv-p09-r004",
+      "inv-p09-r005"
+    ],
+    "CALCAS": [
+      "inv-p08-r052",
+      "inv-p08-r053",
+      "inv-p08-r054",
+      "inv-p08-r055",
+      "inv-p08-r056",
+      "inv-p08-r057",
+      "inv-p08-r058"
+    ],
+    "CASACA": [
+      "inv-p08-r047",
+      "inv-p08-r048",
+      "inv-p08-r049",
+      "inv-p08-r050",
+      "inv-p08-r051"
+    ],
+    "DC125FR1.0": [
+      "inv-p07-r021",
+      "inv-p07-r022",
+      "inv-p07-r023"
+    ],
+    "DC125FR3.0": [
+      "inv-p07-r024",
+      "inv-p07-r025",
+      "inv-p07-r026"
+    ],
+    "DC230FR2.0": [
+      "inv-p07-r032",
+      "inv-p07-r033",
+      "inv-p07-r034"
+    ],
+    "DL125A2": [
+      "inv-p07-r030",
+      "inv-p07-r031"
+    ],
+    "DR125FR6.0": [
+      "inv-p07-r027",
+      "inv-p07-r028",
+      "inv-p07-r029"
+    ],
+    "GARRAFA GAS": [
+      "inv-p09-r024",
+      "inv-p09-r025",
+      "inv-p09-r026"
+    ],
+    "LUVA CHEFE": [
+      "inv-p08-r019",
+      "inv-p08-r020",
+      "inv-p08-r021"
+    ],
+    "LUVA NITRILICO": [
+      "inv-p08-r022",
+      "inv-p08-r023"
+    ],
+    "PM12FRA2": [
+      "inv-p02-r048",
+      "inv-p06-r003"
+    ],
+    "PM6CRZN": [
+      "inv-p04-r057",
+      "inv-p05-r050"
+    ],
+    "SWEAT FINA": [
+      "inv-p08-r037",
+      "inv-p08-r038",
+      "inv-p08-r039",
+      "inv-p08-r040",
+      "inv-p08-r041"
+    ],
+    "SWEAT GROSSA": [
+      "inv-p08-r042",
+      "inv-p08-r043",
+      "inv-p08-r044",
+      "inv-p08-r045",
+      "inv-p08-r046"
+    ],
+    "T-SHIRT": [
+      "inv-p08-r032",
+      "inv-p08-r033",
+      "inv-p08-r034",
+      "inv-p08-r035",
+      "inv-p08-r036"
+    ]
+  },
+  "identicalSourceRows": [],
+  "notes": [
+    "No article was removed, deduplicated, regrouped, corrected or invented.",
+    "Blank source cells become null; numeric cells use JSON decimal numbers.",
+    "Source code spelling, family names, materials and size strings are preserved.",
+    "Quantities mix units: the source has pieces, metres and mass-based rows. Do not present their sum as a meaningful physical stock count.",
+    "No minimum stock, internal mark-up, machine fee or consumption policy is supplied by this PDF.",
+    "August is printed on the final page; no year is stated in the document body."
+  ]
+}

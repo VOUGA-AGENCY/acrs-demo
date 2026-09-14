@@ -1,0 +1,26 @@
+node_modules/
+.next/
+.next-build/
+out/
+*.tsbuildinfo
+.DS_Store
+.sites-runtime/
+tmp/
+
+# Não incluir ficheiros Excel ou Power BI
+*.xls
+*.xlsx
+*.xlsm
+*.xlsb
+*.xlt
+*.xltx
+*.xltm
+*.pbix
+*.pbit
+*.pbip
+*.abf
+.pnpm-store/
+*.zip
+.env*
+*.pem
+*.key

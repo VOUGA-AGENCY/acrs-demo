@@ -1,0 +1,754 @@
+--- Página 1 ---
+C o n f i d e n t i a l  ·  F o r  i n t e r n a l  u s e  o n l y
+A C R S
+C a d e r n o  E n c a r g o s
+Vouga  Agency  
+
+--- Página 2 ---
+ACRS·BACKLOG DEMO V1
+Estrutura
+1 Objetivo da Demo V1 2
+2 Critério de sucesso 3
+3 Perfis de acesso 4
+4 Backlog da Demo V1 5
+5 Fora do âmbito desta Demo V1 20
+6 Questões em aberto para a ACRS 21
+7 Plano de entregas 23
+8 Roteiro mínimo de demonstração 28
+9 Definição final de pronto 30
+Backlog executivo 31
+1
+
+--- Página 3 ---
+ACRS·BACKLOG DEMO V1
+SECÇÃO 1
+Objetivo da Demo V1
+O objetivo desta fase não é construir o ERP final da ACRS.
+O objetivo é transformar a demo frontend atual numaprimeira versão funcional, per-
+sistente, online e multiutilizador, suficientemente robusta para demonstrar ao cliente
+os fluxos fundamentais identificados durante a consultoria.
+A Demo V1 deve provar que uma ação realizada no terreno, no secre-
+tariado ou no armazém consegue alimentar a mesma obra e atualizar
+corretamente o seu custo.
+A equipa de desenvolvimento terá liberdade total para definir:
+•divisão de tarefas;
+•organização interna do trabalho;
+•branches;
+•pull requests;
+•ordem de implementação dentro das prioridades definidas;
+•ferramentas auxiliares;
+•decisões técnicas de implementação que não alterem os requisitos funcionais.
+Não existe, neste documento, atribuição individual de tarefas.
+A responsabilidade é conjunta.
+2
+
+--- Página 4 ---
+ACRS·BACKLOG DEMO V1
+SECÇÃO 2
+Critério de sucesso
+A Demo V1 será considerada pronta quando for possível demonstrar, num link real e
+com dados persistentes, os seguintes circuitos:
+1.Terreno→Fatura→Secretariado→Obra
+Uma pessoa no terreno submete uma fatura ligada a uma obra. O secretariado
+recebe-a, revê os dados extraídos, corrige se necessário e valida. A despesa passa
+então a integrar o custo da obra.
+2.Armazém→Compra→Stock
+O armazém recebe uma fatura de compra de material. O documento é digitalizado,
+validado e os artigos entram no inventário.
+3.Armazém/Obra→Saída/Entrada→Obra/Armazém
+Um recurso existente no inventário é enviado para uma obra. O stock ou disponibili-
+dade é atualizado e o custo correspondente é imputado à obra.
+4.Administração→Obra→Orçamento→Custo→Margem
+O administrador consegue abrir uma obra e perceber valor vendido, margem alvo,
+custo máximo, custo atual, saldo disponível e risco.
+3
+
+--- Página 5 ---
+ACRS·BACKLOG DEMO V1
+SECÇÃO 3
+Perfis de acesso
+A Demo V1 deve ter quatro perfis reais.
+Os perfis não podem limitar-se a esconder elementos visuais. As permissões devem
+existir na camada de dados/backend.
+PerfilVisibilidade Operações principais
+Administração Acesso global, incluindo orça-
+mento, margem, custos, risco e
+controlo.
+Obras, orçamento, custos, valida-
+ção, ponto, armazém e configura-
+ção.
+Secretariado Sem acesso a margem, lucros,
+custo máximo, orçamento ou dash-
+boards económicos.
+Receber documentos, rever OCR,
+corrigir informação, validar ou re-
+jeitar faturas e apoiar registos ad-
+ministrativos.
+Armazém Inventário, movimentos e informa-
+ção necessária às operações físi-
+cas.
+Entradas, saídas, devoluções, atri-
+buição de máquinas/equipamentos
+e digitalização de faturas de com-
+pra.
+TerrenoInterface mínima. Selecionar obra, fotogra-
+far/submeter despesa e acompa-
+nhar confirmação básica.
+Regra de segurança
+Informação financeira restrita não deve ser apenas escondida na interface.
+O perfil Secretariado, Armazém ou Terreno não deve conseguir obter orçamento,
+margem, custo máximo ou outros dados reservados através da API ou acesso
+direto a rotas.
+4
+
+--- Página 6 ---
+ACRS·BACKLOG DEMO V1
+SECÇÃO 4
+Backlog da Demo V1
+Infraestrutura e deployment
+Aplicação online
+•colocar a aplicação num ambiente online acessível por URL;
+•manter ambiente local de desenvolvimento;
+•criar ambiente de staging/demo;
+•configurar variáveis de ambiente;
+•ligar deployment ao repositório Git;
+• garantir que a aplicação deixa de depender exclusivamente de exportação
+estática local;
+•proteger o ambiente de demonstração através de login.
+DEFINIÇÃO DE CONCLUÍDO
+Existe um link estável onde dois dispositivos diferentes conseguem utilizar a aplicação
+e consultar os mesmos dados.
+Base de dados
+Persistência
+Substituir o estado React atual como fonte principal de verdade por uma base
+de dados persistente.
+A solução técnica poderá ser definida livremente pela equipa.
+Uma solução adequada à dimensão desta fase poderá combinar PostgreSQL,
+autenticação e armazenamento documental no mesmo serviço.
+Entidades mínimas a considerar:
+5
+
+--- Página 7 ---
+ACRS·BACKLOG DEMO V1
+•utilizadores;
+•perfis e permissões;
+•obras;
+•orçamentos;
+•empresas;
+•pessoas;
+•ponto;
+•fornecedores;
+•categorias;
+•faturas/documentos;
+•linhas de fatura;
+•inventário;
+•movimentos de armazém;
+•máquinas/equipamentos;
+•alocações;
+•registos de auditoria.
+Persistência mínima
+Recarregar a página não pode apagar as alterações.
+Uma alteração feita num dispositivo deve ficar disponível noutro dispositivo.
+Autenticação e permissões
+Login real
+Implementar autenticação real para os quatro perfis definidos neste documento.
+Deve existir uma política de acesso clara para:
+•leitura;
+6
+
+--- Página 8 ---
+ACRS·BACKLOG DEMO V1
+•criação;
+•edição;
+•validação;
+•rejeição;
+•configuração;
+•informação financeira sensível.
+Devem ser preparados utilizadores de demonstração para os quatro perfis.
+Armazenamento documental
+Documentos persistentes
+As fotografias e PDFs submetidos deixam de ser apenas referências locais.
+Cada documento deve ficar guardado de forma persistente e ligado ao respetivo
+registo.
+Requisitos mínimos:
+•armazenamento privado;
+•associação do ficheiro à fatura;
+•associação ao utilizador que submeteu;
+•data de upload;
+•consulta posterior por utilizadores autorizados.
+OCR e extração assistida por IA
+Leitura automática de faturas
+Implementar uma primeira integração real para fotografia/PDF de faturas e reci-
+bos.
+O objetivo é extrair automaticamente, quando possível:
+•fornecedor;
+7
+
+--- Página 9 ---
+ACRS·BACKLOG DEMO V1
+•NIF;
+•número do documento;
+•data;
+•subtotal;
+•IVA;
+•total;
+•linhas/artigos;
+•quantidade;
+•preço unitário.
+A implementação deve permitir trocar futuramente o fornecedor de OCR sem reescrever
+todo o módulo.
+Criar uma camada lógica equivalente a:
+extractInvoice(file)
+-> structured result
+Testar antes de escolher
+Testar pelo menos duas alternativas de OCR / Document AI, por exemplo:
+•LlamaParse / LlamaExtract;
+•Google Document AI.
+Controlo de custos do OCR
+Esta fase continua a ser uma demonstração.
+Não investir valores relevantes em OCR, créditos, infraestrutura ou serviços
+pagos antes de haver validação real do projeto com a ACRS.
+Utilizar free tiers, créditos gratuitos ou volumes mínimos sempre que possível.
+O objetivo desta fase é perceber se o fluxo funciona e se a qualidade da extração é
+suficiente, não otimizar uma solução de produção que poderá ainda não avançar.
+Sugestão de benchmark:
+8
+
+--- Página 10 ---
+ACRS·BACKLOG DEMO V1
+•5 faturas de material/fornecedor;
+•5 recibos de alimentação;
+•5 documentos de combustível;
+•5 fotografias com pior qualidade;
+•5 documentos com várias linhas.
+Avaliar sobretudo:
+•fornecedor;
+•NIF;
+•número;
+•data;
+•total;
+•IVA;
+•linhas;
+•quantidade;
+•preço unitário.
+Workflow de documentos
+Estados da fatura
+O sistema deve distinguir claramente os estados do processamento.
+Fluxo recomendado:
+UPLOADED
+↓
+PROCESSING
+↓
+NEEDS_REVIEW
+↓
+CONFIRMED
+9
+
+--- Página 11 ---
+ACRS·BACKLOG DEMO V1
+Estados alternativos:
+OCR_FAILED
+REJECTED
+Guardar, quando aplicável:
+•resultado bruto do OCR;
+•valores finais validados;
+•nível de confiança quando disponibilizado;
+•utilizador que validou;
+•data de validação.
+Fluxo Terreno→Secretariado
+Despesa de obra
+O perfil Terreno deve conseguir:
+1. selecionar a obra;
+2. fotografar ou anexar documento;
+3. enviar;
+4. receber confirmação simples.
+O perfil Secretariado deve depois:
+1. receber o documento;
+2. consultar os dados extraídos;
+3. corrigir os campos;
+4. selecionar/confirmar categoria e obra;
+5. validar ou rejeitar.
+Só depois da validação deve a despesa integrar o custo da obra.
+10
+
+--- Página 12 ---
+ACRS·BACKLOG DEMO V1
+Fluxo Armazém→Compra→Stock
+Entrada através de fatura
+O Armazém deve poder fotografar ou anexar uma fatura de compra de material.
+Após OCR e validação:
+•reconhecer fornecedor;
+•reconhecer linhas;
+•associar linhas a artigos existentes quando possível;
+•permitir correção manual;
+•criar entrada de stock.
+Uma compra para stock não deve gerar diretamente custo de obra.
+O custo da obra surge quando o artigo é posteriormente consumido/alocado à obra.
+Armazém / Ferramentaria
+Inventário unificado
+Materiais, consumíveis, ferramentas, máquinas e equipamentos devem existir
+dentro da mesma área operacional de Armazém/Ferramentaria.
+A interface pode utilizar filtros como:
+•Todos;
+•Materiais;
+•Consumíveis;
+•Ferramentas;
+•Máquinas;
+•Equipamentos.
+A diferença entre estes elementos deve existir nas regras e não obrigatoriamente na
+navegação.
+11
+
+--- Página 13 ---
+ACRS·BACKLOG DEMO V1
+Movimentos do armazém
+Fluxos obrigatórios
+A Demo V1 deve permitir:
+•entrada;
+•saída;
+•devolução;
+•ajuste;
+•alocação de máquina/equipamento;
+•devolução de máquina/equipamento;
+•registo de dano/perda.
+O histórico do armazém deve apresentar estes movimentos numa visão integrada.
+Cada movimento deve conservar:
+•obra;
+•artigo/recurso;
+•quantidade;
+•data efetiva;
+•data de registo;
+•utilizador;
+•origem;
+•destino;
+•valor;
+•documento relacionado.
+12
+
+--- Página 14 ---
+ACRS·BACKLOG DEMO V1
+Operação de armazém
+Agrupar uma saída
+Uma única operação física pode conter vários artigos e equipamentos.
+Criar uma entidade/identificador comum que agrupe todos os movimentos per-
+tencentes à mesma saída.
+Exemplo:
+SAIDA-2026-000184
+Obra 25094
+11/09/2026
+50 discos
+2 caixas de ferramentas
+1 máquina
+Isto deve permitir:
+•consultar a saída como um conjunto;
+•corrigir;
+•auditar;
+•identificar responsável;
+•produzir no futuro uma guia ou comprovativo.
+Tablet
+Interface do Armazém
+A interface de tablet deve ser otimizada para toque e velocidade.
+Fluxo base:
+Selecionar obra
+↓
+Abrir inventário/lista
+13
+
+--- Página 15 ---
+ACRS·BACKLOG DEMO V1
+↓
+Selecionar recurso
+↓
+Indicar ação
+↓
+Quantidade / datas
+↓
+Adicionar mais recursos
+↓
+Confirmar operação
+O sistema adapta os campos ao tipo de recurso.
+Materiais e consumíveis
+Quantidade e valor unitário.
+Máquinas e equipamentos
+Identificação individual, data de saída e custo diário.
+Ferramentas retornáveis
+Saída e devolução, mantendo rastreabilidade.
+Ficha de recurso
+Detalhe individual
+Cada artigo, máquina ou equipamento deve abrir uma ficha.
+Mostrar, conforme aplicável:
+Ficha de recurso
+Detalhe individual
+Cada artigo, máquina ou equipamento deve abrir uma ficha.
+Mostrar, conforme aplicável:
+14
+
+--- Página 16 ---
+ACRS·BACKLOG DEMO V1
+•identificação;
+•tipo;
+•stock/disponibilidade;
+•obra atual, quando aplicável;
+•preço/custo;
+•mínimo;
+•histórico;
+•entradas;
+•saídas;
+•devoluções;
+•manutenção;
+•danos.
+Obras
+Obra como centro económico
+A obra deve consolidar todos os custos provenientes dos outros módulos.
+Deve ser possível consultar:
+•valor vendido;
+•margem alvo;
+•custo máximo;
+•custo atual;
+•disponível;
+•margem atual;
+•mão de obra;
+•viagens;
+•faturas;
+15
+
+--- Página 17 ---
+ACRS·BACKLOG DEMO V1
+•materiais;
+•máquinas/equipamentos;
+•reparações;
+•histórico de custos.
+Livro central de custos
+Uma única fonte para o custo
+Evitar que cada página calcule custos de forma independente.
+Criar uma estrutura central de movimentos/eventos de custo.
+Cada custo deve conter, no mínimo:
+•obra;
+•categoria;
+•origem;
+•ID da origem;
+•data efetiva;
+•descrição;
+•quantidade;
+•valor unitário;
+•valor total.
+Possíveis origens:
+•ponto;
+•fatura;
+•movimento de armazém;
+•alocação de ativo;
+•dano/perda;
+16
+
+--- Página 18 ---
+ACRS·BACKLOG DEMO V1
+•ajuste manual.
+Dashboard, Obra e Controlo devem ler a mesma fonte.
+Orçamento, margem e risco
+Integração com execução
+O orçamento deixa de estar isolado do custo realizado.
+A Demo V1 deve permitir:
+•valor comercial da obra;
+•margem alvo;
+•custo máximo admissível;
+•custo realizado;
+•disponível;
+•percentagem do limite utilizada;
+•estado de risco.
+Estados mínimos:
+•Saudável;
+•Atenção;
+•Em risco.
+Ponto
+Persistir e consolidar
+O ponto atualmente demonstrado deve passar a persistir em base de dados e
+alimentar o livro central de custos.
+Manter:
+17
+
+--- Página 19 ---
+ACRS·BACKLOG DEMO V1
+•pessoa;
+•empresa;
+•obra;
+•horários;
+•horas normais;
+•horas extra;
+•noturno;
+•viagem;
+•custo.
+Regras devem ser parametrizadas por empresa.
+Auditoria
+Rastreabilidade mínima
+Guardar quem criou, editou, validou ou rejeitou operações críticas.
+Mínimo:
+•utilizador;
+•ação;
+•entidade;
+•data/hora;
+•estado anterior quando relevante;
+•estado posterior quando relevante.
+18
+
+--- Página 20 ---
+ACRS·BACKLOG DEMO V1
+Qualidade e testes
+Percursos completos
+Testar prioritariamente fluxos end-to-end e não apenas componentes isolados.
+Cenários mínimos:
+1. Terreno envia fatura→Secretariado valida→custo aparece na obra.
+2. Armazém valida compra→stock aumenta.
+3. Armazém retira consumível→stock diminui→custo aparece na obra.
+4. Armazém aloca máquina → máquina fica indisponível → custo diário aparece na
+obra.
+5. Armazém devolve máquina→acumulação termina.
+6. Admin altera orçamento/margem→risco da obra atualiza.
+7. Login com perfil Secretariado→informação de margem continua inacessível.
+8. Dois browsers/dispositivos consultam os mesmos dados persistentes.
+19
+
+--- Página 21 ---
+ACRS·BACKLOG DEMO V1
+SECÇÃO 5
+Fora do âmbito desta Demo V1
+Para esta fase não desenvolver:
+•contabilidade;
+•faturação fiscal;
+•processamento salarial;
+•CRM;
+•tesouraria;
+•gestão completa de recursos humanos;
+•IA para gerar orçamentos;
+•previsão automática de margem;
+•depreciação contabilística de ativos;
+•compras automáticas a fornecedores;
+•offline mode completo;
+•gestão definitiva de viaturas;
+•gestão avançada de contentores/subarmazéns.
+O objetivo é tornar reais os principais fluxos já desenhados, não au-
+mentar o número de módulos.
+20
+
+--- Página 22 ---
+ACRS·BACKLOG DEMO V1
+SECÇÃO 6
+Questões em aberto para a ACRS
+Estas questões não devem bloquear todo o desenvolvimento, mas precisam de ser
+fechadas antes de considerar as respetivas regras definitivas.
+01·Empresas subcontratadas
+Confirmar os nomes das quatro empresas externas e os trabalhadores associados
+a cada uma.
+02·Hora extra dos subcontratados
+Confirmar se começa na 11.ªou na 12.ªhora.
+03·Domingo e feriados
+Confirmar se o acréscimo é 50% ou 100%.
+04·Acumulação de suplementos
+Confirmar se hora extra, noturno, sábado e domingo/feriado acumulam ou se
+apenas se aplica o maior suplemento.
+05·Valores internos do armazém
+Confirmar preços de transferência, margens internas e regras por família/artigo.
+06·Custos diários de máquinas
+Confirmar tarifa diária por máquina/equipamento.
+21
+
+--- Página 23 ---
+ACRS·BACKLOG DEMO V1
+07·Ferramentas retornáveis
+Confirmar quais recursos apenas precisam de rastreabilidade e quais devem
+gerar custo interno.
+08·Inventário
+Confirmar inventário inicial, quantidades, unidades e precisão.
+09·Contentores
+Confirmar se serão apenas localizações ou pequenos armazéns com fluxo pró-
+prio.
+10·Viaturas
+Definir se e como serão imputadas às obras sem duplicação de custos.
+11·Validação de faturas
+Confirmar quem pode validar, corrigir, rejeitar ou estornar documentos e se
+existirão limites por valor.
+12·Secretariado e ponto
+Confirmar se o perfil Secretariado será também responsável pela introdu-
+ção/revisão do ponto.
+22
+
+--- Página 24 ---
+ACRS·BACKLOG DEMO V1
+SECÇÃO 7
+Plano de entregas
+O desenvolvimento desta fase decorre entre14 e 18 de setembro de 2026.
+A equipa tem liberdade para repartir trabalho, reorganizar tarefas e definir a sua própria
+metodologia.
+O controlo é feito sobre entregáveis e resultado, não sobre microgestão de tarefas.
+Segunda-feira·14 de setembro
+Arranque
+•leitura deste documento;
+•leitura do Contexto Operacional;
+•revisão do estado atual da demo;
+•estruturar corretamente o Git/repositório;
+•definir branches e forma de colaboração;
+•dividir o backlog livremente entre os dois elementos;
+•alinhar arquitetura;
+•iniciar desenvolvimento.
+OBJETIVO DO DIA
+Sair do dia com arquitetura decidida, trabalho distribuído e desenvolvimento efetiva-
+mente iniciado.
+23
+
+--- Página 25 ---
+ACRS·BACKLOG DEMO V1
+Terça-feira·15 de setembro
+Execução
+Não haverá ponto formal de controlo.
+A equipa desenvolve com autonomia.
+Questões que bloqueiem o projeto devem ser levantadas imediatamente, sem
+esperar pelo ponto de controlo seguinte.
+Quarta-feira·16 de setembro
+Ponto de controlo·50%
+Até ao ponto de controlo de quarta-feira, deve existir pelo menos50% do
+backlog funcional concluído ou demonstrável.
+O ponto deve permitir verificar:
+•aplicação já online ou deployment funcional;
+•estrutura de base de dados;
+•autenticação/perfis em implementação avançada;
+•pelo menos alguns fluxos a utilizar persistência real;
+•estado da integração documental/OCR;
+•blockers;
+•alterações necessárias ao backlog.
+O objetivo não é apresentação formal.
+É validar direção e remover bloqueios.
+24
+
+--- Página 26 ---
+ACRS·BACKLOG DEMO V1
+Quinta-feira·17 de setembro
+Execução
+Não haverá ponto formal de controlo.
+Foco em fechar fluxos, integração, erros e experiência de demonstração.
+Sexta-feira·18 de setembro
+Entrega interna·100% Demo Ready
+Até à reunião semanal de sexta-feira, a Demo V1 deve estar considerada100%
+pronta para demonstração interna.
+Nesta reunião:
+•a equipa responsável apresenta a solução;
+•deve ser demonstrado o projeto de ponta a ponta;
+•devem ser explicados os principais fluxos;
+•devem ser identificadas decisões tomadas;
+•devem ser assumidas claramente as limitações ainda existentes;
+•devem ser levantadas questões que precisam de validação da ACRS.
+Feedback da equipa
+Os restantes elementos da Vouga que não trabalharam diretamente neste projeto devem
+participar ativamente na revisão.
+O objetivo é testar se alguém sem contexto diário consegue:
+•compreender o produto;
+•compreender o problema da ACRS;
+•navegar na demo;
+•identificar incoerências;
+25
+
+--- Página 27 ---
+ACRS·BACKLOG DEMO V1
+•levantar questões;
+•dar feedback de produto e experiência.
+Se o resto da equipa não compreender facilmente a solução, é provável que a apresen-
+tação ao cliente também precise de ser melhorada.
+Segunda-feira·21 de setembro
+Revisão final
+Aplicar as alterações e correções resultantes do feedback interno de sexta-feira.
+Prioridade:
+•bugs;
+•incoerências;
+•permissões;
+•fluxos difíceis de explicar;
+•dados demo;
+•preparação da narrativa para a ACRS.
+21 / 22 de setembro
+Contacto ACRS
+Após validação interna da versão final, entre segunda-feira dia 21 e terça-feira
+dia 22 deverá ser feito o contacto com a ACRS para avançar para a demonstração.
+Antes desse contacto devem estar preparados:
+•link funcional;
+•contas/perfis de demonstração;
+•roteiro de demonstração;
+•perguntas em aberto;
+26
+
+--- Página 28 ---
+ACRS·BACKLOG DEMO V1
+•lista das decisões que precisam de validação;
+•plano do que poderá constituir a fase seguinte.
+27
+
+--- Página 29 ---
+ACRS·BACKLOG DEMO V1
+SECÇÃO 8
+Roteiro mínimo de demonstração
+Antes de considerar a Demo V1 concluída, executar este roteiro completo:
+1. Entrar como Terreno.
+2. Selecionar obra e enviar fotografia de uma fatura.
+3. Entrar como Secretariado.
+4. Rever OCR, corrigir e validar documento.
+5. Entrar como Admin.
+6. Abrir a obra e confirmar que o custo apareceu.
+7. Entrar como Armazém.
+8. Digitalizar uma compra de material.
+9. Confirmar entrada no inventário.
+10. Fazer saída de material para obra.
+11. Confirmar redução de stock.
+12. Confirmar aumento do custo da obra.
+13. Alocar máquina/equipamento.
+14. Confirmar indisponibilidade e custo diário.
+15. Devolver o equipamento.
+16. Confirmar fim da acumulação de custo.
+17. Alterar orçamento/margem.
+18. Confirmar atualização do risco.
+19. Entrar como Secretariado.
+28
+
+--- Página 30 ---
+ACRS·BACKLOG DEMO V1
+20. Confirmar que orçamento, margem e outros dados restritos continuam inacessíveis.
+29
+
+--- Página 31 ---
+ACRS·BACKLOG DEMO V1
+SECÇÃO 9
+Definição final de pronto
+A Demo V1 está pronta quando deixar de ser apenas uma interface
+convincente e passar a demonstrar operações reais, persistentes e
+ligadas entre utilizadores diferentes.
+O resultado esperado para 18 de setembro não é um ERP completo.
+É uma primeira versão funcional capaz de provar à ACRS que:
+✓uma despesa pode nascer no terreno;
+✓pode ser validada no secretariado;
+✓pode aparecer automaticamente na obra;
+✓uma compra pode alimentar stock;
+✓uma saída pode alimentar custo;
+✓uma máquina pode ser alocada e devolvida;
+✓o orçamento pode acompanhar a execução;
+✓diferentes perfis podem trabalhar sobre a mesma fonte de informação.
+30
+
+--- Página 32 ---
+ACRS·BACKLOG DEMO V1
+Backlog executivo
+O backlog resume os principais blocos necessários para transformar a demo atual numa versão funcional e pronta para apresentação.
+A organização e divisão do trabalho ficam ao critério da equipa.
+# Bloco Objetivo Marco
+1Git e organizaçãoEstruturar o repositório e definir a divisão e forma de colaboração da equipa. 14 Set.
+2Base de dadosCriar persistência real e ligar as principais entidades atualmente mantidas em estado local. 16 Set.
+3Aplicação onlineDisponibilizar a demo num link estável, ligado à base de dados e ao repositório. 16 Set.
+4Perfis e acessosImplementar login e quatro perfis: Administração, Secretariado, Armazém e Terreno, com permissões reais. 16–18 Set.
+5Faturas + OCRPermitir upload/fotografia, extração automática e validação humana. Testar Llama, Google ou equivalente com custo mínimo. 18 Set.
+6Fluxo de despesasFechar o circuito Terreno→Secretariado→validação→custo da obra. 18 Set.
+7Armazém /
+Ferramentaria
+Fechar entradas, saídas, devoluções e gestão integrada de materiais, ferramentas, máquinas e equipamentos. 18 Set.
+8Compras para stockPermitir digitalizar e validar compras de material, atualizando automaticamente o inventário. 18 Set.
+9Obras e custosGarantir que faturas, ponto, materiais e equipamentos alimentam consistentemente o custo da obra. 18 Set.
+10Orçamento e margemLigar orçamento e execução: valor da obra, custo máximo, custo atual, margem e risco. 18 Set.
+11PontoPersistir o ponto e integrar horas, extras, noturno e viagens no custo das obras. 18 Set.
+12Testes e demoTestar perfis e fluxos ponta a ponta, corrigir erros e preparar dados e roteiro da apresentação. 18 Set.
+13Feedback finalAplicar feedback da revisão interna e preparar a versão final para apresentação à ACRS. 21 Set.
+16 de setembro·50%Pelo menos metade dos blocos concluídos ou demonstráveis.18 de setembro·Demo ReadyFluxos necessários funcionais e preparados para
+revisão interna.
+31

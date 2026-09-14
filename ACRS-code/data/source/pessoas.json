@@ -1,0 +1,5630 @@
+[
+  {
+    "id": "pessoa-jose-cardoso-8a84cc",
+    "nome": "José Cardoso",
+    "custoHora": 13.35,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 2
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 100
+      }
+    ]
+  },
+  {
+    "id": "pessoa-manuel-pereira-5eddcb",
+    "nome": "Manuel Pereira",
+    "custoHora": 10.45,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 3
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 138
+      }
+    ]
+  },
+  {
+    "id": "pessoa-joao-goncalves-52ac66",
+    "nome": "João Gonçalves",
+    "custoHora": 11.6,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 4
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 85
+      }
+    ]
+  },
+  {
+    "id": "pessoa-henry-betancourt-a0feb1",
+    "nome": "Henry Betancourt",
+    "custoHora": 10.45,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 5
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 71
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jose-almeida-90846d",
+    "nome": "José Almeida",
+    "custoHora": 9.65,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 6
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 98
+      }
+    ]
+  },
+  {
+    "id": "pessoa-luis-ribeiro-96131a",
+    "nome": "Luis Ribeiro",
+    "custoHora": 15.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 7
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 132
+      }
+    ]
+  },
+  {
+    "id": "pessoa-luis-pinto-161172",
+    "nome": "Luis Pinto",
+    "custoHora": 15.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 8
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 131
+      }
+    ]
+  },
+  {
+    "id": "pessoa-rui-martins-0da4bd",
+    "nome": "Rui Martins",
+    "custoHora": 13.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 9
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 180
+      }
+    ]
+  },
+  {
+    "id": "pessoa-paulo-vieira-1e07d4",
+    "nome": "Paulo Vieira",
+    "custoHora": 10.45,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 10
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 161
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jorge-carvalho-cdcab1",
+    "nome": "Jorge Carvalho",
+    "custoHora": 12.8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 11
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 94
+      }
+    ]
+  },
+  {
+    "id": "pessoa-antonio-oliveira-18eb12",
+    "nome": "António Oliveira",
+    "custoHora": 12.1,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 12
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 14
+      }
+    ]
+  },
+  {
+    "id": "pessoa-julio-cipriano-b8e8ef",
+    "nome": "Julio Cipriano",
+    "custoHora": 14.15,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 13
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 111
+      }
+    ]
+  },
+  {
+    "id": "pessoa-antonio-aguiar-be30a3",
+    "nome": "António Aguiar",
+    "custoHora": 16.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 14
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 11
+      }
+    ]
+  },
+  {
+    "id": "pessoa-joao-costa-39708d",
+    "nome": "João Costa",
+    "custoHora": 15.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 15
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 84
+      }
+    ]
+  },
+  {
+    "id": "pessoa-nilee-nogueira-4bb721",
+    "nome": "Nilee Nogueira",
+    "custoHora": 11.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 16
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 145
+      }
+    ]
+  },
+  {
+    "id": "pessoa-divaldir-filho-214f64",
+    "nome": "Divaldir Filho",
+    "custoHora": 11.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 17
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 36
+      }
+    ]
+  },
+  {
+    "id": "pessoa-viviane-martins-b825aa",
+    "nome": "Viviane Martins",
+    "custoHora": 10.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 18
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 196
+      }
+    ]
+  },
+  {
+    "id": "pessoa-pedro-ribeiro-9425fc",
+    "nome": "Pedro Ribeiro",
+    "custoHora": 15.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 19
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 165
+      }
+    ]
+  },
+  {
+    "id": "pessoa-rui-cipriano-99c13b",
+    "nome": "Rui Cipriano",
+    "custoHora": 11.85,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 20
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 179
+      }
+    ]
+  },
+  {
+    "id": "pessoa-helder-anjo-dfed0c",
+    "nome": "Helder Anjo",
+    "custoHora": 12.65,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 21
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 67
+      }
+    ]
+  },
+  {
+    "id": "pessoa-paulo-santos-582967",
+    "nome": "Paulo Santos",
+    "custoHora": 19.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 22
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 159
+      }
+    ]
+  },
+  {
+    "id": "pessoa-joaquim-brito-391db4",
+    "nome": "Joaquim Brito",
+    "custoHora": 12.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 23
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 90
+      }
+    ]
+  },
+  {
+    "id": "pessoa-luiz-braz-218dc5",
+    "nome": "Luiz Braz",
+    "custoHora": 18.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 24
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 133
+      }
+    ]
+  },
+  {
+    "id": "pessoa-sandra-figueiredo-33cae0",
+    "nome": "Sandra Figueiredo",
+    "custoHora": 15.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 25
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 181
+      }
+    ]
+  },
+  {
+    "id": "pessoa-tiago-barbosa-7e8c9c",
+    "nome": "Tiago Barbosa",
+    "custoHora": 15.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 26
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 185
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jose-oliveira-caa723",
+    "nome": "José Oliveira",
+    "custoHora": 13.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 27
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 106
+      }
+    ]
+  },
+  {
+    "id": "pessoa-ruben-rebeca-38d8a6",
+    "nome": "Ruben Rebeca",
+    "custoHora": 12.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 28
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 178
+      }
+    ]
+  },
+  {
+    "id": "pessoa-emidio-fonseca-14bbec",
+    "nome": "Emidio Fonseca",
+    "custoHora": 11.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 29
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 49
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jose-salvador-b7f851",
+    "nome": "José Salvador",
+    "custoHora": 12.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 30
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 108
+      }
+    ]
+  },
+  {
+    "id": "pessoa-guilherme-santos-74ebc2",
+    "nome": "Guilherme Santos",
+    "custoHora": 11.45,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 31
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 63
+      }
+    ]
+  },
+  {
+    "id": "pessoa-paulo-moura-cd7b9a",
+    "nome": "Paulo Moura",
+    "custoHora": 14.85,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 32
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 157
+      }
+    ]
+  },
+  {
+    "id": "pessoa-joao-santos-2e2419",
+    "nome": "João Santos",
+    "custoHora": 13.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 33
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 87
+      }
+    ]
+  },
+  {
+    "id": "pessoa-daniel-sousa-8df683",
+    "nome": "Daniel Sousa",
+    "custoHora": 16,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 34
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 30
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jorge-rocha-e4f954",
+    "nome": "Jorge Rocha",
+    "custoHora": 14.9,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 35
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 95
+      }
+    ]
+  },
+  {
+    "id": "pessoa-tairone-rodrigues-091bc1",
+    "nome": "Tairone Rodrigues",
+    "custoHora": 13.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 36
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 184
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jefferson-cosme-11838c",
+    "nome": "Jefferson Cosme",
+    "custoHora": 13.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 37
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 81
+      }
+    ]
+  },
+  {
+    "id": "pessoa-camila-franca-987b9b",
+    "nome": "Camila França",
+    "custoHora": 11.35,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 38
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 22
+      }
+    ]
+  },
+  {
+    "id": "pessoa-kleber-melo-c9fd12",
+    "nome": "Kleber Melo",
+    "custoHora": 13.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 39
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 115
+      }
+    ]
+  },
+  {
+    "id": "pessoa-pedro-melo-eaaaa4",
+    "nome": "Pedro Melo",
+    "custoHora": 11.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 40
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 164
+      }
+    ]
+  },
+  {
+    "id": "pessoa-george-lima-bcd12a",
+    "nome": "George Lima",
+    "custoHora": 15.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 41
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 58
+      }
+    ]
+  },
+  {
+    "id": "pessoa-antonio-santos-246018",
+    "nome": "António Santos",
+    "custoHora": 15.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 42
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 15
+      }
+    ]
+  },
+  {
+    "id": "pessoa-luis-matos-71ffd0",
+    "nome": "Luis Matos",
+    "custoHora": 14.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 43
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 130
+      }
+    ]
+  },
+  {
+    "id": "pessoa-leonardo-oliveira-976dda",
+    "nome": "Leonardo Oliveira",
+    "custoHora": 15.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 44
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 121
+      }
+    ]
+  },
+  {
+    "id": "pessoa-marco-oliveira-43ad2b",
+    "nome": "Marco Oliveira",
+    "custoHora": 13.5,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 45
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 142
+      }
+    ]
+  },
+  {
+    "id": "pessoa-julio-lima-d44fd4",
+    "nome": "Júlio Lima",
+    "custoHora": 13.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 46
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 113
+      }
+    ]
+  },
+  {
+    "id": "pessoa-janilson-junior-9f1b38",
+    "nome": "Janilson Junior",
+    "custoHora": 13.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 47
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 78
+      }
+    ]
+  },
+  {
+    "id": "pessoa-manuel-casimiro-c6f536",
+    "nome": "Manuel Casimiro",
+    "custoHora": 13.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 48
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 136
+      }
+    ]
+  },
+  {
+    "id": "pessoa-dyon-avelar-a209a3",
+    "nome": "Dyon Avelar",
+    "custoHora": 11.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 49
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 37
+      }
+    ]
+  },
+  {
+    "id": "pessoa-vitor-cardoso-7839e9",
+    "nome": "Vitor Cardoso",
+    "custoHora": 18.17,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 50
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 195
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jailton-junior-1d3148",
+    "nome": "Jailton Junior",
+    "custoHora": 15.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 51
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 75
+      }
+    ]
+  },
+  {
+    "id": "pessoa-denilson-lima-23b8d6",
+    "nome": "Denilson Lima",
+    "custoHora": 13.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 52
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 34
+      }
+    ]
+  },
+  {
+    "id": "pessoa-tiago-ferreira-7c152b",
+    "nome": "Tiago Ferreira",
+    "custoHora": 11.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 53
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 187
+      }
+    ]
+  },
+  {
+    "id": "pessoa-delmar-marques-f15b26",
+    "nome": "Delmar Marques",
+    "custoHora": 13.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 54
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 33
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jorge-sousa-c5b4a8",
+    "nome": "Jorge Sousa",
+    "custoHora": 15.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 55
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 97
+      }
+    ]
+  },
+  {
+    "id": "pessoa-elton-modica-9e9f9c",
+    "nome": "Elton Modica",
+    "custoHora": 13.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 56
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 47
+      }
+    ]
+  },
+  {
+    "id": "pessoa-lucas-nascimento-373068",
+    "nome": "Lucas Nascimento",
+    "custoHora": 11.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 57
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 125
+      }
+    ]
+  },
+  {
+    "id": "pessoa-joao-silva-b0849c",
+    "nome": "João Silva",
+    "custoHora": 13.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 58
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 88
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jorge-aquino-542f25",
+    "nome": "Jorge Aquino",
+    "custoHora": 15.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 59
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 93
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jose-figueiredo-aab3db",
+    "nome": "José Figueiredo",
+    "custoHora": 14.85,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 60
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 103
+      }
+    ]
+  },
+  {
+    "id": "pessoa-yember-3c4735",
+    "nome": "Yember",
+    "custoHora": 14.5,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 61
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 201
+      }
+    ]
+  },
+  {
+    "id": "pessoa-oleg-3344a9",
+    "nome": "Oleg",
+    "custoHora": 13.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 62
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 148
+      }
+    ]
+  },
+  {
+    "id": "pessoa-carlos-eduardo-6e6240",
+    "nome": "Carlos Eduardo",
+    "custoHora": 14.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 63
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 23
+      }
+    ]
+  },
+  {
+    "id": "pessoa-alfredo-jorge-427449",
+    "nome": "Alfredo Jorge",
+    "custoHora": 14.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 64
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 5
+      }
+    ]
+  },
+  {
+    "id": "pessoa-helder-silva-9464cb",
+    "nome": "Helder Silva",
+    "custoHora": 14.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 65
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 68
+      }
+    ]
+  },
+  {
+    "id": "pessoa-maicon-c6ece0",
+    "nome": "Maicon",
+    "custoHora": 14.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 66
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 135
+      }
+    ]
+  },
+  {
+    "id": "pessoa-paulo-izata-65cd76",
+    "nome": "Paulo Izata",
+    "custoHora": 13.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 67
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 155
+      }
+    ]
+  },
+  {
+    "id": "pessoa-pedro-alves-290dcc",
+    "nome": "Pedro Alves",
+    "custoHora": 12.65,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 68
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 162
+      }
+    ]
+  },
+  {
+    "id": "pessoa-augusto-amaral-95db6c",
+    "nome": "Augusto Amaral",
+    "custoHora": 15.85,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 69
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 18
+      }
+    ]
+  },
+  {
+    "id": "pessoa-guilherme-sousa-03d913",
+    "nome": "Guilherme Sousa",
+    "custoHora": 12.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 70
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 64
+      }
+    ]
+  },
+  {
+    "id": "pessoa-luderverson-d3e990",
+    "nome": "Luderverson",
+    "custoHora": 16.2,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 71
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 127
+      }
+    ]
+  },
+  {
+    "id": "pessoa-rafael-salvador-433a29",
+    "nome": "Rafael Salvador",
+    "custoHora": 15.5,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 72
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 167
+      }
+    ]
+  },
+  {
+    "id": "pessoa-antonio-matos-cc5c68",
+    "nome": "António Matos",
+    "custoHora": 14.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 73
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 13
+      }
+    ]
+  },
+  {
+    "id": "pessoa-edgar-mayor-0aabe0",
+    "nome": "Edgar Mayor",
+    "custoHora": 10.5,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 74
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 38
+      }
+    ]
+  },
+  {
+    "id": "pessoa-renan-cabral-c697b2",
+    "nome": "Renan Cabral",
+    "custoHora": 13.9,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 75
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 171
+      }
+    ]
+  },
+  {
+    "id": "pessoa-leandro-3feee8",
+    "nome": "Leandro",
+    "custoHora": 16.15,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 76
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 118
+      }
+    ]
+  },
+  {
+    "id": "pessoa-eliseu-f5c67f",
+    "nome": "Eliseu",
+    "custoHora": 16.2,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 77
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 45
+      }
+    ]
+  },
+  {
+    "id": "pessoa-bruno-neves-e223b9",
+    "nome": "Bruno Neves",
+    "custoHora": 14.9,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 78
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 21
+      }
+    ]
+  },
+  {
+    "id": "pessoa-luciano-3a83c3",
+    "nome": "Luciano",
+    "custoHora": 16.15,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 79
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 126
+      }
+    ]
+  },
+  {
+    "id": "pessoa-edvanio-afonso-afc55e",
+    "nome": "Edvanio Afonso",
+    "custoHora": 12.15,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 80
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 44
+      }
+    ]
+  },
+  {
+    "id": "pessoa-icaro-fraga-4d4b2f",
+    "nome": "Icaro Fraga",
+    "custoHora": 12.15,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 81
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 72
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jefferson-prudente-845240",
+    "nome": "Jefferson Prudente",
+    "custoHora": 15.75,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 82
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 82
+      }
+    ]
+  },
+  {
+    "id": "pessoa-joao-miranda-9c4634",
+    "nome": "João Miranda",
+    "custoHora": 15.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 83
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 86
+      }
+    ]
+  },
+  {
+    "id": "pessoa-obede-e68bfe",
+    "nome": "Obede",
+    "custoHora": 15.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 84
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 147
+      }
+    ]
+  },
+  {
+    "id": "pessoa-wanderson-leite-213925",
+    "nome": "Wanderson Leite",
+    "custoHora": 13.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 85
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 198
+      }
+    ]
+  },
+  {
+    "id": "pessoa-paulo-oliveira-8320ce",
+    "nome": "Paulo Oliveira",
+    "custoHora": 15.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 86
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 158
+      }
+    ]
+  },
+  {
+    "id": "pessoa-julio-costa-e4c7fb",
+    "nome": "Julio Costa",
+    "custoHora": 15.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 87
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 112
+      }
+    ]
+  },
+  {
+    "id": "pessoa-joao-verissimo-258965",
+    "nome": "João Verissimo",
+    "custoHora": 12,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 88
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 89
+      }
+    ]
+  },
+  {
+    "id": "pessoa-raul-b1acf6",
+    "nome": "Raul",
+    "custoHora": 15.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 89
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 170
+      }
+    ]
+  },
+  {
+    "id": "pessoa-allan-freitas-3f45df",
+    "nome": "Allan Freitas",
+    "custoHora": 18.17,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 90
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 6
+      }
+    ]
+  },
+  {
+    "id": "pessoa-paulo-farias-ebdf62",
+    "nome": "Paulo Farias",
+    "custoHora": 18.17,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 91
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 154
+      }
+    ]
+  },
+  {
+    "id": "pessoa-gustavo-ferreira-b78a26",
+    "nome": "Gustavo Ferreira",
+    "custoHora": 15.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 92
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 65
+      }
+    ]
+  },
+  {
+    "id": "pessoa-tiago-rodrigues-cb27e8",
+    "nome": "Tiago Rodrigues",
+    "custoHora": 15.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 93
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 189
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jose-baptista-f1965e",
+    "nome": "José Baptista",
+    "custoHora": 15.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 94
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 99
+      }
+    ]
+  },
+  {
+    "id": "pessoa-eduardo-lurdes-fe2636",
+    "nome": "Eduardo Lurdes",
+    "custoHora": 15.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": true,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 95
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 41
+      }
+    ]
+  },
+  {
+    "id": "pessoa-lopes-pedro-3a8e9a",
+    "nome": "Lopes Pedro",
+    "custoHora": 14.9,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 96
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 123
+      }
+    ]
+  },
+  {
+    "id": "pessoa-alex-cunha-ef22f4",
+    "nome": "Alex Cunha",
+    "custoHora": 14.9,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 97
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 4
+      }
+    ]
+  },
+  {
+    "id": "pessoa-fabio-david-d48550",
+    "nome": "Fabio David",
+    "custoHora": 14.9,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 98
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 51
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jose-valente-d6ad2c",
+    "nome": "José Valente",
+    "custoHora": 10.65,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 99
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 110
+      }
+    ]
+  },
+  {
+    "id": "pessoa-renata-034b8b",
+    "nome": "Renata",
+    "custoHora": 10.65,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 100
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 172
+      }
+    ]
+  },
+  {
+    "id": "pessoa-alcino-956108",
+    "nome": "Alcino",
+    "custoHora": 16,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 101
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 3
+      }
+    ]
+  },
+  {
+    "id": "pessoa-luan-9ab87c",
+    "nome": "Luan",
+    "custoHora": 15.25,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 102
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 124
+      }
+    ]
+  },
+  {
+    "id": "pessoa-claudionor-d67243",
+    "nome": "Claudionor",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 103
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 27
+      }
+    ]
+  },
+  {
+    "id": "pessoa-sergio-tavares-efc50d",
+    "nome": "Sergio Tavares",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 104
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 183
+      }
+    ]
+  },
+  {
+    "id": "pessoa-sergio-santos-479ce7",
+    "nome": "Sergio Santos",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 105
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 182
+      }
+    ]
+  },
+  {
+    "id": "pessoa-wildmark-90f977",
+    "nome": "Wildmark",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 106
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 200
+      }
+    ]
+  },
+  {
+    "id": "pessoa-eduardo-sales-2d3e74",
+    "nome": "Eduardo Sales",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 107
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 43
+      }
+    ]
+  },
+  {
+    "id": "pessoa-luiz-braz-eng-682787",
+    "nome": "Luiz Braz Eng.",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 108
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 134
+      }
+    ]
+  },
+  {
+    "id": "pessoa-eduardo-matine-deade5",
+    "nome": "Eduardo Matine",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 109
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 42
+      }
+    ]
+  },
+  {
+    "id": "pessoa-francisco-vieira-0b6699",
+    "nome": "Francisco Vieira",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 110
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 56
+      }
+    ]
+  },
+  {
+    "id": "pessoa-patrik-santos-4e7324",
+    "nome": "Patrik Santos",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 111
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 152
+      }
+    ]
+  },
+  {
+    "id": "pessoa-catia-costa-359ea4",
+    "nome": "Catia Costa",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 112
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 26
+      }
+    ]
+  },
+  {
+    "id": "pessoa-anderson-araujo-6ff706",
+    "nome": "Anderson Araujo",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 113
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 8
+      }
+    ]
+  },
+  {
+    "id": "pessoa-vanderson-638b34",
+    "nome": "Vanderson",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 114
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 194
+      }
+    ]
+  },
+  {
+    "id": "pessoa-johnny-c7b376",
+    "nome": "Johnny",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 115
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 92
+      }
+    ]
+  },
+  {
+    "id": "pessoa-james-ef547b",
+    "nome": "James",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 116
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 77
+      }
+    ]
+  },
+  {
+    "id": "pessoa-rosilene-e64e7a",
+    "nome": "Rosilene",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 117
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 176
+      }
+    ]
+  },
+  {
+    "id": "pessoa-patrick-57ad79",
+    "nome": "Patrick",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 118
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 151
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jose-figueira-c3dbc2",
+    "nome": "José Figueira",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 119
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 102
+      }
+    ]
+  },
+  {
+    "id": "pessoa-ariclenes-9e08ce",
+    "nome": "Ariclenes",
+    "custoHora": 8,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 120
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 17
+      }
+    ]
+  },
+  {
+    "id": "pessoa-manuel-pata-d28d29",
+    "nome": "Manuel Pata",
+    "custoHora": 18,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 121
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 137
+      }
+    ]
+  },
+  {
+    "id": "pessoa-luis-cruz-d9b671",
+    "nome": "Luis Cruz",
+    "custoHora": 16,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 122
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 129
+      }
+    ]
+  },
+  {
+    "id": "pessoa-ezequiel-7d38ac",
+    "nome": "Ezequiel",
+    "custoHora": 15,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 123
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 50
+      }
+    ]
+  },
+  {
+    "id": "pessoa-paulino-abilio-df0302",
+    "nome": "Paulino Abilio",
+    "custoHora": 15,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 124
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 153
+      }
+    ]
+  },
+  {
+    "id": "pessoa-tiago-pereira-3effa4",
+    "nome": "Tiago Pereira",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 125
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 188
+      }
+    ]
+  },
+  {
+    "id": "pessoa-fabio-david-873699",
+    "nome": "Fábio David",
+    "custoHora": 7,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 126
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 52
+      }
+    ]
+  },
+  {
+    "id": "pessoa-filipe-vargas-0a42a4",
+    "nome": "Filipe Vargas",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 127
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 55
+      }
+    ]
+  },
+  {
+    "id": "pessoa-david-peixoto-d03abe",
+    "nome": "David Peixoto",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 128
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 32
+      }
+    ]
+  },
+  {
+    "id": "pessoa-gustavo-queiros-595e80",
+    "nome": "Gustavo Queiros",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 129
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 66
+      }
+    ]
+  },
+  {
+    "id": "pessoa-anderson-593550",
+    "nome": "Anderson",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 130
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 7
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jeslei-pinho-4c9dae",
+    "nome": "Jeslei Pinho",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 131
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 83
+      }
+    ]
+  },
+  {
+    "id": "pessoa-edilson-miranda-f2465a",
+    "nome": "Edilson Miranda",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 132
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 39
+      }
+    ]
+  },
+  {
+    "id": "pessoa-ramon-soares-2407ec",
+    "nome": "Ramon Soares",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 133
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 169
+      }
+    ]
+  },
+  {
+    "id": "pessoa-bernardino-gomes-8dd167",
+    "nome": "Bernardino Gomes",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 134
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 19
+      }
+    ]
+  },
+  {
+    "id": "pessoa-iuri-oliveira-a259a0",
+    "nome": "Iuri Oliveira",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 135
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 74
+      }
+    ]
+  },
+  {
+    "id": "pessoa-elson-neto-218cdf",
+    "nome": "Elson Neto",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 136
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 46
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jose-sequeira-f1fa4b",
+    "nome": "José Sequeira",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 137
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 109
+      }
+    ]
+  },
+  {
+    "id": "pessoa-filipe-macedo-ff8057",
+    "nome": "Filipe Macedo",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 138
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 54
+      }
+    ]
+  },
+  {
+    "id": "pessoa-filipe-falconeri-d35eec",
+    "nome": "Filipe Falconeri",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 139
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 53
+      }
+    ]
+  },
+  {
+    "id": "pessoa-rodrigo-jorge-b8c2c7",
+    "nome": "Rodrigo Jorge",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 140
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 174
+      }
+    ]
+  },
+  {
+    "id": "pessoa-marciel-santos-29e77e",
+    "nome": "Marciel Santos",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 141
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 140
+      }
+    ]
+  },
+  {
+    "id": "pessoa-daniel-santos-4fa5c1",
+    "nome": "Daniel Santos",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 142
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 29
+      }
+    ]
+  },
+  {
+    "id": "pessoa-tomas-pacheco-c7dadf",
+    "nome": "Tomas Pacheco",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 143
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 190
+      }
+    ]
+  },
+  {
+    "id": "pessoa-david-aniceto-82888f",
+    "nome": "David Aniceto",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 144
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 31
+      }
+    ]
+  },
+  {
+    "id": "pessoa-paulo-mora-9169de",
+    "nome": "Paulo Mora",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 145
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 156
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jose-rodrigues-ea76d1",
+    "nome": "José Rodrigues",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 146
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 107
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jose-esculpi-4ab706",
+    "nome": "José Esculpi",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 147
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 101
+      }
+    ]
+  },
+  {
+    "id": "pessoa-valdir-silva-65b99e",
+    "nome": "Valdir Silva",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 148
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 192
+      }
+    ]
+  },
+  {
+    "id": "pessoa-gabriel-silva-3abcd2",
+    "nome": "Gabriel Silva",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 149
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 57
+      }
+    ]
+  },
+  {
+    "id": "pessoa-luis-barreto-b1040b",
+    "nome": "Luis Barreto",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 150
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 128
+      }
+    ]
+  },
+  {
+    "id": "pessoa-carlos-silva-a44952",
+    "nome": "Carlos Silva",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 151
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 24
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jose-monteiro-ceb314",
+    "nome": "José Monteiro",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 152
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 105
+      }
+    ]
+  },
+  {
+    "id": "pessoa-ruben-leite-c6a82f",
+    "nome": "Ruben Leite",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 153
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 177
+      }
+    ]
+  },
+  {
+    "id": "pessoa-andre-leite-99661e",
+    "nome": "Andre Leite",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 154
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 9
+      }
+    ]
+  },
+  {
+    "id": "pessoa-marcos-sousa-d581fb",
+    "nome": "Marcos Sousa",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 155
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 143
+      }
+    ]
+  },
+  {
+    "id": "pessoa-edmundo-matias-f72581",
+    "nome": "Edmundo Matias",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 156
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 40
+      }
+    ]
+  },
+  {
+    "id": "pessoa-cleverson-1be70b",
+    "nome": "Cleverson",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 157
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 28
+      }
+    ]
+  },
+  {
+    "id": "pessoa-isac-satemb-1e5580",
+    "nome": "Isac Satemb",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 158
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 73
+      }
+    ]
+  },
+  {
+    "id": "pessoa-wedinson-miranda-174662",
+    "nome": "Wedinson Miranda",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 159
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 199
+      }
+    ]
+  },
+  {
+    "id": "pessoa-volodymyr-e07e71",
+    "nome": "Volodymyr",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 160
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 197
+      }
+    ]
+  },
+  {
+    "id": "pessoa-pedro-anjos-bb3d61",
+    "nome": "Pedro Anjos",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 161
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 163
+      }
+    ]
+  },
+  {
+    "id": "pessoa-yuri-oliveira-1691cd",
+    "nome": "Yuri Oliveira",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 162
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 202
+      }
+    ]
+  },
+  {
+    "id": "pessoa-andrei-roberto-b9f7e6",
+    "nome": "Andrei Roberto",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 163
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 10
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jorge-sequeira-a40e6a",
+    "nome": "Jorge Sequeira",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 164
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 96
+      }
+    ]
+  },
+  {
+    "id": "pessoa-cassiano-329dab",
+    "nome": "Cassiano",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 165
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 25
+      }
+    ]
+  },
+  {
+    "id": "pessoa-nuno-cabral-60ce98",
+    "nome": "Nuno Cabral",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 166
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 146
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jair-monteiro-57c5e4",
+    "nome": "Jair Monteiro",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 167
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 76
+      }
+    ]
+  },
+  {
+    "id": "pessoa-leandro-queiros-37ed6f",
+    "nome": "Leandro Queirós",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 168
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 120
+      }
+    ]
+  },
+  {
+    "id": "pessoa-orlando-herculano-7f074f",
+    "nome": "Orlando Herculano",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 169
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 150
+      }
+    ]
+  },
+  {
+    "id": "pessoa-adelson-dc06f5",
+    "nome": "Adelson",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 170
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 2
+      }
+    ]
+  },
+  {
+    "id": "pessoa-ricardo-silva-9d6ede",
+    "nome": "Ricardo Silva",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 171
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 173
+      }
+    ]
+  },
+  {
+    "id": "pessoa-graziela-cda136",
+    "nome": "Graziela",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 172
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 62
+      }
+    ]
+  },
+  {
+    "id": "pessoa-lierson-0ae9da",
+    "nome": "Lierson",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 173
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 122
+      }
+    ]
+  },
+  {
+    "id": "pessoa-lauriano-811346",
+    "nome": "Lauriano",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 174
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 116
+      }
+    ]
+  },
+  {
+    "id": "pessoa-rolando-17d94b",
+    "nome": "Rolando",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 175
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 175
+      }
+    ]
+  },
+  {
+    "id": "pessoa-helizandro-fe8148",
+    "nome": "Helizandro",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 176
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 69
+      }
+    ]
+  },
+  {
+    "id": "pessoa-laurindo-4f9ab5",
+    "nome": "Laurindo",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 177
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 117
+      }
+    ]
+  },
+  {
+    "id": "pessoa-gislayne-8480ba",
+    "nome": "Gislayne",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 178
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 61
+      }
+    ]
+  },
+  {
+    "id": "pessoa-marco-junior-ce8f46",
+    "nome": "Marco Junior",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 179
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 141
+      }
+    ]
+  },
+  {
+    "id": "pessoa-matheus-97beaa",
+    "nome": "Matheus",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 180
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 144
+      }
+    ]
+  },
+  {
+    "id": "pessoa-kadyl-souza-a3d823",
+    "nome": "Kadyl Souza",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 181
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 114
+      }
+    ]
+  },
+  {
+    "id": "pessoa-paulo-sousa-d4c349",
+    "nome": "Paulo Sousa",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 182
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 160
+      }
+    ]
+  },
+  {
+    "id": "pessoa-germano-758b8a",
+    "nome": "Germano",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 183
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 59
+      }
+    ]
+  },
+  {
+    "id": "pessoa-henrique-fonseca-9cdb60",
+    "nome": "Henrique Fonseca",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 184
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 70
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jose-kenedy-87b10e",
+    "nome": "José Kenedy",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 185
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 104
+      }
+    ]
+  },
+  {
+    "id": "pessoa-jean-hernandez-b749e1",
+    "nome": "Jean Hernandez",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 186
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 80
+      }
+    ]
+  },
+  {
+    "id": "pessoa-johan-ecd34f",
+    "nome": "Johan",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 187
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 91
+      }
+    ]
+  },
+  {
+    "id": "pessoa-tiago-carmo-f73d40",
+    "nome": "Tiago Carmo",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 188
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 186
+      }
+    ]
+  },
+  {
+    "id": "pessoa-diamantino-sousa-a030af",
+    "nome": "Diamantino Sousa",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 189
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 35
+      }
+    ]
+  },
+  {
+    "id": "pessoa-janssen-silva-2ec32a",
+    "nome": "Janssen Silva",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 190
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 79
+      }
+    ]
+  },
+  {
+    "id": "pessoa-leandro-queiros-83ef42",
+    "nome": "Leandro Queiros",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 191
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 119
+      }
+    ]
+  },
+  {
+    "id": "pessoa-many-4e1c7a",
+    "nome": "Many",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 192
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 139
+      }
+    ]
+  },
+  {
+    "id": "pessoa-antonio-alcino-f5a15d",
+    "nome": "António Alcino",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 193
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 12
+      }
+    ]
+  },
+  {
+    "id": "pessoa-rafael-eca-f503fb",
+    "nome": "Rafael Eça",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 194
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 166
+      }
+    ]
+  },
+  {
+    "id": "pessoa-elvio-junior-84dec7",
+    "nome": "Elvio Junior",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 195
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 48
+      }
+    ]
+  },
+  {
+    "id": "pessoa-orestes-junior-8771c6",
+    "nome": "Orestes Junior",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 196
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 149
+      }
+    ]
+  },
+  {
+    "id": "pessoa-valeriano-d7bbeb",
+    "nome": "Valeriano",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 197
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 193
+      }
+    ]
+  },
+  {
+    "id": "pessoa-argeu-sousa-8b579d",
+    "nome": "Argeu Sousa",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 198
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 16
+      }
+    ]
+  },
+  {
+    "id": "pessoa-rafael-silva-d81ed1",
+    "nome": "Rafael Silva",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 199
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 168
+      }
+    ]
+  },
+  {
+    "id": "pessoa-tulio-silva-479ec7",
+    "nome": "Tulio Silva",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 200
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 191
+      }
+    ]
+  },
+  {
+    "id": "pessoa-brayner-3a0feb",
+    "nome": "Brayner",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 201
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 20
+      }
+    ]
+  },
+  {
+    "id": "pessoa-gerson-lins-040dfb",
+    "nome": "Gerson Lins",
+    "custoHora": 10,
+    "horasDia": 8,
+    "entradaNormal": "08:00",
+    "saidaNormal": "17:00",
+    "inicioNoturno": "22:00",
+    "fimNoturno": "07:00",
+    "suplementoExtra": 0.25,
+    "suplementoNoturno": 0.75,
+    "elegivelExtra": false,
+    "empresaId": null,
+    "tipo": null,
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Pessoas",
+        "row": 202
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Colaboradores",
+        "row": 60
+      }
+    ]
+  }
+]

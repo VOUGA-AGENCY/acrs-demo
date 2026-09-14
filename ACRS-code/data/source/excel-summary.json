@@ -1,0 +1,279 @@
+{
+  "source": "ACRS",
+  "file": "ACRS_Data_Input.xlsm",
+  "metodo": "Todas as dimensões. Todos os registos históricos das 12 obras selecionadas; sem corte por data. Nenhuma data foi atualizada para a data da demo.",
+  "totalLinhasPonto": 8905,
+  "totalLinhasFaturas": 4244,
+  "totalPessoasLista": 201,
+  "totalObrasReferenciadas": 240,
+  "pontoExtraido": 2637,
+  "faturasExtraidas": 1111,
+  "pontoPeriodo": {
+    "inicio": "2025-08-25",
+    "fim": "2026-08-22"
+  },
+  "faturasPeriodo": {
+    "inicio": "2025-10-01",
+    "fim": "2026-08-27"
+  },
+  "obraIdsSelecionadas": [
+    "26095",
+    "26108",
+    "26105",
+    "26011",
+    "26111",
+    "26066",
+    "26090",
+    "26100",
+    "26107",
+    "26109",
+    "25061",
+    "25094"
+  ],
+  "obrasSelecionadas": [
+    {
+      "obraId": "26095",
+      "nome": "Oliv. Hosp.",
+      "pontoRegistos": 337,
+      "faturasRegistos": 13,
+      "pontoPeriodo": {
+        "inicio": "2026-08-03",
+        "fim": "2026-08-19"
+      },
+      "faturasPeriodo": {
+        "inicio": "2026-07-30",
+        "fim": "2026-08-20"
+      },
+      "horasExcel": 3319.0,
+      "valorFaturas": 22293.7,
+      "pessoas": 38
+    },
+    {
+      "obraId": "26108",
+      "nome": "Finsa",
+      "pontoRegistos": 97,
+      "faturasRegistos": 23,
+      "pontoPeriodo": {
+        "inicio": "2026-08-03",
+        "fim": "2026-08-21"
+      },
+      "faturasPeriodo": {
+        "inicio": "2026-08-03",
+        "fim": "2026-08-21"
+      },
+      "horasExcel": 914.0,
+      "valorFaturas": 1196.25,
+      "pessoas": 8
+    },
+    {
+      "obraId": "26105",
+      "nome": "Horse",
+      "pontoRegistos": 99,
+      "faturasRegistos": 7,
+      "pontoPeriodo": {
+        "inicio": "2026-07-27",
+        "fim": "2026-08-14"
+      },
+      "faturasPeriodo": {
+        "inicio": "2026-07-26",
+        "fim": "2026-08-10"
+      },
+      "horasExcel": 779.5,
+      "valorFaturas": 799.69,
+      "pessoas": 8
+    },
+    {
+      "obraId": "26011",
+      "nome": "Alhandra",
+      "pontoRegistos": 472,
+      "faturasRegistos": 476,
+      "pontoPeriodo": {
+        "inicio": "2026-01-05",
+        "fim": "2026-08-21"
+      },
+      "faturasPeriodo": {
+        "inicio": "2026-01-05",
+        "fim": "2026-08-27"
+      },
+      "horasExcel": 3639.0,
+      "valorFaturas": 60292.99,
+      "pessoas": 5
+    },
+    {
+      "obraId": "26111",
+      "nome": "Vendas Novas",
+      "pontoRegistos": 33,
+      "faturasRegistos": 20,
+      "pontoPeriodo": {
+        "inicio": "2026-08-10",
+        "fim": "2026-08-22"
+      },
+      "faturasPeriodo": {
+        "inicio": "2026-08-10",
+        "fim": "2026-08-19"
+      },
+      "horasExcel": 256.5,
+      "valorFaturas": 948.46,
+      "pessoas": 3
+    },
+    {
+      "obraId": "26066",
+      "nome": "Oliv. Hosp.",
+      "pontoRegistos": 33,
+      "faturasRegistos": 39,
+      "pontoPeriodo": {
+        "inicio": "2026-08-03",
+        "fim": "2026-08-14"
+      },
+      "faturasPeriodo": {
+        "inicio": "2026-04-08",
+        "fim": "2026-08-19"
+      },
+      "horasExcel": 315.0,
+      "valorFaturas": 67115.04,
+      "pessoas": 5
+    },
+    {
+      "obraId": "26090",
+      "nome": "Horse",
+      "pontoRegistos": 30,
+      "faturasRegistos": 16,
+      "pontoPeriodo": {
+        "inicio": "2026-08-03",
+        "fim": "2026-08-12"
+      },
+      "faturasPeriodo": {
+        "inicio": "2026-07-31",
+        "fim": "2026-08-17"
+      },
+      "horasExcel": 246.0,
+      "valorFaturas": 8238.67,
+      "pessoas": 7
+    },
+    {
+      "obraId": "26100",
+      "nome": "Mangualde",
+      "pontoRegistos": 27,
+      "faturasRegistos": 7,
+      "pontoPeriodo": {
+        "inicio": "2026-08-17",
+        "fim": "2026-08-21"
+      },
+      "faturasPeriodo": {
+        "inicio": "2026-07-20",
+        "fim": "2026-08-21"
+      },
+      "horasExcel": 268.5,
+      "valorFaturas": 279.715,
+      "pessoas": 6
+    },
+    {
+      "obraId": "26107",
+      "nome": "Mangualde",
+      "pontoRegistos": 22,
+      "faturasRegistos": 8,
+      "pontoPeriodo": {
+        "inicio": "2026-08-17",
+        "fim": "2026-08-21"
+      },
+      "faturasPeriodo": {
+        "inicio": "2026-08-15",
+        "fim": "2026-08-21"
+      },
+      "horasExcel": 218.5,
+      "valorFaturas": 320.975,
+      "pessoas": 5
+    },
+    {
+      "obraId": "26109",
+      "nome": "Caflixa",
+      "pontoRegistos": 20,
+      "faturasRegistos": 26,
+      "pontoPeriodo": {
+        "inicio": "2026-07-27",
+        "fim": "2026-08-07"
+      },
+      "faturasPeriodo": {
+        "inicio": "2026-07-27",
+        "fim": "2026-08-07"
+      },
+      "horasExcel": 153.0,
+      "valorFaturas": 1154.89,
+      "pessoas": 2
+    },
+    {
+      "obraId": "25061",
+      "nome": "Mangualde",
+      "pontoRegistos": 1445,
+      "faturasRegistos": 476,
+      "pontoPeriodo": {
+        "inicio": "2025-10-17",
+        "fim": "2026-08-14"
+      },
+      "faturasPeriodo": {
+        "inicio": "2025-10-01",
+        "fim": "2026-08-13"
+      },
+      "horasExcel": 11910.25,
+      "valorFaturas": 455911.75,
+      "pessoas": 47
+    },
+    {
+      "obraId": "25094",
+      "nome": "Horse",
+      "pontoRegistos": 22,
+      "faturasRegistos": 0,
+      "pontoPeriodo": {
+        "inicio": "2025-08-25",
+        "fim": "2025-09-12"
+      },
+      "faturasPeriodo": null,
+      "horasExcel": 216.0,
+      "valorFaturas": 0,
+      "pessoas": 6
+    }
+  ],
+  "anomaliasPonto": [
+    {
+      "row": 117,
+      "issues": [
+        "Data original inválida para o período operacional."
+      ]
+    },
+    {
+      "row": 2670,
+      "issues": [
+        "Nome associado por correspondência sem distinção de maiúsculas; original preservado."
+      ]
+    },
+    {
+      "row": 2675,
+      "issues": [
+        "Nome associado por correspondência sem distinção de maiúsculas; original preservado."
+      ]
+    }
+  ],
+  "limites": [
+    "Valores de fórmulas são os resultados em cache guardados no Excel; não foi executado Excel/Power BI nem macros.",
+    "A folha não contém estado de validação das faturas, empresa da pessoa, cliente formal, orçamento, margem ou responsável da obra.",
+    "Uma data de ponto em 1900 e uma fatura sem data existem na fonte global, fora do subconjunto selecionado.",
+    "Categorias e fornecedores mantêm grafia original. Não foi feita reconciliação de sinónimos nem deduplicação de faturas.",
+    "Não são extraídos identificadores internos de cartões, por não serem necessários aos fluxos pedidos.",
+    "Lista Obras contém rótulos Obra - Local, não uma ficha de cliente. Nomes de local não são promovidos a cliente real.",
+    "Obras apenas referenciadas por Faturas são incluídas sem local; códigos compostos e suspeitos não foram corrigidos."
+  ],
+  "xmlTeste": {
+    "file": "teste-fornecedor.xml",
+    "root": "catalogo",
+    "registos": 5,
+    "campos": [
+      "sku",
+      "nome",
+      "preco",
+      "stock",
+      "categoria (opcional)",
+      "imagem_url (opcional)"
+    ],
+    "classificacao": "Catálogo de teste com eletrónica/casa. Não é fatura, inventário ou fornecedor comprovado ACRS. Não importado para a demo."
+  }
+}
