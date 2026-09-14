@@ -418,6 +418,14 @@ test("orçamento deriva máximo, disponível e margem sem divisões por zero", (
   assert.equal(f.max, 80000);
   assert.equal(f.available, 80000 - f.cost);
   assert.equal(f.margin, (100000 - f.cost) / 100000);
+  assert.equal(f.risk, "Saudável");
+  a.budgets[0].valor = f.cost / 0.75;
+  a.budgets[0].margem = 0;
+  assert.equal(workFinancials(a, "25094").risk, "Atenção");
+  a.budgets[0].valor = f.cost / 0.85;
+  assert.equal(workFinancials(a, "25094").risk, "Em risco");
+  a.budgets[0].valor = f.cost / 1.1;
+  assert.equal(workFinancials(a, "25094").risk, "Orçamento ultrapassado");
   a.budgets = [];
   const none = workFinancials(a, "25094");
   assert.equal(none.risk, "Sem orçamento");

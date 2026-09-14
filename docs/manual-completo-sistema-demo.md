@@ -191,7 +191,7 @@ Abaixo existem apenas as ações «Registar ponto» e «Adicionar fatura», esta
 
 Secções adicionais:
 
-- **Obras que requerem atenção:** seleciona obras ativas a partir de 85% do custo máximo, ordenadas pelo consumo. Apresenta valor da obra, margem alvo, custo máximo, custo atual e motivo do alerta.
+- **Obras que requerem atenção:** seleciona obras ativas a partir de 70% do custo máximo, ordenadas pelo consumo. Apresenta valor da obra, margem alvo, custo máximo, custo atual e motivo do alerta.
 - **Motivo do alerta:** excesso monetário sobre o limite, margem abaixo da meta ou percentagem do custo máximo utilizada.
 - **Atividade recente:** mistura movimentos de artigos, alocações e faturas demo, ordenados por data; mostra os quatro mais recentes.
 - **Armazém e recursos:** valor de stock de artigos, recursos em obra e artigos abaixo do mínimo; permite entrar em Recursos e abrir o tablet.
@@ -476,9 +476,10 @@ Esta distribuição aumentou a parcela de ferramentaria e reduziu outras rubrica
 
 ### 12.4 Risco
 
-- Saudável: abaixo de 85% do custo máximo.
-- Atenção: de 85% até antes do limite.
-- Em risco: atingiu ou excedeu o custo máximo.
+- Saudável: abaixo de 70% do custo máximo.
+- Atenção: de 70% até antes dos 80%.
+- Em risco: de 80% até antes do limite.
+- Orçamento ultrapassado: atingiu ou excedeu o custo máximo.
 - Sem orçamento: não existe limite positivo.
 
 **Porquê:** transformar o valor comercial e a margem desejada num limite operacional facilmente percebido.

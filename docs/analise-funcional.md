@@ -42,7 +42,7 @@ Cada custo identifica obra, categoria, origem, ID de origem, data efetiva, descr
 - **Utilização do limite:** custo atual ÷ custo máximo, quando este é positivo.
 - **Margem atual:** (valor orçamentado − custo atual) ÷ valor orçamentado, quando positivo; não é previsão final.
 
-Os estados mínimos são Saudável, Atenção e Em risco. O caderno não fixa um limiar numérico para Atenção: não apresentar uma convenção da demo como requisito formal. Valores ausentes/zero não devem originar divisões inválidas.
+Os estados da demo são Saudável, Atenção, Em risco e Orçamento ultrapassado. Os limiares usados na demo são 70% para Atenção, 80% para Em risco e 100% para Orçamento ultrapassado. Valores ausentes/zero não devem originar divisões inválidas.
 
 ## Armazém unificado
 

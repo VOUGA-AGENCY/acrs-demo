@@ -39,7 +39,7 @@ export function Dashboard() {
     ({ financials }) => financials.risk === "Em risco",
   );
   const attention = active
-    .filter((w) => workFinancials(state, w.id, ledger).consumption >= 0.85)
+    .filter((w) => workFinancials(state, w.id, ledger).consumption >= 0.7)
     .sort(
       (a, b) =>
         workFinancials(state, b.id, ledger).consumption -
@@ -163,7 +163,7 @@ export function Dashboard() {
           <Metric
             label="Obras em risco"
             value={activeRisks.length}
-            hint="Custo máximo excedido"
+            hint="A aproximar-se do custo máximo"
             icon={<TriangleAlert size={18} />}
             accent="danger"
             onClick={() => router.push("/controlo")}

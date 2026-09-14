@@ -33,8 +33,10 @@ export function Badge({
   const text = String(children);
   const cls =
     tone ??
-    (/risco|Sem stock|reparação/.test(text)
+    (/ultrapassado|Sem stock|reparação/.test(text)
       ? "red"
+      : /Em risco/.test(text)
+        ? "orange"
       : /Atenção|Por validar|baixo|confirmar|Demo/.test(text)
         ? "amber"
         : /Saudável|Disponível|Validada|Concluída|Normal/.test(text)
@@ -192,7 +194,7 @@ export function Progress({ value, label }: { value: number; label?: string }) {
       )}
       <div className="progress">
         <span
-          className={value >= 1 ? "red" : value >= 0.85 ? "amber" : ""}
+          className={value >= 1 ? "red" : value >= 0.8 ? "orange" : value >= 0.7 ? "amber" : "green"}
           style={{ width: `${Math.min(100, Math.max(0, value * 100))}%` }}
         />
       </div>

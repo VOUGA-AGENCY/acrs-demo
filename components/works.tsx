@@ -39,6 +39,8 @@ const budgetRubric = (category: string) =>
   )
     ? category
     : "Outros";
+const consumptionTone = (value: number) =>
+  value >= 1 ? "red" : value >= 0.8 ? "orange" : value >= 0.7 ? "amber" : "green";
 function WorkForm({ work, onClose }: { work?: Work; onClose: () => void }) {
   const { state, setState, notify } = useStore();
   const [number, setNumber] = useState(work?.numero ?? "");
@@ -282,7 +284,7 @@ export function Works() {
           value={risk}
           onChange={setRisk}
           placeholder="Todos os riscos"
-          options={["Saudável", "Atenção", "Em risco"]}
+          options={["Saudável", "Atenção", "Em risco", "Orçamento ultrapassado"]}
         />
       </div>
       <WorkTable rows={rows} />
@@ -451,6 +453,7 @@ export function WorkDetail({ id }: { id: string }) {
                     <span>Custo atual</span>
                     <div>
                       <i
+                        className={consumptionTone(f.consumption)}
                         style={{
                           width: `${Math.min(100, f.consumption * 100)}%`,
                         }}
@@ -471,10 +474,14 @@ export function WorkDetail({ id }: { id: string }) {
                     <b>{money(f.available)}</b>
                   </div>
                 </div>
-                <Note tone={f.risk === "Saudável" ? "neutral" : "amber"}>
+                <Note tone={f.risk === "Saudável" ? "neutral" : f.risk === "Orçamento ultrapassado" ? "red" : "amber"}>
                   {f.risk === "Saudável"
                     ? "A obra mantém disponibilidade face ao limite definido."
-                    : `Esta obra ${f.risk === "Em risco" ? "ultrapassou" : "aproxima-se de"} o custo máximo. Consulte os custos antes de assumir novos encargos.`}
+                    : f.risk === "Orçamento ultrapassado"
+                      ? "Esta obra ultrapassou o custo máximo. Consulte os custos e reveja os encargos assumidos."
+                      : f.risk === "Em risco"
+                        ? "Esta obra aproxima-se do custo máximo. Consulte os custos antes de assumir novos encargos."
+                        : "Esta obra entrou na zona de atenção. Acompanhe a evolução dos custos."}
                 </Note>
                 <div className="mini-facts">
                   <div>

@@ -639,6 +639,10 @@ td b {
   background: #fceeed;
   color: #b1534b;
 }
+.badge.orange {
+  background: #fff0e8;
+  color: #c2572d;
+}
 .badge.amber {
   background: #fdf5e8;
   color: #b28232;
@@ -667,14 +671,22 @@ td b {
 .progress > span {
   display: block;
   height: 100%;
-  background: #e77b48;
+  background: #598c70;
   border-radius: 3px;
+}
+.progress > span.green,
+.budget-chart i.green {
+  background: #598c70;
 }
 .progress > span.red {
   background: #cb7169;
 }
+.progress > span.orange,
+.budget-chart i.orange {
+  background: #d85b2b;
+}
 .progress > span.amber {
-  background: #dab05b;
+  background: #d39a4a;
 }
 .progress-label {
   display: flex;
@@ -1019,8 +1031,17 @@ td b {
 .budget-chart i {
   display: block;
   height: 100%;
-  background: #e77b48;
+  background: #598c70;
   border-radius: 2px;
+}
+.budget-chart i.red {
+  background: #cb7169;
+}
+.budget-chart i.orange {
+  background: #d85b2b;
+}
+.budget-chart i.amber {
+  background: #d39a4a;
 }
 .budget-chart b {
   text-align: right;

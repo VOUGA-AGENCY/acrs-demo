@@ -239,10 +239,12 @@ export function workFinancials(
     risk:
       max > 0
         ? cost >= max
-          ? "Em risco"
-          : cost >= max * 0.85
-            ? "Atenção"
-            : "Saudável"
+          ? "Orçamento ultrapassado"
+          : cost >= max * 0.8
+            ? "Em risco"
+            : cost >= max * 0.7
+              ? "Atenção"
+              : "Saudável"
         : "Sem orçamento",
   };
 }

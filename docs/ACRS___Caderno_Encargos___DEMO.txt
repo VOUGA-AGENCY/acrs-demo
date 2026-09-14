@@ -459,6 +459,7 @@ Estados mínimos:
 •Saudável;
 •Atenção;
 •Em risco.
+•Orçamento ultrapassado.
 Ponto
 Persistir e consolidar
 O ponto atualmente demonstrado deve passar a persistir em base de dados e
