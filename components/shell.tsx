@@ -8,7 +8,6 @@ import {
   Package,
   ArrowLeftRight,
   Wrench,
-  TrendingUp,
   ReceiptText,
   Clock3,
   Users,
@@ -27,7 +26,6 @@ const links = [
   ["Armazém", "/armazem", Package],
   ["Recursos", "/armazem/recursos", Package],
   ["Movimentos", "/armazem/movimentos", ArrowLeftRight],
-  ["Consumo e reposição", "/armazem/consumo", TrendingUp],
   ["Tablet", "/armazem/tablet", Wrench],
   ["Faturas & Compras", "/faturas", ReceiptText],
   ["Pessoas", "group", Users],
@@ -130,14 +128,13 @@ export function Shell({ children }: { children: ReactNode }) {
           "Visão geral",
           "Recursos",
           "Movimentos",
-          "Consumo e reposição",
           "Tablet",
         ])
       : profile === "Gerência"
         ? new Set(["Dashboard", "Obras", "Controlo"])
         : null;
   const categoryClass = (label: string) =>
-    ["Armazém", "Recursos", "Movimentos", "Consumo e reposição", "Tablet"].includes(label)
+    ["Armazém", "Recursos", "Movimentos", "Tablet"].includes(label)
       ? "nav-warehouse"
       : ["Pessoas", "Ponto", "Colaboradores", "Empresas"].includes(label)
         ? "nav-people"
@@ -162,7 +159,7 @@ export function Shell({ children }: { children: ReactNode }) {
               <Link
                 key={url}
                 href={url}
-                className={`${(url === "/" ? path === "/" : path === url || (url === "/obras" && path.startsWith("/obras/"))) ? "active" : ""} ${["Recursos", "Movimentos", "Consumo e reposição", "Tablet", "Ponto", "Colaboradores", "Empresas"].includes(label) ? "sub" : ""} ${categoryClass(label)} ${["Armazém"].includes(label) ? "module-parent" : ""}`}
+                className={`${(url === "/" ? path === "/" : path === url || (url === "/obras" && path.startsWith("/obras/"))) ? "active" : ""} ${["Recursos", "Movimentos", "Tablet", "Ponto", "Colaboradores", "Empresas"].includes(label) ? "sub" : ""} ${categoryClass(label)} ${["Armazém"].includes(label) ? "module-parent" : ""}`}
               >
                 <Icon size={18} />
                 <span>{label}</span>

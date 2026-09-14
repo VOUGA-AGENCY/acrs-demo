@@ -114,20 +114,20 @@ export function Dashboard() {
           <Metric
             label="Máquinas em obra"
             value={open.length}
-            onClick={() => router.push("/armazem/recursos?tipo=Máquinas")}
+            onClick={() => router.push("/armazem/recursos?tipo=Máquinas e equipamentos")}
           />
           <Metric
             label="Disponíveis"
             value={available.length}
             accent="positive"
-            onClick={() => router.push("/armazem/recursos?tipo=Máquinas")}
+            onClick={() => router.push("/armazem/recursos?tipo=Máquinas e equipamentos")}
           />
           <Metric
             label="Em reparação"
             value={
               state.machines.filter((m) => m.estado === "Em reparação").length
             }
-            onClick={() => router.push("/armazem/recursos?tipo=Máquinas")}
+            onClick={() => router.push("/armazem/recursos?tipo=Máquinas e equipamentos")}
           />
           <Metric
             label="Abaixo do mínimo"
@@ -380,7 +380,7 @@ export function Dashboard() {
               </div>
               <ArrowUpRight size={16} />
             </button>
-            <button onClick={() => router.push("/armazem/recursos?tipo=Máquinas")}>
+            <button onClick={() => router.push("/armazem/recursos?tipo=Máquinas e equipamentos")}>
               <Wrench size={20} />
               <div>
                 <b>{john ? open.length : available.length}</b>

@@ -25,7 +25,7 @@ export function Application({ segments = [] }: { segments?: string[] }) {
     "armazem/stock": <Resources initialType="Consumíveis" />,
     "armazem/movimentos": <Movements />,
     "armazem/consumo": <Control initialTab="Consumo de stock" />,
-    "armazem/maquinas": <Resources initialType="Máquinas" />,
+    "armazem/maquinas": <Resources initialType="Máquinas e equipamentos" />,
     "armazem/tablet": <Tablet />,
     faturas: <Invoices />,
     "pessoas/ponto": <Point />,

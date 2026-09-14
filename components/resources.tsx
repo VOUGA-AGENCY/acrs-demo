@@ -12,7 +12,7 @@ type ResourceRow = {
   code: string;
   name: string;
   detail: string;
-  type: "Consumíveis" | "Ferramentas" | "Máquinas" | "Equipamentos";
+  type: "Consumíveis" | "Ferramentas" | "Máquinas e equipamentos";
   state: string;
   alert: string;
   location: string;
@@ -21,8 +21,7 @@ type ResourceRow = {
 };
 
 const machineType = (name: string): ResourceRow["type"] =>
-  name.toLowerCase().includes("caixa de ferramentas") ? "Ferramentas" :
-  ["gerador", "compressor"].some(word => name.toLowerCase().includes(word)) ? "Equipamentos" : "Máquinas";
+  name.toLowerCase().includes("caixa de ferramentas") ? "Ferramentas" : "Máquinas e equipamentos";
 
 export function WarehouseOverview() {
   const { state } = useStore();
@@ -34,7 +33,7 @@ export function WarehouseOverview() {
     <div className="metrics four">
       <Metric label="Recursos registados" value={state.articles.length+state.machines.length} onClick={() => router.push("/armazem/recursos")}/>
       <Metric label="Valor atual do stock" value={money(sum(state.articles,a => stock(state,a.id)*(state.settings.valoresInternos[a.id] ?? a.precoUnitario)))}/>
-      <Metric label="Recursos em obra" value={active.length} onClick={() => router.push("/armazem/recursos?tipo=Máquinas")}/>
+      <Metric label="Máquinas e equipamentos em obra" value={active.length} onClick={() => router.push("/armazem/recursos?tipo=Máquinas e equipamentos")}/>
       <Metric label="Alertas de reposição" value={low.length} accent="danger" onClick={() => router.push("/armazem/recursos?alerta=baixo")}/>
     </div>
     <div className="grid-two">
@@ -48,7 +47,7 @@ export function WarehouseOverview() {
       <Panel title="Atenção necessária" subtitle="Alertas separados do estado operacional">
         <div className="resource-overview">
           <button onClick={() => router.push("/armazem/recursos?alerta=baixo")}><TriangleAlert size={20}/><div><b>{low.length} artigos</b><span>Abaixo do stock mínimo</span></div><Badge tone="amber">Repor</Badge></button>
-          <button onClick={() => router.push("/armazem/recursos?tipo=Máquinas")}><Wrench size={20}/><div><b>{state.machines.filter(m => m.estado === "Em reparação").length} recursos</b><span>Em manutenção ou reparação</span></div><ArrowUpRight size={16}/></button>
+          <button onClick={() => router.push("/armazem/recursos?tipo=Máquinas e equipamentos")}><Wrench size={20}/><div><b>{state.machines.filter(m => m.estado === "Em reparação").length} recursos</b><span>Em manutenção ou reparação</span></div><ArrowUpRight size={16}/></button>
         </div>
       </Panel>
     </div>
@@ -64,7 +63,8 @@ export function Resources({ initialType = "Todos" }: { initialType?: string }) {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const requestedType = params.get("tipo");
-    if (requestedType && ["Consumíveis","Ferramentas","Máquinas","Equipamentos"].includes(requestedType)) setType(requestedType);
+    if (requestedType === "Máquinas" || requestedType === "Equipamentos") setType("Máquinas e equipamentos");
+    else if (requestedType && ["Consumíveis","Ferramentas","Máquinas e equipamentos"].includes(requestedType)) setType(requestedType);
     if (params.get("alerta") === "baixo") setLowOnly(true);
   }, []);
   const rows = useMemo<ResourceRow[]>(() => {
@@ -83,12 +83,12 @@ export function Resources({ initialType = "Todos" }: { initialType?: string }) {
   const filtered = rows.filter(r => (type === "Todos" || r.type === type) && (!lowOnly || r.alert !== "—") && `${r.code} ${r.name} ${r.detail}`.toLowerCase().includes(q.toLowerCase()));
   return <>
     <PageHeader eyebrow="ARMAZÉM" title="Recursos" description="Uma lista para tudo o que entra, sai, regressa ou é atribuído a uma obra." actions={<Button onClick={() => router.push("/armazem/tablet")}>Registar movimento <ArrowUpRight size={16}/></Button>}/>
-    <Tabs items={["Todos","Consumíveis","Ferramentas","Máquinas","Equipamentos"]} value={type} onChange={setType}/>
+    <Tabs items={["Todos","Consumíveis","Ferramentas","Máquinas e equipamentos"]} value={type} onChange={setType}/>
     <div className="filter-bar"><SearchInput value={q} onChange={setQ} placeholder="Pesquisar código, recurso, marca ou família…"/><Button secondary onClick={() => setLowOnly(!lowOnly)}>{lowOnly ? "Ver todos os recursos" : "Só abaixo do mínimo"}</Button></div>
     <Table rows={filtered} columns={[
       {label:"Referência",render:r => <b>{r.code}</b>},
       {label:"Recurso",render:r => <div><b>{r.name}</b><small className="block muted">{r.detail}</small></div>},
-      {label:"Tipo",render:r => <Badge>{{Consumíveis:"Consumível",Ferramentas:"Ferramenta",Máquinas:"Máquina",Equipamentos:"Equipamento"}[r.type]}</Badge>},
+      {label:"Tipo",render:r => <Badge>{{Consumíveis:"Consumível",Ferramentas:"Ferramenta","Máquinas e equipamentos":"Máquina/equipamento"}[r.type]}</Badge>},
       {label:"Estado",render:r => <Badge>{r.state}</Badge>},
       {label:"Alerta",render:r => r.alert === "—" ? <span className="muted">—</span> : <Badge tone="amber">{r.alert}</Badge>},
       {label:"Localização / obra",render:r => r.location},
