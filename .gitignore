@@ -24,3 +24,5 @@ tmp/
 .env*
 *.pem
 *.key
+
+*.pdf
