@@ -19,6 +19,11 @@ type ResourceRow = {
   rule: string;
   value: string;
 };
+const resourceTypeLabels: Record<ResourceRow["type"], string> = {
+  Consumíveis: "Consumível",
+  Ferramentas: "Ferramenta",
+  "Máquinas e equipamentos": "Máquina/equipamento",
+};
 
 const machineType = (name: string): ResourceRow["type"] =>
   name.toLowerCase().includes("caixa de ferramentas") ? "Ferramentas" : "Máquinas e equipamentos";
@@ -54,7 +59,13 @@ export function WarehouseOverview() {
   </>;
 }
 
-export function Resources({ initialType = "Todos" }: { initialType?: string }) {
+export function Resources({
+  initialType = "Todos",
+  hideFinancials = false,
+}: {
+  initialType?: string;
+  hideFinancials?: boolean;
+}) {
   const { state } = useStore();
   const router = useRouter();
   const [type, setType] = useState(initialType);
@@ -88,12 +99,12 @@ export function Resources({ initialType = "Todos" }: { initialType?: string }) {
     <Table rows={filtered} columns={[
       {label:"Referência",render:r => <b>{r.code}</b>},
       {label:"Recurso",render:r => <div><b>{r.name}</b><small className="block muted">{r.detail}</small></div>},
-      {label:"Tipo",render:r => <Badge>{{Consumíveis:"Consumível",Ferramentas:"Ferramenta","Máquinas e equipamentos":"Máquina/equipamento"}[r.type]}</Badge>},
+      {label:"Tipo",render:r => <Badge>{resourceTypeLabels[r.type]}</Badge>},
       {label:"Estado",render:r => <Badge>{r.state}</Badge>},
       {label:"Alerta",render:r => r.alert === "—" ? <span className="muted">—</span> : <Badge tone="amber">{r.alert}</Badge>},
       {label:"Localização / obra",render:r => r.location},
-      {label:"Regra de custo",render:r => <span className="muted">{r.rule}</span>},
-      {label:"Disponibilidade / tarifa",render:r => <b>{r.value}</b>,align:"right"},
+      ...(!hideFinancials ? [{label:"Regra de custo",render:(r: ResourceRow) => <span className="muted">{r.rule}</span>}] : []),
+      {label:hideFinancials ? "Disponibilidade" : "Disponibilidade / tarifa",render:r => <b>{hideFinancials && r.type === "Máquinas e equipamentos" ? "Disponível" : r.value}</b>,align:"right"},
     ]}/>
   </>;
 }
