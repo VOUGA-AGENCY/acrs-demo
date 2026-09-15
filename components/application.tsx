@@ -28,6 +28,7 @@ export function Application({ segments = [] }: { segments?: string[] }) {
     "armazem/maquinas": <Resources initialType="Máquinas e equipamentos" />,
     "armazem/tablet": <Tablet />,
     faturas: <Invoices />,
+    compras: <Invoices initialType="Compra para stock" />,
     "pessoas/ponto": <Point />,
     "pessoas/colaboradores": <People />,
     "pessoas/empresas": <Companies />,
