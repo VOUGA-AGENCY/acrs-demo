@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { useStore } from "./store";
 import { costLedger, effectivePolicy, stock, workFinancials } from "@/lib/engine";
 import { date, money, num, qty, sum, today } from "@/lib/format";
-import type { Cost, Invoice } from "@/types";
+import type { Cost } from "@/types";
 import {
   Badge,
   Button,
@@ -17,8 +17,6 @@ import {
   Tabs,
 } from "./ui";
 import { CostBreakdown, CostDetail, CostTable } from "./costs";
-import { WorkTable } from "./works";
-import { DocumentPreview } from "./invoices";
 import { MonthlyChart, Ranking } from "./control-charts";
 const budgetRubric = (category: string) =>
   ["Mão de obra", "Materiais", "Ferramentaria", "Transportes", "Alojamento"].includes(
@@ -29,20 +27,22 @@ const budgetRubric = (category: string) =>
 export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
   const { state, ledger } = useStore();
   const [tab, setTab] = useState(initialTab);
-  const [invoice, setInvoice] = useState<Invoice | null>(null);
   const [period, setPeriod] = useState("Todo o histórico");
   const [drill, setDrill] = useState<{ title: string; rows: Cost[] } | null>(
     null,
   );
   const [cost, setCost] = useState<Cost | null>(null);
   const [consumptionPeriod, setConsumptionPeriod] = useState("30 dias");
-  const cutoff =
-    period === "Este mês"
-      ? today().slice(0, 7) + "-01"
-      : period === "Agosto 2026"
-        ? "2026-08-01"
-        : "0000-00-00";
-  const end = period === "Agosto 2026" ? "2026-08-31" : today();
+  const periodDays =
+    period === "30 dias" ? 30 : period === "3 meses" ? 90 : period === "6 meses" ? 180 : null;
+  const cutoff = periodDays
+    ? (() => {
+        const start = new Date();
+        start.setDate(start.getDate() - periodDays);
+        return `${start.getFullYear()}-${String(start.getMonth() + 1).padStart(2, "0")}-${String(start.getDate()).padStart(2, "0")}`;
+      })()
+    : "0000-00-00";
+  const end = today();
   const rows = ledger.filter((c) => c.data >= cutoff && c.data <= end);
   const periodTimes = state.times.filter(
     (t) => t.data >= cutoff && t.data <= end,
@@ -91,10 +91,6 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
   const budget = sum(state.budgets, (b) => b.valor);
   const current = sum(ledger, (c) => c.valor);
   const select = (title: string, r: Cost[]) => setDrill({ title, rows: r });
-  const purchaseInvoices = state.invoices.filter(
-    (i) =>
-      i.tipo === "Compra para stock" && i.data >= cutoff && i.data <= end,
-  );
   const equipmentStats = state.machines.map((machine) => {
     const allocationIds = state.allocations
       .filter((a) => a.maquinaId === machine.id)
@@ -139,7 +135,7 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
               setSupplierFilter("");
               setDrill(null);
             }}
-            options={["Todo o histórico", "Agosto 2026", "Este mês"]}
+            options={["30 dias", "3 meses", "6 meses", "Todo o histórico"]}
           />
         }
       />
@@ -196,12 +192,11 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
         items={[
           "Obras",
           "Orçamento vs realizado",
-          "Categorias",
+          "Custos",
           "Fornecedores",
           "Mão de obra",
           "Consumo de stock",
           "Ferramentaria",
-          "Compras",
         ]}
         value={tab}
         onChange={(t) => {
@@ -233,7 +228,6 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
               <Panel title="Top obras por custo realizado" subtitle={period}>
                 <Ranking points={state.works.map(w => ({label:w.numero+" · "+w.nome,value:sum(rows.filter(c => c.obraId === w.id),c => c.valor),risk:workFinancials(state,w.id,ledger).risk === "Em risco"})).filter(p => p.value > 0).sort((a,b) => b.value-a.value).slice(0,5)} onSelect={label => { const w = state.works.find(w => w.numero+" · "+w.nome === label); if(w) select(label,rows.filter(c => c.obraId === w.id)); }}/>
               </Panel>
-              <WorkTable rows={state.works} compact />
               <Note>
                 Os limites e a margem usam todo o custo acumulado da obra. O
                 seletor de período aplica-se às análises de custos. A margem
@@ -241,7 +235,7 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
               </Note>
             </>
           )}
-          {tab === "Categorias" && (
+          {tab === "Custos" && (
             <div className="grid-two control-categories">
               <Panel title="Distribuição dos custos">
                 <CostBreakdown
@@ -266,7 +260,7 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
                   b.modo === "Discriminado"
                     ? b.linhas.map((line) => {
                         const realized = sum(
-                          ledger.filter(
+                              rows.filter(
                             (c) =>
                               c.obraId === b.obraId &&
                               budgetRubric(c.categoria) === line.categoria,
@@ -277,6 +271,8 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
                           state.invoices.filter(
                             (i) =>
                               i.obraId === b.obraId &&
+                              i.data >= cutoff &&
+                              i.data <= end &&
                               i.estado === "Por validar" &&
                               budgetRubric(i.categoria ?? "Outros") ===
                                 line.categoria,
@@ -285,6 +281,7 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
                         );
                         return {
                           obraId: b.obraId,
+                          obraNome: state.works.find((w) => w.id === b.obraId)?.nome ?? "Obra sem nome",
                           category: line.categoria,
                           planned: line.valor,
                           realized,
@@ -294,7 +291,7 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
                     : [],
                 )}
                 columns={[
-                  { label: "Obra", render: (r) => <b>{r.obraId}</b> },
+                  { label: "Obra", render: (r) => <b>{r.obraId} · {r.obraNome}</b> },
                   { label: "Rubrica", render: (r) => r.category },
                   { label: "Previsto", render: (r) => money(r.planned), align: "right" },
                   { label: "Realizado", render: (r) => money(r.realized), align: "right" },
@@ -307,7 +304,7 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
                 ]}
               />
               <Note>
-                A comparação utiliza todo o histórico da obra. Documentos por
+                A comparação respeita o período selecionado. Documentos por
                 validar aparecem como comprometidos, sem entrar no realizado.
               </Note>
             </>
@@ -379,7 +376,7 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
                   <Ranking currency={false} points={state.companies.map(company => ({label:company.nome,value:sum(extras.filter(t => state.people.find(p => p.id === t.person)?.empresaId === company.id),t => t.extra)})).sort((a,b) => b.value-a.value)}/>
                 </Panel>
                 <Panel title="Peso do tempo de viagem" subtitle="Percentagem das horas trabalhadas e de viagem">
-                  <div className="travel-summary"><strong>{num(travelHours,2)} h</strong><span>{num(travelShare)}% das horas registadas</span><div className="ranking-track"><i style={{width:travelShare+"%"}}/></div><small className="muted">{travelChange === null ? "Sem período anterior comparável." : `${travelChange >= 0 ? "+" : ""}${num(travelChange)} p.p. face ao mês anterior${period === "Este mês" ? " (mês atual parcial)" : ""}.`} Tempo de viagem incluído no custo da obra.</small></div>
+                  <div className="travel-summary"><strong>{num(travelHours,2)} h</strong><span>{num(travelShare)}% das horas registadas</span><div className="ranking-track"><i style={{width:travelShare+"%"}}/></div><small className="muted">{travelChange === null ? "Sem período anterior comparável." : `${travelChange >= 0 ? "+" : ""}${num(travelChange)} p.p. face ao período anterior.`} Tempo de viagem incluído no custo da obra.</small></div>
                 </Panel>
               </div>
               <Table
@@ -612,13 +609,6 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
                   { label: "Resultado", render: (r) => <span style={{color:r.result < 0 ? "#ae4949" : "#487a60"}}>{money(r.result)}</span>, align: "right" },
                 ]}
               />
-              <CostTable
-                rows={rows.filter(
-                  (c) =>
-                    c.categoria === "Ferramentaria" || c.origem === "Armazém",
-                )}
-                onSelect={setCost}
-              />
               <Note>
                 Aquisição, custo interno diário e manutenção são valores demo.
                 A rentabilidade definitiva exige método de amortização, custos
@@ -626,36 +616,8 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
               </Note>
             </>
           )}
-          {tab === "Compras" && (
-            <>
-              <Table
-                rows={purchaseInvoices}
-                onRow={setInvoice}
-                columns={[
-                  { label: "Data", render: (i) => date(i.data) },
-                  { label: "Fornecedor", render: (i) => <b>{i.fornecedor}</b> },
-                  { label: "Documento", render: (i) => i.numero },
-                  { label: "Destino", render: () => "Stock do armazém" },
-                  {
-                    label: "Valor",
-                    render: (i) => money(i.valor),
-                    align: "right",
-                  },
-                  { label: "Estado", render: (i) => <Badge>{i.estado}</Badge> },
-                ]}
-              />
-              <Note>
-                Compras para stock no período selecionado. As faturas
-                históricas continuam ligadas às obras originais; não foram
-                convertidas retroativamente em movimentos de stock.
-              </Note>
-            </>
-          )}
         </>
       )}
-      {invoice && (
-        <DocumentPreview invoice={invoice} onClose={() => setInvoice(null)} />
-      )}{" "}
       {cost && <CostDetail cost={cost} onClose={() => setCost(null)} />}
     </>
   );

@@ -54,7 +54,7 @@ export function WarehouseOverview() {
   </>;
 }
 
-export function Resources({ initialType = "Todos" }: { initialType?: string }) {
+export function Resources({ initialType = "Todos", hideCosts = false }: { initialType?: string; hideCosts?: boolean }) {
   const { state } = useStore();
   const router = useRouter();
   const [type, setType] = useState(initialType);
@@ -92,8 +92,10 @@ export function Resources({ initialType = "Todos" }: { initialType?: string }) {
       {label:"Estado",render:r => <Badge>{r.state}</Badge>},
       {label:"Alerta",render:r => r.alert === "—" ? <span className="muted">—</span> : <Badge tone="amber">{r.alert}</Badge>},
       {label:"Localização / obra",render:r => r.location},
-      {label:"Regra de custo",render:r => <span className="muted">{r.rule}</span>},
-      {label:"Disponibilidade / tarifa",render:r => <b>{r.value}</b>,align:"right"},
+      ...(!hideCosts ? [
+        {label:"Regra de custo",render:(r: ResourceRow) => <span className="muted">{r.rule}</span>},
+        {label:"Disponibilidade / tarifa",render:(r: ResourceRow) => <b>{r.value}</b>,align:"right" as const},
+      ] : []),
     ]}/>
   </>;
 }

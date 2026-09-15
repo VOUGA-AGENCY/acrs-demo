@@ -24,6 +24,7 @@ import {
   SearchInput,
   Select,
   Table,
+  Tabs,
 } from "./ui";
 import type { Invoice } from "@/types";
 const directCategories = [
@@ -312,11 +313,13 @@ export function InvoiceForm({
     </Modal>
   );
 }
-export function Invoices() {
+export function Invoices({ initialType }: { initialType?: Invoice["tipo"] }) {
   const { state, setState, notify } = useStore();
   const [q, setQ] = useState("");
   const [status, setStatus] = useState("");
-  const [type, setType] = useState("");
+  const [activeType, setActiveType] = useState<Invoice["tipo"]>(
+    initialType ?? "Despesa de obra",
+  );
   const [adding, setAdding] = useState(false);
   const [selected, setSelected] = useState<Invoice | null>(null);
   const [editing, setEditing] = useState<Invoice | null>(null);
@@ -324,18 +327,25 @@ export function Invoices() {
     (i) =>
       includes(`${i.fornecedor} ${i.numero} ${i.obraId} ${i.categoria}`, q) &&
       (!status || i.estado === status) &&
-      (!type || i.tipo === type),
+      i.tipo === activeType,
   );
   return (
     <>
       <PageHeader
         eyebrow="ADMINISTRAÇÃO"
         title="Faturas & Compras"
-        description="Do documento à obra. Ou à entrada em armazém."
+        description="Documentos de obra e compras para stock numa única operação."
         actions={
           <Button onClick={() => setAdding(true)}>
             <Plus size={17} /> Adicionar fatura
           </Button>
+        }
+      />
+      <Tabs
+        items={["Faturas", "Compras"]}
+        value={activeType === "Compra para stock" ? "Compras" : "Faturas"}
+        onChange={(tab) =>
+          setActiveType(tab === "Compras" ? "Compra para stock" : "Despesa de obra")
         }
       />
       <div className="metrics four">
@@ -377,13 +387,6 @@ export function Invoices() {
           onChange={setStatus}
           placeholder="Todos os estados"
           options={["Validada", "Por validar", "Rejeitada"]}
-        />
-        <Select
-          label="Tipo da fatura"
-          value={type}
-          onChange={setType}
-          placeholder="Todos os destinos"
-          options={["Despesa de obra", "Compra para stock"]}
         />
       </div>
       <Table
