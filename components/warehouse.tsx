@@ -22,7 +22,8 @@ import { useStore } from "./store";
 import { Resources } from "./resources";
 import { applyAllocation, applyMovement, returnable, stock } from "@/lib/engine";
 import { date, includes, money, num, qty, sum, today, uid } from "@/lib/format";
-import type { Article, Movement } from "@/types";
+import type { Allocation, Article, Movement } from "@/types";
+import { persistAllocationToSupabase, persistMovementToSupabase } from "@/lib/supabase/service";
 import {
   Badge,
   Button,
@@ -596,19 +597,23 @@ export function Tablet() {
       for (const line of mixedLines) {
         if (line.kind === "article") {
           const item = base.articles.find(a => a.id === line.id)!;
-          base = applyMovement(base, {
+          const mov: Movement = {
             id: uid("mov"), tipo: "Saída", artigoId: item.id, obraId: work,
             descricao: `${item.descricao} · ${item.codigoACRS} · ${item.marca ?? item.tamanho ?? ""}`,
             quantidade: line.quantity, valorUnitario: line.rate, data: effective,
             registadoEm: new Date().toISOString(), utilizador: profile, source: "demo",
             totalNaSaida: item.descricao.toLowerCase().includes("bobine"),
-          });
+          };
+          base = applyMovement(base, mov);
+          persistMovementToSupabase(mov, profile).catch(console.error);
         } else {
-          base = applyAllocation(base, {
+          const alloc: Allocation = {
             id: uid("al"), maquinaId: line.id, obraId: work, saida: effective,
             devolucao: null, custoDia: line.rate, utilizador: profile,
             registadoEm: new Date().toISOString(), source: "demo",
-          });
+          };
+          base = applyAllocation(base, alloc);
+          persistAllocationToSupabase(alloc, profile).catch(console.error);
         }
       }
       setState(base); notify("Saída de recursos registada."); setSuccess(true);
@@ -684,7 +689,7 @@ export function Tablet() {
           const selectedArticle = base.articles.find(
             (a) => a.id === line.articleId,
           );
-          base = applyMovement(base, {
+          const mov: Movement = {
             ...m,
             id: uid("mov"),
             artigoId: line.articleId,
@@ -694,10 +699,13 @@ export function Tablet() {
             totalNaSaida:
               selectedArticle?.descricao.toLowerCase().includes("bobine") ??
               false,
-          });
+          };
+          base = applyMovement(base, mov);
+          persistMovementToSupabase(mov, profile).catch(console.error);
         }
       } else {
         base = applyMovement(base, m);
+        persistMovementToSupabase(m, profile).catch(console.error);
       }
       setState(base);
       notify(

@@ -1,452 +1,182 @@
 [
   {
     "id": "categoria-r2",
-    "nome": "acessórios",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 2
-    }
+    "nome": "acessórios"
   },
   {
     "id": "categoria-r3",
-    "nome": "acessórios inox",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 3
-    }
+    "nome": "acessórios inox"
   },
   {
     "id": "categoria-r4",
-    "nome": "água",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 4
-    }
+    "nome": "água"
   },
   {
     "id": "categoria-r5",
-    "nome": "al_acessórios",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 5
-    }
+    "nome": "al_acessórios"
   },
   {
     "id": "categoria-r6",
-    "nome": "al_caxilharia",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 6
-    }
+    "nome": "al_caxilharia"
   },
   {
     "id": "categoria-r7",
-    "nome": "al_vidros",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 7
-    }
+    "nome": "al_vidros"
   },
   {
     "id": "categoria-r8",
-    "nome": "alarmes",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 8
-    }
+    "nome": "alarmes"
   },
   {
     "id": "categoria-r9",
-    "nome": "alojamento",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 9
-    }
+    "nome": "alojamento"
   },
   {
     "id": "categoria-r10",
-    "nome": "andaimes",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 10
-    }
+    "nome": "andaimes"
   },
   {
     "id": "categoria-r11",
-    "nome": "chapas",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 11
-    }
+    "nome": "chapas"
   },
   {
     "id": "categoria-r12",
-    "nome": "combustivel",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 12
-    }
+    "nome": "combustivel"
   },
   {
     "id": "categoria-r13",
-    "nome": "consumiveis",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 13
-    }
+    "nome": "consumiveis"
   },
   {
     "id": "categoria-r14",
-    "nome": "contabilidade",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 14
-    }
+    "nome": "contabilidade"
   },
   {
     "id": "categoria-r15",
-    "nome": "correio",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 15
-    }
+    "nome": "correio"
   },
   {
     "id": "categoria-r16",
-    "nome": "corte material laser",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 16
-    }
+    "nome": "corte material laser"
   },
   {
     "id": "categoria-r17",
-    "nome": "decapagem",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 17
-    }
+    "nome": "decapagem"
   },
   {
     "id": "categoria-r18",
-    "nome": "economato",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 18
-    }
+    "nome": "economato"
   },
   {
     "id": "categoria-r19",
-    "nome": "eletricidade",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 19
-    }
+    "nome": "eletricidade"
   },
   {
     "id": "categoria-r20",
-    "nome": "epi's",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 20
-    }
+    "nome": "epi's"
   },
   {
     "id": "categoria-r21",
-    "nome": "escritório",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 21
-    }
+    "nome": "escritório"
   },
   {
     "id": "categoria-r22",
-    "nome": "exames médicos",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 22
-    }
+    "nome": "exames médicos"
   },
   {
     "id": "categoria-r23",
-    "nome": "fardas",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 23
-    }
+    "nome": "fardas"
   },
   {
     "id": "categoria-r24",
-    "nome": "ferramenta",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 24
-    }
+    "nome": "ferramenta"
   },
   {
     "id": "categoria-r25",
-    "nome": "formação",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 25
-    }
+    "nome": "formação"
   },
   {
     "id": "categoria-r26",
-    "nome": "fotocópias",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 26
-    }
+    "nome": "fotocópias"
   },
   {
     "id": "categoria-r27",
-    "nome": "gas",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 27
-    }
+    "nome": "gas"
   },
   {
     "id": "categoria-r28",
-    "nome": "impostos",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 28
-    }
+    "nome": "impostos"
   },
   {
     "id": "categoria-r29",
-    "nome": "isolamento",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 29
-    }
+    "nome": "isolamento"
   },
   {
     "id": "categoria-r30",
-    "nome": "lavagens",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 30
-    }
+    "nome": "lavagens"
   },
   {
     "id": "categoria-r31",
-    "nome": "Limpeza",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 31
-    }
+    "nome": "Limpeza"
   },
   {
     "id": "categoria-r32",
-    "nome": "manutenção extintores",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 32
-    }
+    "nome": "manutenção extintores"
   },
   {
     "id": "categoria-r33",
-    "nome": "manutenção viaturas",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 33
-    }
+    "nome": "manutenção viaturas"
   },
   {
     "id": "categoria-r34",
-    "nome": "mão obra",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 34
-    }
+    "nome": "mão obra"
   },
   {
     "id": "categoria-r35",
-    "nome": "máquinas",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 35
-    }
+    "nome": "máquinas"
   },
   {
     "id": "categoria-r36",
-    "nome": "máquinas + acessórios",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 36
-    }
+    "nome": "máquinas + acessórios"
   },
   {
     "id": "categoria-r37",
-    "nome": "material construção",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 37
-    }
+    "nome": "material construção"
   },
   {
     "id": "categoria-r38",
-    "nome": "meios elevatórios",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 38
-    }
+    "nome": "meios elevatórios"
   },
   {
     "id": "categoria-r39",
-    "nome": "portagens",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 39
-    }
+    "nome": "portagens"
   },
   {
     "id": "categoria-r40",
-    "nome": "produtos limpeza",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 40
-    }
+    "nome": "produtos limpeza"
   },
   {
     "id": "categoria-r41",
-    "nome": "refeições",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 41
-    }
+    "nome": "refeições"
   },
   {
     "id": "categoria-r42",
-    "nome": "Rendas",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 42
-    }
+    "nome": "Rendas"
   },
   {
     "id": "categoria-r43",
-    "nome": "Seguros",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 43
-    }
+    "nome": "Seguros"
   },
   {
     "id": "categoria-r44",
-    "nome": "tintas",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 44
-    }
+    "nome": "tintas"
   },
   {
     "id": "categoria-r45",
-    "nome": "transportes",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 45
-    }
+    "nome": "transportes"
   },
   {
     "id": "categoria-r46",
-    "nome": "tubos",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 46
-    }
+    "nome": "tubos"
   }
 ]

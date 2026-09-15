@@ -7,9 +7,12 @@
     "build": "next build",
     "start": "node scripts/serve.mjs",
     "typecheck": "tsc --noEmit",
-    "test": "node --import tsx --test tests/engine.test.ts"
+    "test": "node --import tsx --test tests/engine.test.ts",
+    "seed": "node --import tsx scripts/seed-supabase.ts"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.116.0",
     "lucide-react": "^0.468.0",
     "next": "^15.5.12",
     "pnpm": "^12.4.1",

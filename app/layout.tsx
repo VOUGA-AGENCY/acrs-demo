@@ -10,6 +10,9 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-PT">
+      <head>
+        <meta charSet="utf-8" />
+      </head>
       <body>
         <Provider>{children}</Provider>
       </body>

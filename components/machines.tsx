@@ -5,6 +5,7 @@ import { useStore } from "./store";
 import { applyAllocation, days, validDate } from "@/lib/engine";
 import { date, includes, money, num, sum, today, uid } from "@/lib/format";
 import type { Machine } from "@/types";
+import { persistAllocationToSupabase } from "@/lib/supabase/service";
 import {
   Badge,
   Button,
@@ -49,30 +50,32 @@ export function Machines({ tablet = false, initialWork = "" }: { tablet?: boolea
     if (!selected) return;
     try {
       if (action === "allocate") {
-        setState(
-          applyAllocation(state, {
-            id: uid("al"),
-            maquinaId: selected.id,
-            obraId: work,
-            saida: effective,
-            devolucao: null,
-            custoDia: rate,
-            utilizador: profile,
-            registadoEm: new Date().toISOString(),
-            source: "demo",
-          }),
-        );
+        const alloc = {
+          id: uid("al"),
+          maquinaId: selected.id,
+          obraId: work,
+          saida: effective,
+          devolucao: null,
+          custoDia: rate,
+          utilizador: profile,
+          registadoEm: new Date().toISOString(),
+          source: "demo" as const,
+        };
+        setState(applyAllocation(state, alloc));
+        persistAllocationToSupabase(alloc, profile).catch(console.error);
         notify("Máquina alocada à obra.");
       } else if (action === "return") {
         const a = open(selected.id);
         if (!a || !effective || effective < a.saida || effective > today())
           throw new Error("A devolução deve ficar entre a saída e hoje.");
+        const updatedAlloc = { ...a, devolucao: effective };
         setState({
           ...state,
           allocations: state.allocations.map((x) =>
-            x.id === a.id ? { ...x, devolucao: effective } : x,
+            x.id === a.id ? updatedAlloc : x,
           ),
         });
+        persistAllocationToSupabase(updatedAlloc, profile).catch(console.error);
         notify("Equipamento devolvido. Período de custo fechado.");
       } else {
         if (

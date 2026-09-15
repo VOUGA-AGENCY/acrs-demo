@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { ArrowUpRight, Package, Wrench, ArrowLeftRight, TriangleAlert } from "lucide-react";
 import { useStore } from "./store";
 import { stock } from "@/lib/engine";
-import { money, qty, sum } from "@/lib/format";
+import { includes, money, qty, sum } from "@/lib/format";
 import { Badge, Button, Metric, PageHeader, Panel, SearchInput, Tabs, Table } from "./ui";
 
 type ResourceRow = {
@@ -80,7 +80,7 @@ export function Resources({ initialType = "Todos" }: { initialType?: string }) {
     });
     return [...articles,...machines];
   },[state]);
-  const filtered = rows.filter(r => (type === "Todos" || r.type === type) && (!lowOnly || r.alert !== "—") && `${r.code} ${r.name} ${r.detail}`.toLowerCase().includes(q.toLowerCase()));
+  const filtered = rows.filter(r => (type === "Todos" || r.type === type) && (!lowOnly || r.alert !== "—") && includes(`${r.code} ${r.name} ${r.detail}`, q));
   return <>
     <PageHeader eyebrow="ARMAZÉM" title="Recursos" description="Uma lista para tudo o que entra, sai, regressa ou é atribuído a uma obra." actions={<Button onClick={() => router.push("/armazem/tablet")}>Registar movimento <ArrowUpRight size={16}/></Button>}/>
     <Tabs items={["Todos","Consumíveis","Ferramentas","Máquinas e equipamentos"]} value={type} onChange={setType}/>

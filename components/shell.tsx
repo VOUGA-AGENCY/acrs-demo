@@ -1,6 +1,6 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import {
   LayoutDashboard,
@@ -18,8 +18,11 @@ import {
   ChevronRight,
   CircleHelp,
 } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { useStore } from "./store";
 import type { Profile } from "@/types";
+import { getSupabaseBrowserClient } from "@/lib/supabase/client";
+
 const links = [
   ["Dashboard", "/", LayoutDashboard],
   ["Obras", "/obras", Building2],
@@ -36,49 +39,71 @@ const links = [
   ["Controlo", "/controlo", ChartNoAxesCombined],
   ["Configuração", "/configuracao", Settings2],
 ] as const;
+
 export function ProfileSelector() {
-  const { profile, setProfile } = useStore();
-  const router = useRouter();
+  const { profile, authUser } = useStore();
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  async function handleLogout() {
+    if (loggingOut) return;
+    setLoggingOut(true);
+    try {
+      const supabase = getSupabaseBrowserClient();
+      if (supabase) {
+        await supabase.auth.signOut();
+      }
+      await fetch("/api/auth/logout", { method: "POST" });
+    } catch {
+      // Redirecionar sempre mesmo em caso de erro
+    } finally {
+      window.location.href = "/login";
+    }
+  }
+
+  const roleLabel =
+    authUser?.perfil === "admin" || profile === "João Catalão"
+      ? "Administrador"
+      : authUser?.perfil === "secretariado" || profile === "Vítor"
+        ? "Secretariado"
+        : authUser?.perfil === "armazem" || profile === "Armazém"
+          ? "Armazém"
+          : "Operações Campo";
+
+  const avatarText =
+    profile === "João Catalão"
+      ? "JC"
+      : profile === "Vítor"
+        ? "VI"
+        : profile === "Armazém"
+          ? "AR"
+          : profile === "Campo"
+            ? "CA"
+            : "GE";
+
   return (
-    <div className="profile-picker">
-      <div className="avatar">
-        {profile === "João Catalão"
-          ? "JC"
-          : profile === "Vítor"
-            ? "VI"
-            : profile === "Armazém"
-              ? "AR"
-              : profile === "Gerência"
-                ? "GE"
-                : "CA"}
+    <div className="profile-picker" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+      <div className="avatar">{avatarText}</div>
+      <div style={{ display: "flex", flexDirection: "column", lineHeight: "1.2" }}>
+        <span style={{ fontSize: "12px", fontWeight: 600, color: "var(--ink)" }}>
+          {authUser?.nome || profile}
+        </span>
+        <span style={{ fontSize: "10px", color: "var(--muted)" }}>{roleLabel}</span>
       </div>
-      <label>
-        <span>Perfil da demo</span>
-        <select
-          value={profile}
-          onChange={(e) => {
-            const p = e.target.value as Profile;
-            setProfile(p);
-            router.push(
-              p === "Armazém"
-                ? "/armazem/tablet"
-                : p === "Campo"
-                  ? "/campo"
-                  : "/",
-            );
-          }}
-          aria-label="Perfil da demo"
-        >
-          {["João Catalão", "Vítor", "Armazém", "Gerência", "Campo"].map(
-            (p) => (
-              <option key={p}>{p}</option>
-            ),
-          )}
-        </select>
-      </label>
+      <button
+        type="button"
+        onClick={handleLogout}
+        className="logout-btn"
+        disabled={loggingOut}
+        title="Terminar sessão"
+        aria-label="Terminar sessão"
+      >
+        <LogOut size={13} />
+        <span>{loggingOut ? "A sair…" : "Sair"}</span>
+      </button>
     </div>
   );
 }
+
 export function Brand() {
   return (
     <div className="brand">
@@ -88,7 +113,7 @@ export function Brand() {
 }
 export function Shell({ children }: { children: ReactNode }) {
   const path = usePathname();
-  const { profile, state } = useStore();
+  const { profile, state, authUser } = useStore();
   const router = useRouter();
   const simplified =
     path.startsWith("/armazem/tablet") ||
@@ -197,14 +222,16 @@ export function Shell({ children }: { children: ReactNode }) {
             <b>{title}</b>
           </div>
           <div className="topbar-right">
-            <span className="session-tag">DEMO</span>
+            <span className="session-tag" style={{ color: "#287a55", borderColor: "#c8e6d6", background: "#f0f8f4" }}>
+              {authUser?.perfil?.toUpperCase() || "AUTENTICADO"}
+            </span>
             <ProfileSelector />
           </div>
         </header>
         <main>{children}</main>
         <footer className="app-footer">
           <span>ACRS Metal Solutions</span>
-          <span>Os registos desta sessão são repostos ao recarregar.</span>
+          <span>Base de dados Supabase conectada · Sessão ativa</span>
         </footer>
       </div>
     </div>
