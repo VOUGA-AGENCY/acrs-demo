@@ -5,6 +5,7 @@ import { useStore } from "./store";
 import { workFinancials } from "@/lib/engine";
 import { includes, money, num, sum } from "@/lib/format";
 import type { Budget } from "@/types";
+import { persistBudgetToSupabase } from "@/lib/supabase/service";
 import { WorkSelector } from "./warehouse";
 import {
   Badge,
@@ -33,7 +34,7 @@ export function BudgetForm({
   budget?: Budget;
   onClose: () => void;
 }) {
-  const { state, setState, notify } = useStore();
+  const { state, setState, notify, profile } = useStore();
   const [work, setWork] = useState(budget?.obraId ?? "");
   const [mode, setMode] = useState(budget?.modo ?? "Simples");
   const [value, setValue] = useState(budget?.valor ?? 100000);
@@ -70,6 +71,7 @@ export function BudgetForm({
       ...state,
       budgets: [...state.budgets.filter((x) => x.obraId !== work), b],
     });
+    persistBudgetToSupabase(b, profile).catch(console.error);
     notify("Orçamento guardado. Limite e margem da obra atualizados.");
     onClose();
   }

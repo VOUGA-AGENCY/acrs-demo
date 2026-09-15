@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { useStore } from "./store";
 import { costLedger, effectivePolicy, stock, workFinancials } from "@/lib/engine";
@@ -43,77 +43,212 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
       })()
     : "0000-00-00";
   const end = today();
-  const rows = ledger.filter((c) => c.data >= cutoff && c.data <= end);
-  const periodTimes = state.times.filter(
+  const rows = useMemo(() => ledger.filter((c) => c.data >= cutoff && c.data <= end), [ledger, cutoff, end]);
+  const periodTimes = useMemo(() => state.times.filter(
     (t) => t.data >= cutoff && t.data <= end,
-  );
+  ), [state.times, cutoff, end]);
   const [supplierFilter, setSupplierFilter] = useState("");
   const [topCount, setTopCount] = useState("10");
-  const suppliers = [...new Set(rows.filter(c => c.origem === "Fatura").map(c => state.invoices.find(i => i.id === c.origemId)?.fornecedor ?? ""))].map(name => {
-    const costs = rows.filter(c => c.origem === "Fatura" && state.invoices.find(i => i.id === c.origemId)?.fornecedor === name);
-    return {name, costs, total: sum(costs,c => c.valor)};
-  }).sort((a,b) => b.total-a.total);
-  const daily = new Map<string, {person: string; date: string; hours: number}>();
-  periodTimes.forEach(t => {
-    const key = t.pessoaId + "|" + t.data;
-    const d = daily.get(key) ?? {person:t.pessoaId,date:t.data,hours:0};
-    d.hours += t.horas; daily.set(key,d);
-  });
-  const extras = [...daily.values()].map(d => ({...d, extra:Math.max(0,d.hours-effectivePolicy(state,d.person).limiteExtra)}));
-  const monthly = (entries: {date:string; value:number}[]) => {
-    const totals = new Map<string,number>();
-    entries.forEach(e => totals.set(e.date.slice(0,7),(totals.get(e.date.slice(0,7)) ?? 0)+e.value));
+
+  const invoiceSupplierMap = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const inv of state.invoices) {
+      if (inv.id) map.set(inv.id, inv.fornecedor || "Desconhecido");
+    }
+    return map;
+  }, [state.invoices]);
+
+  const suppliers = useMemo(() => {
+    const map = new Map<string, { name: string; costs: Cost[]; total: number }>();
+    for (const c of rows) {
+      if (c.origem === "Fatura" && c.origemId) {
+        const name = invoiceSupplierMap.get(c.origemId) || "Outro";
+        let entry = map.get(name);
+        if (!entry) {
+          entry = { name, costs: [], total: 0 };
+          map.set(name, entry);
+        }
+        entry.costs.push(c);
+        entry.total += c.valor;
+      }
+    }
+    return Array.from(map.values()).sort((a, b) => b.total - a.total);
+  }, [rows, invoiceSupplierMap]);
+
+  const extras = useMemo(() => {
+    const daily = new Map<string, { person: string; date: string; hours: number }>();
+    for (const t of periodTimes) {
+      const key = t.pessoaId + "|" + t.data;
+      const d = daily.get(key) ?? { person: t.pessoaId, date: t.data, hours: 0 };
+      d.hours += t.horas;
+      daily.set(key, d);
+    }
+    return Array.from(daily.values()).map((d) => ({
+      ...d,
+      extra: Math.max(0, d.hours - effectivePolicy(state, d.person).limiteExtra),
+    }));
+  }, [periodTimes, state]);
+
+  const monthly = (entries: { date: string; value: number }[]) => {
+    const totals = new Map<string, number>();
+    for (const e of entries) {
+      if (!e.date || e.date < "2024-01") continue;
+      const month = e.date.slice(0, 7);
+      totals.set(month, (totals.get(month) ?? 0) + e.value);
+    }
     const keys = [...totals.keys()].sort();
     if (!keys.length) return [];
-    const result: {label:string;value:number}[] = [];
-    const cursor = new Date(keys[0]+"-01T12:00:00Z");
-    while(cursor.toISOString().slice(0,7) <= keys[keys.length-1]) {
-      const label = cursor.toISOString().slice(0,7);
-      result.push({label,value:totals.get(label) ?? 0}); cursor.setUTCMonth(cursor.getUTCMonth()+1);
+    const result: { label: string; value: number }[] = [];
+    const [startYear, startMonth] = keys[0].split("-").map(Number);
+    const [endYear, endMonth] = keys[keys.length - 1].split("-").map(Number);
+    if (!startYear || !startMonth || !endYear || !endMonth) return [];
+
+    let curYear = startYear;
+    let curMonth = startMonth;
+    while (curYear < endYear || (curYear === endYear && curMonth <= endMonth)) {
+      const label = `${curYear}-${String(curMonth).padStart(2, "0")}`;
+      result.push({ label, value: totals.get(label) ?? 0 });
+      curMonth++;
+      if (curMonth > 12) {
+        curMonth = 1;
+        curYear++;
+      }
     }
     return result;
   };
-  const workHours = sum(periodTimes,t => t.horas);
-  const travelHours = sum(periodTimes,t => t.horasViagem);
-  const travelShare = travelHours / Math.max(1,workHours+travelHours)*100;
-  const previousEnd = new Date(Date.parse(cutoff === "0000-00-00" ? today() : cutoff)-86400000);
-  const previousStart = new Date(previousEnd); previousStart.setUTCDate(1);
-  const previousTimes = period === "Todo o histórico" ? [] : state.times.filter(t => t.data >= previousStart.toISOString().slice(0,10) && t.data <= previousEnd.toISOString().slice(0,10));
-  const previousTotal = sum(previousTimes,t => t.horas+t.horasViagem);
-  const travelChange = previousTotal > 0 ? travelShare-sum(previousTimes,t => t.horasViagem)/previousTotal*100 : null;
+
+  const workCostMap = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const c of rows) {
+      if (c.obraId) {
+        map.set(c.obraId, (map.get(c.obraId) ?? 0) + c.valor);
+      }
+    }
+    return map;
+  }, [rows]);
+
+  const personCostsMap = useMemo(() => {
+    const map = new Map<string, Cost[]>();
+    for (const c of rows) {
+      if (c.pessoaId) {
+        let list = map.get(c.pessoaId);
+        if (!list) {
+          list = [];
+          map.set(c.pessoaId, list);
+        }
+        list.push(c);
+      }
+    }
+    return map;
+  }, [rows]);
+
+  const personCompanyMap = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const p of state.people) {
+      map.set(p.id, p.empresaId || "");
+    }
+    return map;
+  }, [state.people]);
+
+  const workHours = useMemo(() => sum(periodTimes, (t) => t.horas), [periodTimes]);
+  const travelHours = useMemo(() => sum(periodTimes, (t) => t.horasViagem), [periodTimes]);
+  const travelShare = travelHours / Math.max(1, workHours + travelHours) * 100;
+  const previousEnd = useMemo(() => new Date(Date.parse(cutoff === "0000-00-00" ? today() : cutoff) - 86400000), [cutoff]);
+  const previousStart = useMemo(() => {
+    const d = new Date(previousEnd);
+    d.setUTCDate(1);
+    return d;
+  }, [previousEnd]);
+  const previousTimes = useMemo(() => (
+    period === "Todo o histórico"
+      ? []
+      : state.times.filter(
+          (t) =>
+            t.data >= previousStart.toISOString().slice(0, 10) &&
+            t.data <= previousEnd.toISOString().slice(0, 10),
+        )
+  ), [period, state.times, previousStart, previousEnd]);
+  const previousTotal = useMemo(() => sum(previousTimes, (t) => t.horas + t.horasViagem), [previousTimes]);
+  const travelChange = previousTotal > 0 ? travelShare - sum(previousTimes, (t) => t.horasViagem) / previousTotal * 100 : null;
   const coverageDays = consumptionPeriod === "30 dias" ? 30 : consumptionPeriod === "3 meses" ? 90 : 180;
-  const coverageStart = new Date(Date.parse(today())-coverageDays*86400000).toISOString().slice(0,10);
-  const criticalStock = state.articles.map(a => {
-    const used = sum(state.movements.filter(m => m.artigoId === a.id && m.tipo !== "Entrada" && m.data >= coverageStart && m.data <= today()),m => m.quantidade*(m.tipo === "Devolução" ? -1 : 1));
-    const available = stock(state,a.id);
-    return {a,available,coverage:available <= 0 ? 0 : used > 0 ? available/(used/coverageDays) : Infinity};
-  }).filter(r => r.coverage < 15).sort((a,b) => a.coverage-b.coverage).slice(0,5);
+  const coverageStart = useMemo(() => new Date(Date.parse(today()) - coverageDays * 86400000).toISOString().slice(0, 10), [coverageDays]);
+  const criticalStock = useMemo(() => (
+    state.articles
+      .map((a) => {
+        const used = sum(
+          state.movements.filter(
+            (m) =>
+              m.artigoId === a.id &&
+              m.tipo !== "Entrada" &&
+              m.data >= coverageStart &&
+              m.data <= today(),
+          ),
+          (m) => m.quantidade * (m.tipo === "Devolução" ? -1 : 1),
+        );
+        const available = stock(state, a.id);
+        return {
+          a,
+          available,
+          coverage: available <= 0 ? 0 : used > 0 ? available / (used / coverageDays) : Infinity,
+        };
+      })
+      .filter((r) => r.coverage < 15)
+      .sort((a, b) => a.coverage - b.coverage)
+      .slice(0, 5)
+  ), [state.articles, state.movements, coverageStart, coverageDays, state]);
   const budget = sum(state.budgets, (b) => b.valor);
   const current = sum(ledger, (c) => c.valor);
+  const ledgerByOrigemId = useMemo(() => {
+    const map = new Map<string, Cost[]>();
+    for (const c of ledger) {
+      if (c.origemId) {
+        let list = map.get(c.origemId);
+        if (!list) {
+          list = [];
+          map.set(c.origemId, list);
+        }
+        list.push(c);
+      }
+    }
+    return map;
+  }, [ledger]);
+
   const select = (title: string, r: Cost[]) => setDrill({ title, rows: r });
-  const equipmentStats = state.machines.map((machine) => {
-    const allocationIds = state.allocations
-      .filter((a) => a.maquinaId === machine.id)
-      .map((a) => a.id);
-    const charges = rows.filter(
-      (c) => c.origem === "Equipamento" && allocationIds.includes(c.origemId),
-    );
-    const daysUsed = charges.length;
-    const transfer = sum(charges, (c) => c.valor);
-    const internal = daysUsed * (machine.custoInternoDia ?? 0);
-    const maintenance = machine.manutencaoAcumulada ?? 0;
-    const acquisition = machine.custoAquisicao ?? 0;
-    return {
-      machine,
-      daysUsed,
-      transfer,
-      internal,
-      maintenance,
-      acquisition,
-      recovery: acquisition > 0 ? transfer / acquisition : 0,
-      result: transfer - internal - maintenance,
-    };
-  });
+  const equipmentStats = useMemo(() => {
+    const equipmentRows = rows.filter((c) => c.origem === "Equipamento");
+    const chargesByAlloc = new Map<string, Cost[]>();
+    for (const c of equipmentRows) {
+      if (c.origemId) {
+        let list = chargesByAlloc.get(c.origemId);
+        if (!list) {
+          list = [];
+          chargesByAlloc.set(c.origemId, list);
+        }
+        list.push(c);
+      }
+    }
+    return state.machines.map((machine) => {
+      const allocationIds = state.allocations
+        .filter((a) => a.maquinaId === machine.id)
+        .map((a) => a.id);
+      const charges = allocationIds.flatMap((id) => chargesByAlloc.get(id) ?? []);
+      const daysUsed = charges.length;
+      const transfer = sum(charges, (c) => c.valor);
+      const internal = daysUsed * (machine.custoInternoDia ?? 0);
+      const maintenance = machine.manutencaoAcumulada ?? 0;
+      const acquisition = machine.custoAquisicao ?? 0;
+      return {
+        machine,
+        daysUsed,
+        transfer,
+        internal,
+        maintenance,
+        acquisition,
+        recovery: acquisition > 0 ? transfer / acquisition : 0,
+        result: transfer - internal - maintenance,
+      };
+    });
+  }, [rows, state.machines, state.allocations]);
   return (
     <>
       <PageHeader
@@ -226,7 +361,7 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
                 </span>
               </div>
               <Panel title="Top obras por custo realizado" subtitle={period}>
-                <Ranking points={state.works.map(w => ({label:w.numero+" · "+w.nome,value:sum(rows.filter(c => c.obraId === w.id),c => c.valor),risk:workFinancials(state,w.id,ledger).risk === "Em risco"})).filter(p => p.value > 0).sort((a,b) => b.value-a.value).slice(0,5)} onSelect={label => { const w = state.works.find(w => w.numero+" · "+w.nome === label); if(w) select(label,rows.filter(c => c.obraId === w.id)); }}/>
+                <Ranking points={state.works.map(w => ({label:w.numero+" · "+w.nome,value:workCostMap.get(w.id) ?? 0,risk:workFinancials(state,w.id,ledger,workCostMap.get(w.id) ?? 0).risk === "Em risco"})).filter(p => p.value > 0).sort((a,b) => b.value-a.value).slice(0,5)} onSelect={label => { const w = state.works.find(w => w.numero+" · "+w.nome === label); if(w) select(label,rows.filter(c => c.obraId === w.id)); }}/>
               </Panel>
               <Note>
                 Os limites e a margem usam todo o custo acumulado da obra. O
@@ -373,7 +508,7 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
               </div>
               <div className="grid-two">
                 <Panel title="Horas extra por empresa" subtitle="Total diário por pessoa, incluindo todas as obras">
-                  <Ranking currency={false} points={state.companies.map(company => ({label:company.nome,value:sum(extras.filter(t => state.people.find(p => p.id === t.person)?.empresaId === company.id),t => t.extra)})).sort((a,b) => b.value-a.value)}/>
+                  <Ranking currency={false} points={state.companies.map(company => ({label:company.nome,value:sum(extras.filter(t => personCompanyMap.get(t.person) === company.id),t => t.extra)})).sort((a,b) => b.value-a.value)}/>
                 </Panel>
                 <Panel title="Peso do tempo de viagem" subtitle="Percentagem das horas trabalhadas e de viagem">
                   <div className="travel-summary"><strong>{num(travelHours,2)} h</strong><span>{num(travelShare)}% das horas registadas</span><div className="ranking-track"><i style={{width:travelShare+"%"}}/></div><small className="muted">{travelChange === null ? "Sem período anterior comparável." : `${travelChange >= 0 ? "+" : ""}${num(travelChange)} p.p. face ao período anterior.`} Tempo de viagem incluído no custo da obra.</small></div>
@@ -381,16 +516,13 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
               </div>
               <Table
                 rows={state.people
-                  .map((p) => ({
-                    p,
-                    costs: rows.filter((c) => c.pessoaId === p.id),
-                  }))
-                  .filter((r) => r.costs.length)
-                  .sort(
-                    (a, b) =>
-                      sum(b.costs, (c) => c.valor) -
-                      sum(a.costs, (c) => c.valor),
-                  )}
+                  .map((p) => {
+                    const costs = personCostsMap.get(p.id) ?? [];
+                    const total = sum(costs, (c) => c.valor);
+                    return { p, costs, total };
+                  })
+                  .filter((r) => r.costs.length > 0)
+                  .sort((a, b) => b.total - a.total)}
                 onRow={(r) => select(r.p.nome, r.costs)}
                 columns={[
                   { label: "Pessoa", render: (r) => <b>{r.p.nome}</b> },
@@ -480,9 +612,7 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
                           m.valorUnitario *
                           (m.tipo === "Devolução" ? -1 : 1),
                       ),
-                      costs: ledger.filter((c) =>
-                        ms.some((m) => m.id === c.origemId),
-                      ),
+                      costs: ms.flatMap((m) => ledgerByOrigemId.get(m.id) ?? []),
                       movements: ms.filter((m) => m.tipo === "Saída").length,
                       days,
                     };

@@ -1,0 +1,5839 @@
+[
+  {
+    "id": "25094",
+    "numero": "25094",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 2
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25003",
+    "numero": "25003",
+    "nome": "Oficina",
+    "local": "Oficina",
+    "locais": [
+      "Oficina"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 3
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 32
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 7
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 36
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25058",
+    "numero": "25058",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 4
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 13
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 54
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25102",
+    "numero": "25102",
+    "nome": "Jumaq",
+    "local": "Jumaq",
+    "locais": [
+      "Jumaq"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 5
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 23
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 124
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25090",
+    "numero": "25090",
+    "nome": "Finsa",
+    "local": "Finsa",
+    "locais": [
+      "Finsa"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 6
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 40
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25108",
+    "numero": "25108",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 7
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 50
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25004",
+    "numero": "25004",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 8
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 58
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 986
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL25001",
+    "numero": "AL25001",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 9
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 80
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 163
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25110",
+    "numero": "25110",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 10
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 83
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25012",
+    "numero": "25012",
+    "nome": "NBS",
+    "local": "NBS",
+    "locais": [
+      "NBS"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 11
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 85
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 8
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25085",
+    "numero": "25085",
+    "nome": "Continental",
+    "local": "Continental",
+    "locais": [
+      "Continental"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 12
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 94
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 4
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "24097",
+    "numero": "24097",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 13
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 95
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL25012",
+    "numero": "AL25012",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 14
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 103
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 40
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25074",
+    "numero": "25074",
+    "nome": "Alhandra",
+    "local": "Alhandra",
+    "locais": [
+      "Alhandra"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 15
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 22
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 117
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25024",
+    "numero": "25024",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 16
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 29
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 136
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 170
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25097",
+    "numero": "25097",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 17
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 150
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 6
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "24054",
+    "numero": "24054",
+    "nome": "Salgadas",
+    "local": "Salgadas",
+    "locais": [
+      "Salgadas"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 18
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 154
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 741
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25076",
+    "numero": "25076",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 19
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 185
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 46
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25019",
+    "numero": "25019",
+    "nome": "NBS",
+    "local": "NBS",
+    "locais": [
+      "NBS"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 20
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 193
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25075",
+    "numero": "25075",
+    "nome": "Silves",
+    "local": "Silves",
+    "locais": [
+      "Silves"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 21
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 30
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 203
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 49
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25092",
+    "numero": "25092",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 23
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 33
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 236
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 47
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "24075",
+    "numero": "24075",
+    "nome": "NBS",
+    "local": "NBS",
+    "locais": [
+      "NBS"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 24
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 254
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "24067",
+    "numero": "24067",
+    "nome": "Pinhal Novo",
+    "local": "Pinhal Novo",
+    "locais": [
+      "Pinhal Novo"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 25
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 261
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25041",
+    "numero": "25041",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 26
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 330
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 165
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL25015",
+    "numero": "AL25015",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 27
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 401
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 265
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL25016",
+    "numero": "AL25016",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 28
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 405
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 43
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25083",
+    "numero": "25083",
+    "nome": "Gafanha",
+    "local": "Gafanha",
+    "locais": [
+      "Gafanha"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 31
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 44
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 522
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25060",
+    "numero": "25060",
+    "nome": "Fig. Foz",
+    "local": "Fig. Foz",
+    "locais": [
+      "Fig. Foz"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 34
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 556
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 11
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25073",
+    "numero": "25073",
+    "nome": "Instalfogo",
+    "local": "Instalfogo",
+    "locais": [
+      "Instalfogo"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 35
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 574
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25072",
+    "numero": "25072",
+    "nome": "Instalfogo",
+    "local": "Instalfogo",
+    "locais": [
+      "Instalfogo"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 36
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 579
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "23003",
+    "numero": "23003",
+    "nome": "Oficina",
+    "local": "Oficina",
+    "locais": [
+      "Oficina"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 37
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 692
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 126
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25106",
+    "numero": "25106",
+    "nome": "Oficina",
+    "local": "Oficina",
+    "locais": [
+      "Oficina"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 38
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 697
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25104",
+    "numero": "25104",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 39
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 704
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL25019",
+    "numero": "AL25019",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 40
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 706
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 16
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25113",
+    "numero": "25113",
+    "nome": "Escuteiros",
+    "local": "Escuteiros",
+    "locais": [
+      "Escuteiros"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 41
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 707
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 5
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25115",
+    "numero": "25115",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 42
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 771
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL25017",
+    "numero": "AL25017",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 43
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 793
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 42
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25061",
+    "numero": "25061",
+    "nome": "Mangualde",
+    "local": "Mangualde",
+    "locais": [
+      "Mangualde",
+      "mangualde"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 45
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 883
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 18
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25116",
+    "numero": "25116",
+    "nome": "Cacia",
+    "local": "Cacia",
+    "locais": [
+      "Cacia"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 46
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 914
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 125
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25114",
+    "numero": "25114",
+    "nome": "Sitape",
+    "local": "Sitape",
+    "locais": [
+      "Sitape"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 47
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 998
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 201
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25054",
+    "numero": "25054",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 48
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1237
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25101",
+    "numero": "25101",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 49
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1270
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 234
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25069",
+    "numero": "25069",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 50
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1274
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 457
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25118",
+    "numero": "25118",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 51
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1444
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 237
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25102.1",
+    "numero": "25102.1",
+    "nome": "Jumaq",
+    "local": "Jumaq",
+    "locais": [
+      "Jumaq"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 52
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1483
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25120",
+    "numero": "25120",
+    "nome": "Silves",
+    "local": "Silves",
+    "locais": [
+      "Silves"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 53
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1508
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 429
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25065",
+    "numero": "25065",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 54
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1517
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 753
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25123",
+    "numero": "25123",
+    "nome": "Vendas Novas",
+    "local": "Vendas Novas",
+    "locais": [
+      "Vendas Novas"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 55
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1570
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 461
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "24092",
+    "numero": "24092",
+    "nome": "Magestop",
+    "local": "Magestop",
+    "locais": [
+      "Magestop"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 56
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1607
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 446
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25105",
+    "numero": "25105",
+    "nome": "Travocar",
+    "local": "Travocar",
+    "locais": [
+      "Travocar"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 57
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1634
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 448
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25124",
+    "numero": "25124",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 58
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1658
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 447
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25125",
+    "numero": "25125",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 59
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1662
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25122",
+    "numero": "25122",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 60
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1690
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL25018",
+    "numero": "AL25018",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 61
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1710
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 389
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25119",
+    "numero": "25119",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 62
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1777
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 549
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25131",
+    "numero": "25131",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 63
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1782
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "24103",
+    "numero": "24103",
+    "nome": "Toyota",
+    "local": "Toyota",
+    "locais": [
+      "Toyota"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 64
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1783
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 554
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25127",
+    "numero": "25127",
+    "nome": "Associação Vila Franca Xira",
+    "local": "Associação Vila Franca Xira",
+    "locais": [
+      "Associação Vila Franca Xira"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 65
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1795
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 548
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL25020",
+    "numero": "AL25020",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 66
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1845
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 535
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25130",
+    "numero": "25130",
+    "nome": "Armando o Lucia",
+    "local": "Armando o Lucia",
+    "locais": [
+      "Armando o Lucia"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 67
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1863
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25061 EXTRA",
+    "numero": "25061 EXTRA",
+    "nome": "Mangualde",
+    "local": "Mangualde",
+    "locais": [
+      "Mangualde"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 68
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1907
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25128",
+    "numero": "25128",
+    "nome": "S. Paio Oleiros",
+    "local": "S. Paio Oleiros",
+    "locais": [
+      "S. Paio Oleiros"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 69
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1917
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 569
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL25021",
+    "numero": "AL25021",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 70
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 1923
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 534
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25134",
+    "numero": "25134",
+    "nome": "Mangualde",
+    "local": "Mangualde",
+    "locais": [
+      "Mangualde"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 71
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2017
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 708
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25129",
+    "numero": "25129",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 72
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2043
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 636
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25117",
+    "numero": "25117",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 73
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2070
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 374
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL25023",
+    "numero": "AL25023",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 74
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2091
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 642
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25138",
+    "numero": "25138",
+    "nome": "Mangualde",
+    "local": "Mangualde",
+    "locais": [
+      "Mangualde"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 75
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2119
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 828
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25137",
+    "numero": "25137",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 76
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2288
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 785
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25132",
+    "numero": "25132",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 77
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2330
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1199
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25136",
+    "numero": "25136",
+    "nome": "Mangualde",
+    "local": "Mangualde",
+    "locais": [
+      "Mangualde"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 78
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2387
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 682
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25140",
+    "numero": "25140",
+    "nome": "S. Paio Oleiros",
+    "local": "S. Paio Oleiros",
+    "locais": [
+      "S. Paio Oleiros"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 79
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2402
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 821
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25143",
+    "numero": "25143",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 80
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2461
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25142",
+    "numero": "25142",
+    "nome": "Finsa",
+    "local": "Finsa",
+    "locais": [
+      "Finsa"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 81
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2485
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 987
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25144",
+    "numero": "25144",
+    "nome": "Vendas Novas",
+    "local": "Vendas Novas",
+    "locais": [
+      "Vendas Novas"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 82
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2547
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 968
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26012",
+    "numero": "26012",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 83
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2628
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 998
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25093",
+    "numero": "25093",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 84
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2632
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 816
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26004",
+    "numero": "26004",
+    "nome": "Oficina",
+    "local": "Oficina",
+    "locais": [
+      "Oficina"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 85
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2661
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 996
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26013",
+    "numero": "26013",
+    "nome": "Vendas Novas",
+    "local": "Vendas Novas",
+    "locais": [
+      "Vendas Novas"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 86
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2719
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 994
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26015",
+    "numero": "26015",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 87
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2744
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1006
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26016",
+    "numero": "26016",
+    "nome": "Instalfogo",
+    "local": "Instalfogo",
+    "locais": [
+      "Instalfogo"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 88
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2768
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26011",
+    "numero": "26011",
+    "nome": "Alhandra",
+    "local": "Alhandra",
+    "locais": [
+      "Alhandra"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 89
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2833
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 991
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26007",
+    "numero": "26007",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 90
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2852
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2483
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL26001",
+    "numero": "AL26001",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 91
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2862
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 930
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL25027",
+    "numero": "AL25027",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 92
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2863
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 942
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL25026",
+    "numero": "AL25026",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 93
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2866
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 764
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26009",
+    "numero": "26009",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 94
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2869
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1043
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26008",
+    "numero": "26008",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 95
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2887
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1042
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26014",
+    "numero": "26014",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 96
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2915
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1303
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26010",
+    "numero": "26010",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 97
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2952
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1247
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26019",
+    "numero": "26019",
+    "nome": "Madeira",
+    "local": "Madeira",
+    "locais": [
+      "Madeira"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 98
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 2973
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1029
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25145",
+    "numero": "25145",
+    "nome": "José Lourenço",
+    "local": "José Lourenço",
+    "locais": [
+      "José Lourenço"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 99
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3041
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1090
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26022",
+    "numero": "26022",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 100
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3042
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1160
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26023",
+    "numero": "26023",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 101
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3069
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1089
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26020",
+    "numero": "26020",
+    "nome": "Toyota",
+    "local": "Toyota",
+    "locais": [
+      "Toyota"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 102
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3123
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1032
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26018",
+    "numero": "26018",
+    "nome": "Silves",
+    "local": "Silves",
+    "locais": [
+      "Silves"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 103
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3194
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1140
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26021",
+    "numero": "26021",
+    "nome": "Salty",
+    "local": "Salty",
+    "locais": [
+      "Salty"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 104
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3225
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1383
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26026",
+    "numero": "26026",
+    "nome": "Setubal",
+    "local": "Setubal",
+    "locais": [
+      "Setubal"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 105
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3245
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1318
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL25029",
+    "numero": "AL25029",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 106
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3369
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 806
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL26002",
+    "numero": "AL26002",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 107
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3370
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 928
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "25141",
+    "numero": "25141",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 108
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3380
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 963
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26030",
+    "numero": "26030",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 109
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3414
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26028",
+    "numero": "26028",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 110
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3416
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26027",
+    "numero": "26027",
+    "nome": "Mangualde",
+    "local": "Mangualde",
+    "locais": [
+      "Mangualde"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 111
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3418
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1173
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26029",
+    "numero": "26029",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 112
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3471
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2297
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26031",
+    "numero": "26031",
+    "nome": "Leiria",
+    "local": "Leiria",
+    "locais": [
+      "Leiria"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 113
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3524
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1335
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26037",
+    "numero": "26037",
+    "nome": "Barcelos",
+    "local": "Barcelos",
+    "locais": [
+      "Barcelos"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 114
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3635
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1496
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26038",
+    "numero": "26038",
+    "nome": "Mangualde",
+    "local": "Mangualde",
+    "locais": [
+      "Mangualde"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 115
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3768
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26032",
+    "numero": "26032",
+    "nome": "Mangualde",
+    "local": "Mangualde",
+    "locais": [
+      "Mangualde"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 116
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3775
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1480
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL26003",
+    "numero": "AL26003",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 117
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3790
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1322
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL26018",
+    "numero": "AL26018",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 118
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 3868
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3031
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26039",
+    "numero": "26039",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 119
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4052
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26044",
+    "numero": "26044",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 120
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4251
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1759
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26041",
+    "numero": "26041",
+    "nome": "Mozelos",
+    "local": "Mozelos",
+    "locais": [
+      "Mozelos"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 121
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4272
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1814
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26042",
+    "numero": "26042",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 122
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4329
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1733
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL26004",
+    "numero": "AL26004",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 123
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4363
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1762
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26045",
+    "numero": "26045",
+    "nome": "Associação Vila Franca Xira",
+    "local": "Associação Vila Franca Xira",
+    "locais": [
+      "Associação Vila Franca Xira"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 124
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4406
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1742
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26043",
+    "numero": "26043",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 125
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4407
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1644
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26048",
+    "numero": "26048",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 126
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4522
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1896
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL25022",
+    "numero": "AL25022",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 127
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4624
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1411
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL26006",
+    "numero": "AL26006",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 128
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4630
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1836
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26034",
+    "numero": "26034",
+    "nome": "Fundão",
+    "local": "Fundão",
+    "locais": [
+      "Fundão"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 129
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4633
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1622
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26025",
+    "numero": "26025",
+    "nome": "Mangualde",
+    "local": "Mangualde",
+    "locais": [
+      "Mangualde"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 130
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4674
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1884
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26046",
+    "numero": "26046",
+    "nome": "Amorim",
+    "local": "Amorim",
+    "locais": [
+      "Amorim"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 131
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4675
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1912
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26050",
+    "numero": "26050",
+    "nome": "Leiria",
+    "local": "Leiria",
+    "locais": [
+      "Leiria"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 132
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4752
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1920
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26056",
+    "numero": "26056",
+    "nome": "Etars do Norte NBS",
+    "local": "Etars do Norte NBS",
+    "locais": [
+      "Etars do Norte NBS"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 133
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4786
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2070
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26053",
+    "numero": "26053",
+    "nome": "Mangualde",
+    "local": "Mangualde",
+    "locais": [
+      "Mangualde"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 134
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4875
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2208
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26051",
+    "numero": "26051",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 135
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4920
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1995
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26058",
+    "numero": "26058",
+    "nome": "Framegas e Santos",
+    "local": "Framegas e Santos",
+    "locais": [
+      "Framegas e Santos"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 136
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4932
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL26005",
+    "numero": "AL26005",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 137
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 4946
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1832
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26049",
+    "numero": "26049",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 138
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 5053
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1898
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26055",
+    "numero": "26055",
+    "nome": "Fundão",
+    "local": "Fundão",
+    "locais": [
+      "Fundão"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 139
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 5137
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2154
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26059",
+    "numero": "26059",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 140
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 5294
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26057",
+    "numero": "26057",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 141
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 5504
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2184
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26065",
+    "numero": "26065",
+    "nome": "Mangualde",
+    "local": "Mangualde",
+    "locais": [
+      "Mangualde"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 142
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 5517
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2406
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26052",
+    "numero": "26052",
+    "nome": "Mangualde",
+    "local": "Mangualde",
+    "locais": [
+      "Mangualde"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 143
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 5528
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1922
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL26009",
+    "numero": "AL26009",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 144
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 5766
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2287
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26061",
+    "numero": "26061",
+    "nome": "CBF",
+    "local": "CBF",
+    "locais": [
+      "CBF"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 145
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 5785
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1513
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26060",
+    "numero": "26060",
+    "nome": "Protecto",
+    "local": "Protecto",
+    "locais": [
+      "Protecto"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 146
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 5882
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2321
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26071",
+    "numero": "26071",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 147
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 5961
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2634
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26077",
+    "numero": "26077",
+    "nome": "Mangualde",
+    "local": "Mangualde",
+    "locais": [
+      "Mangualde"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 148
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6116
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2709
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26082",
+    "numero": "26082",
+    "nome": "Seia",
+    "local": "Seia",
+    "locais": [
+      "Seia"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 149
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6298
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2688
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26070",
+    "numero": "26070",
+    "nome": "Setúbal",
+    "local": "Setúbal",
+    "locais": [
+      "Setúbal"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 150
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6331
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2849
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26081",
+    "numero": "26081",
+    "nome": "Setúbal",
+    "local": "Setúbal",
+    "locais": [
+      "Setúbal"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 151
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6335
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2713
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL26007",
+    "numero": "AL26007",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 152
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6440
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2298
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26075",
+    "numero": "26075",
+    "nome": "Mundão",
+    "local": "Mundão",
+    "locais": [
+      "Mundão"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 153
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6494
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2697
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26076",
+    "numero": "26076",
+    "nome": "Mundão",
+    "local": "Mundão",
+    "locais": [
+      "Mundão"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 154
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6525
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2886
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26089",
+    "numero": "26089",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 155
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6558
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3042
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26079",
+    "numero": "26079",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 156
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6598
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 4048
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26091",
+    "numero": "26091",
+    "nome": "BTL",
+    "local": "BTL",
+    "locais": [
+      "BTL"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 157
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6771
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26092",
+    "numero": "26092",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 158
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6833
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3390
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26093",
+    "numero": "26093",
+    "nome": "FunFrap",
+    "local": "FunFrap",
+    "locais": [
+      "FunFrap"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 159
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6902
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3468
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26083",
+    "numero": "26083",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 160
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6912
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26072",
+    "numero": "26072",
+    "nome": "Cascais",
+    "local": "Cascais",
+    "locais": [
+      "Cascais"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 161
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6914
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3125
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26087",
+    "numero": "26087",
+    "nome": "Navigator Cacia",
+    "local": "Navigator Cacia",
+    "locais": [
+      "Navigator Cacia"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 162
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6944
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3204
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "AL26012",
+    "numero": "AL26012",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 163
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 6980
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3258
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26094",
+    "numero": "26094",
+    "nome": "Mozelos",
+    "local": "Mozelos",
+    "locais": [
+      "Mozelos"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 164
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 7074
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3482
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26109",
+    "numero": "26109",
+    "nome": "Caflixa",
+    "local": "Caflixa",
+    "locais": [
+      "Caflixa"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 165
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 7094
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3796
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26108",
+    "numero": "26108",
+    "nome": "Finsa",
+    "local": "Finsa",
+    "locais": [
+      "Finsa"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 166
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 7187
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3967
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26099",
+    "numero": "26099",
+    "nome": "Ecep",
+    "local": "Ecep",
+    "locais": [
+      "Ecep"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 167
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 7272
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3598
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26067",
+    "numero": "26067",
+    "nome": "Navigator Figueira",
+    "local": "Navigator Figueira",
+    "locais": [
+      "Navigator Figueira"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 168
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 7303
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2509
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26102",
+    "numero": "26102",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 169
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 7650
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3625
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26078",
+    "numero": "26078",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 170
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 7712
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3767
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26074",
+    "numero": "26074",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 171
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 7801
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3100
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26105",
+    "numero": "26105",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 172
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 7825
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3677
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26106",
+    "numero": "26106",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 173
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 7857
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3676
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26088",
+    "numero": "26088",
+    "nome": "Navigator Cacia",
+    "local": "Navigator Cacia",
+    "locais": [
+      "Navigator Cacia"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 174
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 8021
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3047
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26104",
+    "numero": "26104",
+    "nome": "Caflixa",
+    "local": "Caflixa",
+    "locais": [
+      "Caflixa"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 175
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 8057
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3940
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26112",
+    "numero": "26112",
+    "nome": "Açores",
+    "local": "Açores",
+    "locais": [
+      "Açores"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 176
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 8125
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 4110
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26064",
+    "numero": "26064",
+    "nome": "Salgadas",
+    "local": "Salgadas",
+    "locais": [
+      "Salgadas"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 177
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 8137
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3481
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26107",
+    "numero": "26107",
+    "nome": "Mangualde",
+    "local": "Mangualde",
+    "locais": [
+      "Mangualde"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 178
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 8248
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 4072
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26100",
+    "numero": "26100",
+    "nome": "Mangualde",
+    "local": "Mangualde",
+    "locais": [
+      "Mangualde"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 179
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 8270
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3941
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26090",
+    "numero": "26090",
+    "nome": "Horse",
+    "local": "Horse",
+    "locais": [
+      "Horse"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 180
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 8297
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3748
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26117",
+    "numero": "26117",
+    "nome": "Navigator Cacia",
+    "local": "Navigator Cacia",
+    "locais": [
+      "Navigator Cacia"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 181
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 8416
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26111",
+    "numero": "26111",
+    "nome": "Vendas Novas",
+    "local": "Vendas Novas",
+    "locais": [
+      "Vendas Novas"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 182
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 8435
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 4031
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26095",
+    "numero": "26095",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 183
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 8450
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3793
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "26066",
+    "numero": "26066",
+    "nome": "Oliv. Hosp.",
+    "local": "Oliv. Hosp.",
+    "locais": [
+      "Oliv. Hosp."
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Lista Obras",
+        "row": 184
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 8657
+      },
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2517
+      }
+    ],
+    "origemIdentificacao": "Lista Obras"
+  },
+  {
+    "id": "Al25019",
+    "numero": "Al25019",
+    "nome": "Aluminios",
+    "local": "Aluminios",
+    "locais": [
+      "Aluminios"
+    ],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Ponto",
+        "row": 815
+      }
+    ],
+    "origemIdentificacao": "Ponto"
+  },
+  {
+    "id": "25002C",
+    "numero": "25002C",
+    "nome": "Obra 25002C",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 9
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "25002",
+    "numero": "25002",
+    "nome": "Obra 25002",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 20
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "25001",
+    "numero": "25001",
+    "nome": "Obra 25001",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 60
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "25003th",
+    "numero": "25003th",
+    "nome": "Obra 25003th",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 61
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "25024/25041",
+    "numero": "25024/25041",
+    "nome": "Obra 25024/25041",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 134
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "250224",
+    "numero": "250224",
+    "nome": "Obra 250224",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 166
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "25112",
+    "numero": "25112",
+    "nome": "Obra 25112",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 184
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "25091",
+    "numero": "25091",
+    "nome": "Obra 25091",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 246
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "25003t",
+    "numero": "25003t",
+    "nome": "Obra 25003t",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 394
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "25003T",
+    "numero": "25003T",
+    "nome": "Obra 25003T",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 474
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "25020",
+    "numero": "25020",
+    "nome": "Obra 25020",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 566
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "25021",
+    "numero": "25021",
+    "nome": "Obra 25021",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 568
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "25133",
+    "numero": "25133",
+    "nome": "Obra 25133",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 618
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "25041+25024",
+    "numero": "25041+25024",
+    "nome": "Obra 25041+25024",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 625
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "AL25024",
+    "numero": "AL25024",
+    "nome": "Obra AL25024",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 744
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "AL25028",
+    "numero": "AL25028",
+    "nome": "Obra AL25028",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 808
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "23079",
+    "numero": "23079",
+    "nome": "Obra 23079",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 880
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "AL25025",
+    "numero": "AL25025",
+    "nome": "Obra AL25025",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 941
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26001",
+    "numero": "26001",
+    "nome": "Obra 26001",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1009
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26024",
+    "numero": "26024",
+    "nome": "Obra 26024",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1025
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26006",
+    "numero": "26006",
+    "nome": "Obra 26006",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1076
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26003",
+    "numero": "26003",
+    "nome": "Obra 26003",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1124
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26003C",
+    "numero": "26003C",
+    "nome": "Obra 26003C",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1184
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26002",
+    "numero": "26002",
+    "nome": "Obra 26002",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1186
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "24093",
+    "numero": "24093",
+    "nome": "Obra 24093",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1192
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26013C",
+    "numero": "26013C",
+    "nome": "Obra 26013C",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1406
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26033",
+    "numero": "26033",
+    "nome": "Obra 26033",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1479
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "2604",
+    "numero": "2604",
+    "nome": "Obra 2604",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1648
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "25011",
+    "numero": "25011",
+    "nome": "Obra 25011",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1663
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26005",
+    "numero": "26005",
+    "nome": "Obra 26005",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 1764
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26047",
+    "numero": "26047",
+    "nome": "Obra 26047",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2302
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "AL26008",
+    "numero": "AL26008",
+    "nome": "Obra AL26008",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2309
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26063",
+    "numero": "26063",
+    "nome": "Obra 26063",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2320
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "25051",
+    "numero": "25051",
+    "nome": "Obra 25051",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2419
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26054",
+    "numero": "26054",
+    "nome": "Obra 26054",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2499
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "25056",
+    "numero": "25056",
+    "nome": "Obra 25056",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2644
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "AL26013",
+    "numero": "AL26013",
+    "nome": "Obra AL26013",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2727
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26085",
+    "numero": "26085",
+    "nome": "Obra 26085",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2789
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26084",
+    "numero": "26084",
+    "nome": "Obra 26084",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 2970
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26062",
+    "numero": "26062",
+    "nome": "Obra 26062",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3027
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26080",
+    "numero": "26080",
+    "nome": "Obra 26080",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3051
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26086",
+    "numero": "26086",
+    "nome": "Obra 26086",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3241
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "AL26014",
+    "numero": "AL26014",
+    "nome": "Obra AL26014",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3260
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "AL26011",
+    "numero": "AL26011",
+    "nome": "Obra AL26011",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3268
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "65061",
+    "numero": "65061",
+    "nome": "Obra 65061",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3322
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "AL26010",
+    "numero": "AL26010",
+    "nome": "Obra AL26010",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3385
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "AL26017",
+    "numero": "AL26017",
+    "nome": "Obra AL26017",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3389
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "AL26015",
+    "numero": "AL26015",
+    "nome": "Obra AL26015",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3531
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "AL26020",
+    "numero": "AL26020",
+    "nome": "Obra AL26020",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3664
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "AL26022",
+    "numero": "AL26022",
+    "nome": "Obra AL26022",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3666
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "6158",
+    "numero": "6158",
+    "nome": "Obra 6158",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3934
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "2274",
+    "numero": "2274",
+    "nome": "Obra 2274",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 3949
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26110",
+    "numero": "26110",
+    "nome": "Obra 26110",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 4009
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26096",
+    "numero": "26096",
+    "nome": "Obra 26096",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 4080
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26113",
+    "numero": "26113",
+    "nome": "Obra 26113",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 4109
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26119",
+    "numero": "26119",
+    "nome": "Obra 26119",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 4120
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26097",
+    "numero": "26097",
+    "nome": "Obra 26097",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 4126
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26118",
+    "numero": "26118",
+    "nome": "Obra 26118",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 4134
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26115",
+    "numero": "26115",
+    "nome": "Obra 26115",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 4152
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26121",
+    "numero": "26121",
+    "nome": "Obra 26121",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 4154
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26120",
+    "numero": "26120",
+    "nome": "Obra 26120",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 4171
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  },
+  {
+    "id": "26101",
+    "numero": "26101",
+    "nome": "Obra 26101",
+    "local": null,
+    "locais": [],
+    "source": "ACRS",
+    "sourceRefs": [
+      {
+        "file": "ACRS_Data_Input.xlsm",
+        "sheet": "Faturas",
+        "row": 4231
+      }
+    ],
+    "origemIdentificacao": "Faturas"
+  }
+]

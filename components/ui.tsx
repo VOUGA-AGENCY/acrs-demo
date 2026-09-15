@@ -109,17 +109,45 @@ export function SearchInput({
   onChange: (v: string) => void;
   placeholder?: string;
 }) {
+  const [localValue, setLocalValue] = useState(value);
+  const isComposingRef = useRef(false);
+
+  useEffect(() => {
+    setLocalValue(value);
+  }, [value]);
+
   return (
     <div className="search">
       <Search size={17} />
       <input
         aria-label={placeholder}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
+        value={localValue}
+        onCompositionStart={() => {
+          isComposingRef.current = true;
+        }}
+        onCompositionEnd={(e) => {
+          isComposingRef.current = false;
+          const val = (e.target as HTMLInputElement).value;
+          setLocalValue(val);
+          onChange(val);
+        }}
+        onChange={(e) => {
+          const val = e.target.value;
+          setLocalValue(val);
+          if (!isComposingRef.current) {
+            onChange(val);
+          }
+        }}
         placeholder={placeholder}
       />
-      {value && (
-        <button aria-label="Limpar pesquisa" onClick={() => onChange("")}>
+      {localValue && (
+        <button
+          aria-label="Limpar pesquisa"
+          onClick={() => {
+            setLocalValue("");
+            onChange("");
+          }}
+        >
           <X size={15} />
         </button>
       )}

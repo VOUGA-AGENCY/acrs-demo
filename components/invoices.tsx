@@ -12,6 +12,7 @@ import { useStore } from "./store";
 import { validateInvoice } from "@/lib/engine";
 import { date, includes, money, today, uid } from "@/lib/format";
 import { ArticleSelector, WorkSelector } from "./warehouse";
+import { persistInvoiceToSupabase } from "@/lib/supabase/service";
 import {
   Badge,
   Button,
@@ -116,6 +117,7 @@ export function InvoiceForm({
           ? state.invoices.map((i) => (i.id === invoice.id ? saved : i))
           : [saved, ...state.invoices],
       });
+      persistInvoiceToSupabase(saved, profile).catch(console.error);
       onSaved?.(saved);
       notify(
         invoice
@@ -314,7 +316,7 @@ export function InvoiceForm({
   );
 }
 export function Invoices({ initialType }: { initialType?: Invoice["tipo"] }) {
-  const { state, setState, notify } = useStore();
+  const { state, setState, profile, notify } = useStore();
   const [q, setQ] = useState("");
   const [status, setStatus] = useState("");
   const [activeType, setActiveType] = useState<Invoice["tipo"]>(
@@ -464,7 +466,7 @@ export function Invoices({ initialType }: { initialType?: Invoice["tipo"] }) {
                       ...selected,
                       estado: "Rejeitada" as const,
                       rejeitadoEm: new Date().toISOString(),
-                      rejeitadoPor: "João Catalão",
+                      rejeitadoPor: profile,
                     };
                     setState({
                       ...state,
@@ -472,6 +474,7 @@ export function Invoices({ initialType }: { initialType?: Invoice["tipo"] }) {
                         i.id === selected.id ? rejected : i,
                       ),
                     });
+                    persistInvoiceToSupabase(rejected, profile).catch(console.error);
                     setSelected(rejected);
                     notify("Fatura rejeitada sem efeitos em custos ou stock.");
                   }}
@@ -484,17 +487,19 @@ export function Invoices({ initialType }: { initialType?: Invoice["tipo"] }) {
                       const next = validateInvoice(
                         state,
                         selected.id,
-                        "João Catalão",
+                        profile,
                       );
                       setState(next);
-                      setSelected(
-                        next.invoices.find((i) => i.id === selected.id) ?? null,
-                      );
+                      const validated = next.invoices.find((i) => i.id === selected.id) ?? null;
+                      if (validated) {
+                        persistInvoiceToSupabase(validated, profile).catch(console.error);
+                      }
+                      setSelected(validated);
                       notify("Fatura validada. Efeitos aplicados.");
                     } catch (e) {
                       notify((e as Error).message);
                     }
-                                    }}
+                  }}
                 >
                   <Check size={16} /> Validar fatura
                 </Button>

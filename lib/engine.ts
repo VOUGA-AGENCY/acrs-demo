@@ -220,12 +220,16 @@ export function workFinancials(
   state: State,
   id: string,
   ledger = costLedger(state),
+  precomputedCost?: number,
 ) {
   const budget = state.budgets.find((b) => b.obraId === id);
-  const cost = sum(
-    ledger.filter((c) => c.obraId === id),
-    (c) => c.valor,
-  );
+  const cost =
+    precomputedCost !== undefined
+      ? precomputedCost
+      : sum(
+          ledger.filter((c) => c.obraId === id),
+          (c) => c.valor,
+        );
   const value = budget?.valor ?? 0;
   const max = value * (1 - (budget?.margem ?? 0));
   return {

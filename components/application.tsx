@@ -13,7 +13,7 @@ import { Resources, WarehouseOverview } from "./resources";
 import { useStore } from "./store";
 export function Application({ segments = [] }: { segments?: string[] }) {
   const path = segments.join("/");
-  const { profile } = useStore();
+  const { profile, isLoaded } = useStore();
   const switchingProfile =
     (profile === "Campo" && path !== "campo") ||
     (profile === "Armazém" && path !== "armazem/tablet");
@@ -39,7 +39,12 @@ export function Application({ segments = [] }: { segments?: string[] }) {
   };
   return (
     <Shell>
-      {switchingProfile ? (
+      {!isLoaded ? (
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "360px", gap: "16px" }}>
+          <div style={{ width: "32px", height: "32px", borderRadius: "50%", border: "3px solid #e2e8f0", borderTopColor: "#1e3a8a", animation: "spin 0.8s linear infinite" }} />
+          <p style={{ color: "#64748b", fontSize: "14px" }}>A sincronizar base de dados ACRS...</p>
+        </div>
+      ) : switchingProfile ? (
         <p role="status">A abrir a área de {profile.toLowerCase()}…</p>
       ) : profile === "Campo" ? (
         <FieldPage />

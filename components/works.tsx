@@ -33,6 +33,7 @@ import { CostBreakdown, CostDetail, CostTable } from "./costs";
 import { days, effectivePolicy, timeCost, workFinancials } from "@/lib/engine";
 import { date, includes, money, num, qty, sum } from "@/lib/format";
 import type { Cost, Work } from "@/types";
+import { persistWorkToSupabase } from "@/lib/supabase/service";
 const budgetRubric = (category: string) =>
   ["Mão de obra", "Materiais", "Ferramentaria", "Transportes", "Alojamento"].includes(
     category,
@@ -42,7 +43,7 @@ const budgetRubric = (category: string) =>
 const consumptionTone = (value: number) =>
   value >= 1 ? "red" : value >= 0.8 ? "orange" : value >= 0.7 ? "amber" : "green";
 function WorkForm({ work, onClose }: { work?: Work; onClose: () => void }) {
-  const { state, setState, notify } = useStore();
+  const { state, setState, notify, profile } = useStore();
   const [number, setNumber] = useState(work?.numero ?? "");
   const [name, setName] = useState(work?.nome ?? "");
   const [client, setClient] = useState(work?.cliente ?? "Por confirmar");
@@ -56,7 +57,10 @@ function WorkForm({ work, onClose }: { work?: Work; onClose: () => void }) {
       setError("Indique o número e o nome da obra.");
       return;
     }
-    if (!work && state.works.some((w) => w.numero === number.trim())) {
+    const exists = state.works.some(
+      (w) => w.numero.trim() === number.trim() && w.id !== work?.id,
+    );
+    if (exists) {
       setError("Já existe uma obra com este número.");
       return;
     }
@@ -77,7 +81,8 @@ function WorkForm({ work, onClose }: { work?: Work; onClose: () => void }) {
         ? state.works.map((w) => (w.id === work.id ? saved : w))
         : [...state.works.filter((w) => w.id !== saved.id), saved],
     });
-    notify(work ? "Obra atualizada." : "Obra criada na sessão.");
+    persistWorkToSupabase(saved, profile).catch(console.error);
+    notify(work ? "Obra atualizada." : "Obra criada e persistida no Supabase.");
     onClose();
   }
   return (

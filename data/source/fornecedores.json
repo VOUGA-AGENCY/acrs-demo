@@ -1,1882 +1,754 @@
 [
   {
     "id": "fornecedor-r2",
-    "nome": "acail gás",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 2
-    }
+    "nome": "acail gás"
   },
   {
     "id": "fornecedor-r3",
-    "nome": "Acede",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 3
-    }
+    "nome": "Acede"
   },
   {
     "id": "fornecedor-r4",
-    "nome": "acsc",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 4
-    }
+    "nome": "acsc"
   },
   {
     "id": "fornecedor-r5",
-    "nome": "action",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 5
-    }
+    "nome": "action"
   },
   {
     "id": "fornecedor-r6",
-    "nome": "Alfa 10",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 6
-    }
+    "nome": "Alfa 10"
   },
   {
     "id": "fornecedor-r7",
-    "nome": "almeida e amaral",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 7
-    }
+    "nome": "almeida e amaral"
   },
   {
     "id": "fornecedor-r8",
-    "nome": "alves bandeira",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 8
-    }
+    "nome": "alves bandeira"
   },
   {
     "id": "fornecedor-r9",
-    "nome": "ana vieira dos frangos",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 9
-    }
+    "nome": "ana vieira dos frangos"
   },
   {
     "id": "fornecedor-r10",
-    "nome": "andias e marques",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 10
-    }
+    "nome": "andias e marques"
   },
   {
     "id": "fornecedor-r11",
-    "nome": "António Tavares Ferreira",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 11
-    }
+    "nome": "António Tavares Ferreira"
   },
   {
     "id": "fornecedor-r12",
-    "nome": "antónio veloso",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 12
-    }
+    "nome": "antónio veloso"
   },
   {
     "id": "fornecedor-r13",
-    "nome": "Aquaservice",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 13
-    }
+    "nome": "Aquaservice"
   },
   {
     "id": "fornecedor-r14",
-    "nome": "Arcolift",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 14
-    }
+    "nome": "Arcolift"
   },
   {
     "id": "fornecedor-r15",
-    "nome": "Arcosilva",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 15
-    }
+    "nome": "Arcosilva"
   },
   {
     "id": "fornecedor-r16",
-    "nome": "arguifogo",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 16
-    }
+    "nome": "arguifogo"
   },
   {
     "id": "fornecedor-r17",
-    "nome": "as campinhas",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 17
-    }
+    "nome": "as campinhas"
   },
   {
     "id": "fornecedor-r18",
-    "nome": "Asa Metals",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 18
-    }
+    "nome": "Asa Metals"
   },
   {
     "id": "fornecedor-r19",
-    "nome": "at ",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 19
-    }
+    "nome": "at"
   },
   {
     "id": "fornecedor-r20",
-    "nome": "at_luis matos",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 20
-    }
+    "nome": "at_luis matos"
   },
   {
     "id": "fornecedor-r21",
-    "nome": "AutoElectrovag",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 21
-    }
+    "nome": "AutoElectrovag"
   },
   {
     "id": "fornecedor-r22",
-    "nome": "Autoflex",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 22
-    }
+    "nome": "Autoflex"
   },
   {
     "id": "fornecedor-r23",
-    "nome": "av steel",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 23
-    }
+    "nome": "av steel"
   },
   {
     "id": "fornecedor-r24",
-    "nome": "aveicargo",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 24
-    }
+    "nome": "aveicargo"
   },
   {
     "id": "fornecedor-r25",
-    "nome": "Aveiclean",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 25
-    }
+    "nome": "Aveiclean"
   },
   {
     "id": "fornecedor-r26",
-    "nome": "aveirisol",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 26
-    }
+    "nome": "aveirisol"
   },
   {
     "id": "fornecedor-r27",
-    "nome": "b2b inox",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 27
-    }
+    "nome": "b2b inox"
   },
   {
     "id": "fornecedor-r28",
-    "nome": "batista e irmão",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 28
-    }
+    "nome": "batista e irmão"
   },
   {
     "id": "fornecedor-r29",
-    "nome": "Best Green",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 29
-    }
+    "nome": "Best Green"
   },
   {
     "id": "fornecedor-r30",
-    "nome": "Biscate",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 30
-    }
+    "nome": "Biscate"
   },
   {
     "id": "fornecedor-r31",
-    "nome": "bp",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 31
-    }
+    "nome": "bp"
   },
   {
     "id": "fornecedor-r32",
-    "nome": "brisa",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 32
-    }
+    "nome": "brisa"
   },
   {
     "id": "fornecedor-r33",
-    "nome": "bxpress",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 33
-    }
+    "nome": "bxpress"
   },
   {
     "id": "fornecedor-r34",
-    "nome": "Café Argus",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 34
-    }
+    "nome": "Café Argus"
   },
   {
     "id": "fornecedor-r35",
-    "nome": "café ponto de encontro",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 35
-    }
+    "nome": "café ponto de encontro"
   },
   {
     "id": "fornecedor-r36",
-    "nome": "café refúgio",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 36
-    }
+    "nome": "café refúgio"
   },
   {
     "id": "fornecedor-r37",
-    "nome": "Calfer",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 37
-    }
+    "nome": "Calfer"
   },
   {
     "id": "fornecedor-r38",
-    "nome": "Camara Municipal Aveiro",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 38
-    }
+    "nome": "Camara Municipal Aveiro"
   },
   {
     "id": "fornecedor-r39",
-    "nome": "cantinho fatinha",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 39
-    }
+    "nome": "cantinho fatinha"
   },
   {
     "id": "fornecedor-r40",
-    "nome": "carby",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 40
-    }
+    "nome": "carby"
   },
   {
     "id": "fornecedor-r41",
-    "nome": "cartrack",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 41
-    }
+    "nome": "cartrack"
   },
   {
     "id": "fornecedor-r42",
-    "nome": "casa benfica",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 42
-    }
+    "nome": "casa benfica"
   },
   {
     "id": "fornecedor-r43",
-    "nome": "casa das peças",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 43
-    }
+    "nome": "casa das peças"
   },
   {
     "id": "fornecedor-r44",
-    "nome": "casa do pasto o sol",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 44
-    }
+    "nome": "casa do pasto o sol"
   },
   {
     "id": "fornecedor-r45",
-    "nome": "casa patricio",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 45
-    }
+    "nome": "casa patricio"
   },
   {
     "id": "fornecedor-r46",
-    "nome": "ceforcivil",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 46
-    }
+    "nome": "ceforcivil"
   },
   {
     "id": "fornecedor-r47",
-    "nome": "Central Lobao",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 47
-    }
+    "nome": "Central Lobao"
   },
   {
     "id": "fornecedor-r48",
-    "nome": "Chamagás",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 48
-    }
+    "nome": "Chamagás"
   },
   {
     "id": "fornecedor-r49",
-    "nome": "Churr. Cete",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 49
-    }
+    "nome": "Churr. Cete"
   },
   {
     "id": "fornecedor-r50",
-    "nome": "Churr. Egas Moniz",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 50
-    }
+    "nome": "Churr. Egas Moniz"
   },
   {
     "id": "fornecedor-r51",
-    "nome": "Churr. Franguinho",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 51
-    }
+    "nome": "Churr. Franguinho"
   },
   {
     "id": "fornecedor-r52",
-    "nome": "CIN",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 52
-    }
+    "nome": "CIN"
   },
   {
     "id": "fornecedor-r53",
-    "nome": "clinica Vera Cruz",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 53
-    }
+    "nome": "clinica Vera Cruz"
   },
   {
     "id": "fornecedor-r54",
-    "nome": "cliso",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 54
-    }
+    "nome": "cliso"
   },
   {
     "id": "fornecedor-r55",
-    "nome": "construtora da beira",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 55
-    }
+    "nome": "construtora da beira"
   },
   {
     "id": "fornecedor-r56",
-    "nome": "Continente",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 56
-    }
+    "nome": "Continente"
   },
   {
     "id": "fornecedor-r57",
-    "nome": "Coridal",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 57
-    }
+    "nome": "Coridal"
   },
   {
     "id": "fornecedor-r58",
-    "nome": "cosmave",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 58
-    }
+    "nome": "cosmave"
   },
   {
     "id": "fornecedor-r59",
-    "nome": "ctt",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 59
-    }
+    "nome": "ctt"
   },
   {
     "id": "fornecedor-r60",
-    "nome": "culligan",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 60
-    }
+    "nome": "culligan"
   },
   {
     "id": "fornecedor-r61",
-    "nome": "Daccord",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 61
-    }
+    "nome": "Daccord"
   },
   {
     "id": "fornecedor-r62",
-    "nome": "Diamantino Rita",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 62
-    }
+    "nome": "Diamantino Rita"
   },
   {
     "id": "fornecedor-r63",
-    "nome": "Domingo à Porta",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 63
-    }
+    "nome": "Domingo à Porta"
   },
   {
     "id": "fornecedor-r64",
-    "nome": "domus plaza",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 64
-    }
+    "nome": "domus plaza"
   },
   {
     "id": "fornecedor-r65",
-    "nome": "Duarte e Amorim",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 65
-    }
+    "nome": "Duarte e Amorim"
   },
   {
     "id": "fornecedor-r66",
-    "nome": "edp",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 66
-    }
+    "nome": "edp"
   },
   {
     "id": "fornecedor-r67",
-    "nome": "electrex",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 67
-    }
+    "nome": "electrex"
   },
   {
     "id": "fornecedor-r68",
-    "nome": "Empresa Veneza",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 68
-    }
+    "nome": "Empresa Veneza"
   },
   {
     "id": "fornecedor-r69",
-    "nome": "EralFrio",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 69
-    }
+    "nome": "EralFrio"
   },
   {
     "id": "fornecedor-r70",
-    "nome": "espiga mágica",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 70
-    }
+    "nome": "espiga mágica"
   },
   {
     "id": "fornecedor-r71",
-    "nome": "europa china",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 71
-    }
+    "nome": "europa china"
   },
   {
     "id": "fornecedor-r72",
-    "nome": "europcar",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 72
-    }
+    "nome": "europcar"
   },
   {
     "id": "fornecedor-r73",
-    "nome": "Flavia Cristina Rodr. Martins",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 73
-    }
+    "nome": "Flavia Cristina Rodr. Martins"
   },
   {
     "id": "fornecedor-r74",
-    "nome": "flor de esgueira",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 74
-    }
+    "nome": "flor de esgueira"
   },
   {
     "id": "fornecedor-r75",
-    "nome": "FTB",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 75
-    }
+    "nome": "FTB"
   },
   {
     "id": "fornecedor-r76",
-    "nome": "galp",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 76
-    }
+    "nome": "galp"
   },
   {
     "id": "fornecedor-r77",
-    "nome": "gespost - repsol",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 77
-    }
+    "nome": "gespost - repsol"
   },
   {
     "id": "fornecedor-r78",
-    "nome": "gold energy",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 78
-    }
+    "nome": "gold energy"
   },
   {
     "id": "fornecedor-r79",
-    "nome": "gonçalves",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 79
-    }
+    "nome": "gonçalves"
   },
   {
     "id": "fornecedor-r80",
-    "nome": "gracita",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 80
-    }
+    "nome": "gracita"
   },
   {
     "id": "fornecedor-r81",
-    "nome": "Grenke",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 81
-    }
+    "nome": "Grenke"
   },
   {
     "id": "fornecedor-r82",
-    "nome": "haste",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 82
-    }
+    "nome": "haste"
   },
   {
     "id": "fornecedor-r83",
-    "nome": "Hiper China",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 83
-    }
+    "nome": "Hiper China"
   },
   {
     "id": "fornecedor-r84",
-    "nome": "hotel acez",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 84
-    }
+    "nome": "hotel acez"
   },
   {
     "id": "fornecedor-r85",
-    "nome": "I Fix mobile",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 85
-    }
+    "nome": "I Fix mobile"
   },
   {
     "id": "fornecedor-r86",
-    "nome": "Ilha da Brasa",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 86
-    }
+    "nome": "Ilha da Brasa"
   },
   {
     "id": "fornecedor-r87",
-    "nome": "iluminação",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 87
-    }
+    "nome": "iluminação"
   },
   {
     "id": "fornecedor-r88",
-    "nome": "Induslubre",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 88
-    }
+    "nome": "Induslubre"
   },
   {
     "id": "fornecedor-r89",
-    "nome": "inoxpal",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 89
-    }
+    "nome": "inoxpal"
   },
   {
     "id": "fornecedor-r90",
-    "nome": "Intermarche",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 90
-    }
+    "nome": "Intermarche"
   },
   {
     "id": "fornecedor-r91",
-    "nome": "Irmãoscombustiveis",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 91
-    }
+    "nome": "Irmãoscombustiveis"
   },
   {
     "id": "fornecedor-r92",
-    "nome": "jlsa",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 92
-    }
+    "nome": "jlsa"
   },
   {
     "id": "fornecedor-r93",
-    "nome": "Joaquim Pereira e Duarte",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 93
-    }
+    "nome": "Joaquim Pereira e Duarte"
   },
   {
     "id": "fornecedor-r94",
-    "nome": "jorge patricio",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 94
-    }
+    "nome": "jorge patricio"
   },
   {
     "id": "fornecedor-r95",
-    "nome": "José Marques",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 95
-    }
+    "nome": "José Marques"
   },
   {
     "id": "fornecedor-r96",
-    "nome": "jumaq",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 96
-    }
+    "nome": "jumaq"
   },
   {
     "id": "fornecedor-r97",
-    "nome": "kianibote",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 97
-    }
+    "nome": "kianibote"
   },
   {
     "id": "fornecedor-r98",
-    "nome": "king kebab",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 98
-    }
+    "nome": "king kebab"
   },
   {
     "id": "fornecedor-r99",
-    "nome": "leroy merlin",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 99
-    }
+    "nome": "leroy merlin"
   },
   {
     "id": "fornecedor-r100",
-    "nome": "lidl",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 100
-    }
+    "nome": "lidl"
   },
   {
     "id": "fornecedor-r101",
-    "nome": "linhares leitões",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 101
-    }
+    "nome": "linhares leitões"
   },
   {
     "id": "fornecedor-r102",
-    "nome": "Loios & Loios",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 102
-    }
+    "nome": "Loios & Loios"
   },
   {
     "id": "fornecedor-r103",
-    "nome": "Loja Chinesa",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 103
-    }
+    "nome": "Loja Chinesa"
   },
   {
     "id": "fornecedor-r104",
-    "nome": "loja de ferragens",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 104
-    }
+    "nome": "loja de ferragens"
   },
   {
     "id": "fornecedor-r105",
-    "nome": "lumarca",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 105
-    }
+    "nome": "lumarca"
   },
   {
     "id": "fornecedor-r106",
-    "nome": "madrigal",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 106
-    }
+    "nome": "madrigal"
   },
   {
     "id": "fornecedor-r107",
-    "nome": "marco fibras",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 107
-    }
+    "nome": "marco fibras"
   },
   {
     "id": "fornecedor-r108",
-    "nome": "Maria fernanda Costa Silva",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 108
-    }
+    "nome": "Maria fernanda Costa Silva"
   },
   {
     "id": "fornecedor-r109",
-    "nome": "max china",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 109
-    }
+    "nome": "max china"
   },
   {
     "id": "fornecedor-r110",
-    "nome": "maxmat",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 110
-    }
+    "nome": "maxmat"
   },
   {
     "id": "fornecedor-r111",
-    "nome": "Media Markt",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 111
-    }
+    "nome": "Media Markt"
   },
   {
     "id": "fornecedor-r112",
-    "nome": "meio mundo papeleira",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 112
-    }
+    "nome": "meio mundo papeleira"
   },
   {
     "id": "fornecedor-r113",
-    "nome": "metafo",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 113
-    }
+    "nome": "metafo"
   },
   {
     "id": "fornecedor-r114",
-    "nome": "microsoft",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 114
-    }
+    "nome": "microsoft"
   },
   {
     "id": "fornecedor-r115",
-    "nome": "Millennium",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 115
-    }
+    "nome": "Millennium"
   },
   {
     "id": "fornecedor-r116",
-    "nome": "NJL",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 116
-    }
+    "nome": "NJL"
   },
   {
     "id": "fornecedor-r117",
-    "nome": "o cantinho",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 117
-    }
+    "nome": "o cantinho"
   },
   {
     "id": "fornecedor-r118",
-    "nome": "o fintas",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 118
-    }
+    "nome": "o fintas"
   },
   {
     "id": "fornecedor-r119",
-    "nome": "O Zé Padeiro",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 119
-    }
+    "nome": "O Zé Padeiro"
   },
   {
     "id": "fornecedor-r120",
-    "nome": "Ocidental Ageas",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 120
-    }
+    "nome": "Ocidental Ageas"
   },
   {
     "id": "fornecedor-r121",
-    "nome": "olmar",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 121
-    }
+    "nome": "olmar"
   },
   {
     "id": "fornecedor-r122",
-    "nome": "Os ossinhos",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 122
-    }
+    "nome": "Os ossinhos"
   },
   {
     "id": "fornecedor-r123",
-    "nome": "paladar's",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 123
-    }
+    "nome": "paladar's"
   },
   {
     "id": "fornecedor-r124",
-    "nome": "Paparica",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 124
-    }
+    "nome": "Paparica"
   },
   {
     "id": "fornecedor-r125",
-    "nome": "pecol",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 125
-    }
+    "nome": "pecol"
   },
   {
     "id": "fornecedor-r126",
-    "nome": "perfilvouga",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 126
-    }
+    "nome": "perfilvouga"
   },
   {
     "id": "fornecedor-r127",
-    "nome": "Perola do oceano",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 127
-    }
+    "nome": "Perola do oceano"
   },
   {
     "id": "fornecedor-r128",
-    "nome": "Petralmeida",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 128
-    }
+    "nome": "Petralmeida"
   },
   {
     "id": "fornecedor-r129",
-    "nome": "pingo doce",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 129
-    }
+    "nome": "pingo doce"
   },
   {
     "id": "fornecedor-r130",
-    "nome": "pintinhas e migalhinhas",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 130
-    }
+    "nome": "pintinhas e migalhinhas"
   },
   {
     "id": "fornecedor-r131",
-    "nome": "pinto e cruz",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 131
-    }
+    "nome": "pinto e cruz"
   },
   {
     "id": "fornecedor-r132",
-    "nome": "pintoaço",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 132
-    }
+    "nome": "pintoaço"
   },
   {
     "id": "fornecedor-r133",
-    "nome": "pizzarella",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 133
-    }
+    "nome": "pizzarella"
   },
   {
     "id": "fornecedor-r134",
-    "nome": "ponto encontro",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 134
-    }
+    "nome": "ponto encontro"
   },
   {
     "id": "fornecedor-r135",
-    "nome": "prio",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 135
-    }
+    "nome": "prio"
   },
   {
     "id": "fornecedor-r136",
-    "nome": "prosegur",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 136
-    }
+    "nome": "prosegur"
   },
   {
     "id": "fornecedor-r137",
-    "nome": "Publisilva",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 137
-    }
+    "nome": "Publisilva"
   },
   {
     "id": "fornecedor-r138",
-    "nome": "rdc",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 138
-    }
+    "nome": "rdc"
   },
   {
     "id": "fornecedor-r139",
-    "nome": "referência apetecível",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 139
-    }
+    "nome": "referência apetecível"
   },
   {
     "id": "fornecedor-r140",
-    "nome": "repsol",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 140
-    }
+    "nome": "repsol"
   },
   {
     "id": "fornecedor-r141",
-    "nome": "residencial santa joana",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 141
-    }
+    "nome": "residencial santa joana"
   },
   {
     "id": "fornecedor-r142",
-    "nome": "resilient category",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 142
-    }
+    "nome": "resilient category"
   },
   {
     "id": "fornecedor-r143",
-    "nome": "rest 13 maio",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 143
-    }
+    "nome": "rest 13 maio"
   },
   {
     "id": "fornecedor-r144",
-    "nome": "rest aldeão",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 144
-    }
+    "nome": "rest aldeão"
   },
   {
     "id": "fornecedor-r145",
-    "nome": "rest gonçalves",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 145
-    }
+    "nome": "rest gonçalves"
   },
   {
     "id": "fornecedor-r146",
-    "nome": "rest miratejo",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 146
-    }
+    "nome": "rest miratejo"
   },
   {
     "id": "fornecedor-r147",
-    "nome": "rest miratejo",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 147
-    }
+    "nome": "rest miratejo"
   },
   {
     "id": "fornecedor-r148",
-    "nome": "rest paraiso beira",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 148
-    }
+    "nome": "rest paraiso beira"
   },
   {
     "id": "fornecedor-r149",
-    "nome": "rest quinta dos sisos",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 149
-    }
+    "nome": "rest quinta dos sisos"
   },
   {
     "id": "fornecedor-r150",
-    "nome": "Rest. A Lanterna",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 150
-    }
+    "nome": "Rest. A Lanterna"
   },
   {
     "id": "fornecedor-r151",
-    "nome": "Rest. As Laranjeiras",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 151
-    }
+    "nome": "Rest. As Laranjeiras"
   },
   {
     "id": "fornecedor-r152",
-    "nome": "Rest. Bom dia",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 152
-    }
+    "nome": "Rest. Bom dia"
   },
   {
     "id": "fornecedor-r153",
-    "nome": "Rest. O Botareu",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 153
-    }
+    "nome": "Rest. O Botareu"
   },
   {
     "id": "fornecedor-r154",
-    "nome": "Rest. Romi",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 154
-    }
+    "nome": "Rest. Romi"
   },
   {
     "id": "fornecedor-r155",
-    "nome": "Restaurante Miratejo",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 155
-    }
+    "nome": "Restaurante Miratejo"
   },
   {
     "id": "fornecedor-r156",
-    "nome": "ribatejano",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 156
-    }
+    "nome": "ribatejano"
   },
   {
     "id": "fornecedor-r157",
-    "nome": "salty",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 157
-    }
+    "nome": "salty"
   },
   {
     "id": "fornecedor-r158",
-    "nome": "sanivouga",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 158
-    }
+    "nome": "sanivouga"
   },
   {
     "id": "fornecedor-r159",
-    "nome": "Santabrasa",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 159
-    }
+    "nome": "Santabrasa"
   },
   {
     "id": "fornecedor-r160",
-    "nome": "segurança social",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 160
-    }
+    "nome": "segurança social"
   },
   {
     "id": "fornecedor-r161",
-    "nome": "Siluz",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 161
-    }
+    "nome": "Siluz"
   },
   {
     "id": "fornecedor-r162",
-    "nome": "sitape",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 162
-    }
+    "nome": "sitape"
   },
   {
     "id": "fornecedor-r163",
-    "nome": "Solar do Condado",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 163
-    }
+    "nome": "Solar do Condado"
   },
   {
     "id": "fornecedor-r164",
-    "nome": "Solis",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 164
-    }
+    "nome": "Solis"
   },
   {
     "id": "fornecedor-r165",
-    "nome": "staples",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 165
-    }
+    "nome": "staples"
   },
   {
     "id": "fornecedor-r166",
-    "nome": "Super Rodão",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 166
-    }
+    "nome": "Super Rodão"
   },
   {
     "id": "fornecedor-r167",
-    "nome": "Taberna do Careca",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 167
-    }
+    "nome": "Taberna do Careca"
   },
   {
     "id": "fornecedor-r168",
-    "nome": "taberna lutas",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 168
-    }
+    "nome": "taberna lutas"
   },
   {
     "id": "fornecedor-r169",
-    "nome": "tendeiros e baltazar",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 169
-    }
+    "nome": "tendeiros e baltazar"
   },
   {
     "id": "fornecedor-r170",
-    "nome": "Tfuel",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 170
-    }
+    "nome": "Tfuel"
   },
   {
     "id": "fornecedor-r171",
-    "nome": "Tic Tac",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 171
-    }
+    "nome": "Tic Tac"
   },
   {
     "id": "fornecedor-r172",
-    "nome": "ticket restaurante",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 172
-    }
+    "nome": "ticket restaurante"
   },
   {
     "id": "fornecedor-r173",
-    "nome": "transmontano",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 173
-    }
+    "nome": "transmontano"
   },
   {
     "id": "fornecedor-r174",
-    "nome": "Trimáquinas",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 174
-    }
+    "nome": "Trimáquinas"
   },
   {
     "id": "fornecedor-r175",
-    "nome": "uin",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 175
-    }
+    "nome": "uin"
   },
   {
     "id": "fornecedor-r176",
-    "nome": "unifax",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 176
-    }
+    "nome": "unifax"
   },
   {
     "id": "fornecedor-r177",
-    "nome": "unisolda",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 177
-    }
+    "nome": "unisolda"
   },
   {
     "id": "fornecedor-r178",
-    "nome": "Variante Restaurante",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 178
-    }
+    "nome": "Variante Restaurante"
   },
   {
     "id": "fornecedor-r179",
-    "nome": "Vendap",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 179
-    }
+    "nome": "Vendap"
   },
   {
     "id": "fornecedor-r180",
-    "nome": "Via Verde",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 180
-    }
+    "nome": "Via Verde"
   },
   {
     "id": "fornecedor-r181",
-    "nome": "viasa",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 181
-    }
+    "nome": "viasa"
   },
   {
     "id": "fornecedor-r182",
-    "nome": "vidal e valente",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 182
-    }
+    "nome": "vidal e valente"
   },
   {
     "id": "fornecedor-r183",
-    "nome": "Vilarinho Workwear",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 183
-    }
+    "nome": "Vilarinho Workwear"
   },
   {
     "id": "fornecedor-r184",
-    "nome": "villa peixoto",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 184
-    }
+    "nome": "villa peixoto"
   },
   {
     "id": "fornecedor-r185",
-    "nome": "Vimartins",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 185
-    }
+    "nome": "Vimartins"
   },
   {
     "id": "fornecedor-r186",
-    "nome": "watertech",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 186
-    }
+    "nome": "watertech"
   },
   {
     "id": "fornecedor-r187",
-    "nome": "wavecolor",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 187
-    }
+    "nome": "wavecolor"
   },
   {
     "id": "fornecedor-r188",
-    "nome": "worten",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 188
-    }
+    "nome": "worten"
   },
   {
     "id": "fornecedor-r189",
-    "nome": "Wurth",
-    "source": "ACRS",
-    "sourceRef": {
-      "file": "ACRS_Data_Input.xlsm",
-      "sheet": "Tabelas Apoio",
-      "row": 189
-    }
+    "nome": "Wurth"
   }
 ]

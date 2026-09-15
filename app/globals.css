@@ -2446,3 +2446,199 @@ td b {
 .stock-critical-row > span:first-child { flex:1; }
 .stock-critical-row small { display:block; color:#7b818b; margin-top:4px; }
 @media(max-width:650px) { .ranking-item { grid-template-columns:1fr 90px; gap:8px; }.ranking-item .ranking-track { grid-column:1; grid-row:auto; }.ranking-item > b { grid-column:2; grid-row:1 / span 2; } }
+
+/* ============================================================================
+   AUTENTICAÇÃO / PÁGINA DE LOGIN
+   ============================================================================ */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  background: var(--bg) url("/fundo.png") center / cover no-repeat;
+}
+.login-card-wrapper {
+  width: 100%;
+  max-width: 440px;
+}
+.login-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  padding: 36px 32px 28px;
+  display: flex;
+  flex-direction: column;
+}
+.login-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.login-logo img {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+}
+.login-card h1 {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--ink);
+  letter-spacing: -0.4px;
+}
+.login-card p {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  margin: 6px 0 24px;
+}
+.login-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.login-card label span {
+  font-size: 11px;
+  font-weight: 600;
+  color: #525e69;
+  letter-spacing: 0.3px;
+}
+.login-card input {
+  width: 100%;
+  border: 1px solid #dce1e5;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 13px;
+  background: #fff;
+  transition: border-color 0.15s ease;
+}
+.login-card input:focus {
+  border-color: var(--orange);
+  outline: none;
+}
+.login-btn {
+  width: 100%;
+  margin-top: 8px;
+  min-height: 42px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.login-error {
+  background: #fdf2f2;
+  border: 1px solid #f8d7da;
+  color: var(--red);
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.demo-accounts-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 24px 0 16px;
+  color: #949ca3;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.demo-accounts-divider::before,
+.demo-accounts-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--line);
+}
+.demo-accounts-divider span {
+  padding: 0 12px;
+}
+.demo-presets-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.demo-preset-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  background: #fbfcfc;
+  border: 1px solid #e7eaec;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+.demo-preset-card:hover {
+  background: var(--orange-bg);
+  border-color: #edc7b7;
+}
+.demo-avatar {
+  width: 28px;
+  height: 28px;
+  background: #eef1f3;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #55626e;
+  flex-shrink: 0;
+}
+.demo-preset-card:hover .demo-avatar {
+  background: var(--orange);
+  color: #fff;
+}
+.demo-info {
+  min-width: 0;
+  flex: 1;
+}
+.demo-info strong {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.demo-info small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.demo-badge {
+  display: none;
+}
+.login-footer {
+  text-align: center;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  margin-top: 4px;
+  color: #9aa2a9;
+  font-size: 10px;
+}
+.logout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #838e97;
+  padding: 5px 8px;
+  border-radius: 4px;
+  border: 1px solid #e1e5e8;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.logout-btn:hover {
+  color: var(--red);
+  border-color: #f0c5c3;
+  background: #fff7f7;
+}
+

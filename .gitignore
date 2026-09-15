@@ -21,7 +21,9 @@ tmp/
 *.abf
 .pnpm-store/
 *.zip
-.env*
+.env
+.env*.local
+.env.local
 *.pem
 *.key
 
