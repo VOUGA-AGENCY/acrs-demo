@@ -91,6 +91,39 @@ export type Invoice = {
   validadoPor?: string;
   rejeitadoEm?: string;
   rejeitadoPor?: string;
+  ocrStatus?: "PENDING" | "PROCESSING" | "NEEDS_REVIEW" | "CONFIRMED" | "OCR_FAILED" | "MANUAL";
+  ocrConfidence?: number;
+  ocrRaw?: any;
+  items?: InvoiceItem[];
+};
+export type InvoiceItem = {
+  id?: string;
+  invoiceId?: string;
+  descricao: string;
+  quantidade: number;
+  precoUnitario: number;
+  subtotal: number;
+  ivaTaxa?: number;
+  artigoId?: string;
+};
+export type OCRResult = {
+  fornecedor?: string;
+  nifFornecedor?: string;
+  numero?: string;
+  data?: string;
+  valorTotal?: number;
+  valorSemIva?: number;
+  ivaValor?: number;
+  ivaTaxa?: number;
+  confidence?: number;
+  linhas?: Array<{
+    descricao: string;
+    quantidade: number;
+    precoUnitario: number;
+    subtotal: number;
+  }>;
+  rawText?: string;
+  documentUrl?: string;
 };
 export type Movement = {
   id: string;

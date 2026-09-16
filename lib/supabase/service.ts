@@ -184,6 +184,9 @@ export async function fetchStateWithClient(supabase: any): Promise<State | null>
         utilizador: i.utilizador,
         validadoEm: i.validado_em,
         validadoPor: i.validado_por,
+        ocrStatus: i.ocr_status,
+        ocrConfidence: i.ocr_confidence != null ? Number(i.ocr_confidence) : undefined,
+        ocrRaw: i.ocr_raw,
         source: i.source,
       })),
       movements: movements.map((m: any) => ({
@@ -268,7 +271,7 @@ export async function fetchStateWithClient(supabase: any): Promise<State | null>
 
     return state;
   } catch (error) {
-    console.error("Erro ao sincronizar com Supabase:", error);
+    console.error("Erro ao sincronizar com base de dados:", error);
     return null;
   }
 }
@@ -290,12 +293,34 @@ export async function persistInvoiceToSupabase(inv: Invoice, profile: Profile) {
     documento_url: inv.documento,
     artigo_id: inv.artigoId || null,
     quantidade: inv.quantidade || null,
+    ocr_status: inv.ocrStatus || "MANUAL",
+    ocr_confidence: inv.ocrConfidence != null ? inv.ocrConfidence : null,
+    ocr_raw: inv.ocrRaw || null,
     registado_em: inv.registadoEm || new Date().toISOString(),
     utilizador: inv.utilizador || profile,
     validado_em: inv.validadoEm || null,
     validado_por: inv.validadoPor || null,
     source: inv.source,
   });
+
+  if (inv.items && inv.items.length > 0) {
+    try {
+      await supabase.from("invoice_items").delete().eq("invoice_id", inv.id);
+      await supabase.from("invoice_items").insert(
+        inv.items.map((item) => ({
+          invoice_id: inv.id,
+          descricao: item.descricao,
+          quantidade: item.quantidade,
+          preco_unitario: item.precoUnitario,
+          subtotal: item.subtotal,
+          iva_taxa: item.ivaTaxa ?? 23,
+          artigo_id: item.artigoId || null,
+        })),
+      );
+    } catch (itemErr) {
+      console.warn("Aviso ao guardar itens de fatura:", itemErr);
+    }
+  }
 
   await supabase.from("audit_logs").insert({
     utilizador: profile,

@@ -2642,3 +2642,196 @@ td b {
   background: #fff7f7;
 }
 
+/* ============================================================================
+   OCR / PROCESSAMENTO DE FATURAS COM LLAMAPARSE
+   ============================================================================ */
+.ocr-upload-box {
+  margin: 12px 0 18px;
+}
+.ocr-dropzone {
+  border: 2px dashed #d8e0e6;
+  border-radius: 8px;
+  background: #fbfcfc;
+  padding: 24px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.ocr-dropzone:hover,
+.ocr-dropzone.dragging {
+  border-color: var(--orange);
+  background: var(--orange-bg);
+}
+.ocr-dropzone-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e5eaed;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.ocr-dropzone-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.ocr-dropzone-text strong {
+  font-size: 13px;
+  color: var(--ink);
+}
+.ocr-dropzone-text span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.ocr-dropzone-actions {
+  display: flex;
+  gap: 8px;
+}
+.ocr-loading-card {
+  border: 1px solid #e1e7eb;
+  border-radius: 8px;
+  background: #fbfcfd;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ocr-loading-card .spinner {
+  color: var(--orange);
+  animation: spin 1s linear infinite;
+}
+.ocr-loading-card strong {
+  display: block;
+  font-size: 13px;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.ocr-loading-card p {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0;
+}
+.ocr-error-card {
+  border: 1px solid #f5c6cb;
+  background: #fff5f5;
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.ocr-error-card strong {
+  display: block;
+  font-size: 12px;
+  color: var(--red);
+  margin-bottom: 2px;
+}
+.ocr-error-card p {
+  font-size: 11px;
+  color: #632d2d;
+  margin: 0;
+}
+.ocr-success-card {
+  border: 1px solid #cce8d7;
+  background: #f7fbf9;
+  border-radius: 8px;
+  padding: 16px;
+}
+.ocr-success-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.ocr-success-header strong {
+  font-size: 12px;
+  color: #2b7754;
+}
+.ocr-fields-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #e5ede8;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+.ocr-fields-preview > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ocr-fields-preview small {
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.ocr-fields-preview b {
+  font-size: 12px;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ocr-fields-preview span {
+  font-size: 11px;
+  color: #55606a;
+}
+.ocr-lines-preview {
+  margin-top: 10px;
+  background: #fff;
+  border: 1px solid #e5ede8;
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+.ocr-lines-preview > small {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.ocr-mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+.ocr-mini-table th {
+  text-align: left;
+  font-weight: 600;
+  color: #7b858f;
+  padding: 4px 6px;
+  border-bottom: 1px solid #edf1ef;
+  font-size: 10px;
+}
+.ocr-mini-table td {
+  padding: 5px 6px;
+  border-bottom: 1px solid #f3f6f4;
+  color: #44515d;
+}
+.ocr-document-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #3b6b55;
+  margin-top: 10px;
+}
+.ocr-document-link a {
+  color: #2b7754;
+  text-decoration: underline;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
