@@ -1,5 +1,5 @@
 import { getSupabaseBrowserClient } from "./client";
-import type { Allocation, Budget, Invoice, Movement, Profile, State, Work } from "@/types";
+import type { Allocation, Budget, Invoice, Movement, Profile, State, TimeEntry, Work } from "@/types";
 
 async function fetchAllRows(supabase: any, table: string, orderCol?: string) {
   const pageSize = 1000;
@@ -392,6 +392,45 @@ export async function persistAllocationToSupabase(a: Allocation, profile: Profil
     entidade: "allocations",
     entidade_id: a.id,
     estado_posterior: a,
+  });
+}
+
+export async function persistTimeEntryToSupabase(t: TimeEntry, profile: Profile) {
+  const supabase = getSupabaseBrowserClient();
+  if (!supabase) return;
+
+  const { error } = await supabase.from("time_entries").upsert({
+    id: t.id,
+    pessoa_id: t.pessoaId,
+    nome: t.nome,
+    data: t.data,
+    obra_id: t.obraId,
+    local: t.local || null,
+    entrada_manha: t.entradaManha,
+    saida_manha: t.saidaManha,
+    entrada_tarde: t.entradaTarde,
+    saida_tarde: t.saidaTarde,
+    entrada_noite: t.entradaNoite,
+    saida_noite: t.saidaNoite,
+    tempo_viagem: t.tempoViagem,
+    horas: t.horas,
+    horas_viagem: t.horasViagem,
+    horas_noturnas: t.horasNoturnas,
+    horas_extra_excel: t.horasExtraExcel,
+    registado_em: t.registadoEm || new Date().toISOString(),
+    utilizador: t.utilizador || profile,
+    source: t.source,
+    source_ref: t.sourceRef || null,
+  });
+  if (error) throw error;
+
+  await supabase.from("audit_logs").insert({
+    utilizador: profile,
+    perfil: profile,
+    acao: "UPSERT_TIME_ENTRY",
+    entidade: "time_entries",
+    entidade_id: t.id,
+    estado_posterior: t,
   });
 }
 

@@ -30,6 +30,7 @@ import {
   Tabs,
 } from "./ui";
 import { CostDetail, CostTable } from "./costs";
+import { persistTimeEntryToSupabase } from "@/lib/supabase/service";
 const addDays = (d: string, n: number) => {
   const t = new Date(d + "T12:00:00Z");
   t.setUTCDate(t.getUTCDate() + n);
@@ -119,21 +120,23 @@ export function TimeEditor({
     horasViagem: (travel[0] || 0) + (travel[1] || 0) / 60,
     horasNoturnas: nightHours,
   };
+  const otherDailyHours = sum(
+    state.times.filter(
+      (t) =>
+        t.pessoaId === person.id &&
+        t.data === entry.data &&
+        t.id !== entry.id,
+    ),
+    (t) => t.horas,
+  );
+  const dailyHours = otherDailyHours + hours;
   const company = state.companies.find((item) => item.id === person.empresaId);
   const appliedPolicy = effectivePolicy(state, person.id);
   const calculated = timeCost(
     prepared,
     person.custoHora ?? 0,
     appliedPolicy,
-    sum(
-      state.times.filter(
-        (t) =>
-          t.pessoaId === person.id &&
-          t.data === entry.data &&
-          t.id !== entry.id,
-      ),
-      (t) => t.horas,
-    ) + hours,
+    dailyHours,
     sum(
       state.times.filter(
         (t) =>
@@ -145,7 +148,7 @@ export function TimeEditor({
     ) + nightHours,
     state.settings.holidays.includes(entry.data),
   );
-  function save() {
+  async function save() {
     if (!entry.obraId || !entry.data) {
       setError("Selecione a obra e a data.");
       return;
@@ -175,6 +178,12 @@ export function TimeEditor({
       source: "demo" as const,
       registadoEm: new Date().toISOString(),
     };
+    try {
+      await persistTimeEntryToSupabase(edited, profile);
+    } catch (e) {
+      setError(`Não foi possível guardar o ponto na base de dados: ${(e as Error).message}`);
+      return;
+    }
     setState({
       ...state,
       times: state.times.some((t) => t.id === entry.id)
@@ -272,7 +281,7 @@ export function TimeEditor({
             Trabalho <b>{num(hours)} h</b>
           </span>
           <span>
-            Extra <b>{num(calculated.extra)} h</b>
+            Extra atribuída <b>{num(calculated.extra)} h</b>
           </span>
           <span>
             Noturno <b>{num(nightHours)} h</b>
@@ -287,7 +296,9 @@ export function TimeEditor({
           {appliedPolicy.acumular
             ? "suplementos acumulados"
             : "maior suplemento aplicável"}
-          .
+          . {dailyHours > hours && (
+            <>Extra repartida por {num(dailyHours)} h trabalhadas neste dia.</>
+          )}
         </Note>
         {error && <Note tone="red">{error}</Note>}
         <div className="form-actions">

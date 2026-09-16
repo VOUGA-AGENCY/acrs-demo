@@ -291,6 +291,28 @@ test("políticas distinguem ACRS e subcontratados e incluem viagem", () => {
   );
   assert.equal(
     timeCost(
+      { ...base, data: "2026-09-14", horas: 8, horasViagem: 0, horasNoturnas: 0 },
+      10,
+      acrsPolicy,
+      8,
+      0,
+    ).extra,
+    0,
+  );
+  assert.equal(
+    round(
+      timeCost(
+        { ...base, data: "2026-09-14", horas: 8, horasViagem: 0, horasNoturnas: 0 },
+        10,
+        acrsPolicy,
+        12,
+        0,
+      ).extra,
+    ),
+    2.67,
+  );
+  assert.equal(
+    timeCost(
       { ...base, data: "2026-09-14", horas: 8, horasViagem: 2, horasNoturnas: 0 },
       10,
       acrsPolicy,
@@ -400,6 +422,19 @@ test("horários sobrepostos no registo e noutras obras são rejeitados", () => {
       entradaTarde: null,
       saidaTarde: null,
     }),
+  );
+});
+test("ponto rejeita horários inválidos e totais não finitos", () => {
+  const a = initialState();
+  const base = { ...a.times[0], data: day };
+  assert.throws(() =>
+    validateTimeEntry(a, { ...base, entradaManha: "25:00" }),
+  );
+  assert.throws(() =>
+    validateTimeEntry(a, { ...base, horas: Number.NaN }),
+  );
+  assert.throws(() =>
+    validateTimeEntry(a, { ...base, pessoaId: "missing-person" }),
   );
 });
 test("orçamento deriva máximo, disponível e margem sem divisões por zero", () => {

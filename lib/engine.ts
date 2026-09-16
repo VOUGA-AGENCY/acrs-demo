@@ -404,8 +404,37 @@ export function intervals(t: TimeEntry): [number, number][] {
     });
 }
 export function validateTimeEntry(state: State, t: TimeEntry) {
-  if (!validDate(t.data) || !state.works.some((w) => w.id === t.obraId))
+  if (
+    !state.people.some((p) => p.id === t.pessoaId) ||
+    !validDate(t.data) ||
+    !state.works.some((w) => w.id === t.obraId)
+  )
     throw new Error("Selecione a obra e uma data válida.");
+  const timeFields = [
+    t.entradaManha,
+    t.saidaManha,
+    t.entradaTarde,
+    t.saidaTarde,
+    t.entradaNoite,
+    t.saidaNoite,
+    t.tempoViagem,
+  ];
+  if (
+    timeFields.some((value) => {
+      if (value == null || value === "") return false;
+      if (!/^\d{2}:\d{2}$/.test(value)) return true;
+      const [hours, minutes] = value.split(":").map(Number);
+      return hours > 23 || minutes > 59;
+    }) ||
+    !Number.isFinite(t.horas) ||
+    t.horas <= 0 ||
+    t.horas > 24 ||
+    !Number.isFinite(t.horasViagem) ||
+    t.horasViagem < 0 ||
+    !Number.isFinite(t.horasNoturnas) ||
+    t.horasNoturnas < 0
+  )
+    throw new Error("Preencha horários e totais válidos.");
   const own = intervals(t);
   const overlaps = (a: [number, number], b: [number, number]) =>
     a[0] < b[1] && b[0] < a[1];
