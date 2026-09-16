@@ -304,7 +304,7 @@ export function TimeEditor({
 }
 export function Point() {
   const { state } = useStore();
-  const [week, setWeek] = useState("2026-08-17");
+  const [week, setWeek] = useState(() => monday(today()));
   const [q, setQ] = useState("");
   const [selected, setSelected] = useState<{
     person: Person;
