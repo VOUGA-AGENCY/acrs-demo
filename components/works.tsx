@@ -82,7 +82,7 @@ function WorkForm({ work, onClose }: { work?: Work; onClose: () => void }) {
         : [...state.works.filter((w) => w.id !== saved.id), saved],
     });
     persistWorkToSupabase(saved, profile).catch(console.error);
-    notify(work ? "Obra atualizada." : "Obra criada e persistida no Supabase.");
+    notify(work ? "Obra atualizada." : "Obra criada e persistida na base de dados.");
     onClose();
   }
   return (

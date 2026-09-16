@@ -27,7 +27,8 @@ import {
   Table,
   Tabs,
 } from "./ui";
-import type { Invoice } from "@/types";
+import { OCRUpload } from "./ocr-upload";
+import type { Invoice, InvoiceItem, OCRResult } from "@/types";
 const directCategories = [
   "Alimentação",
   "Alojamento",
@@ -61,8 +62,37 @@ export function InvoiceForm({
   );
   const [article, setArticle] = useState(invoice?.artigoId ?? "");
   const [quantity, setQuantity] = useState(invoice?.quantidade ?? 1);
+  const [ocrStatus, setOcrStatus] = useState<Invoice["ocrStatus"]>(invoice?.ocrStatus);
+  const [ocrConfidence, setOcrConfidence] = useState<number | undefined>(invoice?.ocrConfidence);
+  const [ocrRaw, setOcrRaw] = useState<any>(invoice?.ocrRaw);
+  const [lines, setLines] = useState<InvoiceItem[]>(invoice?.items ?? []);
   const [error, setError] = useState("");
   const [done, setDone] = useState(false);
+
+  function handleOcrExtracted(ocr: OCRResult) {
+    if (ocr.documentUrl) setFile(ocr.documentUrl);
+    if (ocr.fornecedor) setSupplier(ocr.fornecedor);
+    if (ocr.numero) setNumber(ocr.numero);
+    if (ocr.data) setEffective(ocr.data);
+    if (ocr.valorTotal != null && ocr.valorTotal > 0) setAmount(ocr.valorTotal);
+    if (ocr.confidence != null) setOcrConfidence(ocr.confidence);
+    if (ocr.rawText) setOcrRaw(ocr.rawText);
+    if (ocr.linhas && ocr.linhas.length > 0) {
+      setLines(
+        ocr.linhas.map((l) => ({
+          descricao: l.descricao,
+          quantidade: l.quantidade,
+          precoUnitario: l.precoUnitario,
+          subtotal: l.subtotal,
+          ivaTaxa: ocr.ivaTaxa ?? 23,
+        })),
+      );
+    }
+    setOcrStatus("NEEDS_REVIEW");
+    setStage(1);
+    notify("Leitura da fatura por OCR concluída! Confirme os dados.");
+  }
+
   function example() {
     setFile("documento-exemplo.pdf");
     setSupplier(
@@ -108,6 +138,10 @@ export function InvoiceForm({
         documento: file,
         artigoId: article,
         quantidade: quantity,
+        ocrStatus: ocrConfidence != null ? "CONFIRMED" : (invoice?.ocrStatus ?? "MANUAL"),
+        ocrConfidence,
+        ocrRaw,
+        items: lines,
         registadoEm: new Date().toISOString(),
         utilizador: profile,
       };
@@ -153,46 +187,41 @@ export function InvoiceForm({
       )}
       {stage === 0 ? (
         <>
-          <label className="upload-zone">
-            <span>
-              <Camera size={28} />
-            </span>
-            <b>
-              {field ? "Tirar fotografia ou carregar" : "Carregar documento"}
-            </b>
-            <p>PDF ou imagem · apenas para esta demonstração</p>
-            <input
-              type="file"
-              accept="image/*,application/pdf"
-              capture={field ? "environment" : undefined}
-              onChange={(e) => {
-                if (e.target.files?.[0]) {
-                  setFile(e.target.files[0].name);
-                  setStage(1);
-                }
-              }}
-            />
-          </label>
-          <button className="sample-button" onClick={example}>
-            <FileText size={16} /> Utilizar documento de exemplo{" "}
+          <OCRUpload onExtracted={handleOcrExtracted} compact={field} />
+          <div style={{ textAlign: "center", margin: "14px 0 8px", color: "#8a949d", fontSize: "11px" }}>
+            — ou em alternativa —
+          </div>
+          <button type="button" className="sample-button" onClick={example}>
+            <FileText size={16} /> Preenchimento manual sem documento{" "}
             <ArrowRight size={15} />
           </button>
-          <Note>
-            Simulação local. Não é feita leitura automática nem enviado qualquer
-            ficheiro.
-          </Note>
         </>
       ) : (
         <>
           <div className="attached-file">
             <FileText size={19} />
-            <span>{file}</span>
-            <button onClick={() => setStage(0)}>Alterar</button>
+            <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>{file}</span>
+            {file.startsWith("http") && (
+              <a
+                href={file}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: "11px", color: "#d85b2b", marginLeft: "auto", marginRight: "8px" }}
+              >
+                Abrir ficheiro
+              </a>
+            )}
+            <button type="button" onClick={() => setStage(0)}>Alterar</button>
           </div>
-          <Note tone="amber">
-            Preenchimento demonstrativo. Confirme ou introduza os dados do
-            documento.
-          </Note>
+          {ocrConfidence != null ? (
+            <Note tone="green">
+              Dados pré-preenchidos por OCR LlamaParse com {ocrConfidence}% de confiança. Confirme e selecione a Obra/Categoria.
+            </Note>
+          ) : (
+            <Note tone="amber">
+              Preenchimento manual. Confirme ou introduza os dados do documento.
+            </Note>
+          )}
           <div className="form-grid">
             <Field label="Fornecedor">
               <input
@@ -286,6 +315,31 @@ export function InvoiceForm({
                 </>
               )}
             </>
+          )}
+          {lines.length > 0 && (
+            <div className="ocr-lines-preview" style={{ margin: "14px 0" }}>
+              <small>Artigos / Linhas na fatura ({lines.length})</small>
+              <table className="ocr-mini-table">
+                <thead>
+                  <tr>
+                    <th>Descrição</th>
+                    <th style={{ textAlign: "right" }}>Qtd</th>
+                    <th style={{ textAlign: "right" }}>P. Unit</th>
+                    <th style={{ textAlign: "right" }}>Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {lines.map((l, idx) => (
+                    <tr key={idx}>
+                      <td>{l.descricao}</td>
+                      <td style={{ textAlign: "right" }}>{l.quantidade}</td>
+                      <td style={{ textAlign: "right" }}>{money(l.precoUnitario)}</td>
+                      <td style={{ textAlign: "right" }}>{money(l.subtotal)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
           {error && <Note tone="red">{error}</Note>}
           <div className="form-actions">
@@ -548,22 +602,65 @@ export function DocumentPreview({
     <Modal title="Documento e registo de origem" drawer onClose={onClose}>
       <div className="drawer-body">
         <div className="document">
-          <div className="document-label">DOCUMENTO DEMONSTRATIVO</div>
+          <div className="document-label">
+            {invoice.ocrStatus ? `DOCUMENTO DIGITALIZADO (${invoice.ocrStatus})` : "DOCUMENTO ARQUIVADO"}
+          </div>
           <h3>{invoice.fornecedor}</h3>
-          <p>Fatura {invoice.numero}</p>
+          <p>Fatura {invoice.numero || "Sem número"}</p>
           <DetailList
             items={[
               ["Data", date(invoice.data)],
               ["Destino", invoice.tipo],
               ["Valor", money(invoice.valor)],
               ["Obra", invoice.obraId || "Stock do armazém"],
-              ["Utilizador", invoice.utilizador ?? "Registo histórico"],
+              ["Estado", invoice.estado],
+              ["OCR", invoice.ocrConfidence ? `${invoice.ocrConfidence}% de confiança` : (invoice.ocrStatus || "Manual")],
+              ["Utilizador", invoice.utilizador ?? "Registo do sistema"],
             ]}
           />
-          <small>
-            {invoice.documento ?? "Documento original não fornecido."}
-          </small>
+          {invoice.documento && invoice.documento.startsWith("http") ? (
+            <div style={{ marginTop: "12px" }}>
+              <a
+                href={invoice.documento}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button-ghost"
+                style={{ fontSize: "11px", display: "inline-flex", alignItems: "center", gap: "6px" }}
+              >
+                <FileText size={14} /> Ver documento digitalizado no arquivo
+              </a>
+            </div>
+          ) : (
+            <small>
+              {invoice.documento ?? "Documento original não fornecido."}
+            </small>
+          )}
         </div>
+        {invoice.items && invoice.items.length > 0 && (
+          <div className="ocr-lines-preview" style={{ marginTop: "14px" }}>
+            <small>Linhas da Fatura ({invoice.items.length})</small>
+            <table className="ocr-mini-table">
+              <thead>
+                <tr>
+                  <th>Descrição</th>
+                  <th style={{ textAlign: "right" }}>Qtd</th>
+                  <th style={{ textAlign: "right" }}>P. Unit</th>
+                  <th style={{ textAlign: "right" }}>Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                {invoice.items.map((it, idx) => (
+                  <tr key={idx}>
+                    <td>{it.descricao}</td>
+                    <td style={{ textAlign: "right" }}>{it.quantidade}</td>
+                    <td style={{ textAlign: "right" }}>{money(it.precoUnitario)}</td>
+                    <td style={{ textAlign: "right" }}>{money(it.subtotal)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
         {entries.map((m) => (
           <div className="history-card" key={m.id}>
             <b>

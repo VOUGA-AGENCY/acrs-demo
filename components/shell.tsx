@@ -231,7 +231,7 @@ export function Shell({ children }: { children: ReactNode }) {
         <main>{children}</main>
         <footer className="app-footer">
           <span>ACRS Metal Solutions</span>
-          <span>Base de dados Supabase conectada · Sessão ativa</span>
+          <span>Base de dados conectada · Sessão ativa</span>
         </footer>
       </div>
     </div>

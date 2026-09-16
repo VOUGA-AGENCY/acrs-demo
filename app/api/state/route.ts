@@ -7,13 +7,13 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   const admin = getSupabaseAdminClient();
   if (!admin) {
-    return NextResponse.json({ error: "Supabase admin não configurado" }, { status: 500 });
+    return NextResponse.json({ error: "Admin não configurado" }, { status: 500 });
   }
 
   try {
     const state = await fetchStateWithClient(admin);
     if (!state) {
-      return NextResponse.json({ error: "Falha ao obter dados do Supabase" }, { status: 502 });
+      return NextResponse.json({ error: "Falha ao obter dados da base de dados" }, { status: 502 });
     }
     return NextResponse.json(state, {
       headers: {
