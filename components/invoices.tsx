@@ -53,6 +53,7 @@ export function InvoiceForm({
   const [file, setFile] = useState(invoice?.documento ?? "");
   const [work, setWork] = useState(invoice?.obraId ?? "");
   const [supplier, setSupplier] = useState(invoice?.fornecedor ?? "");
+  const [nif, setNif] = useState(invoice?.nifFornecedor ?? "");
   const [number, setNumber] = useState(invoice?.numero ?? "");
   const [effective, setEffective] = useState(invoice?.data ?? today());
   const [amount, setAmount] = useState(invoice?.valor ?? 0);
@@ -65,29 +66,19 @@ export function InvoiceForm({
   const [ocrStatus, setOcrStatus] = useState<Invoice["ocrStatus"]>(invoice?.ocrStatus);
   const [ocrConfidence, setOcrConfidence] = useState<number | undefined>(invoice?.ocrConfidence);
   const [ocrRaw, setOcrRaw] = useState<any>(invoice?.ocrRaw);
-  const [lines, setLines] = useState<InvoiceItem[]>(invoice?.items ?? []);
   const [error, setError] = useState("");
   const [done, setDone] = useState(false);
 
   function handleOcrExtracted(ocr: OCRResult) {
     if (ocr.documentUrl) setFile(ocr.documentUrl);
     if (ocr.fornecedor) setSupplier(ocr.fornecedor);
+    if (ocr.nifFornecedor) setNif(ocr.nifFornecedor);
+    if (ocr.categoria) setCategory(ocr.categoria);
     if (ocr.numero) setNumber(ocr.numero);
     if (ocr.data) setEffective(ocr.data);
     if (ocr.valorTotal != null && ocr.valorTotal > 0) setAmount(ocr.valorTotal);
     if (ocr.confidence != null) setOcrConfidence(ocr.confidence);
     if (ocr.rawText) setOcrRaw(ocr.rawText);
-    if (ocr.linhas && ocr.linhas.length > 0) {
-      setLines(
-        ocr.linhas.map((l) => ({
-          descricao: l.descricao,
-          quantidade: l.quantidade,
-          precoUnitario: l.precoUnitario,
-          subtotal: l.subtotal,
-          ivaTaxa: ocr.ivaTaxa ?? 23,
-        })),
-      );
-    }
     setOcrStatus("NEEDS_REVIEW");
     setStage(1);
     notify("Leitura da fatura por OCR concluída! Confirme os dados.");
@@ -99,6 +90,7 @@ export function InvoiceForm({
       state.invoices.find((i) => /refei|aliment/i.test(i.categoria ?? ""))
         ?.fornecedor ?? state.invoices[0].fornecedor,
     );
+    setNif("501987654");
     setNumber(
       `DEMO-${state.invoices.filter((i) => i.source === "demo").length + 1}`,
     );
@@ -128,11 +120,12 @@ export function InvoiceForm({
         id: invoice?.id ?? uid("fatura"),
         data: effective,
         fornecedor: supplier,
+        nifFornecedor: nif.trim() || undefined,
         numero: number,
         obraId: type === "Compra para stock" ? "" : work,
         categoria: category,
         valor: amount,
-        source: "demo",
+        source: invoice?.source ?? "demo",
         estado: invoice?.estado ?? "Por validar",
         tipo: type,
         documento: file,
@@ -141,9 +134,9 @@ export function InvoiceForm({
         ocrStatus: ocrConfidence != null ? "CONFIRMED" : (invoice?.ocrStatus ?? "MANUAL"),
         ocrConfidence,
         ocrRaw,
-        items: lines,
-        registadoEm: new Date().toISOString(),
-        utilizador: profile,
+        items: invoice?.items ?? [],
+        registadoEm: invoice?.registadoEm ?? new Date().toISOString(),
+        utilizador: invoice?.utilizador ?? profile,
       };
       setState({
         ...state,
@@ -228,6 +221,14 @@ export function InvoiceForm({
                 value={supplier}
                 onChange={(e) => setSupplier(e.target.value)}
                 placeholder="Nome do fornecedor"
+              />
+            </Field>
+            <Field label="NIF Fornecedor">
+              <input
+                value={nif}
+                onChange={(e) => setNif(e.target.value)}
+                placeholder="NIF / Contribuinte"
+                maxLength={14}
               />
             </Field>
             <Field label="Nº da fatura">
@@ -315,31 +316,6 @@ export function InvoiceForm({
                 </>
               )}
             </>
-          )}
-          {lines.length > 0 && (
-            <div className="ocr-lines-preview" style={{ margin: "14px 0" }}>
-              <small>Artigos / Linhas na fatura ({lines.length})</small>
-              <table className="ocr-mini-table">
-                <thead>
-                  <tr>
-                    <th>Descrição</th>
-                    <th style={{ textAlign: "right" }}>Qtd</th>
-                    <th style={{ textAlign: "right" }}>P. Unit</th>
-                    <th style={{ textAlign: "right" }}>Subtotal</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {lines.map((l, idx) => (
-                    <tr key={idx}>
-                      <td>{l.descricao}</td>
-                      <td style={{ textAlign: "right" }}>{l.quantidade}</td>
-                      <td style={{ textAlign: "right" }}>{money(l.precoUnitario)}</td>
-                      <td style={{ textAlign: "right" }}>{money(l.subtotal)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
           )}
           {error && <Note tone="red">{error}</Note>}
           <div className="form-actions">
@@ -472,17 +448,34 @@ export function Invoices({ initialType }: { initialType?: Invoice["tipo"] }) {
         >
           <div className="drawer-body">
             <div className="detail-hero">
-              <Badge>{selected.estado}</Badge>
+              <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+                <Badge>{selected.estado}</Badge>
+                {selected.ocrStatus && (
+                  <span
+                    className="badge"
+                    style={{
+                      background: selected.ocrConfidence && selected.ocrConfidence >= 80 ? "#eef8f2" : "#fdf6ed",
+                      color: selected.ocrConfidence && selected.ocrConfidence >= 80 ? "#2b7754" : "#996b00",
+                      borderColor: selected.ocrConfidence && selected.ocrConfidence >= 80 ? "#c3e6d1" : "#f3dfb4",
+                    }}
+                  >
+                    {selected.ocrConfidence ? `${selected.ocrConfidence}% OCR` : selected.ocrStatus}
+                  </span>
+                )}
+              </div>
               <h3>{selected.fornecedor}</h3>
               <strong>{money(selected.valor)}</strong>
             </div>
             <DetailList
               items={[
-                ["Nº fatura", selected.numero],
+                ["Nº fatura", selected.numero || "—"],
+                ["NIF Fornecedor", selected.nifFornecedor || "—"],
                 ["Data", date(selected.data)],
                 ["Obra", selected.obraId || "Armazém"],
-                ["Categoria", selected.categoria],
+                ["Categoria", selected.categoria ?? "Por confirmar"],
                 ["Destino", selected.tipo],
+                ["OCR", selected.ocrConfidence ? `${selected.ocrConfidence}% de confiança` : (selected.ocrStatus || "Manual")],
+                ["Utilizador", selected.utilizador ?? "Registo do sistema"],
               ]}
             />
             {selected.sourceRef && (
@@ -493,20 +486,47 @@ export function Invoices({ initialType }: { initialType?: Invoice["tipo"] }) {
             )}
             <div className="document">
               <div className="document-label">
-                PRÉ-VISUALIZAÇÃO DEMONSTRATIVA
+                {selected.ocrStatus
+                  ? `DOCUMENTO DIGITALIZADO (${selected.ocrStatus})`
+                  : "DOCUMENTO ARQUIVADO"}
               </div>
               <h3>{selected.fornecedor}</h3>
-              <p>Fatura {selected.numero}</p>
+              {selected.nifFornecedor && (
+                <p style={{ fontSize: "11px", color: "#64748b", margin: "-2px 0 6px" }}>
+                  NIF: {selected.nifFornecedor}
+                </p>
+              )}
+              <p>Fatura {selected.numero || "Sem número"}</p>
               <DetailList
                 items={[
                   ["Data", date(selected.data)],
                   ["Total", money(selected.valor)],
                 ]}
               />
-              <small>
-                {selected.documento ??
-                  "Documento original não fornecido. Representação do registo."}
-              </small>
+              {selected.documento && selected.documento.startsWith("http") ? (
+                <div style={{ marginTop: "12px" }}>
+                  <a
+                    href={selected.documento}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="button-ghost"
+                    style={{
+                      fontSize: "11px",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      color: "#d85b2b",
+                    }}
+                  >
+                    <FileText size={14} /> Abrir documento original no arquivo
+                  </a>
+                </div>
+              ) : (
+                <small>
+                  {selected.documento ??
+                    "Documento original não fornecido."}
+                </small>
+              )}
             </div>
             {selected.estado === "Por validar" && (
               <div className="form-actions">
@@ -606,9 +626,16 @@ export function DocumentPreview({
             {invoice.ocrStatus ? `DOCUMENTO DIGITALIZADO (${invoice.ocrStatus})` : "DOCUMENTO ARQUIVADO"}
           </div>
           <h3>{invoice.fornecedor}</h3>
+          {invoice.nifFornecedor && (
+            <p style={{ fontSize: "11px", color: "#64748b", margin: "-2px 0 6px" }}>
+              NIF: {invoice.nifFornecedor}
+            </p>
+          )}
           <p>Fatura {invoice.numero || "Sem número"}</p>
           <DetailList
             items={[
+              ["Nº fatura", invoice.numero || "—"],
+              ["NIF Fornecedor", invoice.nifFornecedor || "—"],
               ["Data", date(invoice.data)],
               ["Destino", invoice.tipo],
               ["Valor", money(invoice.valor)],
@@ -636,31 +663,6 @@ export function DocumentPreview({
             </small>
           )}
         </div>
-        {invoice.items && invoice.items.length > 0 && (
-          <div className="ocr-lines-preview" style={{ marginTop: "14px" }}>
-            <small>Linhas da Fatura ({invoice.items.length})</small>
-            <table className="ocr-mini-table">
-              <thead>
-                <tr>
-                  <th>Descrição</th>
-                  <th style={{ textAlign: "right" }}>Qtd</th>
-                  <th style={{ textAlign: "right" }}>P. Unit</th>
-                  <th style={{ textAlign: "right" }}>Subtotal</th>
-                </tr>
-              </thead>
-              <tbody>
-                {invoice.items.map((it, idx) => (
-                  <tr key={idx}>
-                    <td>{it.descricao}</td>
-                    <td style={{ textAlign: "right" }}>{it.quantidade}</td>
-                    <td style={{ textAlign: "right" }}>{money(it.precoUnitario)}</td>
-                    <td style={{ textAlign: "right" }}>{money(it.subtotal)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
         {entries.map((m) => (
           <div className="history-card" key={m.id}>
             <b>

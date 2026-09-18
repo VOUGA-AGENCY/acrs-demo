@@ -74,6 +74,7 @@ export type Invoice = {
   id: string;
   data: string;
   fornecedor: string;
+  nifFornecedor?: string;
   numero: string;
   obraId: string;
   categoria: string | null;
@@ -109,6 +110,7 @@ export type InvoiceItem = {
 export type OCRResult = {
   fornecedor?: string;
   nifFornecedor?: string;
+  categoria?: string;
   numero?: string;
   data?: string;
   valorTotal?: number;

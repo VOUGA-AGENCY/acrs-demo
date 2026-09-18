@@ -12,7 +12,6 @@ export function OCRUpload({
   compact?: boolean;
 }) {
   const [file, setFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [loading, setLoading] = useState(false);
   const [stepText, setStepText] = useState("");
@@ -26,13 +25,6 @@ export function OCRUpload({
     setError(null);
     setExtractedData(null);
     setFile(selectedFile);
-
-    if (selectedFile.type.startsWith("image/")) {
-      const url = URL.createObjectURL(selectedFile);
-      setPreviewUrl(url);
-    } else {
-      setPreviewUrl(null);
-    }
 
     // Iniciar automaticamente o OCR ao selecionar o ficheiro
     processFile(selectedFile);
@@ -91,14 +83,22 @@ export function OCRUpload({
       <input
         type="file"
         ref={fileInputRef}
-        onChange={(e) => e.target.files?.[0] && handleFileSelect(e.target.files[0])}
+        onChange={(e) => {
+          const f = e.target.files?.[0];
+          e.target.value = "";
+          if (f) handleFileSelect(f);
+        }}
         accept="application/pdf,image/jpeg,image/png,image/webp"
         style={{ display: "none" }}
       />
       <input
         type="file"
         ref={cameraInputRef}
-        onChange={(e) => e.target.files?.[0] && handleFileSelect(e.target.files[0])}
+        onChange={(e) => {
+          const f = e.target.files?.[0];
+          e.target.value = "";
+          if (f) handleFileSelect(f);
+        }}
         accept="image/*"
         capture="environment"
         style={{ display: "none" }}
@@ -199,6 +199,12 @@ export function OCRUpload({
                 <span>{extractedData.nifFornecedor}</span>
               </div>
             )}
+            {extractedData.categoria && (
+              <div>
+                <small>Categoria</small>
+                <span>{extractedData.categoria}</span>
+              </div>
+            )}
             <div>
               <small>Nº Documento</small>
               <b>{extractedData.numero || "—"}</b>
@@ -215,40 +221,7 @@ export function OCRUpload({
             </div>
           </div>
 
-          {extractedData.linhas && extractedData.linhas.length > 0 && (
-            <div className="ocr-lines-preview">
-              <small>Linhas detetadas ({extractedData.linhas.length})</small>
-              <table className="ocr-mini-table">
-                <thead>
-                  <tr>
-                    <th>Descrição</th>
-                    <th style={{ textAlign: "right" }}>Qtd</th>
-                    <th style={{ textAlign: "right" }}>P. Unit</th>
-                    <th style={{ textAlign: "right" }}>Subtotal</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {extractedData.linhas.slice(0, 4).map((l, i) => (
-                    <tr key={i}>
-                      <td>{l.descricao}</td>
-                      <td style={{ textAlign: "right" }}>{l.quantidade}</td>
-                      <td style={{ textAlign: "right" }}>{money(l.precoUnitario)}</td>
-                      <td style={{ textAlign: "right" }}>{money(l.subtotal)}</td>
-                    </tr>
-                  ))}
-                  {extractedData.linhas.length > 4 && (
-                    <tr>
-                      <td colSpan={4} style={{ textAlign: "center", color: "#8a949d" }}>
-                        + {extractedData.linhas.length - 4} outras linhas carregadas no formulário
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          )}
-
-          {extractedData.documentUrl && (
+          {extractedData.documentUrl && extractedData.documentUrl.startsWith("http") && (
             <div className="ocr-document-link">
               <FileText size={14} />
               <a href={extractedData.documentUrl} target="_blank" rel="noopener noreferrer">

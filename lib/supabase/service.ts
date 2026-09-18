@@ -1,5 +1,5 @@
 import { getSupabaseBrowserClient } from "./client";
-import type { Allocation, Budget, Invoice, Movement, Profile, State, TimeEntry, Work } from "@/types";
+import type { Allocation, Budget, Invoice, InvoiceItem, Movement, Profile, State, TimeEntry, Work } from "@/types";
 
 async function fetchAllRows(supabase: any, table: string, orderCol?: string) {
   const pageSize = 1000;
@@ -50,6 +50,7 @@ export async function fetchStateWithClient(supabase: any): Promise<State | null>
       companiesRes,
       times,
       invoices,
+      invoiceItems,
       movements,
       machinesRes,
       allocationsRes,
@@ -62,6 +63,7 @@ export async function fetchStateWithClient(supabase: any): Promise<State | null>
       supabase.from("companies").select("*"),
       fetchAllRows(supabase, "time_entries"),
       fetchAllRows(supabase, "invoices", "data"),
+      fetchAllRows(supabase, "invoice_items", "created_at"),
       fetchAllRows(supabase, "movements", "data"),
       supabase.from("machines").select("*"),
       supabase.from("allocations").select("*"),
@@ -77,6 +79,23 @@ export async function fetchStateWithClient(supabase: any): Promise<State | null>
     const machines = machinesRes?.data || [];
     const allocations = allocationsRes?.data || [];
     const settingsRow = settingsRowRes?.data || null;
+
+    // Linhas de fatura: lidas da tabela 'invoice_items' e associadas por invoice_id
+    const invoiceItemsMap = new Map<string, InvoiceItem[]>();
+    for (const item of invoiceItems || []) {
+      const list = invoiceItemsMap.get(item.invoice_id) || [];
+      list.push({
+        id: item.id,
+        invoiceId: item.invoice_id,
+        descricao: item.descricao,
+        quantidade: Number(item.quantidade),
+        precoUnitario: Number(item.preco_unitario),
+        subtotal: Number(item.subtotal),
+        ivaTaxa: item.iva_taxa != null ? Number(item.iva_taxa) : undefined,
+        artigoId: item.artigo_id || undefined,
+      });
+      invoiceItemsMap.set(item.invoice_id, list);
+    }
 
     // Orçamentos: lidos 100% diretamente da tabela 'budgets' do Supabase
     const budgetMap = new Map<string, Budget>();
@@ -171,6 +190,7 @@ export async function fetchStateWithClient(supabase: any): Promise<State | null>
         id: i.id,
         data: i.data,
         fornecedor: i.fornecedor,
+        nifFornecedor: i.nif_fornecedor || i.ocr_raw?.nifFornecedor || i.ocr_raw?.nif || undefined,
         numero: i.numero,
         obraId: i.obra_id || "",
         categoria: i.categoria,
@@ -187,6 +207,7 @@ export async function fetchStateWithClient(supabase: any): Promise<State | null>
         ocrStatus: i.ocr_status,
         ocrConfidence: i.ocr_confidence != null ? Number(i.ocr_confidence) : undefined,
         ocrRaw: i.ocr_raw,
+        items: invoiceItemsMap.get(i.id) || [],
         source: i.source,
       })),
       movements: movements.map((m: any) => ({
@@ -280,6 +301,16 @@ export async function persistInvoiceToSupabase(inv: Invoice, profile: Profile) {
   const supabase = getSupabaseBrowserClient();
   if (!supabase) return;
 
+  const ocrRawPayload =
+    typeof inv.ocrRaw === "object" && inv.ocrRaw !== null
+      ? { ...inv.ocrRaw }
+      : inv.ocrRaw
+        ? { raw: inv.ocrRaw }
+        : {};
+  if (inv.nifFornecedor) {
+    ocrRawPayload.nifFornecedor = inv.nifFornecedor;
+  }
+
   await supabase.from("invoices").upsert({
     id: inv.id,
     data: inv.data,
@@ -295,7 +326,7 @@ export async function persistInvoiceToSupabase(inv: Invoice, profile: Profile) {
     quantidade: inv.quantidade || null,
     ocr_status: inv.ocrStatus || "MANUAL",
     ocr_confidence: inv.ocrConfidence != null ? inv.ocrConfidence : null,
-    ocr_raw: inv.ocrRaw || null,
+    ocr_raw: Object.keys(ocrRawPayload).length > 0 ? ocrRawPayload : null,
     registado_em: inv.registadoEm || new Date().toISOString(),
     utilizador: inv.utilizador || profile,
     validado_em: inv.validadoEm || null,
@@ -303,9 +334,10 @@ export async function persistInvoiceToSupabase(inv: Invoice, profile: Profile) {
     source: inv.source,
   });
 
-  if (inv.items && inv.items.length > 0) {
-    try {
-      await supabase.from("invoice_items").delete().eq("invoice_id", inv.id);
+  try {
+    // Apagar sempre os itens anteriores para evitar registos órfãos
+    await supabase.from("invoice_items").delete().eq("invoice_id", inv.id);
+    if (inv.items && inv.items.length > 0) {
       await supabase.from("invoice_items").insert(
         inv.items.map((item) => ({
           invoice_id: inv.id,
@@ -317,9 +349,9 @@ export async function persistInvoiceToSupabase(inv: Invoice, profile: Profile) {
           artigo_id: item.artigoId || null,
         })),
       );
-    } catch (itemErr) {
-      console.warn("Aviso ao guardar itens de fatura:", itemErr);
     }
+  } catch (itemErr) {
+    console.warn("Aviso ao guardar itens de fatura:", itemErr);
   }
 
   await supabase.from("audit_logs").insert({
