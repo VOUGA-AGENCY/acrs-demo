@@ -340,12 +340,14 @@ export function Modal({
   onClose,
   drawer = false,
   wide = false,
+  preventBackdropClose = false,
 }: {
   title: string;
   children: ReactNode;
   onClose: () => void;
   drawer?: boolean;
   wide?: boolean;
+  preventBackdropClose?: boolean;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   useEffect(() => {
@@ -357,9 +359,15 @@ export function Modal({
     <dialog
       ref={ref}
       className={`${drawer ? "drawer" : "modal"} ${wide ? "wide" : ""}`}
-      onCancel={onClose}
+      onCancel={(e) => {
+        if (preventBackdropClose) {
+          e.preventDefault();
+        } else {
+          onClose();
+        }
+      }}
       onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
+        if (!preventBackdropClose && e.target === e.currentTarget) onClose();
       }}
     >
       <div className="modal-inner">

@@ -208,7 +208,7 @@ export function InvoiceForm({
           </div>
           {ocrConfidence != null ? (
             <Note tone="green">
-              Dados pré-preenchidos por OCR LlamaParse com {ocrConfidence}% de confiança. Confirme e selecione a Obra/Categoria.
+              Dados pré-preenchidos com {ocrConfidence}% de confiança. Confirme e selecione a Obra/Categoria.
             </Note>
           ) : (
             <Note tone="amber">
@@ -340,7 +340,11 @@ export function InvoiceForm({
   return field ? (
     body
   ) : (
-    <Modal title={invoice ? "Corrigir fatura" : "Adicionar fatura"} onClose={onClose}>
+    <Modal
+      title={invoice ? "Corrigir fatura" : "Adicionar fatura"}
+      onClose={onClose}
+      preventBackdropClose
+    >
       {body}
     </Modal>
   );
@@ -384,7 +388,7 @@ export function Invoices({ initialType }: { initialType?: Invoice["tipo"] }) {
         <Metric
           label="Documentos"
           value={state.invoices.length}
-          hint="Histórico selecionado + sessão"
+          hint="Histórico selecionado"
         />
         <Metric
           label="Por validar"
@@ -441,153 +445,178 @@ export function Invoices({ initialType }: { initialType?: Invoice["tipo"] }) {
         efeito correspondente e mantém a origem rastreável.
       </p>
       {selected && (
-        <Modal
-          title="Detalhe da fatura"
-          drawer
+        <InvoiceDrawer
+          invoice={selected}
           onClose={() => setSelected(null)}
-        >
-          <div className="drawer-body">
-            <div className="detail-hero">
-              <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-                <Badge>{selected.estado}</Badge>
-                {selected.ocrStatus && (
-                  <span
-                    className="badge"
-                    style={{
-                      background: selected.ocrConfidence && selected.ocrConfidence >= 80 ? "#eef8f2" : "#fdf6ed",
-                      color: selected.ocrConfidence && selected.ocrConfidence >= 80 ? "#2b7754" : "#996b00",
-                      borderColor: selected.ocrConfidence && selected.ocrConfidence >= 80 ? "#c3e6d1" : "#f3dfb4",
-                    }}
-                  >
-                    {selected.ocrConfidence ? `${selected.ocrConfidence}% OCR` : selected.ocrStatus}
-                  </span>
-                )}
-              </div>
-              <h3>{selected.fornecedor}</h3>
-              <strong>{money(selected.valor)}</strong>
+          onSaved={(saved) => setSelected(saved)}
+        />
+      )}
+    </>
+  );
+}
+
+export function InvoiceDrawer({
+  invoice,
+  onClose,
+  onSaved,
+}: {
+  invoice: Invoice;
+  onClose: () => void;
+  onSaved?: (inv: Invoice) => void;
+}) {
+  const { state, setState, profile, notify } = useStore();
+  const [editing, setEditing] = useState<Invoice | null>(null);
+
+  const live = state.invoices.find((i) => i.id === invoice.id) ?? invoice;
+
+  return (
+    <>
+      <Modal
+        title="Detalhe da fatura"
+        drawer
+        onClose={onClose}
+      >
+        <div className="drawer-body">
+          <div className="detail-hero">
+            <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+              <Badge>{live.estado}</Badge>
+              {live.ocrStatus && (
+                <span
+                  className="badge"
+                  style={{
+                    background: live.ocrConfidence && live.ocrConfidence >= 80 ? "#eef8f2" : "#fdf6ed",
+                    color: live.ocrConfidence && live.ocrConfidence >= 80 ? "#2b7754" : "#996b00",
+                    borderColor: live.ocrConfidence && live.ocrConfidence >= 80 ? "#c3e6d1" : "#f3dfb4",
+                  }}
+                >
+                  {live.ocrConfidence ? `${live.ocrConfidence}% OCR` : live.ocrStatus}
+                </span>
+              )}
             </div>
+            <h3>{live.fornecedor}</h3>
+            <strong>{money(live.valor)}</strong>
+          </div>
+          <DetailList
+            items={[
+              ["Nº fatura", live.numero || "—"],
+              ["NIF Fornecedor", live.nifFornecedor || "—"],
+              ["Data", date(live.data)],
+              ["Obra", live.obraId ? (state.works.find((w) => w.id === live.obraId)?.nome || live.obraId) : "Armazém"],
+              ["Categoria", live.categoria ?? "Por confirmar"],
+              ["Destino", live.tipo],
+              ["OCR", live.ocrConfidence ? `${live.ocrConfidence}% de confiança` : (live.ocrStatus || "Manual")],
+              ["Utilizador", live.utilizador ?? "Registo do sistema"],
+            ]}
+          />
+          {live.sourceRef && (
+            <Note>
+              Excel · {live.sourceRef.sheet} · linha{" "}
+              {live.sourceRef.row}
+            </Note>
+          )}
+          <div className="document">
+            <div className="document-label">
+              {live.ocrStatus
+                ? `DOCUMENTO DIGITALIZADO (${live.ocrStatus})`
+                : "DOCUMENTO ARQUIVADO"}
+            </div>
+            <h3>{live.fornecedor}</h3>
+            {live.nifFornecedor && (
+              <p style={{ fontSize: "11px", color: "#64748b", margin: "-2px 0 6px" }}>
+                NIF: {live.nifFornecedor}
+              </p>
+            )}
+            <p>Fatura {live.numero || "Sem número"}</p>
             <DetailList
               items={[
-                ["Nº fatura", selected.numero || "—"],
-                ["NIF Fornecedor", selected.nifFornecedor || "—"],
-                ["Data", date(selected.data)],
-                ["Obra", selected.obraId || "Armazém"],
-                ["Categoria", selected.categoria ?? "Por confirmar"],
-                ["Destino", selected.tipo],
-                ["OCR", selected.ocrConfidence ? `${selected.ocrConfidence}% de confiança` : (selected.ocrStatus || "Manual")],
-                ["Utilizador", selected.utilizador ?? "Registo do sistema"],
+                ["Data", date(live.data)],
+                ["Total", money(live.valor)],
               ]}
             />
-            {selected.sourceRef && (
-              <Note>
-                Excel · {selected.sourceRef.sheet} · linha{" "}
-                {selected.sourceRef.row}
-              </Note>
-            )}
-            <div className="document">
-              <div className="document-label">
-                {selected.ocrStatus
-                  ? `DOCUMENTO DIGITALIZADO (${selected.ocrStatus})`
-                  : "DOCUMENTO ARQUIVADO"}
-              </div>
-              <h3>{selected.fornecedor}</h3>
-              {selected.nifFornecedor && (
-                <p style={{ fontSize: "11px", color: "#64748b", margin: "-2px 0 6px" }}>
-                  NIF: {selected.nifFornecedor}
-                </p>
-              )}
-              <p>Fatura {selected.numero || "Sem número"}</p>
-              <DetailList
-                items={[
-                  ["Data", date(selected.data)],
-                  ["Total", money(selected.valor)],
-                ]}
-              />
-              {selected.documento && selected.documento.startsWith("http") ? (
-                <div style={{ marginTop: "12px" }}>
-                  <a
-                    href={selected.documento}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="button-ghost"
-                    style={{
-                      fontSize: "11px",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "6px",
-                      color: "#d85b2b",
-                    }}
-                  >
-                    <FileText size={14} /> Abrir documento original no arquivo
-                  </a>
-                </div>
-              ) : (
-                <small>
-                  {selected.documento ??
-                    "Documento original não fornecido."}
-                </small>
-              )}
-            </div>
-            {selected.estado === "Por validar" && (
-              <div className="form-actions">
-                <Button secondary onClick={() => setEditing(selected)}>
-                  Corrigir dados
-                </Button>
-                <Button
-                  secondary
-                  onClick={() => {
-                    const rejected = {
-                      ...selected,
-                      estado: "Rejeitada" as const,
-                      rejeitadoEm: new Date().toISOString(),
-                      rejeitadoPor: profile,
-                    };
-                    setState({
-                      ...state,
-                      invoices: state.invoices.map((i) =>
-                        i.id === selected.id ? rejected : i,
-                      ),
-                    });
-                    persistInvoiceToSupabase(rejected, profile).catch(console.error);
-                    setSelected(rejected);
-                    notify("Fatura rejeitada sem efeitos em custos ou stock.");
+            {live.documento && live.documento.startsWith("http") ? (
+              <div style={{ marginTop: "12px" }}>
+                <a
+                  href={live.documento}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button-ghost"
+                  style={{
+                    fontSize: "11px",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    color: "#d85b2b",
                   }}
                 >
-                  Rejeitar
-                </Button>
-                <Button
-                  onClick={() => {
-                    try {
-                      const next = validateInvoice(
-                        state,
-                        selected.id,
-                        profile,
-                      );
-                      setState(next);
-                      const validated = next.invoices.find((i) => i.id === selected.id) ?? null;
-                      if (validated) {
-                        persistInvoiceToSupabase(validated, profile).catch(console.error);
-                      }
-                      setSelected(validated);
-                      notify("Fatura validada. Efeitos aplicados.");
-                    } catch (e) {
-                      notify((e as Error).message);
-                    }
-                  }}
-                >
-                  <Check size={16} /> Validar fatura
-                </Button>
+                  <FileText size={14} /> Abrir documento original no arquivo
+                </a>
               </div>
+            ) : (
+              <small>
+                {live.documento ??
+                  "Documento original não fornecido."}
+              </small>
             )}
           </div>
-        </Modal>
-      )}
+          {live.estado === "Por validar" && (
+            <div className="form-actions">
+              <Button secondary onClick={() => setEditing(live)}>
+                Corrigir dados
+              </Button>
+              <Button
+                secondary
+                onClick={() => {
+                  const rejected = {
+                    ...live,
+                    estado: "Rejeitada" as const,
+                    rejeitadoEm: new Date().toISOString(),
+                    rejeitadoPor: profile,
+                  };
+                  setState({
+                    ...state,
+                    invoices: state.invoices.map((i) =>
+                      i.id === live.id ? rejected : i,
+                    ),
+                  });
+                  persistInvoiceToSupabase(rejected, profile).catch(console.error);
+                  onSaved?.(rejected);
+                  notify("Fatura rejeitada sem efeitos em custos ou stock.");
+                }}
+              >
+                Rejeitar
+              </Button>
+              <Button
+                onClick={() => {
+                  try {
+                    const next = validateInvoice(
+                      state,
+                      live.id,
+                      profile,
+                    );
+                    setState(next);
+                    const validated = next.invoices.find((i) => i.id === live.id) ?? null;
+                    if (validated) {
+                      persistInvoiceToSupabase(validated, profile).catch(console.error);
+                      onSaved?.(validated);
+                    }
+                    notify("Fatura validada. Efeitos aplicados.");
+                  } catch (e) {
+                    notify((e as Error).message);
+                  }
+                }}
+              >
+                <Check size={16} /> Validar fatura
+              </Button>
+            </div>
+          )}
+        </div>
+      </Modal>
       {editing && (
         <InvoiceForm
           invoice={editing}
           onClose={() => setEditing(null)}
           onSaved={(saved) => {
-            setSelected(saved);
+            onSaved?.(saved);
             setEditing(null);
           }}
         />

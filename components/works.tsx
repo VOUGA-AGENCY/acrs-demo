@@ -32,8 +32,9 @@ import {
 import { CostBreakdown, CostDetail, CostTable } from "./costs";
 import { days, effectivePolicy, timeCost, workFinancials } from "@/lib/engine";
 import { date, includes, money, num, qty, sum } from "@/lib/format";
-import type { Cost, Work } from "@/types";
+import type { Cost, Invoice, Work } from "@/types";
 import { persistWorkToSupabase } from "@/lib/supabase/service";
+import { InvoiceDrawer } from "./invoices";
 const budgetRubric = (category: string) =>
   ["Mão de obra", "Materiais", "Ferramentaria", "Transportes", "Alojamento"].includes(
     category,
@@ -307,6 +308,7 @@ export function WorkDetail({ id }: { id: string }) {
   const [tab, setTab] = useState("Resumo");
   const [category, setCategory] = useState("");
   const [selected, setSelected] = useState<Cost | null>(null);
+  const [selectedInvoice, setSelectedInvoice] = useState<Invoice | null>(null);
   const [q, setQ] = useState("");
   const [editingWork, setEditingWork] = useState(false);
   const work = state.works.find((w) => w.id === id);
@@ -366,7 +368,7 @@ export function WorkDetail({ id }: { id: string }) {
         <Metric
           label="Valor orçamentado"
           value={money(f.budget)}
-          hint="Valor comercial · demo"
+          hint="Valor comercial da obra"
         />
         <Metric
           label="Margem alvo"
@@ -758,23 +760,32 @@ export function WorkDetail({ id }: { id: string }) {
         />
       )}
       {tab === "Faturas" && (
-        <Table
-          rows={invoices}
-          onRow={(i) =>
-            setSelected(costs.find((c) => c.origemId === i.id) ?? null)
-          }
-          columns={[
-            { label: "Data", render: (i) => date(i.data) },
-            { label: "Fornecedor", render: (i) => <b>{i.fornecedor}</b> },
-            { label: "Nº Fatura", render: (i) => i.numero },
-            {
-              label: "Categoria",
-              render: (i) => i.categoria ?? "Por confirmar",
-            },
-            { label: "Valor", render: (i) => money(i.valor), align: "right" },
-            { label: "Estado", render: (i) => <Badge>{i.estado}</Badge> },
-          ]}
-        />
+        <>
+          {invoices.some((i) => i.estado === "Por validar") && (
+            <div className="summary-strip" style={{ marginBottom: "12px" }}>
+              <span>
+                <i className="status-dot warning" />
+                <b>{invoices.filter((i) => i.estado === "Por validar").length}</b> fatura(s) por validar nesta obra
+              </span>
+              <span>Clique na fatura para abrir o detalhe lateral e confirmar o registo.</span>
+            </div>
+          )}
+          <Table
+            rows={invoices}
+            onRow={(i) => setSelectedInvoice(i)}
+            columns={[
+              { label: "Data", render: (i) => date(i.data) },
+              { label: "Fornecedor", render: (i) => <b>{i.fornecedor}</b> },
+              { label: "Nº Fatura", render: (i) => i.numero || "—" },
+              {
+                label: "Categoria",
+                render: (i) => i.categoria ?? "Por confirmar",
+              },
+              { label: "Valor", render: (i) => money(i.valor), align: "right" },
+              { label: "Estado", render: (i) => <Badge>{i.estado}</Badge> },
+            ]}
+          />
+        </>
       )}
       {tab === "Valor orçamentado" && (
         <Panel
@@ -851,6 +862,13 @@ export function WorkDetail({ id }: { id: string }) {
       </p>
       {selected && (
         <CostDetail cost={selected} onClose={() => setSelected(null)} />
+      )}
+      {selectedInvoice && (
+        <InvoiceDrawer
+          invoice={selectedInvoice}
+          onClose={() => setSelectedInvoice(null)}
+          onSaved={(saved) => setSelectedInvoice(saved)}
+        />
       )}
       {editingWork && (
         <WorkForm work={work} onClose={() => setEditingWork(false)} />

@@ -39,7 +39,7 @@ export function OCRUpload({
       const formData = new FormData();
       formData.append("file", fileToProcess);
 
-      setStepText("A analisar fatura com LlamaParse OCR...");
+      setStepText("A analisar fatura...");
 
       const res = await fetch("/api/ocr/parse", {
         method: "POST",
@@ -119,7 +119,7 @@ export function OCRUpload({
             <Sparkles size={24} color="#d85b2b" />
           </div>
           <div className="ocr-dropzone-text">
-            <strong>Carregar Fatura com OCR Inteligente</strong>
+            <strong>Carregar Fatura</strong>
             <span>Arraste ou clique para enviar PDF, JPG ou PNG</span>
           </div>
           <div className="ocr-dropzone-actions">
@@ -143,7 +143,7 @@ export function OCRUpload({
         <div className="ocr-loading-card">
           <Loader2 size={28} className="spinner" />
           <div>
-            <strong>Processamento Inteligente LlamaParse</strong>
+            <strong>Processamento Inteligente</strong>
             <p>{stepText}</p>
           </div>
         </div>
