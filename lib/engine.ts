@@ -5,7 +5,7 @@ import type {
   Policy,
   State,
   TimeEntry,
-} from "@/types";
+} from "@/types/index";
 import { sum, today } from "./format";
 export const round = (n: number) =>
   Math.round((n + Number.EPSILON) * 100) / 100;

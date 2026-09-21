@@ -88,7 +88,8 @@ export function Dashboard() {
         actions={
           <>
             <div className="date-chip">
-              <Clock3 size={15} /> 11 setembro 2026
+              <Clock3 size={15} />
+              <span>{date(new Date().toISOString())}</span>
             </div>
             {operational && (
               <Button onClick={() => router.push("/armazem/tablet")}>

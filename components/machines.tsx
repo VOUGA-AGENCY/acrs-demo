@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
-import { Plus, Wrench, RotateCcw, AlertTriangle } from "lucide-react";
+import { Plus, RotateCcw, AlertTriangle } from "lucide-react";
 import { useStore } from "./store";
 import { applyAllocation, days, validDate } from "@/lib/engine";
-import { date, includes, money, num, sum, today, uid } from "@/lib/format";
-import type { Machine } from "@/types";
-import { persistAllocationToSupabase } from "@/lib/supabase/service";
+import { date, includes, money, sum, today, uid } from "@/lib/format";
+import type { Cost, Machine } from "@/types/index";
+import { persistAllocationToSupabase, persistManualCostToSupabase } from "@/lib/supabase/service";
 import {
   Badge,
   Button,
@@ -86,27 +86,29 @@ export function Machines({ tablet = false, initialWork = "" }: { tablet?: boolea
           !Number.isFinite(amount)
         )
           throw new Error("Indique obra, descrição e valor do dano.");
+        const cost: Cost = {
+          id: uid("dano"),
+          obraId: work,
+          data: effective,
+          registadoEm: new Date().toISOString(),
+          origem: "Dano / perda",
+          origemId: selected.id,
+          descricao: `${selected.nome} · ${damage}`,
+          categoria: "Ferramentaria",
+          quantidade: 1,
+          valorUnitario: amount,
+          valor: amount,
+          utilizador: profile,
+          source: "demo",
+        };
         setState({
           ...state,
           manualCosts: [
-            {
-              id: uid("dano"),
-              obraId: work,
-              data: effective,
-              registadoEm: new Date().toISOString(),
-              origem: "Dano / perda",
-              origemId: selected.id,
-              descricao: `${selected.nome} · ${damage}`,
-              categoria: "Ferramentaria",
-              quantidade: 1,
-              valorUnitario: amount,
-              valor: amount,
-              utilizador: profile,
-              source: "demo",
-            },
+            cost,
             ...state.manualCosts,
           ],
         });
+        persistManualCostToSupabase(cost, profile).catch(console.error);
         notify("Dano/perda registado como custo da obra.");
       }
       setAction("");

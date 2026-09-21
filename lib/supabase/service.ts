@@ -1,5 +1,19 @@
 import { getSupabaseBrowserClient } from "./client";
-import type { Allocation, Budget, Invoice, InvoiceItem, Movement, Profile, State, TimeEntry, Work } from "@/types";
+import type {
+  Allocation,
+  Article,
+  Budget,
+  Cost,
+  Invoice,
+  InvoiceItem,
+  Machine,
+  Movement,
+  Profile,
+  Settings,
+  State,
+  TimeEntry,
+  Work,
+} from "@/types/index";
 
 async function fetchAllRows(supabase: any, table: string, orderCol?: string) {
   const pageSize = 1000;
@@ -15,7 +29,7 @@ async function fetchAllRows(supabase: any, table: string, orderCol?: string) {
     page++;
   }
   return all;
-}
+} // fetchAllRows, changing it later to only fetch the necessary columns for each table/page, to reduce payload size and improve performance.
 
 export async function fetchStateFromSupabase(): Promise<State | null> {
   // 1. Tentar primeiro via rota interna /api/state (usa service role, ultra-rápido e sem bloqueios de RLS)
@@ -35,7 +49,7 @@ export async function fetchStateFromSupabase(): Promise<State | null> {
 
   const supabase = getSupabaseBrowserClient();
   if (!supabase) return null;
-  return fetchStateWithClient(supabase);
+  return await fetchStateWithClient(supabase);
 }
 
 export async function fetchStateWithClient(supabase: any): Promise<State | null> {
@@ -55,6 +69,7 @@ export async function fetchStateWithClient(supabase: any): Promise<State | null>
       machinesRes,
       allocationsRes,
       settingsRowRes,
+      manualCostsRows,
     ] = await Promise.all([
       fetchAllRows(supabase, "works"),
       supabase.from("budgets").select("*"),
@@ -68,6 +83,7 @@ export async function fetchStateWithClient(supabase: any): Promise<State | null>
       supabase.from("machines").select("*"),
       supabase.from("allocations").select("*"),
       supabase.from("settings").select("*").eq("id", "global").maybeSingle(),
+      fetchAllRows(supabase, "manual_costs", "data"),
     ]);
 
     if (!works || works.length === 0) {
@@ -287,7 +303,22 @@ export async function fetchStateWithClient(supabase: any): Promise<State | null>
             companyPolicies: {},
             holidays: [],
           },
-      manualCosts: [],
+      manualCosts: (manualCostsRows || []).map((c: any) => ({
+        id: c.id,
+        obraId: c.obra_id,
+        data: c.data,
+        registadoEm: c.registado_em,
+        origem: c.origem,
+        origemId: c.origem_id,
+        descricao: c.descricao,
+        categoria: c.categoria,
+        quantidade: Number(c.quantidade),
+        valorUnitario: Number(c.valor_unitario),
+        valor: Number(c.valor),
+        utilizador: c.utilizador,
+        nota: c.nota || undefined,
+        source: c.source || "demo",
+      })),
     };
 
     return state;
@@ -392,6 +423,42 @@ export async function persistMovementToSupabase(m: Movement, profile: Profile) {
     entidade: "movements",
     entidade_id: m.id,
     estado_posterior: m,
+  });
+}
+
+export async function persistArticleToSupabase(a: Article, profile: Profile) {
+  const supabase = getSupabaseBrowserClient();
+  if (!supabase) return;
+
+  const { error } = await supabase.from("articles").upsert({
+    id: a.id,
+    codigo_acrs: a.codigoACRS,
+    familia: a.familia,
+    material: a.material || null,
+    tamanho: a.tamanho || null,
+    descricao: a.descricao,
+    marca: a.marca || null,
+    quantidade: a.quantidade ?? 0,
+    preco_unitario: a.precoUnitario ?? 0,
+    preco_total: a.precoTotal ?? ((a.quantidade ?? 0) * (a.precoUnitario ?? 0)),
+    localizacao: a.localizacao || "ARMAZÉM",
+    unidade: a.unidade || "un.",
+    precisao: a.precisao ?? 0,
+    source: a.source || "demo",
+    updated_at: new Date().toISOString(),
+  });
+  if (error) {
+    console.error("Erro ao persistir artigo no Supabase:", error);
+    throw error;
+  }
+
+  await supabase.from("audit_logs").insert({
+    utilizador: profile,
+    perfil: profile,
+    acao: "UPSERT_ARTICLE",
+    entidade: "articles",
+    entidade_id: a.id,
+    estado_posterior: a,
   });
 }
 
@@ -513,6 +580,103 @@ export async function persistWorkToSupabase(w: Work, profile: Profile) {
   });
 }
 
+export async function persistSettingsToSupabase(settings: Settings, profile: Profile) {
+  const supabase = getSupabaseBrowserClient();
+  if (!supabase) return;
+
+  const { error } = await supabase.from("settings").upsert({
+    id: "global",
+    minimos: settings.minimos || {},
+    valores_internos: settings.valoresInternos || {},
+    policy: settings.policy || {},
+    person_policies: settings.personPolicies || {},
+    company_policies: settings.companyPolicies || {},
+    holidays: settings.holidays || [],
+    updated_at: new Date().toISOString(),
+  });
+  if (error) {
+    console.error("Erro ao persistir configurações no Supabase:", error);
+    throw error;
+  }
+
+  await supabase.from("audit_logs").insert({
+    utilizador: profile,
+    perfil: profile,
+    acao: "UPDATE_SETTINGS",
+    entidade: "settings",
+    entidade_id: "global",
+    estado_posterior: settings,
+  });
+}
+
+export async function persistManualCostToSupabase(c: Cost, profile: Profile) {
+  const supabase = getSupabaseBrowserClient();
+  if (!supabase) return;
+
+  const { error } = await supabase.from("manual_costs").upsert({
+    id: c.id,
+    obra_id: c.obraId,
+    data: c.data,
+    registado_em: c.registadoEm || new Date().toISOString(),
+    origem: c.origem || "Manual",
+    origem_id: c.origemId,
+    descricao: c.descricao,
+    categoria: c.categoria,
+    quantidade: c.quantidade,
+    valor_unitario: c.valorUnitario,
+    valor: c.valor,
+    utilizador: c.utilizador || profile,
+    nota: c.nota || null,
+    source: c.source || "demo",
+  });
+  if (error) {
+    console.error("Erro ao persistir custo manual no Supabase:", error);
+    throw error;
+  }
+
+  await supabase.from("audit_logs").insert({
+    utilizador: profile,
+    perfil: profile,
+    acao: "CREATE_MANUAL_COST",
+    entidade: "manual_costs",
+    entidade_id: c.id,
+    estado_posterior: c,
+  });
+}
+
+export async function persistMachineToSupabase(m: Machine, profile: Profile) {
+  const supabase = getSupabaseBrowserClient();
+  if (!supabase) return;
+
+  const { error } = await supabase.from("machines").upsert({
+    id: m.id,
+    numero: m.numero,
+    nome: m.nome,
+    marca: m.marca,
+    modelo: m.modelo,
+    estado: m.estado,
+    custo_dia: m.custoDia,
+    custo_interno_dia: m.custoInternoDia || null,
+    custo_aquisicao: m.custoAquisicao || null,
+    manutencao_acumulada: m.manutencaoAcumulada || null,
+    tipo: m.tipo,
+    source: m.source,
+  });
+  if (error) {
+    console.error("Erro ao persistir equipamento no Supabase:", error);
+    throw error;
+  }
+
+  await supabase.from("audit_logs").insert({
+    utilizador: profile,
+    perfil: profile,
+    acao: "UPSERT_MACHINE",
+    entidade: "machines",
+    entidade_id: m.id,
+    estado_posterior: m,
+  });
+}
+
 export function subscribeToSupabaseChanges(onUpdate: () => void) {
   const supabase = getSupabaseBrowserClient();
   if (!supabase) return () => {};
@@ -531,6 +695,10 @@ export function subscribeToSupabaseChanges(onUpdate: () => void) {
     .on("postgres_changes", { event: "*", schema: "public", table: "movements" }, triggerDebounced)
     .on("postgres_changes", { event: "*", schema: "public", table: "allocations" }, triggerDebounced)
     .on("postgres_changes", { event: "*", schema: "public", table: "budgets" }, triggerDebounced)
+    .on("postgres_changes", { event: "*", schema: "public", table: "articles" }, triggerDebounced)
+    .on("postgres_changes", { event: "*", schema: "public", table: "manual_costs" }, triggerDebounced)
+    .on("postgres_changes", { event: "*", schema: "public", table: "settings" }, triggerDebounced)
+    .on("postgres_changes", { event: "*", schema: "public", table: "machines" }, triggerDebounced)
     .subscribe();
 
   return () => {

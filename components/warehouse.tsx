@@ -5,25 +5,21 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
-  ArrowDownToLine,
   ArrowUpFromLine,
   Package,
   Wrench,
-  RotateCcw,
   Minus,
   Plus,
   Check,
   Layers,
-  CalendarDays,
   Search,
-  AlertTriangle,
 } from "lucide-react";
 import { useStore } from "./store";
 import { Resources } from "./resources";
 import { applyAllocation, applyMovement, returnable, stock } from "@/lib/engine";
 import { date, includes, money, num, qty, sum, today, uid } from "@/lib/format";
-import type { Allocation, Article, Movement } from "@/types";
-import { persistAllocationToSupabase, persistMovementToSupabase } from "@/lib/supabase/service";
+import type { Allocation, Article, Movement } from "@/types/index";
+import { persistAllocationToSupabase, persistArticleToSupabase, persistMovementToSupabase } from "@/lib/supabase/service";
 import {
   Badge,
   Button,
@@ -33,7 +29,6 @@ import {
   Modal,
   Note,
   PageHeader,
-  Panel,
   SearchInput,
   Select,
   Table,
@@ -637,29 +632,31 @@ export function Tablet() {
       let id = articleId;
       if (mode === "Entrada" && isOther) {
         id = uid("artigo");
+        const newArt: Article = {
+          id,
+          codigoACRS: `NOVO-${base.articles.length + 1}`,
+          familia: "OUTRO",
+          material: null,
+          tamanho: null,
+          descricao: description,
+          marca: null,
+          quantidade: 0,
+          precoUnitario: price,
+          precoTotal: 0,
+          localizacao: "ARMAZÉM",
+          unidade: unit,
+          precisao: unit === "un." || unit === "bobine" ? 0 : 3,
+          unidadeSource: "demo",
+          source: "demo",
+        };
         base = {
           ...base,
           articles: [
             ...base.articles,
-            {
-              id,
-              codigoACRS: `NOVO-${base.articles.length + 1}`,
-              familia: "OUTRO",
-              material: null,
-              tamanho: null,
-              descricao: description,
-              marca: null,
-              quantidade: 0,
-              precoUnitario: price,
-              precoTotal: 0,
-              localizacao: "ARMAZÉM",
-              unidade: unit,
-              precisao: unit === "un." || unit === "bobine" ? 0 : 3,
-              unidadeSource: "demo",
-              source: "demo",
-            },
+            newArt,
           ],
         };
+        persistArticleToSupabase(newArt, profile).catch(console.error);
       }
       if (isOther && !description.trim())
         throw new Error("Indique a descrição.");

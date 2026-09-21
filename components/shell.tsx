@@ -16,11 +16,9 @@ import {
   ChartNoAxesCombined,
   Settings2,
   ChevronRight,
-  CircleHelp,
 } from "lucide-react";
 import { LogOut } from "lucide-react";
 import { useStore } from "./store";
-import type { Profile } from "@/types";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 
 const links = [

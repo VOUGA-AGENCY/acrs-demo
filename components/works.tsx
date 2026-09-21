@@ -6,8 +6,6 @@ import {
   ArrowUpRight,
   Building2,
   MapPin,
-  FileText,
-  Euro,
   TriangleAlert,
   Plus,
   Pencil,
@@ -32,7 +30,7 @@ import {
 import { CostBreakdown, CostDetail, CostTable } from "./costs";
 import { days, effectivePolicy, timeCost, workFinancials } from "@/lib/engine";
 import { date, includes, money, num, qty, sum } from "@/lib/format";
-import type { Cost, Invoice, Work } from "@/types";
+import type { Cost, Invoice, Work } from "@/types/index";
 import { persistWorkToSupabase } from "@/lib/supabase/service";
 import { InvoiceDrawer } from "./invoices";
 const budgetRubric = (category: string) =>
@@ -53,7 +51,7 @@ function WorkForm({ work, onClose }: { work?: Work; onClose: () => void }) {
   const [start, setStart] = useState(work?.dataInicio ?? "");
   const [end, setEnd] = useState(work?.dataFim ?? "");
   const [error, setError] = useState("");
-  function save() {
+  async function save() {
     if (!number.trim() || !name.trim()) {
       setError("Indique o número e o nome da obra.");
       return;
@@ -76,15 +74,20 @@ function WorkForm({ work, onClose }: { work?: Work; onClose: () => void }) {
       dataFim: end || null,
       source: "demo",
     };
-    setState({
-      ...state,
-      works: work
-        ? state.works.map((w) => (w.id === work.id ? saved : w))
-        : [...state.works.filter((w) => w.id !== saved.id), saved],
-    });
-    persistWorkToSupabase(saved, profile).catch(console.error);
-    notify(work ? "Obra atualizada." : "Obra criada e persistida na base de dados.");
-    onClose();
+    try{
+      await persistWorkToSupabase(saved, profile);
+      setState({
+        ...state,
+        works: work
+          ? state.works.map((w) => (w.id === work.id ? saved : w))
+          : [...state.works.filter((w) => w.id !== saved.id), saved],
+      });
+      notify(work ? "Obra atualizada." : "Obra criada e persistida na base de dados.");
+      onClose();
+    }
+    catch(err){
+      console.error("Erro ao guardar obra:", err);
+    }
   }
   return (
     <Modal title={work ? "Editar obra" : "Nova obra"} onClose={onClose}>

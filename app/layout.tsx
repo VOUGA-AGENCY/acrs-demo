@@ -6,6 +6,15 @@ export const metadata: Metadata = {
   description:
     "Obras, pessoas e recursos. Demo operacional ACRS Metal Solutions.",
   icons: { icon: "/favicon.svg" },
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
 };
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

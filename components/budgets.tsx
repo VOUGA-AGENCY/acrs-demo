@@ -4,7 +4,7 @@ import { Plus, Calculator, Check } from "lucide-react";
 import { useStore } from "./store";
 import { workFinancials } from "@/lib/engine";
 import { includes, money, num, sum } from "@/lib/format";
-import type { Budget } from "@/types";
+import type { Budget } from "@/types/index";
 import { persistBudgetToSupabase } from "@/lib/supabase/service";
 import { WorkSelector } from "./warehouse";
 import {
@@ -46,7 +46,7 @@ export function BudgetForm({
     })),
   );
   const [error, setError] = useState("");
-  function save() {
+  async function save() {
     if (
       !work ||
       value <= 0 ||
@@ -67,13 +67,19 @@ export function BudgetForm({
       linhas: mode === "Discriminado" ? lines : [],
       source: "demo",
     };
-    setState({
-      ...state,
-      budgets: [...state.budgets.filter((x) => x.obraId !== work), b],
-    });
-    persistBudgetToSupabase(b, profile).catch(console.error);
-    notify("Orçamento guardado. Limite e margem da obra atualizados.");
-    onClose();
+    try{
+      await persistBudgetToSupabase(b, profile);
+      setState({
+        ...state,
+        budgets: [...state.budgets.filter((x) => x.obraId !== work), b],
+      });
+      notify("Orçamento guardado. Limite e margem da obra atualizados.");
+      onClose();
+    }
+    catch(err){
+      console.error("Erro ao guardar orçamento:", err);
+      setError("Falha ao guardar orçamento. Tente novamente.");
+    }
   }
   return (
     <Modal
