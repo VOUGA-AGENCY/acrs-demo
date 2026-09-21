@@ -7,7 +7,7 @@ import summary from "@/data/source/excel-summary.json";
 import { allocations, companies, machines, movements, policy } from "@/data/demo/scenario";
 import { costLedger, round } from "./engine";
 import { sum } from "./format";
-import type { Article, Person, State, TimeEntry } from "@/types";
+import type { Article, Person, State, TimeEntry } from "@/types/index";
 export function initialState(): State {
   const selected = [
     "25094",

@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef } from "react";
-import { UploadCloud, FileText, CheckCircle2, AlertCircle, Loader2, Sparkles, Camera, Eye } from "lucide-react";
-import type { OCRResult } from "@/types";
+import { FileText, CheckCircle2, AlertCircle, Loader2, Sparkles, Camera } from "lucide-react";
+import type { OCRResult } from "@/types/index";
 import { money } from "@/lib/format";
 
 export function OCRUpload({

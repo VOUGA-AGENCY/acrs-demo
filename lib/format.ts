@@ -1,4 +1,4 @@
-import type { Article } from "@/types";
+import type { Article } from "@/types/index";
 
 export const money = (v: number) =>
   new Intl.NumberFormat("pt-PT", {

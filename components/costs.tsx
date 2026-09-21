@@ -1,5 +1,5 @@
 "use client";
-import type { Cost } from "@/types";
+import type { Cost } from "@/types/index";
 import { useStore } from "./store";
 import { date, money, num, qty, sum } from "@/lib/format";
 import { Badge, DetailList, Modal, Note, Table } from "./ui";

@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
 import {
-  Camera,
-  Upload,
   Plus,
   FileText,
   Check,
@@ -12,7 +10,7 @@ import { useStore } from "./store";
 import { validateInvoice } from "@/lib/engine";
 import { date, includes, money, today, uid } from "@/lib/format";
 import { ArticleSelector, WorkSelector } from "./warehouse";
-import { persistInvoiceToSupabase } from "@/lib/supabase/service";
+import { persistInvoiceToSupabase, persistMovementToSupabase } from "@/lib/supabase/service";
 import {
   Badge,
   Button,
@@ -28,7 +26,7 @@ import {
   Tabs,
 } from "./ui";
 import { OCRUpload } from "./ocr-upload";
-import type { Invoice, InvoiceItem, OCRResult } from "@/types";
+import type { Invoice, OCRResult } from "@/types/index";
 const directCategories = [
   "Alimentação",
   "Alojamento",
@@ -598,6 +596,10 @@ export function InvoiceDrawer({
                     if (validated) {
                       persistInvoiceToSupabase(validated, profile).catch(console.error);
                       onSaved?.(validated);
+                    }
+                    const generatedMovement = next.movements.find((m) => m.id === `mov-${live.id}`);
+                    if (generatedMovement) {
+                      persistMovementToSupabase(generatedMovement, profile).catch(console.error);
                     }
                     notify("Fatura validada. Efeitos aplicados.");
                   } catch (e) {

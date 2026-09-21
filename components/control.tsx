@@ -1,10 +1,10 @@
 "use client";
 import { useMemo, useState } from "react";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useStore } from "./store";
-import { costLedger, effectivePolicy, stock, workFinancials } from "@/lib/engine";
-import { date, money, num, qty, sum, today } from "@/lib/format";
-import type { Cost } from "@/types";
+import { effectivePolicy, stock, workFinancials } from "@/lib/engine";
+import { money, num, qty, sum, today } from "@/lib/format";
+import type { Cost } from "@/types/index";
 import {
   Badge,
   Button,

@@ -1,4 +1,4 @@
-import type { OCRResult } from "@/types";
+import type { OCRResult } from "@/types/index";
 
 export class LlamaParseError extends Error {
   constructor(message: string, public code?: string) {

@@ -7,7 +7,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import type { Profile, State } from "@/types";
+import type { Profile, State } from "@/types/index";
 import { costLedger } from "@/lib/engine";
 import { today } from "@/lib/format";
 import {

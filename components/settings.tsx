@@ -3,7 +3,12 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 import { useStore } from "./store";
 import { money, includes, num } from "@/lib/format";
-import type { Article, Policy } from "@/types";
+import type { Article, Policy, Settings as SettingsType } from "@/types/index";
+import {
+  persistArticleToSupabase,
+  persistMachineToSupabase,
+  persistSettingsToSupabase,
+} from "@/lib/supabase/service";
 import {
   Badge,
   Button,
@@ -17,7 +22,7 @@ import {
   Tabs,
 } from "./ui";
 export function Settings() {
-  const { state, setState, notify } = useStore();
+  const { state, setState, profile, notify } = useStore();
   const [tab, setTab] = useState("Artigos");
   const [q, setQ] = useState("");
   const [article, setArticle] = useState<Article | null>(null);
@@ -139,13 +144,16 @@ export function Settings() {
                     value={m.custoDia}
                     onChange={(e) => {
                       const n = Number(e.target.value);
-                      if (n >= 0 && Number.isFinite(n))
+                      if (n >= 0 && Number.isFinite(n)) {
+                        const updatedMachine = { ...m, custoDia: n };
                         setState({
                           ...state,
                           machines: state.machines.map((x) =>
-                            x.id === m.id ? { ...x, custoDia: n } : x,
+                            x.id === m.id ? updatedMachine : x,
                           ),
                         });
+                        persistMachineToSupabase(updatedMachine, profile).catch(console.error);
+                      }
                     }}
                   />
                 ),
@@ -323,27 +331,29 @@ export function Settings() {
                 );
                 return;
               }
+              const nextSettings: SettingsType = policyPerson
+                ? {
+                    ...state.settings,
+                    personPolicies: {
+                      ...state.settings.personPolicies,
+                      [policyPerson]: policy,
+                    },
+                  }
+                : { ...state.settings, policy };
               setState({
                 ...state,
-                settings: policyPerson
-                  ? {
-                      ...state.settings,
-                      personPolicies: {
-                        ...state.settings.personPolicies,
-                        [policyPerson]: policy,
-                      },
-                    }
-                  : { ...state.settings, policy },
+                settings: nextSettings,
               });
+              persistSettingsToSupabase(nextSettings, profile).catch(console.error);
               setError("");
               notify(
                 policyPerson
-                  ? "Exceção demo aplicada à pessoa selecionada."
-                  : "Política global demo aplicada às estimativas.",
+                  ? "Exceção aplicada à pessoa selecionada."
+                  : "Política global aplicada às estimativas.",
               );
             }}
           >
-            Aplicar política demo <Check size={16} />
+            Aplicar política <Check size={16} />
           </Button>
           <Field label="Feriados (AAAA-MM-DD, separados por vírgula)">
             <input
@@ -363,12 +373,14 @@ export function Settings() {
                 setError("Utilize datas no formato AAAA-MM-DD.");
                 return;
               }
+              const nextSettings: SettingsType = { ...state.settings, holidays: values };
               setState({
                 ...state,
-                settings: { ...state.settings, holidays: values },
+                settings: nextSettings,
               });
+              persistSettingsToSupabase(nextSettings, profile).catch(console.error);
               setError("");
-              notify("Calendário demo de feriados atualizado.");
+              notify("Calendário de feriados atualizado.");
             }}
           >
             Guardar calendário
@@ -474,28 +486,29 @@ export function Settings() {
                     return;
                   const mins = { ...state.settings.minimos };
                   if (minimum === "") delete mins[article.id];
-                  else mins[article.id] = Number(minimum);
+                  const updatedArticle: Article = {
+                    ...article,
+                    unidade: unit,
+                    precisao: precision,
+                    unidadeSource: "demo",
+                  };
+                  const updatedSettings: SettingsType = {
+                    ...state.settings,
+                    minimos: mins,
+                    valoresInternos: {
+                      ...state.settings.valoresInternos,
+                      [article.id]: price,
+                    },
+                  };
                   setState({
                     ...state,
                     articles: state.articles.map((a) =>
-                      a.id === article.id
-                        ? {
-                            ...a,
-                            unidade: unit,
-                            precisao: precision,
-                            unidadeSource: "demo",
-                          }
-                        : a,
+                      a.id === article.id ? updatedArticle : a,
                     ),
-                    settings: {
-                      ...state.settings,
-                      minimos: mins,
-                      valoresInternos: {
-                        ...state.settings.valoresInternos,
-                        [article.id]: price,
-                      },
-                    },
+                    settings: updatedSettings,
                   });
+                  persistArticleToSupabase(updatedArticle, profile).catch(console.error);
+                  persistSettingsToSupabase(updatedSettings, profile).catch(console.error);
                   setArticle(null);
                   notify("Parâmetros atualizados.");
                 }}

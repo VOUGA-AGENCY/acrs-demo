@@ -1,10 +1,9 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
   Plus,
   ChevronLeft,
   ChevronRight,
-  Clock3,
   Users,
   Factory,
   Check,
@@ -12,7 +11,7 @@ import {
 import { useStore } from "./store";
 import { effectivePolicy, timeCost, validateTimeEntry } from "@/lib/engine";
 import { date, includes, money, num, sum, today, uid } from "@/lib/format";
-import type { Company, Cost, Person, TimeEntry } from "@/types";
+import type { Company, Cost, Person, TimeEntry } from "@/types/index";
 import { WorkSelector } from "./warehouse";
 import {
   Badge,
@@ -23,7 +22,6 @@ import {
   Modal,
   Note,
   PageHeader,
-  Panel,
   SearchInput,
   Select,
   Table,

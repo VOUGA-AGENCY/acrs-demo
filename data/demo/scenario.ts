@@ -1,4 +1,4 @@
-import type { Allocation, Company, Machine, Movement, Policy } from "@/types";
+import type { Allocation, Company, Machine, Movement, Policy } from "@/types/index";
 export const policy: Policy = {
   limiteExtra: 8,
   extra: 0.5,
