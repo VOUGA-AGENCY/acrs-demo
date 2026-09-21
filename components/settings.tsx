@@ -34,7 +34,7 @@ export function Settings() {
       <PageHeader
         eyebrow="ADMINISTRAÇÃO"
         title="Configuração"
-        description="Parâmetros da operação, ajustáveis nesta sessão."
+        description="Parâmetros da operação ajustáveis."
         actions={<Badge tone="amber">Regras demo · por validar</Badge>}
       />
       <Tabs

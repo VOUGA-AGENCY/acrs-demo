@@ -22,8 +22,8 @@ import { useStore } from "./store";
 import { Resources } from "./resources";
 import { applyAllocation, applyMovement, returnable, stock } from "@/lib/engine";
 import { date, includes, money, num, qty, sum, today, uid } from "@/lib/format";
-import type { Allocation, Article, Movement } from "@/types";
-import { persistAllocationToSupabase, persistMovementToSupabase } from "@/lib/supabase/service";
+import type { Allocation, Article, Invoice, Movement } from "@/types";
+import { persistAllocationToSupabase, persistInvoiceToSupabase, persistMovementToSupabase } from "@/lib/supabase/service";
 import {
   Badge,
   Button,
@@ -503,6 +503,7 @@ export function Movements() {
   );
 }
 type Mode = "home" | "register" | "Saída" | "Devolução" | "Entrada" | "stock" | "machines";
+type MovementMode = "Saída" | "Entrada" | "Devolução";
 type MixedLine =
   | { kind: "article"; id: string; quantity: number; rate: number }
   | { kind: "machine"; id: string; quantity: 1; rate: number };
@@ -517,6 +518,7 @@ export function Tablet() {
   const { state, setState, profile, notify } = useStore();
   const canSeeCosts = profile !== "Armazém";
   const [mode, setMode] = useState<Mode>("home");
+  const [movementMode, setMovementMode] = useState<MovementMode | null>(null);
   const [step, setStep] = useState(0);
   const [work, setWork] = useState("");
   const [family, setFamily] = useState("");
@@ -554,10 +556,11 @@ export function Tablet() {
     mode === "Entrada"
       ? ["Artigo", "Quantidade", "Data", "Confirmar"]
       : mode === "Devolução"
-        ? ["Obra", "Saída original", "Quantidade", "Data", "Confirmar"]
-        : ["Obra", "Família", "Artigo", "Quantidade", "Data", "Confirmar"];
+        ? ["Obra", "Tipo de recurso", "Saída original", "Quantidade", "Data", "Confirmar"]
+        : ["Obra", "Tipo de recurso", "Família", "Artigo", "Quantidade", "Data", "Confirmar"];
   function reset(m: Mode) {
     setMode(m);
+    setMovementMode(m === "register" ? null : m === "Saída" || m === "Entrada" || m === "Devolução" ? m : null);
     setStep(0);
     setWork("");
     setFamily("");
@@ -631,7 +634,7 @@ export function Tablet() {
     setStep(step + 1);
     setQ("");
   }
-  function confirm() {
+  async function confirm() {
     try {
       let base = state;
       let id = articleId;
@@ -663,12 +666,54 @@ export function Tablet() {
       }
       if (isOther && !description.trim())
         throw new Error("Indique a descrição.");
+      if (mode === "Saída" && resourceKind === "machine") {
+        const machine = state.machines.find((m) => m.id === machineId);
+        if (!machine || !work) throw new Error("Selecione o equipamento e a obra.");
+        const allocation: Allocation = {
+          id: uid("al"), maquinaId: machine.id, obraId: work, saida: effective,
+          devolucao: null, custoDia: machine.custoDia, utilizador: profile,
+          registadoEm: new Date().toISOString(), source: "demo",
+        };
+        base = applyAllocation(base, allocation);
+        await persistAllocationToSupabase(allocation, profile);
+        setState(base);
+        notify("Saída de equipamento registada.");
+        setSuccess(true);
+        return;
+      }
+      if (mode === "Devolução" && resourceKind === "machine") {
+        const allocation = state.allocations.find((a) => a.id === original);
+        if (!allocation) throw new Error("Selecione a alocação a devolver.");
+        const returned = { ...allocation, devolucao: effective };
+        base = { ...base, allocations: base.allocations.map((a) => a.id === returned.id ? returned : a) };
+        await persistAllocationToSupabase(returned, profile);
+        setState(base);
+        notify("Equipamento devolvido. O custo diário foi encerrado.");
+        setSuccess(true);
+        return;
+      }
+      if (mode === "Entrada") {
+        const invoice: Invoice = {
+          id: uid("compra"), data: effective, fornecedor: supplier || "Compra registada no armazém",
+          numero: `ARMAZEM-${Date.now()}`, obraId: "", categoria: "Materiais",
+          valor: quantity * price, estado: "Por validar", tipo: "Compra para stock",
+          artigoId: id, quantidade: quantity, source: "demo", utilizador: profile,
+          registadoEm: new Date().toISOString(),
+          items: [{ descricao: isOther ? description : article?.descricao ?? "Material", quantidade: quantity, precoUnitario: price, subtotal: quantity * price }],
+        };
+        base = { ...base, invoices: [invoice, ...base.invoices] };
+        await persistInvoiceToSupabase(invoice, profile);
+        setState(base);
+        notify("Compra registada e enviada para validação.");
+        setSuccess(true);
+        return;
+      }
       const m: Movement = {
         id: uid("mov"),
         tipo:
           isOther && mode === "Saída" ? "Outro" : (mode as Movement["tipo"]),
         artigoId: id,
-        obraId: mode === "Entrada" ? "" : work,
+        obraId: work,
         descricao: isOther
           ? description
           : `${article?.descricao} · ${article?.codigoACRS} · ${article?.marca ?? article?.tamanho ?? ""}`,
@@ -702,15 +747,17 @@ export function Tablet() {
               false,
           };
           base = applyMovement(base, mov);
-          persistMovementToSupabase(mov, profile).catch(console.error);
+          await persistMovementToSupabase(mov, profile);
         }
       } else {
         base = applyMovement(base, m);
-        persistMovementToSupabase(m, profile).catch(console.error);
+        await persistMovementToSupabase(m, profile);
       }
       setState(base);
       notify(
-        `${mode === "Saída" ? "Saída registada" : mode === "Devolução" ? "Devolução registada" : "Entrada registada"}.`,
+        mode === "Devolução"
+          ? "Devolução registada. A Secretaria deve emitir a nota de crédito."
+          : "Saída registada.",
       );
       setSuccess(true);
     } catch (e) {
@@ -751,7 +798,7 @@ export function Tablet() {
                 {
                   mode: "register",
                   title: "Registar movimento",
-                  text: "Selecionar obra e depois o tipo de recurso",
+                  text: "Escolher entrada, saída ou devolução",
                   icon: ArrowUpFromLine,
                 },
                 {
@@ -787,8 +834,15 @@ export function Tablet() {
         <div className="success-view"><div className="success-icon"><Check size={36}/></div><h1>Saída registada.</h1><p>O stock e os equipamentos foram atualizados.</p><div className="success-summary"><b>{mixedLines.length} recurso{mixedLines.length === 1 ? "" : "s"} registado{mixedLines.length === 1 ? "" : "s"}</b><span>Obra {work} · {state.works.find(w => w.id === work)?.nome}</span><span>{date(effective)}</span></div><div className="header-actions"><Button onClick={() => reset("register")}>Registar outra saída</Button><Button secondary onClick={() => reset("home")}>Voltar ao início</Button></div></div>
       ) : mode === "register" ? (
         <div className="tablet-flow">
-          {step === 0 ? <>
-            <div className="tablet-greeting"><div className="eyebrow">PASSO 1</div><h1>Selecionar obra</h1><p>Todos os movimentos ficam ligados a esta obra.</p></div>
+          {step === 0 && movementMode === null ? <>
+            <div className="tablet-greeting"><div className="eyebrow">PASSO 1</div><h1>Tipo de movimento</h1><p>Indique primeiro o que pretende registar.</p></div>
+            <div className="tablet-home-grid">
+              <button className="primary" onClick={() => reset("Saída")}><ArrowUpFromLine size={30}/><div><h2>Saída</h2><p>Material que sai para uma obra</p></div><ArrowRight size={21}/></button>
+              <button onClick={() => reset("Entrada")}><ArrowDownToLine size={30}/><div><h2>Entrada / compra</h2><p>Material sujeito a validação</p></div><ArrowRight size={21}/></button>
+              <button onClick={() => reset("Devolução")}><RotateCcw size={30}/><div><h2>Devolução / retorno</h2><p>Material ou equipamento que regressa</p></div><ArrowRight size={21}/></button>
+            </div>
+          </> : step === 0 && movementMode === "Saída" ? <>
+            <div className="tablet-greeting"><div className="eyebrow">PASSO 2</div><h1>Selecionar obra</h1><p>Todos os movimentos ficam ligados a esta obra.</p></div>
             <div className="choice-list">{state.works.filter(w => w.estado === "Em curso").map(w => <button key={w.id} onClick={() => {setWork(w.id);setStep(1);}}><b>{w.numero} · {w.nome}</b><span>{w.cliente}</span><ArrowRight size={18}/></button>)}</div>
           </> : step === 1 ? <>
             <div className="tablet-greeting"><div className="eyebrow">PASSO 2</div><h1>Tipo de recurso</h1><p>Obra {work} · {mixedLines.length ? `${mixedLines.length} recurso${mixedLines.length === 1 ? "" : "s"} já na lista.` : "Escolha o que vai sair."}</p></div>
@@ -836,8 +890,10 @@ export function Tablet() {
           </h1>
           <p>
             {mode === "Entrada"
-              ? "O stock foi atualizado."
-              : "O stock e a obra foram atualizados."}
+              ? "Compra enviada para validação. O stock será atualizado após aprovação."
+              : mode === "Devolução"
+                ? "O retorno foi registado e a pendência da Secretaria foi criada."
+                : "O stock e a obra foram atualizados."}
           </p>
           <div className="success-summary">
             <b>
@@ -846,9 +902,15 @@ export function Tablet() {
                 : (article?.descricao ?? description)}
             </b>
             <span>
-              {mode === "Saída" && lines.length
-                ? money(sum(lines, (l) => l.quantidade * l.valorUnitario))
-                : `${qty(quantity, article)} × ${money(price)} = ${money(quantity * price)}`}
+              {mode === "Entrada"
+                ? "A aguardar validação da Secretaria/Administração"
+                : mode === "Saída" && lines.length
+                  ? canSeeCosts
+                    ? money(sum(lines, (l) => l.quantidade * l.valorUnitario))
+                    : `${lines.length} artigos registados`
+                  : canSeeCosts
+                    ? `${qty(quantity, article)} × ${money(price)} = ${money(quantity * price)}`
+                    : `${qty(quantity, article)} registados`}
             </span>
             {work && (
               <span>
@@ -857,7 +919,7 @@ export function Tablet() {
             )}
           </div>
           <div className="header-actions">
-            <Button onClick={() => reset(mode)}>
+            <Button onClick={() => reset("register")}>
               Registar outro movimento
             </Button>
             <Button secondary onClick={() => reset("home")}>
@@ -913,11 +975,24 @@ export function Tablet() {
                 </div>
               </>
             )}
+            {stage === "Tipo de recurso" && (
+              <>
+                <h2>O que vai movimentar?</h2>
+                <div className="tablet-home-grid">
+                  <button className="primary" onClick={() => { setResourceKind("article"); setStep(step + 1); }}>
+                    <Package size={28} /><div><h2>Consumível ou material</h2><p>Artigos de stock</p></div><ArrowRight size={18} />
+                  </button>
+                  <button onClick={() => { setResourceKind("machine"); setStep(step + 1); }}>
+                    <Wrench size={28} /><div><h2>Máquina ou equipamento</h2><p>Alocação e retorno</p></div><ArrowRight size={18} />
+                  </button>
+                </div>
+              </>
+            )}
             {stage === "Família" && (
               <>
                 <h2>Que tipo de material?</h2>
                 <div className="family-grid">
-                  {[...new Set(state.articles.map((a) => a.familia))]
+                  {[...new Set(resourceKind === "article" ? state.articles.map((a) => a.familia) : state.machines.map((m) => machineFamily(m.nome)))]
                     .sort()
                     .map((f) => (
                       <button
@@ -930,8 +1005,9 @@ export function Tablet() {
                         <Layers size={23} />
                         <b>{f}</b>
                         <small>
-                          {state.articles.filter((a) => a.familia === f).length}{" "}
-                          artigos
+                          {resourceKind === "article"
+                            ? `${state.articles.filter((a) => a.familia === f).length} artigos`
+                            : `${state.machines.filter((m) => machineFamily(m.nome) === f).length} equipamentos`}
                         </small>
                       </button>
                     ))}
@@ -941,7 +1017,9 @@ export function Tablet() {
             {stage === "Artigo" && (
               <>
                 <h2>
-                  {mode === "Entrada"
+                  {resourceKind === "machine"
+                    ? "Selecionar equipamento"
+                    : mode === "Entrada"
                     ? "Que artigo está a entrar?"
                     : `Selecionar artigo · ${family}`}
                 </h2>
@@ -962,7 +1040,11 @@ export function Tablet() {
                   </Button>
                 )}
                 <div className="article-grid">
-                  {filtered.map((a) => (
+                  {resourceKind === "machine" ? state.machines.filter((m) => machineFamily(m.nome) === family && m.estado === "Disponível" && !openMachineIds.has(m.id)).map((m) => (
+                    <button className="article-card" key={m.id} onClick={() => { setMachineId(m.id); setQuantity(1); setStep(step + 1); }}>
+                      <div className="article-picture"><Wrench size={28} /></div><div><b>{m.nome}</b><small>{m.numero} · {m.marca}</small></div><ArrowRight size={17} />
+                    </button>
+                  )) : filtered.map((a) => (
                     <button
                       className="article-card"
                       key={a.id}
@@ -990,13 +1072,17 @@ export function Tablet() {
             )}
             {stage === "Saída original" && (
               <>
-                <h2>Que material regressou?</h2>
+                <h2>{resourceKind === "machine" ? "Que equipamento regressou?" : "Que material regressou?"}</h2>
                 <p className="muted">
-                  Selecione a saída para preservar o valor originalmente
-                  imputado.
+                  Selecione o registo original para manter o histórico correto.
                 </p>
                 <div className="work-selection">
-                  {state.movements
+                  {resourceKind === "machine" ? state.allocations
+                    .filter((a) => a.obraId === work && !a.devolucao)
+                    .map((a) => {
+                      const machine = state.machines.find((m) => m.id === a.maquinaId);
+                      return <button key={a.id} onClick={() => { setOriginal(a.id); setMachineId(a.maquinaId); setQuantity(1); setStep(step + 1); }}><div><b>{machine?.numero} · {machine?.nome}</b><small className="block muted">Saída {date(a.saida)} · equipamento em obra</small></div><ArrowRight size={18} /></button>;
+                    }) : state.movements
                     .filter(
                       (m) => m.obraId === work && returnable(state, m.id) > 0,
                     )
@@ -1027,9 +1113,7 @@ export function Tablet() {
                       </button>
                     ))}
                 </div>
-                {!state.movements.some(
-                  (m) => m.obraId === work && returnable(state, m.id) > 0,
-                ) && (
+                {!((resourceKind === "machine" && state.allocations.some((a) => a.obraId === work && !a.devolucao)) || (resourceKind !== "machine" && state.movements.some((m) => m.obraId === work && returnable(state, m.id) > 0))) && (
                   <Note>
                     Esta obra não tem saídas com saldo devolvível. Bobines
                     consumidas integralmente não podem voltar ao stock.
@@ -1040,7 +1124,11 @@ export function Tablet() {
             {stage === "Quantidade" && (
               <>
                 <h2>
-                  {isOther ? "Artigo não catalogado" : article?.descricao}
+                  {resourceKind === "machine"
+                    ? selectedMachine?.nome
+                    : isOther
+                      ? "Artigo não catalogado"
+                      : article?.descricao}
                 </h2>
                 {isOther && (
                   <>
@@ -1115,7 +1203,7 @@ export function Tablet() {
                       ? `${qty(available, article)} disponíveis`
                       : "Quantidade recebida"}
                 </p>
-                {(isOther || mode === "Entrada") && (
+                {(isOther || mode === "Entrada") && canSeeCosts && (
                   <Field label="Preço unitário (€)">
                     <input
                       type="number"
@@ -1240,31 +1328,21 @@ export function Tablet() {
                         : (article?.descricao ?? description),
                     ],
                     ...(mode === "Saída"
-                      ? [
-                          [
-                            "Valor total",
-                            money(
-                              sum(
-                                lines,
-                                (l) => l.quantidade * l.valorUnitario,
-                              ),
-                            ),
-                          ] as [string, string],
-                        ]
+                      ? canSeeCosts
+                        ? [["Valor total", money(sum(lines, (l) => l.quantidade * l.valorUnitario))] as [string, string]]
+                        : []
                       : [
                           [
                             "Código",
-                            article?.codigoACRS ?? "Não catalogado",
+                            resourceKind === "machine"
+                              ? selectedMachine?.numero ?? "Não catalogado"
+                              : article?.codigoACRS ?? "Não catalogado",
                           ] as [string, string],
-                          ["Quantidade", qty(quantity, article)] as [
-                            string,
-                            string,
-                          ],
-                          ["Valor unitário", money(price)] as [string, string],
-                          ["Valor do movimento", money(quantity * price)] as [
-                            string,
-                            string,
-                          ],
+                          ["Quantidade", qty(quantity, article)] as [string, string],
+                          ...(canSeeCosts ? [
+                            ["Valor unitário", money(price)] as [string, string],
+                            ["Valor do movimento", money(quantity * price)] as [string, string],
+                          ] : []),
                         ]),
                     ["Data efetiva", date(effective)],
                     ["Registado por", profile],
@@ -1282,7 +1360,7 @@ export function Tablet() {
                       return (
                         <div key={`${line.articleId}-${index}`}>
                           <span>{a?.codigoACRS} · {a?.descricao}</span>
-                          <b>{qty(line.quantidade, a)} · {money(line.quantidade * line.valorUnitario)}</b>
+                          <b>{qty(line.quantidade, a)}{canSeeCosts ? ` · ${money(line.quantidade * line.valorUnitario)}` : ""}</b>
                           <button
                             className="text-button"
                             onClick={() => {
@@ -1300,7 +1378,7 @@ export function Tablet() {
                 )}
                 <Note>
                   {mode === "Entrada"
-                    ? "Aumenta o stock. Não cria custo direto numa obra."
+                    ? "A compra fica pendente de validação antes de entrar no stock."
                     : mode === "Devolução"
                       ? "Aumenta o stock e corrige o custo da obra pelo valor original."
                       : "Reduz a disponibilidade em stock e associa o custo à obra."}

@@ -705,8 +705,7 @@ export function People() {
         ]}
       />
       <p className="footnote">
-        Histórico selecionado: 25/08/2025 a 22/08/2026, acrescido dos registos
-        da sessão. Custo estimado com política demo.
+        Custo estimado com política demo.
       </p>
       {person && (
         <PersonDetail person={person} onClose={() => setPerson(null)} />

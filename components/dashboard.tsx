@@ -188,7 +188,7 @@ export function Dashboard() {
           <Metric
             label="Custo acumulado"
             value={money(totalCost)}
-            hint="Histórico + registos da sessão"
+            hint="Histórico"
             icon={<Clock3 size={18} />}
             accent="orange"
             onClick={() => router.push("/controlo")}

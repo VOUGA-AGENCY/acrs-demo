@@ -634,7 +634,7 @@ export function FieldPage() {
         description="Associe o documento à obra certa."
       />
       <InvoiceForm key={key} field onClose={() => setKey(key + 1)} />
-      <p className="footnote">Demonstração · envio simulado nesta sessão.</p>
+      <p className="footnote">Demonstração</p>
     </div>
   );
 }

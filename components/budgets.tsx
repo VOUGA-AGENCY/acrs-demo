@@ -271,10 +271,6 @@ export function Budgets() {
           },
         ]}
       />
-      <p className="footnote">
-        Todos os orçamentos deste cenário são demonstrativos e ficam guardados
-        apenas durante a sessão.
-      </p>
       {editing !== undefined && (
         <BudgetForm
           budget={editing ?? undefined}
