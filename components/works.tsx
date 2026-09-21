@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";  
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -9,6 +9,9 @@ import {
   TriangleAlert,
   Plus,
   Pencil,
+  CheckCircle2,
+  RotateCcw,
+  Calculator,
 } from "lucide-react";
 import { useStore } from "./store";
 import {
@@ -29,10 +32,12 @@ import {
 } from "./ui";
 import { CostBreakdown, CostDetail, CostTable } from "./costs";
 import { days, effectivePolicy, timeCost, workFinancials } from "@/lib/engine";
-import { date, includes, money, num, qty, sum } from "@/lib/format";
-import type { Cost, Invoice, Work } from "@/types/index";
-import { persistWorkToSupabase } from "@/lib/supabase/service";
+import { date, includes, money, num, qty, sum, today, uid } from "@/lib/format";
+import type { Budget, Cost, Invoice, Work } from "@/types/index";
+import { persistBudgetToSupabase, persistWorkToSupabase } from "@/lib/supabase/service";
 import { InvoiceDrawer } from "./invoices";
+import { BudgetForm } from "./budgets";
+
 const budgetRubric = (category: string) =>
   ["Mão de obra", "Materiais", "Ferramentaria", "Transportes", "Alojamento"].includes(
     category,
@@ -41,6 +46,7 @@ const budgetRubric = (category: string) =>
     : "Outros";
 const consumptionTone = (value: number) =>
   value >= 1 ? "red" : value >= 0.8 ? "orange" : value >= 0.7 ? "amber" : "green";
+
 function WorkForm({ work, onClose }: { work?: Work; onClose: () => void }) {
   const { state, setState, notify, profile } = useStore();
   const [number, setNumber] = useState(work?.numero ?? "");
@@ -50,45 +56,67 @@ function WorkForm({ work, onClose }: { work?: Work; onClose: () => void }) {
   const [status, setStatus] = useState(work?.estado ?? "Em curso");
   const [start, setStart] = useState(work?.dataInicio ?? "");
   const [end, setEnd] = useState(work?.dataFim ?? "");
+  const [budgetValue, setBudgetValue] = useState(15000);
+  const [budgetMargin, setBudgetMargin] = useState(20);
   const [error, setError] = useState("");
+
   async function save() {
     if (!number.trim() || !name.trim()) {
       setError("Indique o número e o nome da obra.");
       return;
     }
     const exists = state.works.some(
-      (w) => w.numero.trim() === number.trim() && w.id !== work?.id,
+      (w) => w.numero.trim().toLowerCase() === number.trim().toLowerCase() && w.id !== work?.id,
     );
     if (exists) {
       setError("Já existe uma obra com este número.");
       return;
     }
+    const workId = work?.id ?? uid("obra");
+    const effectiveEnd = status === "Concluída" ? (end || today()) : (end || null);
     const saved: Work = {
-      id: work?.id ?? "demo-nova-obra",
+      id: workId,
       numero: number.trim(),
       nome: name.trim(),
       cliente: client.trim() || "Por confirmar",
       local: location.trim() || null,
       estado: status,
       dataInicio: start || undefined,
-      dataFim: end || null,
-      source: "demo",
+      dataFim: effectiveEnd,
+      source: work?.source ?? "ACRS",
     };
-    try{
+    try {
       await persistWorkToSupabase(saved, profile);
+      let updatedBudgets = state.budgets;
+      if (!work) {
+        const val = Number(budgetValue) > 0 ? Number(budgetValue) : 15000;
+        const marg = Number(budgetMargin) >= 0 && Number(budgetMargin) < 100 ? Number(budgetMargin) / 100 : 0.20;
+        const newBudget: Budget = {
+          obraId: workId,
+          valor: val,
+          margem: marg,
+          modo: "Simples",
+          linhas: [],
+          source: "ACRS",
+        };
+        await persistBudgetToSupabase(newBudget, profile);
+        updatedBudgets = [...state.budgets.filter((b) => b.obraId !== workId), newBudget];
+      }
       setState({
         ...state,
         works: work
           ? state.works.map((w) => (w.id === work.id ? saved : w))
           : [...state.works.filter((w) => w.id !== saved.id), saved],
+        budgets: updatedBudgets,
       });
-      notify(work ? "Obra atualizada." : "Obra criada e persistida na base de dados.");
+      notify(work ? "Obra atualizada com sucesso." : "Obra e orçamento criados com sucesso.");
       onClose();
-    }
-    catch(err){
+    } catch (err: any) {
       console.error("Erro ao guardar obra:", err);
+      setError(`Erro ao guardar obra: ${err?.message || err}`);
     }
   }
+
   return (
     <Modal title={work ? "Editar obra" : "Nova obra"} onClose={onClose}>
       <div className="modal-body">
@@ -106,7 +134,14 @@ function WorkForm({ work, onClose }: { work?: Work; onClose: () => void }) {
             <input value={location} onChange={(e) => setLocation(e.target.value)} />
           </Field>
           <Field label="Estado">
-            <select value={status} onChange={(e) => setStatus(e.target.value)}>
+            <select
+              value={status}
+              onChange={(e) => {
+                const next = e.target.value;
+                setStatus(next);
+                if (next === "Concluída" && !end) setEnd(today());
+              }}
+            >
               <option>Em preparação</option>
               <option>Em curso</option>
               <option>Suspensa</option>
@@ -119,8 +154,31 @@ function WorkForm({ work, onClose }: { work?: Work; onClose: () => void }) {
           <Field label="Data de fim">
             <input type="date" value={end ?? ""} onChange={(e) => setEnd(e.target.value)} />
           </Field>
+          {!work && (
+            <>
+              <Field label="Valor orçamentado inicial (€)">
+                <input
+                  type="number"
+                  min="0.01"
+                  step="0.01"
+                  value={budgetValue}
+                  onChange={(e) => setBudgetValue(Number(e.target.value))}
+                />
+              </Field>
+              <Field label="Margem alvo prevista (%)">
+                <input
+                  type="number"
+                  min="0"
+                  max="99"
+                  step="0.1"
+                  value={budgetMargin}
+                  onChange={(e) => setBudgetMargin(Number(e.target.value))}
+                />
+              </Field>
+            </>
+          )}
         </div>
-        <Note>Os dados criados ou alterados ficam apenas nesta sessão.</Note>
+        <Note>A obra e o orçamento são sincronizados diretamente com o Supabase.</Note>
         {error && <Note tone="red">{error}</Note>}
         <div className="form-actions">
           <Button secondary onClick={onClose}>Cancelar</Button>
@@ -212,8 +270,14 @@ export function WorkTable({
           label: "Estado / Risco",
           render: (w) => (
             <div>
-              <Badge>{workFinancials(state, w.id, ledger).risk}</Badge>
-              {!compact && <small className="block muted">{w.estado}</small>}
+              <Badge tone={w.estado === "Concluída" ? "green" : w.estado === "Suspensa" ? "amber" : "blue"}>
+                {w.estado}
+              </Badge>
+              {!compact && (
+                <small className="block muted">
+                  {w.estado === "Concluída" ? "Concluída" : workFinancials(state, w.id, ledger).risk}
+                </small>
+              )}
             </div>
           ),
         },
@@ -258,15 +322,19 @@ export function Works() {
           {state.works.filter((w) => w.estado === "Em curso").length} em curso
         </span>
         <span>
+          <CheckCircle2 size={15} style={{ color: "#2e7d32" }} />
+          {state.works.filter((w) => w.estado === "Concluída").length} concluídas
+        </span>
+        <span>
           <TriangleAlert size={15} />
           {
             state.works.filter(
-              (w) => workFinancials(state, w.id, ledger).risk === "Em risco",
+              (w) => w.estado !== "Concluída" && workFinancials(state, w.id, ledger).risk === "Em risco",
             ).length
           }{" "}
           em risco
         </span>
-        <span>Histórico ACRS + movimentos desta sessão</span>
+        <span>Sincronizado com Supabase</span>
       </div>
       <div className="filter-bar">
         <SearchInput
@@ -306,7 +374,7 @@ export function Works() {
   );
 }
 export function WorkDetail({ id }: { id: string }) {
-  const { state, ledger, profile } = useStore();
+  const { state, setState, ledger, profile, notify } = useStore();
   const router = useRouter();
   const [tab, setTab] = useState("Resumo");
   const [category, setCategory] = useState("");
@@ -314,6 +382,7 @@ export function WorkDetail({ id }: { id: string }) {
   const [selectedInvoice, setSelectedInvoice] = useState<Invoice | null>(null);
   const [q, setQ] = useState("");
   const [editingWork, setEditingWork] = useState(false);
+  const [editingBudget, setEditingBudget] = useState(false);
   const work = state.works.find((w) => w.id === id);
   if (!work)
     return (
@@ -353,11 +422,63 @@ export function WorkDetail({ id }: { id: string }) {
         }
         actions={
           <>
-            <Badge>{work.estado}</Badge>
+            <Badge tone={work.estado === "Concluída" ? "green" : work.estado === "Suspensa" ? "amber" : "blue"}>
+              {work.estado}
+            </Badge>
             {profile !== "Gerência" && (
               <>
+                {work.estado !== "Concluída" ? (
+                  <Button
+                    secondary
+                    onClick={async () => {
+                      try {
+                        const updated: Work = {
+                          ...work,
+                          estado: "Concluída",
+                          dataFim: work.dataFim || today(),
+                        };
+                        await persistWorkToSupabase(updated, profile);
+                        setState({
+                          ...state,
+                          works: state.works.map((w) => (w.id === work.id ? updated : w)),
+                        });
+                        notify("Obra concluída com sucesso.");
+                      } catch (e: any) {
+                        notify(`Erro ao concluir obra: ${e.message || e}`);
+                      }
+                    }}
+                  >
+                    <CheckCircle2 size={15} /> Concluir obra
+                  </Button>
+                ) : (
+                  <Button
+                    secondary
+                    onClick={async () => {
+                      try {
+                        const updated: Work = {
+                          ...work,
+                          estado: "Em curso",
+                          dataFim: null,
+                        };
+                        await persistWorkToSupabase(updated, profile);
+                        setState({
+                          ...state,
+                          works: state.works.map((w) => (w.id === work.id ? updated : w)),
+                        });
+                        notify("Obra reaberta para execução.");
+                      } catch (e: any) {
+                        notify(`Erro ao reabrir obra: ${e.message || e}`);
+                      }
+                    }}
+                  >
+                    <RotateCcw size={15} /> Reabrir obra
+                  </Button>
+                )}
                 <Button secondary onClick={() => setEditingWork(true)}>
                   <Pencil size={15} /> Editar obra
+                </Button>
+                <Button secondary onClick={() => setEditingBudget(true)}>
+                  <Calculator size={15} /> Orçamento
                 </Button>
                 <Button secondary onClick={() => router.push("/armazem/tablet")}>
                   Registar movimento <ArrowUpRight size={16} />
@@ -795,8 +916,8 @@ export function WorkDetail({ id }: { id: string }) {
           title="Valor orçamentado da obra"
           subtitle="Cenário demonstrativo, ajustável em Orçamentos"
           actions={
-            <Button secondary onClick={() => router.push("/orcamentos")}>
-              Editar valor orçamentado <ArrowUpRight size={15} />
+            <Button secondary onClick={() => setEditingBudget(true)}>
+              <Pencil size={15} /> Editar valor orçamentado
             </Button>
           }
         >
@@ -853,8 +974,8 @@ export function WorkDetail({ id }: { id: string }) {
             )}
             <Progress value={f.consumption} label="Custo máximo utilizado" />
             <Note>
-              O orçamento não existia integrado no Excel. Estes valores são
-              demonstrativos. A margem atual não é uma previsão da margem final.
+              O orçamento é sincronizado com o Supabase. A margem atual é calculada
+              sobre todos os custos já registados.
             </Note>
           </div>
         </Panel>
@@ -875,6 +996,21 @@ export function WorkDetail({ id }: { id: string }) {
       )}
       {editingWork && (
         <WorkForm work={work} onClose={() => setEditingWork(false)} />
+      )}
+      {editingBudget && (
+        <BudgetForm
+          budget={
+            budget ?? {
+              obraId: work.id,
+              valor: 15000,
+              margem: 0.20,
+              modo: "Simples",
+              linhas: [],
+              source: "ACRS",
+            }
+          }
+          onClose={() => setEditingBudget(false)}
+        />
       )}
     </>
   );

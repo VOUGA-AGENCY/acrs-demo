@@ -149,6 +149,8 @@ export async function fetchStateWithClient(supabase: any): Promise<State | null>
         local: w.local,
         cliente: w.cliente,
         estado: w.estado,
+        dataInicio: w.data_inicio || undefined,
+        dataFim: w.data_fim || undefined,
         source: w.source,
       })),
       articles: articles.map((a: any) => ({
@@ -537,14 +539,19 @@ export async function persistBudgetToSupabase(b: Budget, profile: Profile) {
   const supabase = getSupabaseBrowserClient();
   if (!supabase) return;
 
-  await supabase.from("budgets").upsert({
+  const { error } = await supabase.from("budgets").upsert({
     obra_id: b.obraId,
     valor: b.valor,
     margem: b.margem,
     modo: b.modo,
     linhas: b.linhas,
-    source: b.source,
+    source: b.source || "ACRS",
+    updated_at: new Date().toISOString(),
   });
+  if (error) {
+    console.error("Erro ao persistir orçamento no Supabase:", error);
+    throw error;
+  }
 
   await supabase.from("audit_logs").insert({
     utilizador: profile,
@@ -560,15 +567,22 @@ export async function persistWorkToSupabase(w: Work, profile: Profile) {
   const supabase = getSupabaseBrowserClient();
   if (!supabase) return;
 
-  await supabase.from("works").upsert({
+  const { error } = await supabase.from("works").upsert({
     id: w.id,
     numero: w.numero,
     nome: w.nome,
-    local: w.local,
+    local: w.local || null,
     cliente: w.cliente,
     estado: w.estado,
-    source: w.source,
+    data_inicio: w.dataInicio || null,
+    data_fim: w.dataFim || null,
+    source: w.source || "ACRS",
+    updated_at: new Date().toISOString(),
   });
+  if (error) {
+    console.error("Erro ao persistir obra no Supabase:", error);
+    throw error;
+  }
 
   await supabase.from("audit_logs").insert({
     utilizador: profile,
@@ -694,6 +708,7 @@ export function subscribeToSupabaseChanges(onUpdate: () => void) {
     .on("postgres_changes", { event: "*", schema: "public", table: "invoices" }, triggerDebounced)
     .on("postgres_changes", { event: "*", schema: "public", table: "movements" }, triggerDebounced)
     .on("postgres_changes", { event: "*", schema: "public", table: "allocations" }, triggerDebounced)
+    .on("postgres_changes", { event: "*", schema: "public", table: "works" }, triggerDebounced)
     .on("postgres_changes", { event: "*", schema: "public", table: "budgets" }, triggerDebounced)
     .on("postgres_changes", { event: "*", schema: "public", table: "articles" }, triggerDebounced)
     .on("postgres_changes", { event: "*", schema: "public", table: "manual_costs" }, triggerDebounced)

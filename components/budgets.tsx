@@ -101,7 +101,14 @@ export function BudgetForm({
           </div>
         </Field>
         <Field label="Obra">
-          <WorkSelector value={work} onChange={setWork} />
+          {budget ? (
+            <input
+              value={`${work} · ${state.works.find((w) => w.id === work)?.nome ?? ""}`}
+              disabled
+            />
+          ) : (
+            <WorkSelector value={work} onChange={setWork} />
+          )}
         </Field>
         <Field label="Cliente">
           <input
@@ -181,8 +188,7 @@ export function BudgetForm({
           </div>
         </div>
         <Note>
-          Orçamento demonstrativo. Guardar substitui o orçamento atual desta
-          obra, sem duplicar custos.
+          O orçamento é gravado e sincronizado diretamente na base de dados (Supabase).
         </Note>
         {error && <Note tone="red">{error}</Note>}
         <div className="form-actions">
