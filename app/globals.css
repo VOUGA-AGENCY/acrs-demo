@@ -572,6 +572,18 @@ th {
   padding: 13px 14px;
   border-bottom: 1px solid var(--line);
 }
+th.has-hint {
+  cursor: help;
+  text-decoration: underline dotted #c6ccd2;
+  text-underline-offset: 3px;
+}
+tfoot td {
+  background: #fafbfb;
+  border-top: 1px solid var(--line);
+  border-bottom: 0;
+  font-weight: 500;
+  color: #3a454f;
+}
 td {
   padding: 16px 14px;
   border-bottom: 1px solid #eceeef;

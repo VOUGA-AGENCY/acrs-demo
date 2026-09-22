@@ -234,6 +234,7 @@ export type Column<T> = {
   render: (row: T) => ReactNode;
   align?: "right";
   width?: string;
+  hint?: string;
 };
 export function Table<T>({
   rows,
@@ -242,6 +243,7 @@ export function Table<T>({
   pageSize = 12,
   empty = "Nenhum registo encontrado.",
   rowKey,
+  footer,
 }: {
   rows: T[];
   columns: Column<T>[];
@@ -249,6 +251,7 @@ export function Table<T>({
   pageSize?: number;
   empty?: string;
   rowKey?: (r: T) => string;
+  footer?: (rows: T[]) => ReactNode[];
 }) {
   const [page, setPage] = useState(0);
   const pages = Math.ceil(rows.length / pageSize);
@@ -261,7 +264,12 @@ export function Table<T>({
           <thead>
             <tr>
               {columns.map((c, i) => (
-                <th key={i} style={{ textAlign: c.align, width: c.width }}>
+                <th
+                  key={i}
+                  className={c.hint ? "has-hint" : undefined}
+                  title={c.hint}
+                  style={{ textAlign: c.align, width: c.width }}
+                >
                   {c.label}
                 </th>
               ))}
@@ -292,6 +300,18 @@ export function Table<T>({
               </tr>
             ))}
           </tbody>
+          {footer && rows.length > 0 && (
+            <tfoot>
+              <tr>
+                {footer(rows).map((cell, i) => (
+                  <td key={i} style={{ textAlign: columns[i]?.align }}>
+                    {cell}
+                  </td>
+                ))}
+                {onRow && <td />}
+              </tr>
+            </tfoot>
+          )}
         </table>
         {!rows.length && <Empty>{empty}</Empty>}
       </div>

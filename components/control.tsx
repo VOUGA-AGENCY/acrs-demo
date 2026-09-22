@@ -18,12 +18,6 @@ import {
 } from "./ui";
 import { CostBreakdown, CostDetail, CostTable } from "./costs";
 import { MonthlyChart, Ranking } from "./control-charts";
-const budgetRubric = (category: string) =>
-  ["Mão de obra", "Materiais", "Ferramentaria", "Transportes", "Alojamento"].includes(
-    category,
-  )
-    ? category
-    : "Outros";
 export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
   const { state, ledger } = useStore();
   const [tab, setTab] = useState(initialTab);
@@ -49,6 +43,7 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
   ), [state.times, cutoff, end]);
   const [supplierFilter, setSupplierFilter] = useState("");
   const [topCount, setTopCount] = useState("10");
+  const [inUseOnly, setInUseOnly] = useState(true);
 
   const invoiceSupplierMap = useMemo(() => {
     const map = new Map<string, string>();
@@ -214,41 +209,74 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
   }, [ledger]);
 
   const select = (title: string, r: Cost[]) => setDrill({ title, rows: r });
+
   const equipmentStats = useMemo(() => {
-    const equipmentRows = rows.filter((c) => c.origem === "Equipamento");
-    const chargesByAlloc = new Map<string, Cost[]>();
-    for (const c of equipmentRows) {
-      if (c.origemId) {
-        let list = chargesByAlloc.get(c.origemId);
-        if (!list) {
-          list = [];
-          chargesByAlloc.set(c.origemId, list);
-        }
+    const periodByAllocation = new Map<string, Cost[]>();
+    for (const c of rows) {
+      if (c.origem === "Equipamento" && c.origemId) {
+        const list = periodByAllocation.get(c.origemId) ?? [];
         list.push(c);
+        periodByAllocation.set(c.origemId, list);
       }
     }
-    return state.machines.map((machine) => {
-      const allocationIds = state.allocations
-        .filter((a) => a.maquinaId === machine.id)
-        .map((a) => a.id);
-      const charges = allocationIds.flatMap((id) => chargesByAlloc.get(id) ?? []);
-      const daysUsed = charges.length;
-      const transfer = sum(charges, (c) => c.valor);
-      const internal = daysUsed * (machine.custoInternoDia ?? 0);
-      const maintenance = machine.manutencaoAcumulada ?? 0;
-      const acquisition = machine.custoAquisicao ?? 0;
-      return {
-        machine,
-        daysUsed,
-        transfer,
-        internal,
-        maintenance,
-        acquisition,
-        recovery: acquisition > 0 ? transfer / acquisition : 0,
-        result: transfer - internal - maintenance,
-      };
-    });
-  }, [rows, state.machines, state.allocations]);
+    const totalByAllocation = new Map<string, number>();
+    for (const c of ledger) {
+      if (c.origem === "Equipamento" && c.origemId) {
+        totalByAllocation.set(
+          c.origemId,
+          (totalByAllocation.get(c.origemId) ?? 0) + c.valor,
+        );
+      }
+    }
+    return state.machines
+      .map((machine) => {
+        const allocations = state.allocations.filter(
+          (a) => a.maquinaId === machine.id,
+        );
+        const periodCharges = allocations.flatMap(
+          (a) => periodByAllocation.get(a.id) ?? [],
+        );
+        const totalTransfer = sum(
+          allocations,
+          (a) => totalByAllocation.get(a.id) ?? 0,
+        );
+        const openAllocation = allocations.find((a) => !a.devolucao);
+        const daysUsed = periodCharges.length;
+        const transfer = sum(periodCharges, (c) => c.valor);
+        const internal = daysUsed * (machine.custoInternoDia ?? 0);
+        const acquisition = machine.custoAquisicao ?? 0;
+        return {
+          machine,
+          periodCharges,
+          daysUsed,
+          transfer,
+          internal,
+          result: transfer - internal,
+          recovery:
+            acquisition > 0 && totalTransfer > 0
+              ? totalTransfer / acquisition
+              : null,
+          acquisition,
+          maintenance: machine.manutencaoAcumulada ?? 0,
+          location: openAllocation
+            ? `Em obra · ${openAllocation.obraId}`
+            : machine.estado,
+          open: Boolean(openAllocation),
+          active: daysUsed > 0 || Boolean(openAllocation),
+        };
+      })
+      .sort(
+        (a, b) =>
+          b.transfer - a.transfer ||
+          a.machine.numero.localeCompare(b.machine.numero),
+      );
+  }, [rows, ledger, state.machines, state.allocations]);
+
+  const equipmentRows = inUseOnly
+    ? equipmentStats.filter((r) => r.active)
+    : equipmentStats;
+  const equipmentResult = sum(equipmentStats, (r) => r.result);
+  const equipmentInWork = equipmentStats.filter((r) => r.open).length;
   return (
     <>
       <PageHeader
@@ -326,7 +354,6 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
       <Tabs
         items={[
           "Obras",
-          "Orçamento vs realizado",
           "Custos",
           "Fornecedores",
           "Mão de obra",
@@ -387,62 +414,6 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
                 <MonthlyChart currency points={monthly(rows.map(c => ({date:c.data,value:c.valor})))}/>
               </Panel>
             </div>
-          )}
-          {tab === "Orçamento vs realizado" && (
-            <>
-              <Table
-                rows={state.budgets.flatMap((b) =>
-                  b.modo === "Discriminado"
-                    ? b.linhas.map((line) => {
-                        const realized = sum(
-                              rows.filter(
-                            (c) =>
-                              c.obraId === b.obraId &&
-                              budgetRubric(c.categoria) === line.categoria,
-                          ),
-                          (c) => c.valor,
-                        );
-                        const committed = sum(
-                          state.invoices.filter(
-                            (i) =>
-                              i.obraId === b.obraId &&
-                              i.data >= cutoff &&
-                              i.data <= end &&
-                              i.estado === "Por validar" &&
-                              budgetRubric(i.categoria ?? "Outros") ===
-                                line.categoria,
-                          ),
-                          (i) => i.valor,
-                        );
-                        return {
-                          obraId: b.obraId,
-                          obraNome: state.works.find((w) => w.id === b.obraId)?.nome ?? "Obra sem nome",
-                          category: line.categoria,
-                          planned: line.valor,
-                          realized,
-                          committed,
-                        };
-                      })
-                    : [],
-                )}
-                columns={[
-                  { label: "Obra", render: (r) => <b>{r.obraId} · {r.obraNome}</b> },
-                  { label: "Rubrica", render: (r) => r.category },
-                  { label: "Previsto", render: (r) => money(r.planned), align: "right" },
-                  { label: "Realizado", render: (r) => money(r.realized), align: "right" },
-                  { label: "Comprometido", render: (r) => money(r.committed), align: "right" },
-                  {
-                    label: "Desvio",
-                    render: (r) => money(r.planned - r.realized - r.committed),
-                    align: "right",
-                  },
-                ]}
-              />
-              <Note>
-                A comparação respeita o período selecionado. Documentos por
-                validar aparecem como comprometidos, sem entrar no realizado.
-              </Note>
-            </>
           )}
           {tab === "Fornecedores" && (
             <>
@@ -671,78 +642,145 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
             <>
               <div className="metrics four">
                 <Metric
-                  label="Transferências para obras"
-                  value={money(
-                    sum(
-                      rows.filter((c) => c.origem === "Armazém"),
-                      (c) => c.valor,
-                    ),
-                  )}
-                  onClick={() =>
-                    select(
-                      "Transferências de armazém",
-                      rows.filter((c) => c.origem === "Armazém"),
-                    )
-                  }
+                  label="Equipamentos em obra"
+                  value={equipmentInWork}
+                  hint="Alocados neste momento"
                 />
                 <Metric
-                  label="Utilização de máquinas"
-                  value={money(
-                    sum(
-                      rows.filter((c) => c.origem === "Equipamento"),
-                      (c) => c.valor,
-                    ),
-                  )}
+                  label="Valor imputado às obras"
+                  value={money(sum(equipmentStats, (r) => r.transfer))}
+                  hint="Dias alugados × tarifa, no período"
                   onClick={() =>
                     select(
-                      "Utilização de máquinas",
+                      "Valor imputado às obras",
                       rows.filter((c) => c.origem === "Equipamento"),
                     )
                   }
                 />
                 <Metric
-                  label="Danos e perdas"
-                  value={money(
-                    sum(
-                      rows.filter((c) => c.origem === "Dano / perda"),
-                      (c) => c.valor,
-                    ),
-                  )}
-                  onClick={() =>
-                    select(
-                      "Danos e perdas",
-                      rows.filter((c) => c.origem === "Dano / perda"),
-                    )
-                  }
+                  label="Custo interno estimado"
+                  value={money(sum(equipmentStats, (r) => r.internal))}
+                  hint="Dias alugados × custo interno, no período"
                 />
                 <Metric
-                  label="Margem interna"
-                  value={money(sum(equipmentStats, (r) => r.result))}
-                  hint="Cenário demo · por validar"
+                  label="Resultado do período"
+                  value={money(equipmentResult)}
+                  hint="Valor imputado menos custo interno"
+                  accent={equipmentResult < 0 ? "danger" : "positive"}
                 />
               </div>
+              <div className="section-top">
+                <h2>Equipamento: utilização e retorno</h2>
+              </div>
+              <div className="filter-bar">
+                <Button secondary onClick={() => setInUseOnly(!inUseOnly)}>
+                  {inUseOnly
+                    ? "Ver todo o equipamento"
+                    : "Só equipamento com atividade"}
+                </Button>
+                <span className="muted">
+                  {equipmentRows.length} equipamento
+                  {equipmentRows.length === 1 ? "" : "s"} apresentados
+                </span>
+              </div>
               <Table
-                rows={equipmentStats}
+                rows={equipmentRows}
+                rowKey={(r) => r.machine.id}
+                empty="Sem equipamento com atividade no período selecionado."
+                onRow={(r) =>
+                  r.periodCharges.length
+                    ? select(
+                        `${r.machine.numero} · ${r.machine.nome}`,
+                        r.periodCharges,
+                      )
+                    : undefined
+                }
                 columns={[
                   {
                     label: "Equipamento",
+                    hint: "Número, nome, marca e tipo do equipamento.",
                     render: (r) => (
-                      <b>{r.machine.numero} · {r.machine.nome}</b>
+                      <div>
+                        <b>
+                          {r.machine.numero} · {r.machine.nome}
+                        </b>
+                        <small className="block muted">
+                          {r.machine.marca} · {r.machine.tipo}
+                        </small>
+                      </div>
                     ),
                   },
-                  { label: "Dias imputados", render: (r) => r.daysUsed, align: "right" },
-                  { label: "Transferência", render: (r) => money(r.transfer), align: "right" },
-                  { label: "Custo interno", render: (r) => money(r.internal), align: "right" },
-                  { label: "Manutenção", render: (r) => money(r.maintenance), align: "right" },
-                  { label: "Aquisição", render: (r) => money(r.acquisition), align: "right" },
-                  { label: "Recuperado", render: (r) => `${num(r.recovery * 100)}%`, align: "right" },
-                  { label: "Resultado", render: (r) => <span style={{color:r.result < 0 ? "#ae4949" : "#487a60"}}>{money(r.result)}</span>, align: "right" },
+                  {
+                    label: "Situação",
+                    hint: "Em obra significa que está alocado neste momento. Caso contrário mostra o estado registado no armazém.",
+                    render: (r) => <Badge>{r.location}</Badge>,
+                  },
+                  {
+                    label: "Dias",
+                    hint: "Dias do período selecionado em que o equipamento esteve alocado a uma obra.",
+                    render: (r) => (r.daysUsed ? r.daysUsed : "—"),
+                    align: "right",
+                  },
+                  {
+                    label: "Valor às obras",
+                    hint: "Valor cobrado às obras no período: dias alugados multiplicado pela tarifa diária.",
+                    render: (r) => money(r.transfer),
+                    align: "right",
+                  },
+                  {
+                    label: "Custo interno",
+                    hint: "Custo estimado para a empresa no período: dias alugados multiplicado pelo custo interno diário.",
+                    render: (r) => money(r.internal),
+                    align: "right",
+                  },
+                  {
+                    label: "Resultado",
+                    hint: "Valor às obras menos custo interno, apenas no período. Não inclui manutenção nem amortização.",
+                    render: (r) => (
+                      <span
+                        style={{
+                          color: r.result < 0 ? "#ae4949" : "#487a60",
+                        }}
+                      >
+                        {money(r.result)}
+                      </span>
+                    ),
+                    align: "right",
+                  },
+                  {
+                    label: "Retorno",
+                    hint: "Percentagem do valor de aquisição já recuperada pelas transferências para obras, em todo o histórico. O valor por baixo é o preço de compra.",
+                    render: (r) => (
+                      <div>
+                        <b>
+                          {r.recovery === null
+                            ? "—"
+                            : `${num(r.recovery * 100)}%`}
+                        </b>
+                        <small className="block muted">
+                          de {money(r.acquisition)}
+                        </small>
+                      </div>
+                    ),
+                    align: "right",
+                  },
+                ]}
+                footer={(items) => [
+                  <b key="total">Total</b>,
+                  "",
+                  `${sum(items, (r) => r.daysUsed)} dias`,
+                  money(sum(items, (r) => r.transfer)),
+                  money(sum(items, (r) => r.internal)),
+                  money(sum(items, (r) => r.result)),
+                  "",
                 ]}
               />
               <Note>
-                Aquisição, custo interno diário e manutenção são valores demo.
-                A rentabilidade definitiva exige método de amortização, custos
-                reais de manutenção e regras de transferência confirmadas.
+                As colunas até «Resultado» referem-se apenas ao período
+                selecionado. «Retorno» é histórico: compara tudo o que já foi
+                transferido para obras com o valor de aquisição. O custo interno
+                é uma estimativa demo, a validar com a ACRS. Clique num
+                equipamento para ver os encargos que o compõem.
               </Note>
             </>
           )}
