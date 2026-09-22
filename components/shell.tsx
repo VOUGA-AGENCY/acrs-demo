@@ -143,15 +143,19 @@ export function Shell({ children }: { children: ReactNode }) {
     links.find((l) => l[1] === path)?.[0] ??
     (parts[0] === "obras" ? "Detalhe da obra" : "Operação");
   const visible =
-    profile === "Vítor"
+    authUser?.perfil === "secretariado"
       ? new Set([
           "Dashboard",
           "Obras",
           "Armazém",
-          "Visão geral",
           "Recursos",
           "Movimentos",
           "Tablet",
+          "Faturas & Compras",
+          "Pessoas",
+          "Ponto",
+          "Colaboradores",
+          "Empresas",
         ])
       : profile === "Gerência"
         ? new Set(["Dashboard", "Obras", "Controlo"])

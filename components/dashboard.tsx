@@ -17,11 +17,11 @@ import { money, num, sum, date } from "@/lib/format";
 import { stock, workFinancials } from "@/lib/engine";
 import { CostBreakdown } from "./costs";
 export function Dashboard() {
-  const { state, ledger, profile } = useStore();
+  const { state, ledger, profile, authUser } = useStore();
   const router = useRouter();
-  const operational = profile === "Vítor";
+  const operational = authUser?.perfil === "secretariado";
   const management = profile === "Gerência";
-  const john = profile === "João Catalão";
+  const john = authUser?.perfil === "admin" || (!authUser && profile === "João Catalão");
   const totalCost = sum(ledger, (c) => c.valor);
   const totalBudget = sum(state.budgets, (b) => b.valor);
   const active = state.works.filter((w) => w.estado === "Em curso");
@@ -196,7 +196,7 @@ export function Dashboard() {
           />
           <Metric
             label="Margem agregada"
-            value={`${num(((totalBudget - totalCost) / totalBudget) * 100)}%`}
+            value={totalBudget > 0 ? `${num(((totalBudget - totalCost) / totalBudget) * 100)}%` : "—"}
             hint="Sobre custos registados"
             icon={<TriangleAlert size={18} />}
             accent="positive"

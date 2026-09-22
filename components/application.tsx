@@ -13,10 +13,12 @@ import { Resources, WarehouseOverview } from "./resources";
 import { useStore } from "./store";
 export function Application({ segments = [] }: { segments?: string[] }) {
   const path = segments.join("/");
-  const { profile, isLoaded } = useStore();
+  const { profile, authUser, isLoaded } = useStore();
+  const isTerreno = authUser?.perfil === "terreno" || profile === "Campo";
+  const isArmazem = authUser?.perfil === "armazem" || profile === "Armazém";
   const switchingProfile =
-    (profile === "Campo" && path !== "campo") ||
-    (profile === "Armazém" && path !== "armazem/tablet");
+    (isTerreno && path !== "campo") ||
+    (isArmazem && path !== "armazem/tablet");
   const routes: Record<string, React.ReactNode> = {
     "": <Dashboard />,
     obras: <Works />,
@@ -32,7 +34,15 @@ export function Application({ segments = [] }: { segments?: string[] }) {
     "pessoas/ponto": <Point />,
     "pessoas/colaboradores": <People />,
     "pessoas/empresas": <Companies />,
-    orcamentos: <Budgets />,
+    orcamentos:
+      authUser?.perfil === "secretariado" ? (
+        <PageHeader
+          title="Acesso Reservado à Administração"
+          description="A informação de margens e orçamentos comerciais está reservada à gerência da ACRS."
+        />
+      ) : (
+        <Budgets />
+      ),
     controlo: <Control />,
     configuracao: <Settings />,
     campo: <FieldPage />,
@@ -46,9 +56,9 @@ export function Application({ segments = [] }: { segments?: string[] }) {
         </div>
       ) : switchingProfile ? (
         <p role="status">A abrir a área de {profile.toLowerCase()}…</p>
-      ) : profile === "Campo" ? (
+      ) : isTerreno ? (
         <FieldPage />
-      ) : profile === "Armazém" ? (
+      ) : isArmazem ? (
         <Tablet />
       ) : segments[0] === "obras" && segments[1] ? (
         <WorkDetail id={segments[1]} />

@@ -47,8 +47,8 @@ export async function GET() {
       return NextResponse.json({ error: "Falha ao obter dados da base de dados" }, { status: 502 });
     }
 
-    // Proteger orçamentos confidenciais se o utilizador for de armazém ou terreno (RLS enforcement)
-    if (userRole === "armazem" || userRole === "terreno") {
+    // Proteger orçamentos confidenciais se o utilizador for de armazém, terreno ou secretariado (RLS enforcement)
+    if (userRole === "armazem" || userRole === "terreno" || userRole === "secretariado") {
       state.budgets = [];
     }
 

@@ -195,8 +195,9 @@ export function WorkTable({
   rows: Work[];
   compact?: boolean;
 }) {
-  const { state, ledger } = useStore();
+  const { state, ledger, profile, authUser } = useStore();
   const router = useRouter();
+  const isSecretariado = authUser?.perfil === "secretariado";
   return (
     <Table
       rows={rows}
@@ -232,7 +233,7 @@ export function WorkTable({
           : []),
         {
           label: "Valor orçamentado",
-          render: (w) => money(workFinancials(state, w.id, ledger).budget),
+          render: (w) => isSecretariado ? "—" : money(workFinancials(state, w.id, ledger).budget),
           align: "right",
         },
         {
@@ -244,7 +245,7 @@ export function WorkTable({
         },
         {
           label: "Custo máximo",
-          render: (w) => money(workFinancials(state, w.id, ledger).max),
+          render: (w) => isSecretariado ? "—" : money(workFinancials(state, w.id, ledger).max),
           align: "right",
         },
         {
@@ -263,7 +264,9 @@ export function WorkTable({
         {
           label: "Margem atual",
           render: (w) =>
-            `${num(workFinancials(state, w.id, ledger).margin * 100, 1)}%`,
+            isSecretariado
+              ? "—"
+              : `${num(workFinancials(state, w.id, ledger).margin * 100, 1)}%`,
           align: "right",
         },
         {

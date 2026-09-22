@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   Plus,
   ChevronLeft,
@@ -313,8 +313,25 @@ export function TimeEditor({
 }
 export function Point() {
   const { state } = useStore();
-  const [week, setWeek] = useState(() => monday(today()));
+
+  const latestDateWithData = useMemo(() => {
+    if (!state.times || state.times.length === 0) return null;
+    let maxDate = "";
+    for (const t of state.times) {
+      if (t.data && t.data > maxDate) maxDate = t.data;
+    }
+    return maxDate || null;
+  }, [state.times]);
+
+  const latestWeekWithData = useMemo(() => {
+    return latestDateWithData ? monday(latestDateWithData) : null;
+  }, [latestDateWithData]);
+
+  const [userWeek, setUserWeek] = useState<string | null>(null);
+  const week = userWeek ?? (latestWeekWithData ?? monday(today()));
+
   const [q, setQ] = useState("");
+  const [filterMode, setFilterMode] = useState<"com_horas" | "todos">("com_horas");
   const [selected, setSelected] = useState<{
     person: Person;
     day: string;
@@ -325,10 +342,16 @@ export function Point() {
   const weekdays = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
   const dates = weekdays.map((_, i) => addDays(week, i));
   const periods = state.times.filter((t) => dates.includes(t.data));
+
+  const hasPeriods = periods.length > 0;
+  const effectiveFilterMode = hasPeriods ? filterMode : "todos";
+
   const people = state.people.filter(
     (p) =>
       includes(p.nome, q) &&
-      (periods.some((t) => t.pessoaId === p.id) || Boolean(q)),
+      (effectiveFilterMode === "todos" ||
+        Boolean(q) ||
+        periods.some((t) => t.pessoaId === p.id)),
   );
   return (
     <>
@@ -346,6 +369,7 @@ export function Point() {
         <Metric
           label="Pessoas no período"
           value={new Set(periods.map((t) => t.pessoaId)).size}
+          hint={hasPeriods ? `${num(sum(periods, (t) => t.horas))} h total` : "Sem registos na semana"}
         />
         <Metric
           label="Horas de trabalho"
@@ -363,10 +387,27 @@ export function Point() {
           onChange={setQ}
           placeholder="Pesquisar colaborador…"
         />
+        <Select
+          label="Filtro de colaboradores"
+          value={effectiveFilterMode}
+          onChange={(v) => setFilterMode(v as "com_horas" | "todos")}
+          options={[
+            {
+              value: "com_horas",
+              label: hasPeriods
+                ? `Com registos (${new Set(periods.map((t) => t.pessoaId)).size})`
+                : "Com registos (0)",
+            },
+            {
+              value: "todos",
+              label: `Todos os colaboradores (${state.people.length})`,
+            },
+          ]}
+        />
         <div className="week-selector">
           <button
             aria-label="Semana anterior"
-            onClick={() => setWeek(addDays(week, -7))}
+            onClick={() => setUserWeek(addDays(week, -7))}
           >
             <ChevronLeft size={18} />
           </button>
@@ -375,18 +416,67 @@ export function Point() {
           </b>
           <button
             aria-label="Semana seguinte"
-            onClick={() => setWeek(addDays(week, 7))}
+            onClick={() => setUserWeek(addDays(week, 7))}
           >
             <ChevronRight size={18} />
           </button>
         </div>
-        <Button secondary onClick={() => setWeek(monday(today()))}>
-          Esta semana
-        </Button>
+        <div style={{ display: "flex", gap: "6px" }}>
+          {latestWeekWithData && week !== latestWeekWithData && (
+            <Button
+              secondary
+              onClick={() => setUserWeek(latestWeekWithData)}
+              title={`Ir para a última semana com dados (${date(latestWeekWithData).slice(0, 5)})`}
+            >
+              Última com dados
+            </Button>
+          )}
+          <Button
+            secondary={week !== monday(today())}
+            onClick={() => setUserWeek(monday(today()))}
+          >
+            Esta semana
+          </Button>
+        </div>
       </div>
+      {!hasPeriods && (
+        <div
+          style={{
+            margin: "0 0 16px",
+            padding: "12px 16px",
+            background: "var(--surface-subtle, #f8fafc)",
+            border: "1px solid #e2e8f0",
+            borderRadius: "8px",
+            fontSize: "13px",
+            color: "var(--muted, #64748b)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "12px",
+            flexWrap: "wrap",
+          }}
+        >
+          <span>
+            ℹ Não existem registos de ponto entre <b>{date(week)}</b> e{" "}
+            <b>{date(dates[6])}</b>. A apresentar todos os colaboradores para
+            permitir novos registos através do botão <b>+</b> no respetivo dia.
+          </span>
+          {latestWeekWithData && week !== latestWeekWithData && (
+            <Button secondary onClick={() => setUserWeek(latestWeekWithData)}>
+              Ver semana com dados ({date(latestWeekWithData).slice(0, 5)})
+            </Button>
+          )}
+        </div>
+      )}
       <Table
         rows={people}
+        rowKey={(p) => p.id}
         pageSize={15}
+        empty={
+          q
+            ? `Nenhum colaborador encontrado para "${q}".`
+            : "Nenhum colaborador registado no sistema."
+        }
         columns={[
           {
             label: "Pessoa",
@@ -437,9 +527,10 @@ export function Point() {
         ]}
       />
       <Note>
-        Abre na última semana com histórico selecionado. Horas e datas reais;
-        custos calculados por uma política demonstrativa. O registo continua a
-        ser feito pela administração.
+        {latestWeekWithData && week === latestWeekWithData
+          ? "A visualizar a última semana com histórico registado. Horas e datas reais sincronizadas com o Supabase."
+          : `A visualizar a semana de ${date(week)} a ${date(dates[6])}.`}
+        {" "}O registo continua a ser feito pela administração através de cada célula diária (+) ou pelo botão superior.
       </Note>
       {selected && (
         <TimeEditor {...selected} onClose={() => setSelected(null)} />
@@ -462,10 +553,14 @@ export function Point() {
             <Button
               disabled={!newPerson}
               onClick={() => {
+                const targetDay = dates.includes(today()) ? today() : week;
+                const existing = state.times.filter(
+                  (t) => t.pessoaId === newPerson && t.data === targetDay,
+                );
                 setSelected({
                   person: state.people.find((p) => p.id === newPerson)!,
-                  day: today(),
-                  entries: [],
+                  day: targetDay,
+                  entries: existing,
                 });
                 setAdding(false);
               }}
