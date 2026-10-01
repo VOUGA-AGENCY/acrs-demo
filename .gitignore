@@ -9,7 +9,7 @@ tmp/
 
 # Não incluir ficheiros Excel ou Power BI
 *.xls
-*.xlsx
+
 *.xlsm
 *.xlsb
 *.xlt

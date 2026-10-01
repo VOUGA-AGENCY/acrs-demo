@@ -3,14 +3,43 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({ request });
-
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  // Se o Supabase não estiver configurado, permitir acesso (modo local)
+  // 1. FAIL-CLOSED: Se variáveis de ambiente essenciais faltarem, bloquear imediatamente
   if (!url || !anonKey) {
-    return supabaseResponse;
+    console.error("ERRO CRÍTICO DE SEGURANÇA: NEXT_PUBLIC_SUPABASE_URL ou NEXT_PUBLIC_SUPABASE_ANON_KEY em falta.");
+    return new NextResponse(
+      JSON.stringify({ error: "Erro de configuração de segurança no servidor." }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+  }
+
+  let supabaseResponse = NextResponse.next({ request });
+
+  // 2. INJETAR CABEÇALHOS DE SEGURANÇA DE PRODUÇÃO
+  const securityHeaders = {
+    "X-Frame-Options": "DENY",
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+    "Permissions-Policy": "camera=(self), microphone=(), geolocation=()",
+    "Content-Security-Policy": [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' blob: data: https:",
+      "font-src 'self' data:",
+      "connect-src 'self' https: wss:",
+      "frame-ancestors 'none'",
+    ].join("; "),
+  };
+
+  for (const [key, value] of Object.entries(securityHeaders)) {
+    supabaseResponse.headers.set(key, value);
   }
 
   const supabase = createServerClient(url, anonKey, {
@@ -23,6 +52,9 @@ export async function middleware(request: NextRequest) {
           request.cookies.set(name, value),
         );
         supabaseResponse = NextResponse.next({ request });
+        for (const [key, value] of Object.entries(securityHeaders)) {
+          supabaseResponse.headers.set(key, value);
+        }
         cookiesToSet.forEach(({ name, value, options }) =>
           supabaseResponse.cookies.set(name, value, options),
         );
@@ -36,26 +68,38 @@ export async function middleware(request: NextRequest) {
 
   const path = request.nextUrl.pathname;
 
-  // Permitir acesso à página de login e rotas de autenticação sem sessão
+  // 3. Rotas públicas permitidas sem sessão (Login e Auth)
   if (path.startsWith("/login") || path.startsWith("/api/auth")) {
-    // Se já está autenticado e tenta aceder ao /login, redirecionar para /
+    // Se o utilizador já tem sessão e tenta aceder ao /login, redirecionar para a página principal
     if (user && path.startsWith("/login")) {
-      return NextResponse.redirect(new URL("/", request.url));
+      const redirectUrl = new URL("/", request.url);
+      const res = NextResponse.redirect(redirectUrl);
+      for (const [key, value] of Object.entries(securityHeaders)) {
+        res.headers.set(key, value);
+      }
+      return res;
     }
     return supabaseResponse;
   }
 
-  // Sem utilizador autenticado — proteger a rota
+  // 4. Sem utilizador autenticado: Bloquear acesso (401 para APIs, redirect para páginas)
   if (!user) {
-    // Rotas API devolvem 401
     if (path.startsWith("/api")) {
-      return NextResponse.json(
-        { error: "Não autenticado" },
+      const res = NextResponse.json(
+        { error: "Acesso não autorizado. Inicie sessão." },
         { status: 401 },
       );
+      for (const [key, value] of Object.entries(securityHeaders)) {
+        res.headers.set(key, value);
+      }
+      return res;
     }
-    // Páginas são redirecionadas para /login
-    return NextResponse.redirect(new URL("/login", request.url));
+    const loginUrl = new URL("/login", request.url);
+    const res = NextResponse.redirect(loginUrl);
+    for (const [key, value] of Object.entries(securityHeaders)) {
+      res.headers.set(key, value);
+    }
+    return res;
   }
 
   return supabaseResponse;

@@ -11,6 +11,8 @@ export type Work = {
   estado: string;
   dataInicio?: string;
   dataFim?: string | null;
+  quemPodeMovimentar?: string | null;
+  contentorEmObra?: boolean;
   source: Source;
 };
 export type Article = {
@@ -45,6 +47,7 @@ export type Company = {
   id: string;
   nome: string;
   tipo: "Interna" | "Subcontratada";
+  nif?: string | null;
   source: Source;
 };
 export type TimeEntry = {
@@ -75,6 +78,7 @@ export type Invoice = {
   data: string;
   fornecedor: string;
   nifFornecedor?: string;
+  nifEmpresa?: string;
   numero: string;
   obraId: string;
   categoria: string | null;
@@ -110,6 +114,7 @@ export type InvoiceItem = {
 export type OCRResult = {
   fornecedor?: string;
   nifFornecedor?: string;
+  nifEmpresa?: string;
   categoria?: string;
   numero?: string;
   data?: string;
@@ -153,7 +158,13 @@ export type Machine = {
   custoDia: number;
   custoInternoDia?: number;
   custoAquisicao?: number;
+  dataAquisicao?: string | null;
+  periodoAmortizacao?: number | null;
+  valorResidual?: number | null;
   manutencaoAcumulada?: number;
+  periodicidadeInspecao?: number | null;
+  ultimaInspecao?: string | null;
+  proximaInspecao?: string | null;
   tipo: "Máquina" | "Caixa";
   source: Source;
 };
