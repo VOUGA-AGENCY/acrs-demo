@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   RotateCcw,
   Calculator,
+  Package,
 } from "lucide-react";
 import { useStore } from "./store";
 import {
@@ -31,10 +32,25 @@ import {
   Tabs,
 } from "./ui";
 import { CostBreakdown, CostDetail, CostTable } from "./costs";
-import { days, effectivePolicy, timeCost, workFinancials } from "@/lib/engine";
+import {
+  applyMovement,
+  canManageCentralWarehouse,
+  canManageWorkContainer,
+  containerArticles,
+  containerStock,
+  days,
+  effectivePolicy,
+  stock,
+  timeCost,
+  workFinancials,
+} from "@/lib/engine";
 import { date, includes, money, num, qty, sum, today, uid } from "@/lib/format";
-import type { Budget, Cost, Invoice, Work } from "@/types/index";
-import { persistBudgetToSupabase, persistWorkToSupabase } from "@/lib/supabase/service";
+import type { Budget, Cost, Invoice, Movement, Work } from "@/types/index";
+import {
+  persistBudgetToSupabase,
+  persistMovementToSupabase,
+  persistWorkToSupabase,
+} from "@/lib/supabase/service";
 import { InvoiceDrawer } from "./invoices";
 import { BudgetForm } from "./budgets";
 
@@ -56,6 +72,8 @@ function WorkForm({ work, onClose }: { work?: Work; onClose: () => void }) {
   const [status, setStatus] = useState(work?.estado ?? "Em curso");
   const [start, setStart] = useState(work?.dataInicio ?? "");
   const [end, setEnd] = useState(work?.dataFim ?? "");
+  const [authorizedUsers, setAuthorizedUsers] = useState(work?.quemPodeMovimentar ?? "");
+  const [hasContainer, setHasContainer] = useState(work?.contentorEmObra ?? false);
   const [budgetValue, setBudgetValue] = useState(15000);
   const [budgetMargin, setBudgetMargin] = useState(20);
   const [error, setError] = useState("");
@@ -83,6 +101,8 @@ function WorkForm({ work, onClose }: { work?: Work; onClose: () => void }) {
       estado: status,
       dataInicio: start || undefined,
       dataFim: effectiveEnd,
+      quemPodeMovimentar: authorizedUsers.trim() || undefined,
+      contentorEmObra: hasContainer,
       source: work?.source ?? "ACRS",
     };
     try {
@@ -154,6 +174,22 @@ function WorkForm({ work, onClose }: { work?: Work; onClose: () => void }) {
           <Field label="Data de fim">
             <input type="date" value={end ?? ""} onChange={(e) => setEnd(e.target.value)} />
           </Field>
+          <Field label="Contentor na obra">
+            <select
+              value={hasContainer ? "sim" : "nao"}
+              onChange={(e) => setHasContainer(e.target.value === "sim")}
+            >
+              <option value="nao">Nao</option>
+              <option value="sim">Sim</option>
+            </select>
+          </Field>
+          <Field label="Quem pode movimentar material">
+            <input
+              placeholder="Ex: armazem@acrs.pt; encarregado@acrs.pt"
+              value={authorizedUsers}
+              onChange={(e) => setAuthorizedUsers(e.target.value)}
+            />
+          </Field>
           {!work && (
             <>
               <Field label="Valor orçamentado inicial (€)">
@@ -218,6 +254,7 @@ export function WorkTable({
                   {w.cliente === "Por confirmar"
                     ? "Cliente por confirmar"
                     : w.cliente}
+                  {w.contentorEmObra ? " (Contentor na obra)" : ""}
                 </small>
               </div>
             </div>
@@ -376,8 +413,245 @@ export function Works() {
     </>
   );
 }
+
+export function ContainerMovementModal({
+  work,
+  initialMode = "consume",
+  initialArticleId = "",
+  onClose,
+}: {
+  work: Work;
+  initialMode?: "transfer" | "consume" | "return";
+  initialArticleId?: string;
+  onClose: () => void;
+}) {
+  const { state, setState, profile, authUser, notify } = useStore();
+  const [mode, setMode] = useState<"transfer" | "consume" | "return">(initialMode);
+  const [articleId, setArticleId] = useState(initialArticleId);
+  const [quantity, setQuantity] = useState(1);
+  const [effectiveDate, setEffectiveDate] = useState(today());
+  const [error, setError] = useState("");
+  const [saving, setSaving] = useState(false);
+
+  const containerItemsList = containerArticles(state, work.id);
+  const canCentral = canManageCentralWarehouse(profile, authUser);
+  const canContainer = canManageWorkContainer(work, profile, authUser);
+
+  const availableArticles =
+    mode === "transfer"
+      ? state.articles.filter((a) => stock(state, a.id) > 0)
+      : containerItemsList.map((ci) => ci.article);
+
+  const selectedArticle = state.articles.find((a) => a.id === articleId);
+  const maxAvailable =
+    mode === "transfer"
+      ? (selectedArticle ? stock(state, selectedArticle.id) : 0)
+      : (selectedArticle ? containerStock(state, work.id, selectedArticle.id) : 0);
+
+  const unitRate =
+    selectedArticle
+      ? (state.settings.valoresInternos[selectedArticle.id] ?? selectedArticle.precoUnitario)
+      : 0;
+
+  async function handleSave() {
+    if (!selectedArticle) {
+      setError("Selecione um artigo.");
+      return;
+    }
+    if (quantity <= 0 || quantity > maxAvailable) {
+      setError(`Indique uma quantidade valida (maximo ${maxAvailable}).`);
+      return;
+    }
+    if (mode === "transfer" && !canCentral) {
+      setError("Apenas a equipa da ferramentaria/armazem central ou administradores podem autorizar saidas do armazem central.");
+      return;
+    }
+    if (mode === "consume" && !canContainer) {
+      setError(`Apenas o responsavel pelo contentor (${work.quemPodeMovimentar || "administracao"}) pode registar consumos deste contentor.`);
+      return;
+    }
+
+    setSaving(true);
+    setError("");
+
+    const movementType =
+      mode === "transfer"
+        ? ("Transferência Contentor" as const)
+        : mode === "consume"
+          ? ("Consumo Contentor" as const)
+          : ("Retorno Contentor" as const);
+
+    const mov: Movement = {
+      id: uid("mov"),
+      tipo: movementType,
+      artigoId: selectedArticle.id,
+      obraId: work.id,
+      descricao: `${selectedArticle.descricao} - ${selectedArticle.codigoACRS}`,
+      quantidade: quantity,
+      valorUnitario: unitRate,
+      data: effectiveDate,
+      registadoEm: new Date().toISOString(),
+      utilizador: authUser?.nome || profile || "Utilizador",
+      source: "demo",
+    };
+
+    try {
+      const nextState = applyMovement(state, mov);
+      await persistMovementToSupabase(mov, profile);
+      setState(nextState);
+      notify(
+        mode === "transfer"
+          ? "Material transferido para o contentor da obra. Custo mantido pendente (sem encargo imediato)."
+          : mode === "consume"
+            ? "Consumo do contentor registado com sucesso. Custo de materiais imputado a obra."
+            : "Material devolvido do contentor ao armazem central.",
+      );
+      onClose();
+    } catch (err: any) {
+      setError(err.message || "Erro ao registar movimento.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <Modal
+      title={
+        mode === "transfer"
+          ? "Transferir para Contentor"
+          : mode === "consume"
+            ? "Registar Consumo em Obra"
+            : "Devolver ao Armazem Central"
+      }
+      onClose={onClose}
+    >
+      <div className="modal-body">
+        <div className="choice-row">
+          <button
+            type="button"
+            className={mode === "consume" ? "active" : ""}
+            onClick={() => {
+              setMode("consume");
+              setArticleId("");
+              setQuantity(1);
+            }}
+          >
+            Consumo em Obra
+          </button>
+          <button
+            type="button"
+            className={mode === "transfer" ? "active" : ""}
+            onClick={() => {
+              setMode("transfer");
+              setArticleId("");
+              setQuantity(1);
+            }}
+          >
+            Entrada no Contentor
+          </button>
+          <button
+            type="button"
+            className={mode === "return" ? "active" : ""}
+            onClick={() => {
+              setMode("return");
+              setArticleId("");
+              setQuantity(1);
+            }}
+          >
+            Devolucao ao Armazem
+          </button>
+        </div>
+
+        <Note tone={mode === "consume" ? "amber" : "neutral"}>
+          {mode === "transfer"
+            ? "Transferencia do armazem central para o contentor da obra. O material fica indisponivel no armazem principal, mas NAO tem custo alocado a obra neste momento."
+            : mode === "consume"
+              ? "Saida do contentor para aplicacao na obra. O custo de material sera imediatamente imputado a obra."
+              : "Retorno do material do contentor de volta ao stock do armazem central."}
+        </Note>
+
+        <Field label="Artigo">
+          <select
+            value={articleId}
+            onChange={(e) => {
+              setArticleId(e.target.value);
+              setQuantity(1);
+            }}
+          >
+            <option value="">Selecionar artigo...</option>
+            {availableArticles.map((a) => {
+              const qtyAvail =
+                mode === "transfer"
+                  ? stock(state, a.id)
+                  : containerStock(state, work.id, a.id);
+              return (
+                <option key={a.id} value={a.id}>
+                  {a.codigoACRS} - {a.descricao} ({qty(qtyAvail, a)} disponiveis)
+                </option>
+              );
+            })}
+          </select>
+        </Field>
+
+        {selectedArticle && (
+          <div className="form-grid">
+            <Field label={`Quantidade (${selectedArticle.unidade ?? "un."})`}>
+              <input
+                type="number"
+                min={selectedArticle.precisao === 0 ? "1" : "0.001"}
+                max={maxAvailable}
+                step={selectedArticle.precisao === 0 ? "1" : "0.01"}
+                value={quantity}
+                onChange={(e) => setQuantity(Number(e.target.value))}
+              />
+            </Field>
+            <Field label="Data efetiva">
+              <input
+                type="date"
+                value={effectiveDate}
+                onChange={(e) => setEffectiveDate(e.target.value)}
+              />
+            </Field>
+          </div>
+        )}
+
+        {selectedArticle && (
+          <DetailList
+            items={[
+              ["Stock disponivel", qty(maxAvailable, selectedArticle)],
+              ["Preco unitario", money(unitRate)],
+              [
+                mode === "consume" ? "Custo a imputar a obra" : "Valor do material",
+                money(quantity * unitRate),
+              ],
+              [
+                "Responsavel pelo contentor",
+                work.quemPodeMovimentar || "Encarregado da obra",
+              ],
+            ]}
+          />
+        )}
+
+        {error && <Note tone="red">{error}</Note>}
+
+        <div className="form-actions">
+          <Button secondary onClick={onClose} disabled={saving}>
+            Cancelar
+          </Button>
+          <Button
+            onClick={handleSave}
+            disabled={saving || !selectedArticle || quantity <= 0 || quantity > maxAvailable}
+          >
+            {saving ? "A guardar..." : mode === "consume" ? "Confirmar Consumo" : "Confirmar Movimento"}
+          </Button>
+        </div>
+      </div>
+    </Modal>
+  );
+}
+
 export function WorkDetail({ id }: { id: string }) {
-  const { state, setState, ledger, profile, notify } = useStore();
+  const { state, setState, ledger, profile, authUser, notify } = useStore();
   const router = useRouter();
   const [tab, setTab] = useState("Resumo");
   const [category, setCategory] = useState("");
@@ -386,6 +660,9 @@ export function WorkDetail({ id }: { id: string }) {
   const [q, setQ] = useState("");
   const [editingWork, setEditingWork] = useState(false);
   const [editingBudget, setEditingBudget] = useState(false);
+  const [containerModalOpen, setContainerModalOpen] = useState(false);
+  const [containerModalMode, setContainerModalMode] = useState<"transfer" | "consume" | "return">("consume");
+  const [containerModalArticle, setContainerModalArticle] = useState("");
   const work = state.works.find((w) => w.id === id);
   if (!work)
     return (
@@ -420,7 +697,19 @@ export function WorkDetail({ id }: { id: string }) {
           <span className="inline-meta">
             <MapPin size={14} />
             {work.local}
-            <span>·</span>{work.cliente}
+            <span> - </span>{work.cliente}
+            {work.contentorEmObra && (
+              <>
+                <span> - </span>
+                <Badge tone="blue">Contentor na obra</Badge>
+              </>
+            )}
+            {work.quemPodeMovimentar && (
+              <>
+                <span> - </span>
+                <span>Movimento autorizado: {work.quemPodeMovimentar}</span>
+              </>
+            )}
           </span>
         }
         actions={
@@ -495,7 +784,7 @@ export function WorkDetail({ id }: { id: string }) {
         <Metric
           label="Valor orçamentado"
           value={money(f.budget)}
-          hint="Valor comercial da obra"
+          hint={f.extraBudget && f.extraBudget > 0 ? `Base: ${money(f.baseBudget)} + Extra: ${money(f.extraBudget)}` : "Valor comercial da obra"}
         />
         <Metric
           label="Margem alvo"
@@ -546,6 +835,7 @@ export function WorkDetail({ id }: { id: string }) {
           "Materiais",
           "Equipamentos",
           "Faturas",
+          ...(work.contentorEmObra ? ["Contentor"] : []),
           "Valor orçamentado",
         ]}
         value={tab}
@@ -629,6 +919,10 @@ export function WorkDetail({ id }: { id: string }) {
                   <div>
                     <b>{allocations.filter((a) => !a.devolucao).length}</b>
                     <span>Equipamentos em obra</span>
+                  </div>
+                  <div>
+                    <b>{work.contentorEmObra ? "Sim" : "Nao"}</b>
+                    <span>Contentor na obra</span>
                   </div>
                 </div>
               </div>
@@ -827,17 +1121,36 @@ export function WorkDetail({ id }: { id: string }) {
               align: "right",
             },
             {
-              label: "Total",
+              label: "Custo na obra",
               render: (m) =>
-                money(
-                  m.quantidade *
-                    m.valorUnitario *
-                    (m.tipo === "Devolução" ? -1 : 1),
-                ),
+                m.tipo === "Transferência Contentor" || m.tipo === "Retorno Contentor"
+                  ? "0,00 € (Pendente no contentor)"
+                  : money(
+                      m.quantidade *
+                        m.valorUnitario *
+                        (m.tipo === "Devolução" ? -1 : 1),
+                    ),
               align: "right",
             },
             { label: "Data", render: (m) => date(m.data) },
-            { label: "Origem", render: (m) => <Badge>{m.tipo}</Badge> },
+            {
+              label: "Origem",
+              render: (m) => (
+                <Badge
+                  tone={
+                    m.tipo === "Consumo Contentor"
+                      ? "green"
+                      : m.tipo === "Transferência Contentor"
+                        ? "blue"
+                        : m.tipo === "Devolução"
+                          ? "amber"
+                          : "neutral"
+                  }
+                >
+                  {m.tipo}
+                </Badge>
+              ),
+            },
           ]}
         />
       )}
@@ -914,6 +1227,213 @@ export function WorkDetail({ id }: { id: string }) {
           />
         </>
       )}
+      {tab === "Contentor" && work.contentorEmObra && (
+        <>
+          <div className="summary-strip" style={{ marginBottom: "16px" }}>
+            <span>
+              <Package size={16} />
+              <b>Contentor na Obra {work.numero}</b>
+              {work.quemPodeMovimentar && (
+                <span> - Responsavel autorizado: <b>{work.quemPodeMovimentar}</b></span>
+              )}
+            </span>
+            <div style={{ display: "flex", gap: "8px" }}>
+              <Button
+                onClick={() => {
+                  setContainerModalMode("consume");
+                  setContainerModalOpen(true);
+                }}
+              >
+                <Plus size={15} /> Registar consumo em obra
+              </Button>
+              <Button
+                secondary
+                onClick={() => {
+                  setContainerModalMode("transfer");
+                  setContainerModalOpen(true);
+                }}
+              >
+                <ArrowUpRight size={15} /> Transferir do armazem
+              </Button>
+            </div>
+          </div>
+
+          <div className="metrics four">
+            <Metric
+              label="Artigos em stock"
+              value={containerArticles(state, id).length}
+              hint="Referencias no contentor"
+            />
+            <Metric
+              label="Valor em transito"
+              value={money(sum(containerArticles(state, id), (ci) => ci.valorTotal))}
+              hint="Sem custo imputado a obra"
+            />
+            <Metric
+              label="Consumos efetuados"
+              value={
+                state.movements.filter(
+                  (m) => m.obraId === id && m.tipo === "Consumo Contentor",
+                ).length
+              }
+              hint="Saidas para a obra"
+            />
+            <Metric
+              label="Custo imputado"
+              value={money(
+                sum(
+                  state.movements.filter(
+                    (m) => m.obraId === id && m.tipo === "Consumo Contentor",
+                  ),
+                  (m) => m.quantidade * m.valorUnitario,
+                ),
+              )}
+              hint="Encargo acumulado da obra"
+              accent="orange"
+            />
+          </div>
+
+          <Panel
+            title="Stock atual no contentor"
+            subtitle="Materiais fisicamente disponiveis no contentor desta obra"
+          >
+            {containerArticles(state, id).length === 0 ? (
+              <p className="muted" style={{ padding: "16px" }}>
+                O contentor nao tem materiais em stock no momento. Transfira artigos do armazem central para carregar o contentor.
+              </p>
+            ) : (
+              <Table
+                rows={containerArticles(state, id)}
+                columns={[
+                  {
+                    label: "Artigo",
+                    render: (item) => (
+                      <div>
+                        <b>{item.article.codigoACRS}</b>
+                        <small className="block muted">{item.article.descricao}</small>
+                      </div>
+                    ),
+                  },
+                  {
+                    label: "Familia",
+                    render: (item) => item.article.familia,
+                  },
+                  {
+                    label: "Em stock",
+                    render: (item) => <b>{qty(item.quantidade, item.article)}</b>,
+                    align: "right",
+                  },
+                  {
+                    label: "Preco unit.",
+                    render: (item) => money(item.valorUnitario),
+                    align: "right",
+                  },
+                  {
+                    label: "Valor total",
+                    render: (item) => money(item.valorTotal),
+                    align: "right",
+                  },
+                  {
+                    label: "Acoes",
+                    render: (item) => (
+                      <div style={{ display: "flex", gap: "6px", justifyContent: "flex-end" }}>
+                        <Button
+                          secondary
+                          onClick={() => {
+                            setContainerModalArticle(item.article.id);
+                            setContainerModalMode("consume");
+                            setContainerModalOpen(true);
+                          }}
+                        >
+                          Consumir
+                        </Button>
+                        <Button
+                          secondary
+                          onClick={() => {
+                            setContainerModalArticle(item.article.id);
+                            setContainerModalMode("return");
+                            setContainerModalOpen(true);
+                          }}
+                        >
+                          Devolver
+                        </Button>
+                      </div>
+                    ),
+                    align: "right",
+                  },
+                ]}
+              />
+            )}
+          </Panel>
+
+          <Panel
+            title="Historico de movimentos do contentor"
+            subtitle="Registo de transferencias do armazem, consumos e retornos"
+          >
+            <Table
+              rows={state.movements.filter(
+                (m) =>
+                  m.obraId === id &&
+                  (m.tipo === "Transferência Contentor" ||
+                    m.tipo === "Consumo Contentor" ||
+                    m.tipo === "Retorno Contentor"),
+              )}
+              columns={[
+                { label: "Data", render: (m) => date(m.data) },
+                {
+                  label: "Tipo",
+                  render: (m) => (
+                    <Badge
+                      tone={
+                        m.tipo === "Consumo Contentor"
+                          ? "green"
+                          : m.tipo === "Transferência Contentor"
+                            ? "blue"
+                            : "amber"
+                      }
+                    >
+                      {m.tipo}
+                    </Badge>
+                  ),
+                },
+                {
+                  label: "Artigo",
+                  render: (m) => m.descricao,
+                },
+                {
+                  label: "Quantidade",
+                  render: (m) =>
+                    qty(
+                      m.quantidade,
+                      state.articles.find((a) => a.id === m.artigoId),
+                    ),
+                  align: "right",
+                },
+                {
+                  label: "Valor unitario",
+                  render: (m) => money(m.valorUnitario),
+                  align: "right",
+                },
+                {
+                  label: "Impacto no custo da obra",
+                  render: (m) => (
+                    <b>
+                      {m.tipo === "Consumo Contentor"
+                        ? `+ ${money(m.quantidade * m.valorUnitario)}`
+                        : "0,00 € (Pendente)"}
+                    </b>
+                  ),
+                  align: "right",
+                },
+                {
+                  label: "Registado por",
+                  render: (m) => m.utilizador,
+                },
+              ]}
+            />
+          </Panel>
+        </>
+      )}
       {tab === "Valor orçamentado" && (
         <Panel
           title="Valor orçamentado da obra"
@@ -927,11 +1447,17 @@ export function WorkDetail({ id }: { id: string }) {
           <div className="panel-body">
             <DetailList
               items={[
-                ["Valor comercial", money(f.budget)],
+                ["Valor comercial total", money(f.budget)],
+                ...(f.extraBudget && f.extraBudget > 0
+                  ? ([
+                      ["Valor inicial (base)", money(f.baseBudget)],
+                      ["Trabalhos adicionais (extra)", money(f.extraBudget)],
+                    ] as [string, React.ReactNode][])
+                  : []),
                 ["Margem alvo", `${num(f.target * 100)}%`],
-                ["Custo máximo", money(f.max)],
+                ["Custo maximo", money(f.max)],
                 ["Custo atual", money(f.cost)],
-                ["Disponível", money(f.available)],
+                ["Disponivel", money(f.available)],
               ]}
             />
             {budget?.modo === "Discriminado" && (
@@ -1006,6 +1532,7 @@ export function WorkDetail({ id }: { id: string }) {
             budget ?? {
               obraId: work.id,
               valor: 15000,
+              valorExtra: 0,
               margem: 0.20,
               modo: "Simples",
               linhas: [],
@@ -1013,6 +1540,17 @@ export function WorkDetail({ id }: { id: string }) {
             }
           }
           onClose={() => setEditingBudget(false)}
+        />
+      )}
+      {containerModalOpen && (
+        <ContainerMovementModal
+          work={work}
+          initialMode={containerModalMode}
+          initialArticleId={containerModalArticle}
+          onClose={() => {
+            setContainerModalOpen(false);
+            setContainerModalArticle("");
+          }}
         />
       )}
     </>

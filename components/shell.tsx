@@ -16,6 +16,7 @@ import {
   ChartNoAxesCombined,
   Settings2,
   ChevronRight,
+  TabletSmartphone,
 } from "lucide-react";
 import { LogOut } from "lucide-react";
 import { useStore } from "./store";
@@ -26,8 +27,9 @@ const links = [
   ["Obras", "/obras", Building2],
   ["Armazém", "/armazem", Package],
   ["Recursos", "/armazem/recursos", Package],
+  ["Máquinas", "/armazem/maquinas", Wrench],
   ["Movimentos", "/armazem/movimentos", ArrowLeftRight],
-  ["Tablet", "/armazem/tablet", Wrench],
+  ["Tablet", "/armazem/tablet", TabletSmartphone],
   ["Faturas & Compras", "/faturas", ReceiptText],
   ["Pessoas", "group", Users],
   ["Ponto", "/pessoas/ponto", Clock3],
@@ -149,6 +151,7 @@ export function Shell({ children }: { children: ReactNode }) {
           "Obras",
           "Armazém",
           "Recursos",
+          "Máquinas",
           "Movimentos",
           "Tablet",
           "Faturas & Compras",
@@ -161,7 +164,7 @@ export function Shell({ children }: { children: ReactNode }) {
         ? new Set(["Dashboard", "Obras", "Controlo"])
         : null;
   const categoryClass = (label: string) =>
-    ["Armazém", "Recursos", "Movimentos", "Tablet"].includes(label)
+    ["Armazém", "Recursos", "Máquinas", "Movimentos", "Tablet"].includes(label)
       ? "nav-warehouse"
       : ["Pessoas", "Ponto", "Colaboradores", "Empresas"].includes(label)
         ? "nav-people"
@@ -186,7 +189,7 @@ export function Shell({ children }: { children: ReactNode }) {
               <Link
                 key={url}
                 href={url}
-                className={`${(url === "/" ? path === "/" : path === url || (url === "/obras" && path.startsWith("/obras/"))) ? "active" : ""} ${["Recursos", "Movimentos", "Tablet", "Ponto", "Colaboradores", "Empresas"].includes(label) ? "sub" : ""} ${categoryClass(label)} ${["Armazém"].includes(label) ? "module-parent" : ""}`}
+                className={`${(url === "/" ? path === "/" : path === url || (url === "/obras" && path.startsWith("/obras/"))) ? "active" : ""} ${["Recursos", "Máquinas", "Movimentos", "Tablet", "Ponto", "Colaboradores", "Empresas"].includes(label) ? "sub" : ""} ${categoryClass(label)} ${["Armazém"].includes(label) ? "module-parent" : ""}`}
               >
                 <Icon size={18} />
                 <span>{label}</span>

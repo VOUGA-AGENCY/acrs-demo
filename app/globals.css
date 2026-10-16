@@ -423,6 +423,9 @@ body {
 .metrics.four {
   grid-template-columns: repeat(4, 1fr);
 }
+.metrics.five {
+  grid-template-columns: repeat(5, 1fr);
+}
 .metrics.six {
   grid-template-columns: repeat(6, 1fr);
 }
@@ -2256,6 +2259,9 @@ td b {
     align-items: flex-end;
   }
   .metrics.four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .metrics.five {
     grid-template-columns: repeat(2, 1fr);
   }
   .metrics.four .metric:nth-child(-n + 2) {

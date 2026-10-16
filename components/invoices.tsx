@@ -52,10 +52,11 @@ export function InvoiceForm({
   const [work, setWork] = useState(invoice?.obraId ?? "");
   const [supplier, setSupplier] = useState(invoice?.fornecedor ?? "");
   const [nif, setNif] = useState(invoice?.nifFornecedor ?? "");
+  const [nifAcrs, setNifAcrs] = useState(invoice?.nifEmpresa ?? "514123456");
   const [number, setNumber] = useState(invoice?.numero ?? "");
   const [effective, setEffective] = useState(invoice?.data ?? today());
   const [amount, setAmount] = useState(invoice?.valor ?? 0);
-  const [category, setCategory] = useState(invoice?.categoria ?? "Alimentação");
+  const [category, setCategory] = useState(invoice?.categoria ?? "Outros");
   const [type, setType] = useState<Invoice["tipo"]>(
     invoice?.tipo ?? "Despesa de obra",
   );
@@ -71,6 +72,8 @@ export function InvoiceForm({
     if (ocr.documentUrl) setFile(ocr.documentUrl);
     if (ocr.fornecedor) setSupplier(ocr.fornecedor);
     if (ocr.nifFornecedor) setNif(ocr.nifFornecedor);
+    if (ocr.nifEmpresa) setNifAcrs(ocr.nifEmpresa);
+    else setNifAcrs("514123456");
     if (ocr.categoria) setCategory(ocr.categoria);
     if (ocr.numero) setNumber(ocr.numero);
     if (ocr.data) setEffective(ocr.data);
@@ -79,27 +82,27 @@ export function InvoiceForm({
     if (ocr.rawText) setOcrRaw(ocr.rawText);
     setOcrStatus("NEEDS_REVIEW");
     setStage(1);
-    notify("Leitura da fatura por OCR concluída! Confirme os dados.");
+    notify("Leitura da fatura por OCR concluida! Confirme os dados.");
   }
 
-  function example() {
-    setFile("documento-exemplo.pdf");
-    setSupplier(
-      state.invoices.find((i) => /refei|aliment/i.test(i.categoria ?? ""))
-        ?.fornecedor ?? state.invoices[0].fornecedor,
-    );
-    setNif("501987654");
-    setNumber(
-      `DEMO-${state.invoices.filter((i) => i.source === "demo").length + 1}`,
-    );
-    setAmount(48.5);
+  function startManual() {
+    setFile("");
+    setSupplier("");
+    setNif("");
+    setNifAcrs("514123456");
+    setNumber("");
+    setEffective(today());
+    setAmount(0);
+    setCategory("Outros");
+    setOcrStatus("MANUAL");
+    setOcrConfidence(undefined);
+    setOcrRaw(undefined);
     setStage(1);
   }
   function submit() {
     try {
       if (!work && type === "Despesa de obra")
         throw new Error("Selecione a obra.");
-      if (!file) throw new Error("Escolha um documento ou utilize o exemplo.");
       if (
         !supplier.trim() ||
         !number.trim() ||
@@ -107,26 +110,27 @@ export function InvoiceForm({
         amount <= 0 ||
         !Number.isFinite(amount)
       )
-        throw new Error("Preencha fornecedor, número, data e valor.");
+        throw new Error("Preencha fornecedor, numero, data e valor.");
       if (
         type === "Compra para stock" &&
         (!article || quantity <= 0 || !Number.isFinite(quantity))
       )
-        throw new Error("Associe um artigo e uma quantidade válida.");
+        throw new Error("Associe um artigo e uma quantidade valida.");
       const saved: Invoice = {
         ...invoice,
         id: invoice?.id ?? uid("fatura"),
         data: effective,
-        fornecedor: supplier,
+        fornecedor: supplier.trim(),
         nifFornecedor: nif.trim() || undefined,
-        numero: number,
+        nifEmpresa: nifAcrs.trim() || undefined,
+        numero: number.trim(),
         obraId: type === "Compra para stock" ? "" : work,
         categoria: category,
         valor: amount,
-        source: invoice?.source ?? "demo",
+        source: invoice?.source ?? "ACRS",
         estado: invoice?.estado ?? "Por validar",
         tipo: type,
-        documento: file,
+        documento: file.trim() || undefined,
         artigoId: article,
         quantidade: quantity,
         ocrStatus: ocrConfidence != null ? "CONFIRMED" : (invoice?.ocrStatus ?? "MANUAL"),
@@ -180,37 +184,45 @@ export function InvoiceForm({
         <>
           <OCRUpload onExtracted={handleOcrExtracted} compact={field} />
           <div style={{ textAlign: "center", margin: "14px 0 8px", color: "#8a949d", fontSize: "11px" }}>
-            — ou em alternativa —
+            - ou em alternativa -
           </div>
-          <button type="button" className="sample-button" onClick={example}>
-            <FileText size={16} /> Preenchimento manual sem documento{" "}
+          <button type="button" className="sample-button" onClick={startManual}>
+            <FileText size={16} /> Preenchimento manual em branco{" "}
             <ArrowRight size={15} />
           </button>
         </>
       ) : (
         <>
-          <div className="attached-file">
-            <FileText size={19} />
-            <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>{file}</span>
-            {file.startsWith("http") && (
-              <a
-                href={file}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ fontSize: "11px", color: "#d85b2b", marginLeft: "auto", marginRight: "8px" }}
-              >
-                Abrir ficheiro
-              </a>
-            )}
-            <button type="button" onClick={() => setStage(0)}>Alterar</button>
-          </div>
+          {file ? (
+            <div className="attached-file">
+              <FileText size={19} />
+              <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>{file}</span>
+              {file.startsWith("http") && (
+                <a
+                  href={file}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ fontSize: "11px", color: "#d85b2b", marginLeft: "auto", marginRight: "8px" }}
+                >
+                  Abrir ficheiro
+                </a>
+              )}
+              <button type="button" onClick={() => setStage(0)}>Alterar</button>
+            </div>
+          ) : (
+            <div className="attached-file" style={{ background: "#f8fafc", color: "#64748b" }}>
+              <FileText size={19} />
+              <span>Registo manual sem ficheiro digital</span>
+              <button type="button" style={{ marginLeft: "auto" }} onClick={() => setStage(0)}>Carregar documento</button>
+            </div>
+          )}
           {ocrConfidence != null ? (
             <Note tone="green">
-              Dados pré-preenchidos com {ocrConfidence}% de confiança. Confirme e selecione a Obra/Categoria.
+              Dados extraidos por OCR ({ocrConfidence}% de confianca). Confirme e selecione a Obra/Categoria.
             </Note>
           ) : (
-            <Note tone="amber">
-              Preenchimento manual. Confirme ou introduza os dados do documento.
+            <Note tone="neutral">
+              Introduza os dados da fatura para registo no sistema.
             </Note>
           )}
           <div className="form-grid">
@@ -226,6 +238,14 @@ export function InvoiceForm({
                 value={nif}
                 onChange={(e) => setNif(e.target.value)}
                 placeholder="NIF / Contribuinte"
+                maxLength={14}
+              />
+            </Field>
+            <Field label="NIF ACRS (Adquirente)">
+              <input
+                value={nifAcrs}
+                onChange={(e) => setNifAcrs(e.target.value)}
+                placeholder="514123456"
                 maxLength={14}
               />
             </Field>
@@ -498,6 +518,7 @@ export function InvoiceDrawer({
             items={[
               ["Nº fatura", live.numero || "—"],
               ["NIF Fornecedor", live.nifFornecedor || "—"],
+              ["NIF ACRS", live.nifEmpresa || "514123456"],
               ["Data", date(live.data)],
               ["Obra", live.obraId ? (state.works.find((w) => w.id === live.obraId)?.nome || live.obraId) : "Armazém"],
               ["Categoria", live.categoria ?? "Por confirmar"],
@@ -519,9 +540,11 @@ export function InvoiceDrawer({
                 : "DOCUMENTO ARQUIVADO"}
             </div>
             <h3>{live.fornecedor}</h3>
-            {live.nifFornecedor && (
+            {(live.nifFornecedor || live.nifEmpresa) && (
               <p style={{ fontSize: "11px", color: "#64748b", margin: "-2px 0 6px" }}>
-                NIF: {live.nifFornecedor}
+                {live.nifFornecedor && `NIF Fornecedor: ${live.nifFornecedor}`}
+                {live.nifFornecedor && live.nifEmpresa && " | "}
+                {`NIF ACRS: ${live.nifEmpresa || "514123456"}`}
               </p>
             )}
             <p>Fatura {live.numero || "Sem número"}</p>
@@ -667,6 +690,7 @@ export function DocumentPreview({
             items={[
               ["Nº fatura", invoice.numero || "—"],
               ["NIF Fornecedor", invoice.nifFornecedor || "—"],
+              ["NIF ACRS", invoice.nifEmpresa || "514123456"],
               ["Data", date(invoice.data)],
               ["Destino", invoice.tipo],
               ["Valor", money(invoice.valor)],

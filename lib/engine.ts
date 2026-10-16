@@ -1,5 +1,6 @@
 import type {
   Allocation,
+  Article,
   Cost,
   Movement,
   Policy,
@@ -160,13 +161,25 @@ export function costLedger(state: State, asOf = today()): Cost[] {
       };
     });
   const materialCosts: Cost[] = state.movements
-    .filter((m) => m.tipo !== "Entrada" && m.data <= asOf)
+    .filter(
+      (m) =>
+        (m.tipo === "Saída" ||
+          m.tipo === "Consumo Contentor" ||
+          m.tipo === "Devolução" ||
+          m.tipo === "Outro") &&
+        m.data <= asOf,
+    )
     .map((m) => ({
       id: `cost-${m.id}`,
       obraId: m.obraId,
       data: m.data,
       registadoEm: m.registadoEm,
-      origem: m.tipo === "Outro" ? "Manual" : "Armazém",
+      origem:
+        m.tipo === "Outro"
+          ? "Manual"
+          : m.tipo === "Consumo Contentor"
+            ? "Contentor"
+            : "Armazém",
       origemId: m.id,
       descricao: m.descricao,
       categoria: "Materiais",
@@ -178,7 +191,11 @@ export function costLedger(state: State, asOf = today()): Cost[] {
       utilizador: m.utilizador,
       source: m.source,
       nota:
-        m.tipo === "Devolução" ? `Crédito da saída ${m.origemId}` : undefined,
+        m.tipo === "Devolução"
+          ? `Crédito da saída ${m.origemId}`
+          : m.tipo === "Consumo Contentor"
+            ? "Consumo do contentor na obra"
+            : undefined,
     }));
   const machineCosts: Cost[] = state.allocations
     .filter((a) => a.saida <= asOf)
@@ -230,10 +247,14 @@ export function workFinancials(
           ledger.filter((c) => c.obraId === id),
           (c) => c.valor,
         );
-  const value = budget?.valor ?? 0;
+  const baseValue = budget?.valor ?? 0;
+  const extraValue = budget?.valorExtra ?? 0;
+  const value = baseValue + extraValue;
   const max = value * (1 - (budget?.margem ?? 0));
   return {
     budget: value,
+    baseBudget: baseValue,
+    extraBudget: extraValue,
     target: budget?.margem ?? 0,
     max,
     cost,
@@ -261,11 +282,133 @@ export function stock(state: State, id: string, asOf = today()) {
           (m) =>
             m.artigoId === id &&
             m.tipo !== "Outro" &&
-            (m.data <= asOf || m.tipo === "Saída"),
+            m.tipo !== "Consumo Contentor" &&
+            (m.data <= asOf || m.tipo === "Saída" || m.tipo === "Transferência Contentor"),
         ),
-        (m) => m.quantidade * (m.tipo === "Saída" ? -1 : 1),
+        (m) =>
+          m.quantidade *
+          (m.tipo === "Saída" || m.tipo === "Transferência Contentor" ? -1 : 1),
       ),
   );
+}
+export function containerStock(
+  state: State,
+  obraId: string,
+  artigoId: string,
+  asOf = today(),
+): number {
+  return round(
+    sum(
+      state.movements.filter(
+        (m) =>
+          m.obraId === obraId &&
+          m.artigoId === artigoId &&
+          m.data <= asOf &&
+          (m.tipo === "Transferência Contentor" ||
+            m.tipo === "Consumo Contentor" ||
+            m.tipo === "Retorno Contentor"),
+      ),
+      (m) =>
+        m.quantidade *
+        (m.tipo === "Transferência Contentor" ? 1 : -1),
+    ),
+  );
+}
+export type ContainerItem = {
+  article: Article;
+  quantidade: number;
+  valorUnitario: number;
+  valorTotal: number;
+};
+export function containerArticles(
+  state: State,
+  obraId: string,
+  asOf = today(),
+): ContainerItem[] {
+  const articleIds = new Set(
+    state.movements
+      .filter(
+        (m) =>
+          m.obraId === obraId &&
+          (m.tipo === "Transferência Contentor" ||
+            m.tipo === "Consumo Contentor" ||
+            m.tipo === "Retorno Contentor"),
+      )
+      .map((m) => m.artigoId),
+  );
+  const items: ContainerItem[] = [];
+  for (const id of articleIds) {
+    const qtyInContainer = containerStock(state, obraId, id, asOf);
+    if (qtyInContainer > 0) {
+      const article = state.articles.find((a) => a.id === id);
+      if (article) {
+        const lastTransfer = state.movements
+          .filter(
+            (m) =>
+              m.obraId === obraId &&
+              m.artigoId === id &&
+              m.tipo === "Transferência Contentor",
+          )
+          .sort((a, b) => b.data.localeCompare(a.data))[0];
+        const valorUnitario =
+          lastTransfer?.valorUnitario ??
+          (state.settings.valoresInternos[article.id] ?? article.precoUnitario);
+        items.push({
+          article,
+          quantidade: qtyInContainer,
+          valorUnitario,
+          valorTotal: round(qtyInContainer * valorUnitario),
+        });
+      }
+    }
+  }
+  return items.sort((a, b) =>
+    a.article.descricao.localeCompare(b.article.descricao),
+  );
+}
+export function canManageCentralWarehouse(
+  profile?: string,
+  authUser?: { perfil?: string; nome?: string; email?: string } | null,
+): boolean {
+  if (!profile && !authUser) return true;
+  if (authUser?.perfil === "admin") return true;
+  if (authUser?.perfil === "armazem") return true;
+  if (
+    profile === "João Catalão" ||
+    profile === "Gerência" ||
+    profile === "Armazém" ||
+    profile === "Vítor"
+  )
+    return true;
+  return false;
+}
+export function canManageWorkContainer(
+  work?: { quemPodeMovimentar?: string | null; contentorEmObra?: boolean } | null,
+  profile?: string,
+  authUser?: { perfil?: string; nome?: string; email?: string } | null,
+): boolean {
+  if (!work) return false;
+  if (
+    authUser?.perfil === "admin" ||
+    profile === "João Catalão" ||
+    profile === "Gerência"
+  )
+    return true;
+  if (work.quemPodeMovimentar) {
+    const authorized = work.quemPodeMovimentar.toLowerCase();
+    const userName = (authUser?.nome || profile || "").toLowerCase();
+    const userEmail = (authUser?.email || "").toLowerCase();
+    if (userName && authorized.includes(userName)) return true;
+    if (userEmail && authorized.includes(userEmail)) return true;
+  }
+  if (
+    authUser?.perfil === "armazem" ||
+    profile === "Armazém" ||
+    profile === "Vítor"
+  )
+    return true;
+  if (authUser?.perfil === "terreno" || profile === "Campo") return true;
+  return true;
 }
 export function returnable(state: State, movementId: string) {
   const out = state.movements.find((m) => m.id === movementId);
@@ -294,10 +437,41 @@ export function applyMovement(state: State, m: Movement): State {
   const article = state.articles.find((a) => a.id === m.artigoId);
   if (article?.precisao === 0 && !Number.isInteger(m.quantidade))
     throw new Error(`A unidade ${article.unidade ?? "un."} exige quantidade inteira.`);
-  if (m.tipo === "Saída" && m.quantidade > stock(state, m.artigoId))
-    throw new Error("Quantidade superior ao stock disponível.");
+
+  if (
+    (m.tipo === "Saída" || m.tipo === "Transferência Contentor") &&
+    m.quantidade > stock(state, m.artigoId)
+  )
+    throw new Error("Quantidade superior ao stock disponível no armazém central.");
+
+  if (m.tipo === "Transferência Contentor") {
+    const targetWork = state.works.find((w) => w.id === m.obraId);
+    if (!targetWork?.contentorEmObra) {
+      throw new Error("A obra selecionada não tem contentor alocado.");
+    }
+  }
+
+  if (m.tipo === "Consumo Contentor") {
+    const targetWork = state.works.find((w) => w.id === m.obraId);
+    if (!targetWork?.contentorEmObra) {
+      throw new Error("A obra selecionada não tem contentor alocado.");
+    }
+    const currentInContainer = containerStock(state, m.obraId, m.artigoId);
+    if (m.quantidade > currentInContainer) {
+      throw new Error(`Quantidade superior ao stock no contentor (${currentInContainer} disponíveis).`);
+    }
+  }
+
+  if (m.tipo === "Retorno Contentor") {
+    const currentInContainer = containerStock(state, m.obraId, m.artigoId);
+    if (m.quantidade > currentInContainer) {
+      throw new Error(`Quantidade superior ao stock no contentor (${currentInContainer} disponíveis).`);
+    }
+  }
+
   if (m.tipo === "Saída" && m.totalNaSaida && !Number.isInteger(m.quantidade))
     throw new Error("Indique um número inteiro de bobines.");
+
   if (m.tipo === "Devolução") {
     const out = state.movements.find((o) => o.id === m.origemId);
     if (

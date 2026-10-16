@@ -4,6 +4,7 @@ import { initialState } from "../lib/initial";
 import {
   applyAllocation,
   applyMovement,
+  containerStock,
   costLedger,
   effectivePolicy,
   returnable,
@@ -465,4 +466,99 @@ test("orçamento deriva máximo, disponível e margem sem divisões por zero", (
   const none = workFinancials(a, "25094");
   assert.equal(none.risk, "Sem orçamento");
   assert.ok(Number.isFinite(none.consumption));
+});
+
+test("fluxo de contentor: transferencia nao imputa custo, consumo imputa e retorno liberta", () => {
+  const a = initialState();
+  const workId = "25094";
+  const work = a.works.find((w) => w.id === workId)!;
+  work.contentorEmObra = true;
+
+  const articleId = "inv-p07-r023";
+  const initialCentralStock = stock(a, articleId);
+  const initialCost = workFinancials(a, workId).cost;
+
+  // 1. Transferencia Armazem -> Contentor (sai do armazem, entra no contentor, custo obra = 0)
+  const transfer = applyMovement(
+    a,
+    move({
+      id: "mov-transf-1",
+      tipo: "Transferência Contentor",
+      artigoId: articleId,
+      obraId: workId,
+      quantidade: 15,
+      valorUnitario: 2.0,
+    }),
+  );
+  assert.equal(stock(transfer, articleId), initialCentralStock - 15);
+  assert.equal(containerStock(transfer, workId, articleId), 15);
+  assert.equal(workFinancials(transfer, workId).cost, initialCost);
+
+  // 2. Consumo Contentor -> Obra (sai do contentor, entra no custo da obra)
+  const consumed = applyMovement(
+    transfer,
+    move({
+      id: "mov-consumo-1",
+      tipo: "Consumo Contentor",
+      artigoId: articleId,
+      obraId: workId,
+      quantidade: 5,
+      valorUnitario: 2.0,
+    }),
+  );
+  assert.equal(containerStock(consumed, workId, articleId), 10);
+  assert.equal(round(workFinancials(consumed, workId).cost - initialCost), 10);
+
+  // 3. Retorno Contentor -> Armazem (sai do contentor, regressa ao armazem central, custo nao altera)
+  const returned = applyMovement(
+    consumed,
+    move({
+      id: "mov-retorno-1",
+      tipo: "Retorno Contentor",
+      artigoId: articleId,
+      obraId: workId,
+      quantidade: 10,
+      valorUnitario: 2.0,
+    }),
+  );
+  assert.equal(containerStock(returned, workId, articleId), 0);
+  assert.equal(stock(returned, articleId), initialCentralStock - 5);
+  assert.equal(round(workFinancials(returned, workId).cost - initialCost), 10);
+});
+
+test("orcamento extra soma ao valor final e atualiza margem e maximo", () => {
+  const a = initialState();
+  a.budgets = [
+    {
+      obraId: "25094",
+      valor: 100000,
+      valorExtra: 20000,
+      margem: 0.2,
+      modo: "Simples",
+      linhas: [],
+      source: "demo",
+    },
+  ];
+  const f = workFinancials(a, "25094");
+  assert.equal(f.budget, 120000);
+  assert.equal(f.baseBudget, 100000);
+  assert.equal(f.extraBudget, 20000);
+  assert.equal(f.max, 96000); // 120000 * (1 - 0.20)
+  assert.equal(f.available, 96000 - f.cost);
+  assert.equal(f.margin, (120000 - f.cost) / 120000);
+});
+
+test("politica individual de horas extra tem precedencia sobre empresa", () => {
+  const a = initialState();
+  const person = a.people[0];
+  const companyPolicy = a.settings.policy;
+
+  // Sem regra individual: aplica politica da empresa (limiteExtra default: 8h)
+  const pol1 = effectivePolicy(a, person.id);
+  assert.equal(pol1.limiteExtra, 8);
+
+  // Com regra individual configurada para 7h
+  a.settings.personPolicies[person.id] = { limiteExtra: 7, extra: 0.5 };
+  const pol2 = effectivePolicy(a, person.id);
+  assert.equal(pol2.limiteExtra, 7);
 });

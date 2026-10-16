@@ -18,7 +18,14 @@ import {
 } from "lucide-react";
 import { useStore } from "./store";
 import { Resources } from "./resources";
-import { applyAllocation, applyMovement, returnable, stock } from "@/lib/engine";
+import {
+  applyAllocation,
+  applyMovement,
+  containerArticles,
+  containerStock,
+  returnable,
+  stock,
+} from "@/lib/engine";
 import { date, includes, money, num, qty, sum, today, uid } from "@/lib/format";
 import type { Allocation, Article, Invoice, Movement } from "@/types";
 import { persistAllocationToSupabase, persistArticleToSupabase, persistInvoiceToSupabase, persistMovementToSupabase } from "@/lib/supabase/service";
@@ -373,7 +380,7 @@ export function StockPage({ simple = false }: { simple?: boolean }) {
               .map((m) => (
                 <div className="compact-row" key={m.id}>
                   <span>
-                    {date(m.data)} · {m.tipo} · Obra {m.obraId || "—"}
+                    {date(m.data)} · {m.tipo} · {state.works.find((w) => w.id === m.obraId || w.numero === m.obraId)?.nome || (m.obraId ? `Obra ${m.obraId}` : "Armazém")}
                   </span>
                   <b>
                     {qty(
@@ -423,7 +430,15 @@ export function Movements() {
           value={type}
           onChange={setType}
           placeholder="Todos os movimentos"
-          options={["Saída", "Devolução", "Entrada", "Outro"]}
+          options={[
+            "Saída",
+            "Transferência Contentor",
+            "Consumo Contentor",
+            "Retorno Contentor",
+            "Devolução",
+            "Entrada",
+            "Outro",
+          ]}
         />
       </div>
       <Table
@@ -431,9 +446,31 @@ export function Movements() {
         onRow={setSelected}
         columns={[
           { label: "Data efetiva", render: (m) => date(m.data) },
-          { label: "Movimento", render: (m) => <Badge>{m.tipo}</Badge> },
+          {
+            label: "Movimento",
+            render: (m) => (
+              <Badge
+                tone={
+                  m.tipo === "Consumo Contentor"
+                    ? "green"
+                    : m.tipo === "Transferência Contentor"
+                      ? "blue"
+                      : m.tipo === "Devolução" || m.tipo === "Retorno Contentor"
+                        ? "amber"
+                        : "neutral"
+                }
+              >
+                {m.tipo}
+              </Badge>
+            ),
+          },
           { label: "Artigo", render: (m) => <b>{m.descricao}</b> },
-          { label: "Obra", render: (m) => m.obraId || "Armazém" },
+          {
+            label: "Obra",
+            render: (m) =>
+              state.works.find((w) => w.id === m.obraId || w.numero === m.obraId)?.nome ||
+              (m.obraId ? `Obra ${m.obraId}` : "Armazém"),
+          },
           {
             label: "Quantidade",
             render: (m) =>
@@ -499,8 +536,8 @@ export function Movements() {
     </>
   );
 }
-type Mode = "home" | "register" | "Saída" | "Devolução" | "Entrada" | "stock" | "machines";
-type MovementMode = "Saída" | "Entrada" | "Devolução";
+type Mode = "home" | "register" | "Saída" | "Transferência Contentor" | "Consumo Contentor" | "Devolução" | "Entrada" | "stock" | "machines";
+type MovementMode = "Saída" | "Transferência Contentor" | "Consumo Contentor" | "Entrada" | "Devolução";
 type MixedLine =
   | { kind: "article"; id: string; quantity: number; rate: number }
   | { kind: "machine"; id: string; quantity: 1; rate: number };
@@ -547,17 +584,33 @@ export function Tablet() {
     ],
     value => value,
   );
-  const available = article ? stock(state, article.id) - alreadyListed : 0;
+  const available = article
+    ? mode === "Consumo Contentor"
+      ? containerStock(state, work, article.id) - alreadyListed
+      : stock(state, article.id) - alreadyListed
+    : 0;
   const isOther = articleId === "other";
   const stages =
     mode === "Entrada"
       ? ["Artigo", "Quantidade", "Data", "Confirmar"]
       : mode === "Devolução"
         ? ["Obra", "Tipo de recurso", "Saída original", "Quantidade", "Data", "Confirmar"]
-        : ["Obra", "Tipo de recurso", "Família", "Artigo", "Quantidade", "Data", "Confirmar"];
+        : mode === "Consumo Contentor"
+          ? ["Obra", "Artigo do contentor", "Quantidade", "Data", "Confirmar"]
+          : ["Obra", "Tipo de recurso", "Família", "Artigo", "Quantidade", "Data", "Confirmar"];
   function reset(m: Mode) {
     setMode(m);
-    setMovementMode(m === "register" ? null : m === "Saída" || m === "Entrada" || m === "Devolução" ? m : null);
+    setMovementMode(
+      m === "register"
+        ? null
+        : m === "Saída" ||
+            m === "Transferência Contentor" ||
+            m === "Consumo Contentor" ||
+            m === "Entrada" ||
+            m === "Devolução"
+          ? m
+          : null,
+    );
     setStep(0);
     setWork("");
     setFamily("");
@@ -836,18 +889,40 @@ export function Tablet() {
           {step === 0 && movementMode === null ? <>
             <div className="tablet-greeting"><div className="eyebrow">PASSO 1</div><h1>Tipo de movimento</h1><p>Indique primeiro o que pretende registar.</p></div>
             <div className="tablet-home-grid">
-              <button className="primary" onClick={() => reset("Saída")}><ArrowUpFromLine size={30}/><div><h2>Saída</h2><p>Material que sai para uma obra</p></div><ArrowRight size={21}/></button>
+              <button className="primary" onClick={() => reset("Saída")}><ArrowUpFromLine size={30}/><div><h2>Saída direta</h2><p>Material que sai para uma obra</p></div><ArrowRight size={21}/></button>
+              <button onClick={() => reset("Transferência Contentor")}><Package size={30}/><div><h2>Transferência p/ Contentor</h2><p>Transferir para contentor em obra (sem custo imediato)</p></div><ArrowRight size={21}/></button>
+              <button onClick={() => reset("Consumo Contentor")}><Layers size={30}/><div><h2>Consumo de Contentor</h2><p>Consumir material de contentor em obra (imputa custo)</p></div><ArrowRight size={21}/></button>
               <button onClick={() => reset("Entrada")}><ArrowDownToLine size={30}/><div><h2>Entrada / compra</h2><p>Material sujeito a validação</p></div><ArrowRight size={21}/></button>
               <button onClick={() => reset("Devolução")}><RotateCcw size={30}/><div><h2>Devolução / retorno</h2><p>Material ou equipamento que regressa</p></div><ArrowRight size={21}/></button>
             </div>
-          </> : step === 0 && movementMode === "Saída" ? <>
-            <div className="tablet-greeting"><div className="eyebrow">PASSO 2</div><h1>Selecionar obra</h1><p>Todos os movimentos ficam ligados a esta obra.</p></div>
-            <div className="choice-list">{state.works.filter(w => w.estado === "Em curso").map(w => <button key={w.id} onClick={() => {setWork(w.id);setStep(1);}}><b>{w.numero} · {w.nome}</b><span>{w.cliente}</span><ArrowRight size={18}/></button>)}</div>
+          </> : step === 0 && (movementMode === "Saída" || movementMode === "Transferência Contentor" || movementMode === "Consumo Contentor") ? <>
+            <div className="tablet-greeting"><div className="eyebrow">PASSO 2</div><h1>Selecionar obra</h1><p>{movementMode === "Transferência Contentor" || movementMode === "Consumo Contentor" ? "Apenas obras com contentor em obra alocado." : "Todos os movimentos ficam ligados a esta obra."}</p></div>
+            <div className="choice-list">{state.works.filter(w => w.estado === "Em curso" && (movementMode === "Saída" || w.contentorEmObra)).map(w => <button key={w.id} onClick={() => {setWork(w.id);setStep(1);}}><b>{w.numero} · {w.nome}</b><span>{w.cliente} {w.contentorEmObra ? "· (Contentor ativo)" : ""}</span><ArrowRight size={18}/></button>)}</div>
+          </> : movementMode === "Consumo Contentor" && step === 1 ? <>
+            <div className="tablet-greeting"><div className="eyebrow">PASSO 2</div><h1>Artigos no contentor</h1><p>Obra {work} · Selecione o artigo a consumir</p></div>
+            {containerArticles(state, work).length === 0 ? (
+              <Note tone="amber">Este contentor não tem artigos em stock no momento. Registe primeiro uma transferência do armazém central.</Note>
+            ) : (
+              <div className="article-grid">
+                {containerArticles(state, work).map(ci => (
+                  <button className="article-card" key={ci.article.id} onClick={() => { setArticleId(ci.article.id); setPrice(ci.valorUnitario); setQuantity(1); setStep(4); }}>
+                    <div className="article-picture"><Package size={28}/></div>
+                    <div>
+                      <b>{ci.article.descricao}</b>
+                      <small>{ci.article.codigoACRS}</small>
+                      <strong>{qty(ci.quantidade, ci.article)}<span> no contentor</span></strong>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
           </> : step === 1 ? <>
             <div className="tablet-greeting"><div className="eyebrow">PASSO 2</div><h1>Tipo de recurso</h1><p>Obra {work} · {mixedLines.length ? `${mixedLines.length} recurso${mixedLines.length === 1 ? "" : "s"} já na lista.` : "Escolha o que vai sair."}</p></div>
             <div className="tablet-home-grid">
               <button className="primary" onClick={() => {setResourceKind("article");setStep(2);}}><Package size={30}/><div><h2>Consumível ou material</h2><p>Selecionar recurso e quantidade</p></div><ArrowRight size={21}/></button>
-              <button onClick={() => {setResourceKind("machine");setStep(2);}}><Wrench size={30}/><div><h2>Maquinaria ou equipamento</h2><p>Alocação individual</p></div><ArrowRight size={21}/></button>
+              {movementMode !== "Transferência Contentor" && (
+                <button onClick={() => {setResourceKind("machine");setStep(2);}}><Wrench size={30}/><div><h2>Maquinaria ou equipamento</h2><p>Alocação individual</p></div><ArrowRight size={21}/></button>
+              )}
             </div>
             {mixedLines.length > 0 && <div className="mixed-list-preview"><b>Lista atual</b>{mixedLines.map((line,index) => {const label=line.kind === "article" ? state.articles.find(a=>a.id===line.id)?.descricao : state.machines.find(m=>m.id===line.id)?.nome;const listedArticle=line.kind === "article" ? state.articles.find(a=>a.id===line.id) : undefined;return <div key={`${line.kind}-${line.id}-${index}`}><span>{label}</span><small>{line.kind === "article" ? qty(line.quantity,listedArticle) : "1 equipamento"}</small></div>;})}</div>}
           </> : step === 2 ? <>

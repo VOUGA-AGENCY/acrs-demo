@@ -38,6 +38,7 @@ export function BudgetForm({
   const [work, setWork] = useState(budget?.obraId ?? "");
   const [mode, setMode] = useState(budget?.modo ?? "Simples");
   const [value, setValue] = useState(budget?.valor ?? 100000);
+  const [extraValue, setExtraValue] = useState(budget?.valorExtra ?? 0);
   const [margin, setMargin] = useState((budget?.margem ?? 0.2) * 100);
   const [lines, setLines] = useState(
     cats.map((c) => ({
@@ -50,22 +51,25 @@ export function BudgetForm({
     if (
       !work ||
       value <= 0 ||
+      extraValue < 0 ||
       margin < 0 ||
       margin >= 100 ||
       !Number.isFinite(value) ||
+      !Number.isFinite(extraValue) ||
       !Number.isFinite(margin) ||
       lines.some((l) => !Number.isFinite(l.valor) || l.valor < 0)
     ) {
-      setError("Selecione obra, valor positivo e margem entre 0% e 99%.");
+      setError("Selecione obra, valor comercial positivo, valor extra >= 0 e margem entre 0% e 99%.");
       return;
     }
     const b: Budget = {
       obraId: work,
       valor: value,
+      valorExtra: extraValue,
       margem: margin / 100,
       modo: mode,
       linhas: mode === "Discriminado" ? lines : [],
-      source: "demo",
+      source: budget?.source || "ACRS",
     };
     try{
       await persistBudgetToSupabase(b, profile);
@@ -119,13 +123,22 @@ export function BudgetForm({
           />
         </Field>
         <div className="form-grid">
-          <Field label="Valor comercial proposto (€)">
+          <Field label="Valor comercial base (€)">
             <input
               type="number"
               min="0.01"
               step="0.01"
               value={value}
               onChange={(e) => setValue(Number(e.target.value))}
+            />
+          </Field>
+          <Field label="Orcamento extra / Trabalhos adicionais (€)">
+            <input
+              type="number"
+              min="0"
+              step="0.01"
+              value={extraValue}
+              onChange={(e) => setExtraValue(Number(e.target.value))}
             />
           </Field>
           <Field label="Margem alvo (%)">
@@ -169,9 +182,9 @@ export function BudgetForm({
                 ],
               ]}
             />
-            {sum(lines, (l) => l.valor) > value * (1 - margin / 100) && (
+            {sum(lines, (l) => l.valor) > (value + extraValue) * (1 - margin / 100) && (
               <Note tone="amber">
-                Os custos previstos ultrapassam o máximo compatível com a margem
+                Os custos previstos ultrapassam o maximo compativel com a margem
                 alvo.
               </Note>
             )}
@@ -180,10 +193,10 @@ export function BudgetForm({
         <div className="budget-result">
           <Calculator size={24} />
           <div>
-            <span>Custo máximo admissível</span>
-            <strong>{money(value * (1 - margin / 100))}</strong>
+            <span>Custo maximo admissivel</span>
+            <strong>{money((value + extraValue) * (1 - margin / 100))}</strong>
             <small>
-              {money(value)} × (1 − {num(margin)}%)
+              Valor total: {money(value + extraValue)} {extraValue > 0 ? `(${money(value)} base + ${money(extraValue)} extra)` : ""} * (1 - {num(margin)}%)
             </small>
           </div>
         </div>
@@ -225,25 +238,25 @@ export function Budgets() {
       />
       <div className="metrics four">
         <Metric
-          label="Valor comercial"
-          value={money(sum(state.budgets, (b) => b.valor))}
+          label="Valor comercial total"
+          value={money(sum(state.budgets, (b) => b.valor + (b.valorExtra || 0)))}
         />
         <Metric
-          label="Custo máximo global"
-          value={money(sum(state.budgets, (b) => b.valor * (1 - b.margem)))}
+          label="Custo maximo global"
+          value={money(sum(state.budgets, (b) => (b.valor + (b.valorExtra || 0)) * (1 - b.margem)))}
         />
         <Metric
           label="Custo atual"
           value={money(sum(ledger, (c) => c.valor))}
         />
         <Metric
-          label="Orçamentos"
+          label="Orcamentos"
           value={state.budgets.length}
           hint="Valores demonstrativos"
         />
       </div>
       <div className="filter-bar">
-        <SearchInput value={q} onChange={setQ} placeholder="Pesquisar obra…" />
+        <SearchInput value={q} onChange={setQ} placeholder="Pesquisar obra..." />
       </div>
       <Table
         rows={rows}
@@ -253,21 +266,31 @@ export function Budgets() {
             label: "Obra",
             render: (b) => (
               <b>
-                {b.obraId} · {state.works.find((w) => w.id === b.obraId)?.nome}
+                {b.obraId} - {state.works.find((w) => w.id === b.obraId)?.nome}
               </b>
             ),
           },
           { label: "Cliente", render: (b) => state.works.find((w) => w.id === b.obraId)?.cliente ?? "Cliente demo" },
           { label: "Modo", render: (b) => b.modo },
-          { label: "Valor", render: (b) => money(b.valor), align: "right" },
+          { label: "Valor base", render: (b) => money(b.valor), align: "right" },
+          {
+            label: "Orcamento extra",
+            render: (b) => (b.valorExtra && b.valorExtra > 0 ? `+ ${money(b.valorExtra)}` : "-"),
+            align: "right",
+          },
+          {
+            label: "Valor total",
+            render: (b) => <b>{money(b.valor + (b.valorExtra || 0))}</b>,
+            align: "right",
+          },
           {
             label: "Margem alvo",
             render: (b) => `${num(b.margem * 100)}%`,
             align: "right",
           },
           {
-            label: "Custo máximo",
-            render: (b) => money(b.valor * (1 - b.margem)),
+            label: "Custo maximo",
+            render: (b) => money((b.valor + (b.valorExtra || 0)) * (1 - b.margem)),
             align: "right",
           },
           {

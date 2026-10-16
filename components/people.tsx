@@ -28,7 +28,11 @@ import {
   Tabs,
 } from "./ui";
 import { CostDetail, CostTable } from "./costs";
-import { persistTimeEntryToSupabase } from "@/lib/supabase/service";
+import {
+  persistPersonToSupabase,
+  persistSettingsToSupabase,
+  persistTimeEntryToSupabase,
+} from "@/lib/supabase/service";
 const addDays = (d: string, n: number) => {
   const t = new Date(d + "T12:00:00Z");
   t.setUTCDate(t.getUTCDate() + n);
@@ -74,12 +78,12 @@ export function TimeEditor({
     local: "",
     entradaManha: "08:00",
     saidaManha: "12:00",
-    entradaTarde: "13:00",
-    saidaTarde: "17:00",
+    entradaTarde: null,
+    saidaTarde: null,
     entradaNoite: null,
     saidaNoite: null,
     tempoViagem: "00:00",
-    horas: 8,
+    horas: 4,
     horasViagem: 0,
     horasNoturnas: 0,
     horasExtraExcel: 0,
@@ -194,16 +198,67 @@ export function TimeEditor({
   return (
     <Modal title="Registo de ponto" onClose={onClose}>
       <div className="modal-body">
-        {entries.length > 1 && (
-          <Field label="Registo deste dia">
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", background: "#f8fafc", padding: "0.5rem 0.75rem", borderRadius: "6px" }}>
+          <div>
+            <span style={{ fontSize: "0.85rem", fontWeight: 600 }}>
+              Dia {date(entry.data)} · {num(dailyHours)} h diárias
+            </span>
+            <small className="block muted">
+              {state.times.filter((t) => t.pessoaId === person.id && t.data === entry.data).length} obra(s) registada(s) · Extra após {appliedPolicy.limiteExtra} h
+            </small>
+          </div>
+          <Button
+            secondary
+            onClick={() => {
+              const dayEntries = state.times.filter(
+                (t) => t.pessoaId === person.id && t.data === entry.data,
+              );
+              const hasMorning =
+                dayEntries.some((t) => t.entradaManha && t.saidaManha) ||
+                Boolean(entry.entradaManha && entry.saidaManha);
+              const newEntry: TimeEntry = {
+                id: uid("ponto"),
+                pessoaId: person.id,
+                nome: person.nome,
+                data: entry.data,
+                obraId: "",
+                local: "",
+                entradaManha: hasMorning ? null : "08:00",
+                saidaManha: hasMorning ? null : "12:00",
+                entradaTarde: hasMorning ? "13:00" : null,
+                saidaTarde: hasMorning ? "17:00" : null,
+                entradaNoite: null,
+                saidaNoite: null,
+                tempoViagem: "00:00",
+                horas: 4,
+                horasViagem: 0,
+                horasNoturnas: 0,
+                horasExtraExcel: 0,
+                source: "demo",
+              };
+              setEntry(newEntry);
+              setError("");
+            }}
+          >
+            + Outra obra neste dia
+          </Button>
+        </div>
+
+        {state.times.filter((t) => t.pessoaId === person.id && t.data === entry.data).length > 1 && (
+          <Field label="Selecionar registo deste dia para editar">
             <Select
               label="Registo de ponto"
               value={entry.id}
-              onChange={(id) => setEntry(entries.find((t) => t.id === id)!)}
-              options={entries.map((t) => ({
-                value: t.id,
-                label: `Obra ${t.obraId} · ${num(t.horas)} h`,
-              }))}
+              onChange={(id) => {
+                const found = state.times.find((t) => t.id === id);
+                if (found) setEntry(found);
+              }}
+              options={state.times
+                .filter((t) => t.pessoaId === person.id && t.data === entry.data)
+                .map((t) => ({
+                  value: t.id,
+                  label: `Obra ${t.obraId || "por definir"} · ${num(t.horas)} h (${t.entradaManha || t.entradaTarde || "-"})`,
+                }))}
             />
           </Field>
         )}
@@ -252,6 +307,70 @@ export function TimeEditor({
             onChange={(e) => setEntry({ ...entry, local: e.target.value })}
           />
         </Field>
+        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", margin: "10px 0" }}>
+          <Button
+            type="button"
+            secondary
+            onClick={() =>
+              setEntry({
+                ...entry,
+                entradaManha: "08:00",
+                saidaManha: "12:00",
+                entradaTarde: null,
+                saidaTarde: null,
+              })
+            }
+          >
+            So manha (4h)
+          </Button>
+          <Button
+            type="button"
+            secondary
+            onClick={() =>
+              setEntry({
+                ...entry,
+                entradaManha: null,
+                saidaManha: null,
+                entradaTarde: "13:00",
+                saidaTarde: "17:00",
+              })
+            }
+          >
+            So tarde (4h)
+          </Button>
+          <Button
+            type="button"
+            secondary
+            onClick={() =>
+              setEntry({
+                ...entry,
+                entradaManha: "08:00",
+                saidaManha: "12:00",
+                entradaTarde: "13:00",
+                saidaTarde: "17:00",
+              })
+            }
+          >
+            Dia completo (8h)
+          </Button>
+          <Button
+            type="button"
+            secondary
+            onClick={() =>
+              setEntry({
+                ...entry,
+                entradaManha: null,
+                saidaManha: null,
+                entradaTarde: null,
+                saidaTarde: null,
+                entradaNoite: null,
+                saidaNoite: null,
+              })
+            }
+          >
+            Limpar
+          </Button>
+        </div>
         <div className="form-grid">
           {fields.map((f, i) => (
             <Field key={f} label={labels[i]}>
@@ -504,7 +623,16 @@ export function Point() {
                     setSelected({ person: p, day: d, entries: ts })
                   }
                 >
-                  {ts.length ? `${num(sum(ts, (t) => t.horas))} h` : "+"}
+                  {ts.length ? (
+                    <div>
+                      <span>{num(sum(ts, (t) => t.horas))} h</span>
+                      {ts.length > 1 && (
+                        <small style={{ display: "block", fontSize: "0.68rem", opacity: 0.85 }}>
+                          {ts.length} obras
+                        </small>
+                      )}
+                    </div>
+                  ) : "+"}
                 </button>
               );
             },
@@ -530,7 +658,7 @@ export function Point() {
         {latestWeekWithData && week === latestWeekWithData
           ? "A visualizar a última semana com histórico registado. Horas e datas reais sincronizadas com o Supabase."
           : `A visualizar a semana de ${date(week)} a ${date(dates[6])}.`}
-        {" "}O registo continua a ser feito pela administração através de cada célula diária (+) ou pelo botão superior.
+        {" "}O registo de ponto é centralizado e realizado pela administração ou encarregado responsável através de cada célula diária (+) ou pelo botão superior de novo registo.
       </Note>
       {selected && (
         <TimeEditor {...selected} onClose={() => setSelected(null)} />
@@ -580,14 +708,66 @@ export function PersonDetail({
   person: Person;
   onClose: () => void;
 }) {
-  const { state, ledger } = useStore();
+  const { state, setState, profile, notify, ledger } = useStore();
   const [tab, setTab] = useState("Resumo");
   const [cost, setCost] = useState<Cost | null>(null);
+  const [editingConfig, setEditingConfig] = useState(false);
   const times = state.times.filter((t) => t.pessoaId === person.id);
   const costs = ledger.filter((c) => c.pessoaId === person.id);
   const works = state.works.filter((w) => times.some((t) => t.obraId === w.id));
   const company = state.companies.find((item) => item.id === person.empresaId);
   const appliedPolicy = effectivePolicy(state, person.id);
+  const customPolicy = state.settings.personPolicies[person.id];
+  const hasCustomPolicy = customPolicy?.limiteExtra != null;
+
+  const [editRate, setEditRate] = useState<number>(person.custoHora ?? 0);
+  const [editLimiteExtra, setEditLimiteExtra] = useState<number>(appliedPolicy.limiteExtra);
+  const [editExtraMultiplier, setEditExtraMultiplier] = useState<number>(
+    Math.round(appliedPolicy.extra * 100),
+  );
+  const [editCompanyId, setEditCompanyId] = useState<string>(person.empresaId ?? "");
+  const [editTipo, setEditTipo] = useState<string>(person.tipo ?? "Oficial");
+
+  async function savePersonConfig() {
+    const updatedPerson: Person = {
+      ...person,
+      custoHora: editRate > 0 ? editRate : null,
+      empresaId: editCompanyId || null,
+      tipo: editTipo || null,
+    };
+
+    const updatedPersonPolicies = {
+      ...state.settings.personPolicies,
+      [person.id]: {
+        ...state.settings.personPolicies[person.id],
+        limiteExtra: editLimiteExtra,
+        extra: editExtraMultiplier / 100,
+      },
+    };
+
+    const updatedSettings = {
+      ...state.settings,
+      personPolicies: updatedPersonPolicies,
+    };
+
+    try {
+      await persistPersonToSupabase(updatedPerson, profile);
+      await persistSettingsToSupabase(updatedSettings, profile);
+    } catch (e) {
+      notify(`Erro ao guardar na base de dados: ${(e as Error).message}`);
+      return;
+    }
+
+    setState({
+      ...state,
+      people: state.people.map((p) => (p.id === person.id ? updatedPerson : p)),
+      settings: updatedSettings,
+    });
+
+    notify(`Configuração de ${person.nome} gravada com sucesso.`);
+    setEditingConfig(false);
+  }
+
   return (
     <Modal title={person.nome} drawer onClose={onClose}>
       <div className="drawer-body">
@@ -626,13 +806,19 @@ export function PersonDetail({
                 ["Empresa", company?.nome ?? "Por confirmar"],
                 [
                   "Hora extra",
-                  `A partir da ${appliedPolicy.limiteExtra + 1}.ª hora · +${num(appliedPolicy.extra * 100, 0)}%`,
+                  `A partir da ${appliedPolicy.limiteExtra + 1}.ª hora (+${num(appliedPolicy.extra * 100, 0)}%)${hasCustomPolicy ? " · Regra individual" : " · Padrão empresa"}`,
                 ],
               ]}
             />
+            <div style={{ marginTop: "1rem" }}>
+              <Button secondary onClick={() => setEditingConfig(true)}>
+                Configurar tarifa & horas extra
+              </Button>
+            </div>
             <Note>
-              A associação pessoa–empresa é demonstrativa e deverá ser
-              substituída pela distribuição real fornecida pela ACRS.
+              A ACRS define o valor por trabalhador independentemente da empresa.
+              As horas extra podem ter limiares individuais (ex: Fulano A a partir da
+              7.ª hora, Fulano B a partir da 8.ª hora, mesmo na mesma empresa).
             </Note>
           </>
         )}
@@ -691,6 +877,84 @@ export function PersonDetail({
         {tab === "Custos" && <CostTable rows={costs} onSelect={setCost} />}
       </div>
       {cost && <CostDetail cost={cost} onClose={() => setCost(null)} />}
+      {editingConfig && (
+        <Modal
+          title={`Configuração · ${person.nome}`}
+          onClose={() => setEditingConfig(false)}
+        >
+          <div className="modal-body">
+            <Field label="Tarifa horária (€/h)">
+              <input
+                type="number"
+                step="0.5"
+                min="0"
+                value={editRate}
+                onChange={(e) => setEditRate(Number(e.target.value))}
+                placeholder="Ex: 14.50"
+              />
+            </Field>
+
+            <Field label="Empresa">
+              <Select
+                label="Empresa"
+                value={editCompanyId}
+                onChange={setEditCompanyId}
+                options={state.companies.map((c) => ({
+                  value: c.id,
+                  label: `${c.nome} (${c.tipo})`,
+                }))}
+              />
+            </Field>
+
+            <Field label="Vínculo / Categoria">
+              <input
+                type="text"
+                value={editTipo}
+                onChange={(e) => setEditTipo(e.target.value)}
+                placeholder="Ex: Oficial, Encarregado, Ajudante"
+              />
+            </Field>
+
+            <div className="form-grid">
+              <Field label="Limite diário para horas extra (h)">
+                <input
+                  type="number"
+                  step="0.5"
+                  min="1"
+                  max="24"
+                  value={editLimiteExtra}
+                  onChange={(e) => setEditLimiteExtra(Number(e.target.value))}
+                />
+              </Field>
+              <Field label="Suplemento de hora extra (%)">
+                <input
+                  type="number"
+                  step="5"
+                  min="0"
+                  max="200"
+                  value={editExtraMultiplier}
+                  onChange={(e) => setEditExtraMultiplier(Number(e.target.value))}
+                />
+              </Field>
+            </div>
+
+            <Note>
+              Regra individual confirmada: a partir da {editLimiteExtra + 1}.ª hora diária
+              neste colaborador, é aplicado o acréscimo de {editExtraMultiplier}%.
+              Esta definição tem prioridade sobre a política padrão da empresa.
+            </Note>
+
+            <div className="form-actions">
+              <Button secondary onClick={() => setEditingConfig(false)}>
+                Cancelar
+              </Button>
+              <Button onClick={savePersonConfig}>
+                Gravar configuração <Check size={16} />
+              </Button>
+            </div>
+          </div>
+        </Modal>
+      )}
     </Modal>
   );
 }
@@ -763,6 +1027,22 @@ export function People() {
             label: "Custo/hora",
             render: (p) =>
               p.custoHora != null ? money(p.custoHora) : "Por apurar",
+            align: "right",
+          },
+          {
+            label: "Horas extra",
+            render: (p) => {
+              const pol = effectivePolicy(state, p.id);
+              const custom = Boolean(state.settings.personPolicies[p.id]?.limiteExtra != null);
+              return (
+                <div>
+                  <b>&gt; {pol.limiteExtra} h</b>
+                  <small className="block muted">
+                    {custom ? "Individual" : "Empresa"}
+                  </small>
+                </div>
+              );
+            },
             align: "right",
           },
           {

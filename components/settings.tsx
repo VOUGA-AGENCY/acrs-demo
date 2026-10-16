@@ -389,9 +389,9 @@ export function Settings() {
             items={[
               ["Bobines", "TOTAL_NA_SAIDA · sem reentrada de sobras"],
               ["Máquinas", "Custo ao dia · tarifa congelada na alocação"],
-              ["Viaturas", "Sem imputação diária — regra por decidir"],
-              ["Contentores em obra", "Localizações e fluxo por validar"],
-              ["Inventário inicial", "Reconciliação física pendente"],
+              ["Viaturas", "Sem imputacao diaria - regra por decidir"],
+              ["Contentor na obra", "Localizacoes e fluxo por validar"],
+              ["Inventario inicial", "Reconciliacao fisica pendente"],
             ]}
           />
         </div>

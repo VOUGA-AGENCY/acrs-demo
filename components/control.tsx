@@ -44,6 +44,7 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
   const [supplierFilter, setSupplierFilter] = useState("");
   const [topCount, setTopCount] = useState("10");
   const [inUseOnly, setInUseOnly] = useState(true);
+  const [equipmentSubView, setEquipmentSubView] = useState<"equipamento" | "obra" | "mensal">("equipamento");
 
   const invoiceSupplierMap = useMemo(() => {
     const map = new Map<string, string>();
@@ -191,7 +192,7 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
       .sort((a, b) => a.coverage - b.coverage)
       .slice(0, 5)
   ), [state.articles, state.movements, coverageStart, coverageDays, state]);
-  const budget = sum(state.budgets, (b) => b.valor);
+  const budget = sum(state.budgets, (b) => b.valor + (b.valorExtra || 0));
   const current = sum(ledger, (c) => c.valor);
   const ledgerByOrigemId = useMemo(() => {
     const map = new Map<string, Cost[]>();
@@ -277,6 +278,139 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
     : equipmentStats;
   const equipmentResult = sum(equipmentStats, (r) => r.result);
   const equipmentInWork = equipmentStats.filter((r) => r.open).length;
+
+  const allocationMachineMap = useMemo(() => {
+    const map = new Map<string, (typeof state.machines)[0]>();
+    for (const a of state.allocations) {
+      const m = state.machines.find((item) => item.id === a.maquinaId);
+      if (m) map.set(a.id, m);
+    }
+    return map;
+  }, [state.allocations, state.machines]);
+
+  const equipmentWorkStats = useMemo(() => {
+    const workMap = new Map<
+      string,
+      {
+        obraId: string;
+        costs: Cost[];
+        daysUsed: number;
+        transfer: number;
+        internal: number;
+        machineIds: Set<string>;
+      }
+    >();
+
+    for (const c of rows) {
+      if (c.origem === "Equipamento" && c.origemId && c.obraId) {
+        let entry = workMap.get(c.obraId);
+        if (!entry) {
+          entry = {
+            obraId: c.obraId,
+            costs: [],
+            daysUsed: 0,
+            transfer: 0,
+            internal: 0,
+            machineIds: new Set<string>(),
+          };
+          workMap.set(c.obraId, entry);
+        }
+        const m = allocationMachineMap.get(c.origemId);
+        entry.costs.push(c);
+        entry.daysUsed += 1;
+        entry.transfer += c.valor;
+        entry.internal += m?.custoInternoDia ?? 0;
+        if (m) entry.machineIds.add(m.id);
+      }
+    }
+
+    return Array.from(workMap.values())
+      .map((item) => {
+        const w = state.works.find((work) => work.id === item.obraId);
+        const profit = item.transfer - item.internal;
+        const margin = item.transfer > 0 ? (profit / item.transfer) * 100 : 0;
+        return {
+          ...item,
+          work: w,
+          profit,
+          margin,
+        };
+      })
+      .sort((a, b) => b.profit - a.profit);
+  }, [rows, allocationMachineMap, state.works]);
+
+  const equipmentMonthlyAndAnnual = useMemo(() => {
+    const monthMap = new Map<
+      string,
+      {
+        month: string;
+        year: string;
+        days: number;
+        transfer: number;
+        internal: number;
+        profit: number;
+      }
+    >();
+
+    for (const c of rows) {
+      if (c.origem === "Equipamento" && c.origemId) {
+        const month = c.data.slice(0, 7);
+        const year = c.data.slice(0, 4);
+        let entry = monthMap.get(month);
+        if (!entry) {
+          entry = {
+            month,
+            year,
+            days: 0,
+            transfer: 0,
+            internal: 0,
+            profit: 0,
+          };
+          monthMap.set(month, entry);
+        }
+        const m = allocationMachineMap.get(c.origemId);
+        const internalCost = m?.custoInternoDia ?? 0;
+        entry.days += 1;
+        entry.transfer += c.valor;
+        entry.internal += internalCost;
+        entry.profit += c.valor - internalCost;
+      }
+    }
+
+    const monthsList = Array.from(monthMap.values()).sort((a, b) =>
+      b.month.localeCompare(a.month),
+    );
+
+    const yearMap = new Map<
+      string,
+      {
+        year: string;
+        days: number;
+        transfer: number;
+        internal: number;
+        profit: number;
+      }
+    >();
+
+    for (const m of monthsList) {
+      let y = yearMap.get(m.year);
+      if (!y) {
+        y = { year: m.year, days: 0, transfer: 0, internal: 0, profit: 0 };
+        yearMap.set(m.year, y);
+      }
+      y.days += m.days;
+      y.transfer += m.transfer;
+      y.internal += m.internal;
+      y.profit += m.profit;
+    }
+
+    const yearsList = Array.from(yearMap.values()).sort((a, b) =>
+      b.year.localeCompare(a.year),
+    );
+
+    return { monthsList, yearsList };
+  }, [rows, allocationMachineMap]);
+
   return (
     <>
       <PageHeader
@@ -475,7 +609,7 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
               </div>
               <div className="grid-two">
                 <Panel title="Horas trabalhadas por mês" subtitle={period}><MonthlyChart points={monthly(periodTimes.map(t => ({date:t.data,value:t.horas})))}/></Panel>
-                <Panel title="Horas extra por mês" subtitle="ACRS: após 8 h · Subcontratados: após 10 h"><MonthlyChart bars points={monthly(extras.map(t => ({date:t.date,value:t.extra})))}/></Panel>
+                <Panel title="Horas extra por mês" subtitle="Calculadas por colaborador e política de empresa"><MonthlyChart bars points={monthly(extras.map(t => ({date:t.date,value:t.extra})))}/></Panel>
               </div>
               <div className="grid-two">
                 <Panel title="Horas extra por empresa" subtitle="Total diário por pessoa, incluindo todas as obras">
@@ -649,7 +783,7 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
                 <Metric
                   label="Valor imputado às obras"
                   value={money(sum(equipmentStats, (r) => r.transfer))}
-                  hint="Dias alugados × tarifa, no período"
+                  hint="Dias alugados x tarifa, no período"
                   onClick={() =>
                     select(
                       "Valor imputado às obras",
@@ -658,130 +792,401 @@ export function Control({ initialTab = "Obras" }: { initialTab?: string }) {
                   }
                 />
                 <Metric
-                  label="Custo interno estimado"
+                  label="Amortização fixa acumulada"
                   value={money(sum(equipmentStats, (r) => r.internal))}
-                  hint="Dias alugados × custo interno, no período"
+                  hint="Taxa fixa diária de amortização"
                 />
                 <Metric
-                  label="Resultado do período"
+                  label="Lucro da ferramentaria"
                   value={money(equipmentResult)}
-                  hint="Valor imputado menos custo interno"
+                  hint="Fundo para reinvestimento anual"
                   accent={equipmentResult < 0 ? "danger" : "positive"}
                 />
               </div>
-              <div className="section-top">
-                <h2>Equipamento: utilização e retorno</h2>
-              </div>
-              <div className="filter-bar">
-                <Button secondary onClick={() => setInUseOnly(!inUseOnly)}>
-                  {inUseOnly
-                    ? "Ver todo o equipamento"
-                    : "Só equipamento com atividade"}
+
+              <div className="filter-bar" style={{ marginBottom: "1rem" }}>
+                <Button
+                  secondary={equipmentSubView !== "equipamento"}
+                  onClick={() => setEquipmentSubView("equipamento")}
+                >
+                  Por equipamento
                 </Button>
-                <span className="muted">
-                  {equipmentRows.length} equipamento
-                  {equipmentRows.length === 1 ? "" : "s"} apresentados
-                </span>
+                <Button
+                  secondary={equipmentSubView !== "obra"}
+                  onClick={() => setEquipmentSubView("obra")}
+                >
+                  Por obra
+                </Button>
+                <Button
+                  secondary={equipmentSubView !== "mensal"}
+                  onClick={() => setEquipmentSubView("mensal")}
+                >
+                  Evolução mensal & anual
+                </Button>
               </div>
-              <Table
-                rows={equipmentRows}
-                rowKey={(r) => r.machine.id}
-                empty="Sem equipamento com atividade no período selecionado."
-                onRow={(r) =>
-                  r.periodCharges.length
-                    ? select(
-                        `${r.machine.numero} · ${r.machine.nome}`,
-                        r.periodCharges,
+
+              {equipmentSubView === "equipamento" && (
+                <>
+                  <div className="section-top">
+                    <h2>Equipamento: utilização e lucro individual</h2>
+                  </div>
+                  <div className="filter-bar">
+                    <Button secondary onClick={() => setInUseOnly(!inUseOnly)}>
+                      {inUseOnly
+                        ? "Ver todo o equipamento"
+                        : "Só equipamento com atividade"}
+                    </Button>
+                    <span className="muted">
+                      {equipmentRows.length} equipamento
+                      {equipmentRows.length === 1 ? "" : "s"} apresentados
+                    </span>
+                  </div>
+                  <Table
+                    rows={equipmentRows}
+                    rowKey={(r) => r.machine.id}
+                    empty="Sem equipamento com atividade no período selecionado."
+                    onRow={(r) =>
+                      r.periodCharges.length
+                        ? select(
+                            `${r.machine.numero} · ${r.machine.nome}`,
+                            r.periodCharges,
+                          )
+                        : undefined
+                    }
+                    columns={[
+                      {
+                        label: "Equipamento",
+                        hint: "Número, nome, marca e tipo do equipamento.",
+                        render: (r) => (
+                          <div>
+                            <b>
+                              {r.machine.numero} · {r.machine.nome}
+                            </b>
+                            <small className="block muted">
+                              {r.machine.marca} · {r.machine.tipo}
+                            </small>
+                          </div>
+                        ),
+                      },
+                      {
+                        label: "Situação",
+                        hint: "Em obra significa que está alocado neste momento. Caso contrário mostra o estado no armazém.",
+                        render: (r) => <Badge>{r.location}</Badge>,
+                      },
+                      {
+                        label: "Dias",
+                        hint: "Dias do período em que o equipamento esteve alocado a uma obra.",
+                        render: (r) => (r.daysUsed ? r.daysUsed : "-"),
+                        align: "right",
+                      },
+                      {
+                        label: "Faturado às obras",
+                        hint: "Valor faturado às obras no período: dias alugados x tarifa diária.",
+                        render: (r) => money(r.transfer),
+                        align: "right",
+                      },
+                      {
+                        label: "Amortização fixa",
+                        hint: "Taxa diária fixa de amortização x dias alocados.",
+                        render: (r) => money(r.internal),
+                        align: "right",
+                      },
+                      {
+                        label: "Lucro líquido",
+                        hint: "Faturado às obras menos taxa fixa de amortização. Reverte para investimento futuro.",
+                        render: (r) => (
+                          <span
+                            style={{
+                              color: r.result < 0 ? "#ae4949" : "#487a60",
+                              fontWeight: 600,
+                            }}
+                          >
+                            {money(r.result)}
+                          </span>
+                        ),
+                        align: "right",
+                      },
+                      {
+                        label: "Retorno histórico",
+                        hint: "Percentagem do valor de compra já recuperada pelas transferências para obras em todo o histórico.",
+                        render: (r) => (
+                          <div>
+                            <b>
+                              {r.recovery === null
+                                ? "-"
+                                : `${num(r.recovery * 100)}%`}
+                            </b>
+                            <small className="block muted">
+                              de {money(r.acquisition)}
+                            </small>
+                          </div>
+                        ),
+                        align: "right",
+                      },
+                    ]}
+                    footer={(items) => [
+                      <b key="total">Total</b>,
+                      "",
+                      `${sum(items, (r) => r.daysUsed)} dias`,
+                      money(sum(items, (r) => r.transfer)),
+                      money(sum(items, (r) => r.internal)),
+                      money(sum(items, (r) => r.result)),
+                      "",
+                    ]}
+                  />
+                  <Note>
+                    A amortização é calculada com uma taxa fixa diária e contínua
+                    (independentemente de a máquina já estar paga ou não). O lucro
+                    líquido apurado é destinado ao fundo de reinvestimento anual
+                    para aquisição de novos equipamentos.
+                  </Note>
+                </>
+              )}
+
+              {equipmentSubView === "obra" && (
+                <>
+                  <div className="section-top">
+                    <h2>Lucro de maquinaria gerado por obra</h2>
+                    <span className="muted">
+                      Total de {equipmentWorkStats.length} obra
+                      {equipmentWorkStats.length === 1 ? "" : "s"} com maquinaria
+                    </span>
+                  </div>
+                  <Table
+                    rows={equipmentWorkStats}
+                    rowKey={(r) => r.obraId}
+                    empty="Sem alocação de maquinaria nas obras no período selecionado."
+                    onRow={(r) =>
+                      select(
+                        `Maquinaria · Obra ${r.work?.numero ?? r.obraId}`,
+                        r.costs,
                       )
-                    : undefined
-                }
-                columns={[
-                  {
-                    label: "Equipamento",
-                    hint: "Número, nome, marca e tipo do equipamento.",
-                    render: (r) => (
-                      <div>
-                        <b>
-                          {r.machine.numero} · {r.machine.nome}
-                        </b>
-                        <small className="block muted">
-                          {r.machine.marca} · {r.machine.tipo}
+                    }
+                    columns={[
+                      {
+                        label: "Obra",
+                        render: (r) => (
+                          <div>
+                            <b>
+                              {r.work?.numero ?? r.obraId} · {r.work?.nome ?? "Obra"}
+                            </b>
+                            <small className="block muted">
+                              {r.machineIds.size} equipamento
+                              {r.machineIds.size === 1 ? "" : "s"} diferente
+                              {r.machineIds.size === 1 ? "" : "s"}
+                            </small>
+                          </div>
+                        ),
+                      },
+                      {
+                        label: "Dias alocados",
+                        render: (r) => `${r.daysUsed} dias`,
+                        align: "right",
+                      },
+                      {
+                        label: "Valor cobrado à obra",
+                        hint: "Total imputado ao custo da obra.",
+                        render: (r) => money(r.transfer),
+                        align: "right",
+                      },
+                      {
+                        label: "Amortização fixa",
+                        hint: "Custo interno fixo das máquinas no período.",
+                        render: (r) => money(r.internal),
+                        align: "right",
+                      },
+                      {
+                        label: "Lucro gerado",
+                        hint: "Margem líquida gerada para a ferramentaria.",
+                        render: (r) => (
+                          <span
+                            style={{
+                              color: r.profit < 0 ? "#ae4949" : "#487a60",
+                              fontWeight: 600,
+                            }}
+                          >
+                            {money(r.profit)}
+                          </span>
+                        ),
+                        align: "right",
+                      },
+                      {
+                        label: "Margem",
+                        render: (r) => `${num(r.margin)}%`,
+                        align: "right",
+                      },
+                    ]}
+                    footer={(items) => [
+                      <b key="total">Total</b>,
+                      `${sum(items, (r) => r.daysUsed)} dias`,
+                      money(sum(items, (r) => r.transfer)),
+                      money(sum(items, (r) => r.internal)),
+                      money(sum(items, (r) => r.profit)),
+                      items.length > 0
+                        ? `${num((sum(items, (r) => r.profit) / Math.max(1, sum(items, (r) => r.transfer))) * 100)}%`
+                        : "0%",
+                    ]}
+                  />
+                  <Note>
+                    Clique numa obra para ver os registos diários de alocação de
+                    equipamento correspondentes. O lucro gerado por obra
+                    representa o excedente da tarifa cobrada face à taxa fixa de
+                    amortização.
+                  </Note>
+                </>
+              )}
+
+              {equipmentSubView === "mensal" && (
+                <>
+                  <div className="grid-two">
+                    <Panel
+                      title="Fundo de Reinvestimento Anual"
+                      subtitle="Maquinaria e Equipamento"
+                    >
+                      <div className="travel-summary">
+                        <strong>{money(equipmentResult)}</strong>
+                        <span>Lucro líquido gerado no período</span>
+                        <div className="ranking-track">
+                          <i style={{ width: "100%", background: "#487a60" }} />
+                        </div>
+                        <small className="muted">
+                          Regra ACRS confirmada: a taxa de amortização é fixa e
+                          contínua. O lucro apurado reverte diretamente para a conta
+                          de reinvestimento anual em novas máquinas.
                         </small>
                       </div>
-                    ),
-                  },
-                  {
-                    label: "Situação",
-                    hint: "Em obra significa que está alocado neste momento. Caso contrário mostra o estado registado no armazém.",
-                    render: (r) => <Badge>{r.location}</Badge>,
-                  },
-                  {
-                    label: "Dias",
-                    hint: "Dias do período selecionado em que o equipamento esteve alocado a uma obra.",
-                    render: (r) => (r.daysUsed ? r.daysUsed : "—"),
-                    align: "right",
-                  },
-                  {
-                    label: "Valor às obras",
-                    hint: "Valor cobrado às obras no período: dias alugados multiplicado pela tarifa diária.",
-                    render: (r) => money(r.transfer),
-                    align: "right",
-                  },
-                  {
-                    label: "Custo interno",
-                    hint: "Custo estimado para a empresa no período: dias alugados multiplicado pelo custo interno diário.",
-                    render: (r) => money(r.internal),
-                    align: "right",
-                  },
-                  {
-                    label: "Resultado",
-                    hint: "Valor às obras menos custo interno, apenas no período. Não inclui manutenção nem amortização.",
-                    render: (r) => (
-                      <span
-                        style={{
-                          color: r.result < 0 ? "#ae4949" : "#487a60",
-                        }}
-                      >
-                        {money(r.result)}
-                      </span>
-                    ),
-                    align: "right",
-                  },
-                  {
-                    label: "Retorno",
-                    hint: "Percentagem do valor de aquisição já recuperada pelas transferências para obras, em todo o histórico. O valor por baixo é o preço de compra.",
-                    render: (r) => (
-                      <div>
-                        <b>
-                          {r.recovery === null
-                            ? "—"
-                            : `${num(r.recovery * 100)}%`}
-                        </b>
-                        <small className="block muted">
-                          de {money(r.acquisition)}
-                        </small>
-                      </div>
-                    ),
-                    align: "right",
-                  },
-                ]}
-                footer={(items) => [
-                  <b key="total">Total</b>,
-                  "",
-                  `${sum(items, (r) => r.daysUsed)} dias`,
-                  money(sum(items, (r) => r.transfer)),
-                  money(sum(items, (r) => r.internal)),
-                  money(sum(items, (r) => r.result)),
-                  "",
-                ]}
-              />
-              <Note>
-                As colunas até «Resultado» referem-se apenas ao período
-                selecionado. «Retorno» é histórico: compara tudo o que já foi
-                transferido para obras com o valor de aquisição. O custo interno
-                é uma estimativa demo, a validar com a ACRS. Clique num
-                equipamento para ver os encargos que o compõem.
-              </Note>
+                    </Panel>
+                    <Panel
+                      title="Evolução mensal do lucro de equipamento"
+                      subtitle="Lucro líquido = Cobrado às obras - Amortização fixa"
+                    >
+                      <MonthlyChart
+                        currency
+                        points={monthly(
+                          rows
+                            .filter((c) => c.origem === "Equipamento")
+                            .map((c) => ({
+                              date: c.data,
+                              value:
+                                c.valor -
+                                (allocationMachineMap.get(c.origemId || "")
+                                  ?.custoInternoDia ?? 0),
+                            })),
+                        )}
+                      />
+                    </Panel>
+                  </div>
+
+                  <div className="section-top" style={{ marginTop: "1.5rem" }}>
+                    <h2>Resumo anual para reinvestimento</h2>
+                  </div>
+                  <Table
+                    rows={equipmentMonthlyAndAnnual.yearsList}
+                    rowKey={(r) => r.year}
+                    empty="Sem histórico de aluguer de equipamento no período."
+                    columns={[
+                      {
+                        label: "Ano",
+                        render: (r) => <b>{r.year}</b>,
+                      },
+                      {
+                        label: "Dias de alocação",
+                        render: (r) => `${r.days} dias`,
+                        align: "right",
+                      },
+                      {
+                        label: "Faturado às obras",
+                        render: (r) => money(r.transfer),
+                        align: "right",
+                      },
+                      {
+                        label: "Amortização fixa",
+                        render: (r) => money(r.internal),
+                        align: "right",
+                      },
+                      {
+                        label: "Lucro líquido para fundo",
+                        render: (r) => (
+                          <span
+                            style={{
+                              color: r.profit < 0 ? "#ae4949" : "#487a60",
+                              fontWeight: 600,
+                            }}
+                          >
+                            {money(r.profit)}
+                          </span>
+                        ),
+                        align: "right",
+                      },
+                    ]}
+                    footer={(items) => [
+                      <b key="total">Total</b>,
+                      `${sum(items, (r) => r.days)} dias`,
+                      money(sum(items, (r) => r.transfer)),
+                      money(sum(items, (r) => r.internal)),
+                      money(sum(items, (r) => r.profit)),
+                    ]}
+                  />
+
+                  <div className="section-top" style={{ marginTop: "1.5rem" }}>
+                    <h2>Detalhe mês a mês</h2>
+                  </div>
+                  <Table
+                    rows={equipmentMonthlyAndAnnual.monthsList}
+                    rowKey={(r) => r.month}
+                    empty="Sem movimentos mensais no período."
+                    columns={[
+                      {
+                        label: "Mês",
+                        render: (r) => (
+                          <b>
+                            {new Date(r.month + "-01T12:00:00").toLocaleDateString(
+                              "pt-PT",
+                              { month: "long", year: "numeric" },
+                            )}
+                          </b>
+                        ),
+                      },
+                      {
+                        label: "Dias de alocação",
+                        render: (r) => `${r.days} dias`,
+                        align: "right",
+                      },
+                      {
+                        label: "Faturado às obras",
+                        render: (r) => money(r.transfer),
+                        align: "right",
+                      },
+                      {
+                        label: "Amortização fixa",
+                        render: (r) => money(r.internal),
+                        align: "right",
+                      },
+                      {
+                        label: "Lucro do mês",
+                        render: (r) => (
+                          <span
+                            style={{
+                              color: r.profit < 0 ? "#ae4949" : "#487a60",
+                              fontWeight: 600,
+                            }}
+                          >
+                            {money(r.profit)}
+                          </span>
+                        ),
+                        align: "right",
+                      },
+                    ]}
+                    footer={(items) => [
+                      <b key="total">Total</b>,
+                      `${sum(items, (r) => r.days)} dias`,
+                      money(sum(items, (r) => r.transfer)),
+                      money(sum(items, (r) => r.internal)),
+                      money(sum(items, (r) => r.profit)),
+                    ]}
+                  />
+                </>
+              )}
             </>
           )}
         </>

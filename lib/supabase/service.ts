@@ -8,6 +8,7 @@ import type {
   InvoiceItem,
   Machine,
   Movement,
+  Person,
   Profile,
   Settings,
   State,
@@ -120,6 +121,7 @@ export async function fetchStateWithClient(supabase: any): Promise<State | null>
         budgetMap.set(b.obra_id, {
           obraId: b.obra_id,
           valor: Number(b.valor),
+          valorExtra: b.valor_extra != null ? Number(b.valor_extra) : 0,
           margem: Number(b.margem),
           modo: b.modo || "Simples",
           linhas: b.linhas || [],
@@ -133,6 +135,7 @@ export async function fetchStateWithClient(supabase: any): Promise<State | null>
         budgetMap.set(w.id, {
           obraId: w.id,
           valor: 15000,
+          valorExtra: 0,
           margem: 0.20,
           modo: "Simples",
           linhas: [],
@@ -554,6 +557,7 @@ export async function persistBudgetToSupabase(b: Budget, profile: Profile) {
   const { error } = await supabase.from("budgets").upsert({
     obra_id: b.obraId,
     valor: b.valor,
+    valor_extra: b.valorExtra ?? 0,
     margem: b.margem,
     modo: b.modo,
     linhas: b.linhas,
@@ -605,6 +609,35 @@ export async function persistWorkToSupabase(w: Work, profile: Profile) {
     entidade: "works",
     entidade_id: w.id,
     estado_posterior: w,
+  });
+}
+
+export async function persistPersonToSupabase(p: Person, profile: Profile) {
+  const supabase = getSupabaseBrowserClient();
+  if (!supabase) return;
+
+  const { error } = await supabase.from("people").upsert({
+    id: p.id,
+    nome: p.nome,
+    custo_hora: p.custoHora != null ? p.custoHora : null,
+    horas_dia: p.horasDia != null ? p.horasDia : null,
+    empresa_id: p.empresaId || null,
+    tipo: p.tipo || null,
+    source: p.source || "ACRS",
+    updated_at: new Date().toISOString(),
+  });
+  if (error) {
+    console.error("Erro ao persistir colaborador no Supabase:", error);
+    throw error;
+  }
+
+  await supabase.from("audit_logs").insert({
+    utilizador: profile,
+    perfil: profile,
+    acao: "UPSERT_PERSON",
+    entidade: "people",
+    entidade_id: p.id,
+    estado_posterior: p,
   });
 }
 
@@ -686,7 +719,13 @@ export async function persistMachineToSupabase(m: Machine, profile: Profile) {
     custo_dia: m.custoDia,
     custo_interno_dia: m.custoInternoDia || null,
     custo_aquisicao: m.custoAquisicao || null,
+    data_aquisicao: m.dataAquisicao || null,
+    periodo_amortizacao: m.periodoAmortizacao || null,
+    valor_residual: m.valorResidual || null,
     manutencao_acumulada: m.manutencaoAcumulada || null,
+    periodicidade_inspecao: m.periodicidadeInspecao || null,
+    ultima_inspecao: m.ultimaInspecao || null,
+    proxima_inspecao: m.proximaInspecao || null,
     tipo: m.tipo,
     source: m.source,
   });
@@ -727,6 +766,7 @@ export function subscribeToSupabaseChanges(onUpdate: () => void) {
     .on("postgres_changes", { event: "*", schema: "public", table: "articles" }, triggerDebounced)
     .on("postgres_changes", { event: "*", schema: "public", table: "manual_costs" }, triggerDebounced)
     .on("postgres_changes", { event: "*", schema: "public", table: "settings" }, triggerDebounced)
+    .on("postgres_changes", { event: "*", schema: "public", table: "people" }, triggerDebounced)
     .on("postgres_changes", { event: "*", schema: "public", table: "machines" }, triggerDebounced)
     .subscribe();
 

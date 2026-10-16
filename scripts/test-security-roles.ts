@@ -143,15 +143,16 @@ async function runSecurityTests() {
       `Tentativa de auto-escalação de privilégios bloqueada pelo trigger (${escalationErr?.message || "sucesso"})`,
     );
 
-    // Teste 2.3: Terreno NÃO pode alterar obras de outros utilizadores
-    const { error: workUpdateErr } = await terrenoClient
+    // Teste 2.3: Terreno NÃO pode alterar obras de outros utilizadores (RLS impede atualizar linhas)
+    const { data: updatedWorks, error: workUpdateErr } = await terrenoClient
       .from("works")
       .update({ nome: "Obra Modificada por Terreno" })
-      .eq("id", "25094");
+      .eq("id", "25094")
+      .select();
 
     assert(
-      !!workUpdateErr,
-      "Perfil 'terreno' bloqueado ao tentar alterar definições de obras",
+      !!workUpdateErr || !updatedWorks || updatedWorks.length === 0,
+      "Perfil 'terreno' bloqueado ao tentar alterar definições de obras (RLS impede alteração)",
     );
   }
 

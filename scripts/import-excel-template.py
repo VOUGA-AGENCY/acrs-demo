@@ -230,6 +230,7 @@ def parse_excel_template(file_path):
             data["budgets"].append({
                 "obra_id": num_str,
                 "valor": float(val_comercial),
+                "valor_extra": 0.0,
                 "margem": float(margem),
                 "modo": "Discriminado" if has_discriminated else "Simples",
                 "linhas": linhas if has_discriminated else [],

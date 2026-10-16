@@ -132,9 +132,18 @@ export type OCRResult = {
   rawText?: string;
   documentUrl?: string;
 };
+export type MovementType =
+  | "Saída"
+  | "Devolução"
+  | "Entrada"
+  | "Transferência Contentor"
+  | "Consumo Contentor"
+  | "Retorno Contentor"
+  | "Outro";
+
 export type Movement = {
   id: string;
-  tipo: "Saída" | "Devolução" | "Entrada" | "Outro";
+  tipo: MovementType;
   artigoId: string;
   obraId: string;
   descricao: string;
@@ -182,6 +191,7 @@ export type Allocation = {
 export type Budget = {
   obraId: string;
   valor: number;
+  valorExtra?: number;
   margem: number;
   modo: string;
   linhas: { categoria: string; valor: number }[];

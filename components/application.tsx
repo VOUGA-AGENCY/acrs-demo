@@ -10,6 +10,7 @@ import { Budgets } from "./budgets";
 import { Control } from "./control";
 import { Settings } from "./settings";
 import { Resources, WarehouseOverview } from "./resources";
+import { Machines } from "./machines";
 import { useStore } from "./store";
 export function Application({ segments = [] }: { segments?: string[] }) {
   const path = segments.join("/");
@@ -27,7 +28,7 @@ export function Application({ segments = [] }: { segments?: string[] }) {
     "armazem/stock": <Resources initialType="Consumíveis" />,
     "armazem/movimentos": <Movements />,
     "armazem/consumo": <Control initialTab="Consumo de stock" />,
-    "armazem/maquinas": <Resources initialType="Máquinas e equipamentos" />,
+    "armazem/maquinas": <Machines />,
     "armazem/tablet": <Tablet />,
     faturas: <Invoices />,
     compras: <Invoices initialType="Compra para stock" />,

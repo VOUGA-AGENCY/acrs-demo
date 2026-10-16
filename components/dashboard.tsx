@@ -23,7 +23,7 @@ export function Dashboard() {
   const management = profile === "Gerência";
   const john = authUser?.perfil === "admin" || (!authUser && profile === "João Catalão");
   const totalCost = sum(ledger, (c) => c.valor);
-  const totalBudget = sum(state.budgets, (b) => b.valor);
+  const totalBudget = sum(state.budgets, (b) => b.valor + (b.valorExtra || 0));
   const active = state.works.filter((w) => w.estado === "Em curso");
   const activeFinancials = active.map((work) => ({
     work,

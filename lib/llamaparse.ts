@@ -34,7 +34,7 @@ export async function parseInvoiceWithLlamaParse(
     version: "latest",
     agentic_options: {
       custom_prompt:
-        "Extract only essential invoice details: vendor/supplier name (fornecedor), supplier tax identification number (NIF/NIPC do fornecedor), invoice/document number (número do documento), date (data YYYY-MM-DD), and total gross amount with VAT (valor total). Also identify the expense category (Combustível, Alimentação, Alojamento, Ferramentaria, Transportes, Outros). Do NOT extract line items or article tables.",
+        "Extract essential invoice details: vendor/supplier name (fornecedor), supplier tax identification number (NIF/NIPC do fornecedor/emitente), buyer/customer tax identification number (NIF/NIPC do adquirente/cliente), invoice/document number (número do documento), date (data YYYY-MM-DD), and total gross amount with VAT (valor total). Also identify the expense category (Combustível, Alimentação, Alojamento, Ferramentaria, Transportes, Outros). Do NOT extract line items or article tables.",
     },
   };
   formData.append("configuration", JSON.stringify(configuration));
@@ -170,15 +170,47 @@ export function extractInvoiceFieldsFromMarkdown(markdownInput: any): OCRResult 
     linhas: [],
   };
 
-  const lines = markdown.split("\n");
+  const DEFAULT_ACRS_NIF = "514123456";
 
-  // 1. Extrair NIF português (9 dígitos, opcionalmente com prefixo PT)
-  const nifMatch =
-    markdown.match(/\b(?:NIF|NIPC|VAT|Contribuinte)[\s.:#]*((?:PT\s*)?[1-9]\d{8})\b/i) ||
-    markdown.match(/\b(PT\s*[1-9]\d{8})\b/i) ||
-    markdown.match(/\b(5\d{8}|9\d{8}|1\d{8}|2\d{8})\b/);
-  if (nifMatch) {
-    result.nifFornecedor = nifMatch[1].replace(/\s+/g, "").toUpperCase();
+  // 1. Extrair os 2 NIFs: Fornecedor (emitente/vendedor) e Adquirente (comprador/ACRS)
+  const allNifMatches = Array.from(
+    markdown.matchAll(/\b(?:PT\s*)?([1-9]\d{8})\b/gi),
+  ).map((m) => m[1].replace(/\s+/g, ""));
+
+  // Procurar explicitamente menção ao NIF do Adquirente / Cliente
+  const buyerMatch =
+    markdown.match(/(?:Adquirente|Cliente|Destinat[aá]rio|Comprador|Billed\s*To|Customer)[\s\S]{0,80}?(?:NIF|NIPC|VAT|Contribuinte)?[\s.:#]*([1-9]\d{8})\b/i) ||
+    markdown.match(/(?:NIF|NIPC|VAT|Contribuinte)[\s.:#]*(?:do\s+)?(?:Adquirente|Cliente)[\s.:#]*([1-9]\d{8})\b/i);
+
+  let buyerNif = buyerMatch ? buyerMatch[1].replace(/\s+/g, "") : undefined;
+
+  // Procurar explicitamente menção ao NIF do Fornecedor / Emitente
+  const sellerMatch =
+    markdown.match(/(?:Emitente|Fornecedor|Vendedor|Prestador)[\s\S]{0,80}?(?:NIF|NIPC|VAT|Contribuinte)?[\s.:#]*([1-9]\d{8})\b/i) ||
+    markdown.match(/(?:NIF|NIPC|VAT|Contribuinte)[\s.:#]*(?:do\s+)?(?:Emitente|Fornecedor)[\s.:#]*([1-9]\d{8})\b/i);
+
+  let sellerNif = sellerMatch ? sellerMatch[1].replace(/\s+/g, "") : undefined;
+
+  // Se o NIF da ACRS aparece no documento, é sempre atribuído ao comprador
+  if (!buyerNif && allNifMatches.includes(DEFAULT_ACRS_NIF)) {
+    buyerNif = DEFAULT_ACRS_NIF;
+  }
+
+  // O NIF padrão do adquirente é SEMPRE o da ACRS
+  result.nifEmpresa = buyerNif || DEFAULT_ACRS_NIF;
+
+  // O NIF do fornecedor deve ser diferente do NIF da ACRS
+  if (!sellerNif) {
+    const nonAcrsNifs = allNifMatches.filter((n) => n !== result.nifEmpresa);
+    if (nonAcrsNifs.length > 0) {
+      sellerNif = nonAcrsNifs[0];
+    } else if (allNifMatches.length > 0 && allNifMatches[0] !== result.nifEmpresa) {
+      sellerNif = allNifMatches[0];
+    }
+  }
+
+  if (sellerNif) {
+    result.nifFornecedor = sellerNif;
   }
 
   // 2. Extrair Número de Documento / Fatura (suporta anos entre 2010 e 2039)
