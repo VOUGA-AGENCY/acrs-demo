@@ -163,14 +163,22 @@ export function Shell({ children }: { children: ReactNode }) {
       : profile === "Gerência"
         ? new Set(["Dashboard", "Obras", "Controlo"])
         : null;
-  const categoryClass = (label: string) =>
-    ["Armazém", "Recursos", "Máquinas", "Movimentos", "Tablet"].includes(label)
+  const categoryClass = (label: string, url?: string) =>
+    ["Armazém", "Recursos", "Máquinas", "Movimentos", "Tablet"].includes(label) ||
+    Boolean(url && url.startsWith("/armazem"))
       ? "nav-warehouse"
-      : ["Pessoas", "Ponto", "Colaboradores", "Empresas"].includes(label)
+      : ["Pessoas", "Ponto", "Colaboradores", "Empresas"].includes(label) ||
+        Boolean(url && url.startsWith("/pessoas"))
         ? "nav-people"
         : ["Faturas & Compras", "Orçamentos", "Controlo", "Configuração"].includes(label)
           ? "nav-management"
           : "nav-operation";
+
+  const isSub = (label: string, url: string) =>
+    url.startsWith("/armazem/") ||
+    url.startsWith("/pessoas/") ||
+    ["Recursos", "Máquinas", "Movimentos", "Tablet", "Ponto", "Colaboradores", "Empresas"].includes(label);
+
   return (
     <div className="app-shell">
       <aside className="sidebar">
@@ -181,7 +189,7 @@ export function Shell({ children }: { children: ReactNode }) {
         <nav>
           {links.filter(([label]) => !visible || visible.has(label)).map(([label, url, Icon]) =>
             url === "group" ? (
-              <div className={`nav-group ${categoryClass(label)}`} key={label}>
+              <div className={`nav-group ${categoryClass(label, url)}`} key={label}>
                 <Icon size={17} />
                 {label}
               </div>
@@ -189,7 +197,7 @@ export function Shell({ children }: { children: ReactNode }) {
               <Link
                 key={url}
                 href={url}
-                className={`${(url === "/" ? path === "/" : path === url || (url === "/obras" && path.startsWith("/obras/"))) ? "active" : ""} ${["Recursos", "Máquinas", "Movimentos", "Tablet", "Ponto", "Colaboradores", "Empresas"].includes(label) ? "sub" : ""} ${categoryClass(label)} ${["Armazém"].includes(label) ? "module-parent" : ""}`}
+                className={`${(url === "/" ? path === "/" : path === url || (url === "/obras" && path.startsWith("/obras/"))) ? "active" : ""} ${isSub(label, url) ? "sub" : ""} ${categoryClass(label, url)} ${url === "/armazem" ? "module-parent" : ""}`}
               >
                 <Icon size={18} />
                 <span>{label}</span>

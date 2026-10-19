@@ -360,6 +360,7 @@ export function Modal({
   onClose,
   drawer = false,
   wide = false,
+  extraWide = false,
   preventBackdropClose = false,
 }: {
   title: string;
@@ -367,6 +368,7 @@ export function Modal({
   onClose: () => void;
   drawer?: boolean;
   wide?: boolean;
+  extraWide?: boolean;
   preventBackdropClose?: boolean;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -378,7 +380,7 @@ export function Modal({
   return (
     <dialog
       ref={ref}
-      className={`${drawer ? "drawer" : "modal"} ${wide ? "wide" : ""}`}
+      className={`${drawer ? "drawer" : "modal"} ${wide ? "wide" : ""} ${extraWide ? "extra-wide" : ""}`}
       onCancel={(e) => {
         if (preventBackdropClose) {
           e.preventDefault();

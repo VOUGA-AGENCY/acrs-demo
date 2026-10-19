@@ -7,6 +7,7 @@ import {
   Users,
   Factory,
   Check,
+  Download,
 } from "lucide-react";
 import { useStore } from "./store";
 import { effectivePolicy, timeCost, validateTimeEntry } from "@/lib/engine";
@@ -472,6 +473,66 @@ export function Point() {
         Boolean(q) ||
         periods.some((t) => t.pessoaId === p.id)),
   );
+
+  function exportTimesheetCSV() {
+    const headers = [
+      "Colaborador",
+      "Empresa",
+      "Data",
+      "Obra",
+      "Entrada Manha",
+      "Saida Manha",
+      "Entrada Tarde",
+      "Saida Tarde",
+      "Entrada Noite",
+      "Saida Noite",
+      "Tempo Viagem",
+      "Horas Trabalho",
+      "Horas Viagem",
+      "Horas Noturnas",
+      "Horas Extra",
+    ];
+
+    const csvRows = periods.map((t) => {
+      const p = state.people.find((person) => person.id === t.pessoaId);
+      const company = state.companies.find((c) => c.id === p?.empresaId);
+      const work = state.works.find((w) => w.id === t.obraId);
+      const workTitle = work
+        ? work.numero
+          ? `${work.numero} - ${work.nome}`
+          : work.nome
+        : t.obraId;
+      return [
+        `"${p?.nome || t.nome || ""}"`,
+        `"${company?.nome || ""}"`,
+        `"${t.data}"`,
+        `"${workTitle || ""}"`,
+        `"${t.entradaManha || ""}"`,
+        `"${t.saidaManha || ""}"`,
+        `"${t.entradaTarde || ""}"`,
+        `"${t.saidaTarde || ""}"`,
+        `"${t.entradaNoite || ""}"`,
+        `"${t.saidaNoite || ""}"`,
+        `"${t.tempoViagem || ""}"`,
+        `"${num(t.horas)}"`,
+        `"${num(t.horasViagem)}"`,
+        `"${num(t.horasNoturnas)}"`,
+        `"${num(t.horasExtraExcel || 0)}"`,
+      ].join(";");
+    });
+
+    const csvContent = "\uFEFF" + [headers.join(";"), ...csvRows].join("\r\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `Folha_Ponto_ACRS_${week}_a_${dates[6]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <>
       <PageHeader
@@ -479,9 +540,14 @@ export function Point() {
         title="Ponto"
         description="Registo administrativo semanal. Selecione um dia para consultar ou editar."
         actions={
-          <Button onClick={() => setAdding(true)}>
-            <Plus size={16} /> Registar ponto
-          </Button>
+          <div style={{ display: "flex", gap: "8px" }}>
+            <Button secondary onClick={exportTimesheetCSV} disabled={!periods.length}>
+              <Download size={15} /> Exportar CSV
+            </Button>
+            <Button onClick={() => setAdding(true)}>
+              <Plus size={16} /> Registar ponto
+            </Button>
+          </div>
         }
       />
       <div className="metrics four">

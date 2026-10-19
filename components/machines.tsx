@@ -50,6 +50,7 @@ export function Machines({ tablet = false, initialWork = "" }: { tablet?: boolea
   const { state, setState, profile, notify } = useStore();
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState("");
+  const [inspectionOnly, setInspectionOnly] = useState(false);
   const [selected, setSelected] = useState<Machine | null>(null);
   const [action, setAction] = useState("");
   const [work, setWork] = useState(initialWork);
@@ -71,6 +72,7 @@ export function Machines({ tablet = false, initialWork = "" }: { tablet?: boolea
         const found = state.machines.find((m) => m.id === id);
         if (found) setSelected(found);
       }
+      if (params.get("alerta") === "inspecao") setInspectionOnly(true);
     }
   }, [state.machines]);
   const open = (id: string) =>
@@ -79,7 +81,10 @@ export function Machines({ tablet = false, initialWork = "" }: { tablet?: boolea
   const rows = state.machines.filter(
     (m) =>
       includes(`${m.numero} ${m.nome} ${m.marca}`, q) &&
-      (!filter || status(m) === filter),
+      (!filter || status(m) === filter) &&
+      (!inspectionOnly ||
+        machineInspectionStatus(m).overdue ||
+        machineInspectionStatus(m).tone === "amber"),
   );
   function begin(a: string) {
     setAction(a);
@@ -243,6 +248,8 @@ export function Machines({ tablet = false, initialWork = "" }: { tablet?: boolea
                 ? "danger"
                 : undefined
             }
+            onClick={() => setInspectionOnly(!inspectionOnly)}
+            hint={inspectionOnly ? "A filtrar pendentes" : "Clique para filtrar"}
           />
         </div>
       )}
@@ -250,7 +257,7 @@ export function Machines({ tablet = false, initialWork = "" }: { tablet?: boolea
         <SearchInput
           value={q}
           onChange={setQ}
-          placeholder="Pesquisar equipamento, número ou marca…"
+          placeholder="Pesquisar equipamento, número ou marca..."
         />
         <Select
           label="Estado do equipamento"
@@ -259,6 +266,9 @@ export function Machines({ tablet = false, initialWork = "" }: { tablet?: boolea
           placeholder="Todos os estados"
           options={["Disponível", "Em obra", "Em reparação", "Indisponível"]}
         />
+        <Button secondary onClick={() => setInspectionOnly(!inspectionOnly)}>
+          {inspectionOnly ? "Ver todos os equipamentos" : "Só inspeções pendentes"}
+        </Button>
       </div>
       <Table
         rows={rows}

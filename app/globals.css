@@ -1137,6 +1137,10 @@ td b {
 .modal.wide {
   width: 780px;
 }
+.modal.extra-wide {
+  width: 980px;
+  max-width: calc(100vw - 32px);
+}
 .modal::backdrop,
 .drawer::backdrop {
   background: #25303d55;
@@ -1152,6 +1156,10 @@ td b {
 }
 .modal-inner {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-height: 90dvh;
+  overflow: hidden;
 }
 .modal-header {
   position: sticky;
@@ -1163,6 +1171,7 @@ td b {
   padding: 20px 24px;
   border-bottom: 1px solid var(--line);
   z-index: 2;
+  flex-shrink: 0;
 }
 .icon-button {
   display: grid;
@@ -1174,6 +1183,12 @@ td b {
 .drawer-body,
 .modal-body {
   padding: 24px;
+}
+.modal-body {
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  min-height: 0;
 }
 .detail-hero {
   padding-bottom: 25px;
@@ -2850,6 +2865,177 @@ td b {
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+/* Printable Report Styles */
+.report-sheet {
+  background: #ffffff;
+  color: #1a202c;
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #0f172a;
+  margin-bottom: 20px;
+}
+.report-header h2 {
+  margin: 0 0 4px 0;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+}
+.report-header p {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+.report-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  background: #f8fafc;
+  padding: 14px 16px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
+}
+.report-meta-item {
+  font-size: 12px;
+}
+.report-meta-item span {
+  display: block;
+  color: #64748b;
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+.report-meta-item strong {
+  color: #0f172a;
+}
+.report-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 14px 0;
+}
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.report-table th {
+  background: #f1f5f9;
+  text-align: left;
+  padding: 8px 12px;
+  font-weight: 600;
+  color: #334155;
+  border-bottom: 1px solid #cbd5e1;
+}
+.report-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.report-table tfoot td {
+  font-weight: 700;
+  background: #f8fafc;
+  border-top: 2px solid #0f172a;
+}
+.report-side-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+.report-side-card {
+  background: #f8fafc;
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+.report-signatures {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+  padding-top: 16px;
+}
+.report-sign-box {
+  text-align: center;
+  font-size: 11px;
+  color: #475569;
+}
+.report-sign-line {
+  border-bottom: 1px dashed #94a3b8;
+  height: 40px;
+  margin-bottom: 8px;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 12mm 15mm 12mm;
+  }
+  body, html {
+    background: #ffffff !important;
+    color: #000000 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .hide-on-print,
+  .simple-shell > header,
+  nav,
+  .nav,
+  .sidebar,
+  .page-header,
+  .filter-bar,
+  .tabs {
+    display: none !important;
+  }
+  dialog.modal {
+    position: static !important;
+    display: block !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: transparent !important;
+  }
+  dialog.modal::backdrop {
+    display: none !important;
+  }
+  .modal-inner {
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+  .modal-header {
+    display: none !important;
+  }
+  .modal-body {
+    padding: 0 !important;
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+  }
+  .report-sheet {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .report-table-wrap {
+    overflow: visible !important;
+  }
 }
 
 

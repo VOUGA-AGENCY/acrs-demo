@@ -3,33 +3,35 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowUpRight, Package, Wrench, ArrowLeftRight, TriangleAlert, Calendar } from "lucide-react";
 import { useStore } from "./store";
-import { days, stock } from "@/lib/engine";
+import { stock } from "@/lib/engine";
 import { date, includes, money, qty, sum, today } from "@/lib/format";
-import { Badge, Button, DetailList, Metric, Modal, PageHeader, Panel, SearchInput, Tabs, Table } from "./ui";
-import { machineInspectionStatus } from "./machines";
-import type { Article, Machine } from "@/types/index";
+import { Badge, Button, DetailList, Metric, Modal, PageHeader, Panel, SearchInput, Select, Tabs, Table } from "./ui";
+import type { Article } from "@/types/index";
 
-type ResourceRow = {
+type ArticleRow = {
   id: string;
   code: string;
   name: string;
   detail: string;
-  type: "Consumíveis" | "Ferramentas" | "Máquinas e equipamentos";
-  state: string;
+  family: string;
+  material: string;
+  currentStock: number;
+  minimumStock: number | null;
+  state: "Disponivel" | "Abaixo do minimo" | "Sem stock";
   alert: string;
   location: string;
-  rule: string;
-  value: string;
+  unitPrice: number;
+  internalValue: number;
+  article: Article;
 };
-
-const machineType = (name: string): ResourceRow["type"] =>
-  name.toLowerCase().includes("caixa de ferramentas") ? "Ferramentas" : "Máquinas e equipamentos";
 
 export function WarehouseOverview() {
   const { state } = useStore();
   const router = useRouter();
-  const active = state.allocations.filter(a => !a.devolucao);
-  const low = state.articles.filter(a => state.settings.minimos[a.id] != null && stock(state,a.id) < state.settings.minimos[a.id]);
+  const active = state.allocations.filter((a) => !a.devolucao);
+  const low = state.articles.filter(
+    (a) => state.settings.minimos[a.id] != null && stock(state, a.id) < state.settings.minimos[a.id],
+  );
   const overdueOrUpcomingInspections = state.machines.filter((m) => {
     if (!m.proximaInspecao) return false;
     const diff = Math.floor(
@@ -39,59 +41,160 @@ export function WarehouseOverview() {
     );
     return diff <= 30;
   });
-  return <>
-    <PageHeader eyebrow="ARMAZÉM" title="Visão geral" description="Materiais, ferramentas, máquinas e equipamentos numa única operação." actions={<Button onClick={() => router.push("/armazem/tablet")}>Abrir tablet <ArrowUpRight size={16}/></Button>}/>
-    <div className="metrics four">
-      <Metric label="Recursos registados" value={state.articles.length+state.machines.length} onClick={() => router.push("/armazem/recursos")}/>
-      <Metric label="Valor atual do stock" value={money(sum(state.articles,a => stock(state,a.id)*(state.settings.valoresInternos[a.id] ?? a.precoUnitario)))}/>
-      <Metric label="Máquinas e equipamentos em obra" value={active.length} onClick={() => router.push("/armazem/recursos?tipo=Máquinas e equipamentos")}/>
-      <Metric label="Alertas de reposição" value={low.length} accent="danger" onClick={() => router.push("/armazem/recursos?alerta=baixo")}/>
-    </div>
-    <div className="grid-two">
-      <Panel title="Operação do armazém" subtitle="Um ponto de entrada para todos os movimentos">
-        <div className="resource-overview">
-          <button onClick={() => router.push("/armazem/recursos")}><Package size={20}/><div><b>Recursos</b><span>Consultar disponibilidade e localização</span></div><ArrowUpRight size={16}/></button>
-          <button onClick={() => router.push("/armazem/movimentos")}><ArrowLeftRight size={20}/><div><b>Movimentos</b><span>Entradas, saídas e devoluções</span></div><ArrowUpRight size={16}/></button>
-          <button onClick={() => router.push("/armazem/tablet")}><Wrench size={20}/><div><b>Tablet</b><span>Registar na origem</span></div><ArrowUpRight size={16}/></button>
-        </div>
-      </Panel>
-      <Panel title="Atenção necessária" subtitle="Alertas separados do estado operacional">
-        <div className="resource-overview">
-          <button onClick={() => router.push("/armazem/recursos?alerta=baixo")}><TriangleAlert size={20}/><div><b>{low.length} artigos</b><span>Abaixo do stock mínimo</span></div><Badge tone="amber">Repor</Badge></button>
-          <button onClick={() => router.push("/armazem/maquinas")}><Calendar size={20}/><div><b>{overdueOrUpcomingInspections.length} equipamentos</b><span>Inspeção periódica pendente ou próxima</span></div><Badge tone={overdueOrUpcomingInspections.some(m => m.proximaInspecao && m.proximaInspecao < today()) ? "red" : "amber"}>{overdueOrUpcomingInspections.some(m => m.proximaInspecao && m.proximaInspecao < today()) ? "Expirada" : "Inspecionar"}</Badge></button>
-          <button onClick={() => router.push("/armazem/recursos?tipo=Máquinas e equipamentos")}><Wrench size={20}/><div><b>{state.machines.filter(m => m.estado === "Em reparação").length} recursos</b><span>Em manutenção ou reparação</span></div><ArrowUpRight size={16}/></button>
-        </div>
-      </Panel>
-    </div>
-  </>;
+
+  return (
+    <>
+      <PageHeader
+        eyebrow="ARMAZEM"
+        title="Visao geral"
+        description="Gestao integrada de stock de materiais, consumiveis e frota de equipamentos."
+        actions={
+          <Button onClick={() => router.push("/armazem/tablet")}>
+            Abrir tablet <ArrowUpRight size={16} />
+          </Button>
+        }
+      />
+      <div className="metrics four">
+        <Metric
+          label="Recursos em stock"
+          value={state.articles.length}
+          hint={`${state.articles.filter((a) => stock(state, a.id) > 0).length} com stock`}
+          onClick={() => router.push("/armazem/recursos")}
+        />
+        <Metric
+          label="Valor atual do stock"
+          value={money(
+            sum(
+              state.articles,
+              (a) => stock(state, a.id) * (state.settings.valoresInternos[a.id] ?? a.precoUnitario),
+            ),
+          )}
+        />
+        <Metric
+          label="Maquinas em obra"
+          value={active.length}
+          hint={`${state.machines.length} equipamentos na frota`}
+          onClick={() => router.push("/armazem/maquinas")}
+        />
+        <Metric
+          label="Alertas de reposicao"
+          value={low.length}
+          accent="danger"
+          hint={low.length > 0 ? "Abaixo do stock minimo" : "Stock regularizado"}
+          onClick={() => router.push("/armazem/recursos?alerta=baixo")}
+        />
+      </div>
+      <div className="grid-two">
+        <Panel title="Operacao do armazem" subtitle="Acesso direto aos modulos operacionais">
+          <div className="resource-overview">
+            <button onClick={() => router.push("/armazem/recursos")}>
+              <Package size={20} />
+              <div>
+                <b>Recursos</b>
+                <span>Consultar inventario de consumiveis e materiais</span>
+              </div>
+              <ArrowUpRight size={16} />
+            </button>
+            <button onClick={() => router.push("/armazem/maquinas")}>
+              <Wrench size={20} />
+              <div>
+                <b>Maquinas</b>
+                <span>Frota, alocacoes a obras e manutencao</span>
+              </div>
+              <ArrowUpRight size={16} />
+            </button>
+            <button onClick={() => router.push("/armazem/movimentos")}>
+              <ArrowLeftRight size={20} />
+              <div>
+                <b>Movimentos</b>
+                <span>Entradas, saidas e devolucoes</span>
+              </div>
+              <ArrowUpRight size={16} />
+            </button>
+            <button onClick={() => router.push("/armazem/tablet")}>
+              <Wrench size={20} />
+              <div>
+                <b>Tablet</b>
+                <span>Registar na origem / terreno</span>
+              </div>
+              <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </Panel>
+        <Panel title="Atencao necessaria" subtitle="Alertas de stock e manutencoes">
+          <div className="resource-overview">
+            <button onClick={() => router.push("/armazem/recursos?alerta=baixo")}>
+              <TriangleAlert size={20} />
+              <div>
+                <b>{low.length} artigos</b>
+                <span>Abaixo do stock minimo</span>
+              </div>
+              <Badge tone="amber">Repor</Badge>
+            </button>
+            <button onClick={() => router.push("/armazem/maquinas?alerta=inspecao")}>
+              <Calendar size={20} />
+              <div>
+                <b>{overdueOrUpcomingInspections.length} equipamentos</b>
+                <span>Inspecao periodica pendente ou proxima</span>
+              </div>
+              <Badge
+                tone={
+                  overdueOrUpcomingInspections.some(
+                    (m) => m.proximaInspecao && m.proximaInspecao < today(),
+                  )
+                    ? "red"
+                    : "amber"
+                }
+              >
+                {overdueOrUpcomingInspections.some(
+                  (m) => m.proximaInspecao && m.proximaInspecao < today(),
+                )
+                  ? "Expirada"
+                  : "Inspecionar"}
+              </Badge>
+            </button>
+            <button onClick={() => router.push("/armazem/maquinas")}>
+              <Wrench size={20} />
+              <div>
+                <b>{state.machines.filter((m) => m.estado === "Em reparacao").length} equipamentos</b>
+                <span>Em manutencao ou reparacao</span>
+              </div>
+              <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </Panel>
+      </div>
+    </>
+  );
 }
 
 export function Resources({ initialType = "Todos", hideCosts = false }: { initialType?: string; hideCosts?: boolean }) {
   const { state } = useStore();
   const router = useRouter();
-  const [type, setType] = useState(initialType);
+  const [statusFilter, setStatusFilter] = useState(
+    initialType === "Abaixo do minimo" ? "Abaixo do minimo" : "Todos",
+  );
+  const [familyFilter, setFamilyFilter] = useState("");
   const [q, setQ] = useState("");
-  const [lowOnly, setLowOnly] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
-  const [selectedMachine, setSelectedMachine] = useState<Machine | null>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const requestedType = params.get("tipo");
-    if (requestedType === "Máquinas" || requestedType === "Equipamentos") setType("Máquinas e equipamentos");
-    else if (requestedType && ["Consumíveis","Ferramentas","Máquinas e equipamentos"].includes(requestedType)) setType(requestedType);
-    if (params.get("alerta") === "baixo") setLowOnly(true);
+    if (params.get("alerta") === "baixo") setStatusFilter("Abaixo do minimo");
     const requestedId = params.get("id");
     if (requestedId) {
       const art = state.articles.find((a) => a.id === requestedId);
-      if (art) {
-        setSelectedArticle(art);
-      } else {
-        const mac = state.machines.find((m) => m.id === requestedId);
-        if (mac) setSelectedMachine(mac);
-      }
+      if (art) setSelectedArticle(art);
     }
-  }, []);
+  }, [state.articles]);
+
+  const families = useMemo(() => {
+    const set = new Set<string>();
+    for (const a of state.articles) {
+      if (a.familia) set.add(a.familia);
+    }
+    return Array.from(set).sort();
+  }, [state.articles]);
 
   const resolveWorkName = (workId?: string | null): string => {
     if (!workId || workId === "Geral" || workId === "-") return "Geral";
@@ -105,289 +208,231 @@ export function Resources({ initialType = "Todos", hideCosts = false }: { initia
     return found.numero || workId;
   };
 
-  const rows = useMemo<ResourceRow[]>(() => {
-    const articles: ResourceRow[] = state.articles.map(a => {
-      const available = stock(state,a.id);
-      const minimum = state.settings.minimos[a.id];
-      const alert = minimum != null && available < minimum ? "Abaixo do mínimo" : "—";
-      return {id:a.id,code:a.codigoACRS,name:a.descricao,detail:[a.marca,a.familia].filter(Boolean).join(" · "),type:"Consumíveis",state:available > 0 ? "Disponível" : "Sem stock",alert,location:a.localizacao ?? "Por confirmar",rule:`${qty(1,a)} × valor interno`,value:qty(available,a)};
-    });
-    const machines: ResourceRow[] = state.machines.map(m => {
-      const allocation = state.allocations.find(a => a.maquinaId === m.id && !a.devolucao);
-      let alert = "—";
-      if (m.proximaInspecao) {
-        if (m.proximaInspecao < today()) {
-          alert = "Inspeção expirada";
-        } else {
-          const diff = Math.floor(
-            (Date.parse(m.proximaInspecao + "T00:00:00Z") -
-              Date.parse(today() + "T00:00:00Z")) /
-              86400000,
-          );
-          if (diff <= 30) alert = `Inspeção em ${diff}d`;
-        }
+  const rows: ArticleRow[] = useMemo(() => {
+    return state.articles.map((a) => {
+      const available = stock(state, a.id);
+      const minimum = state.settings.minimos[a.id] ?? null;
+      let stateLabel: ArticleRow["state"] = "Disponivel";
+      let alert = "-";
+      if (available <= 0) {
+        stateLabel = "Sem stock";
+        alert = "Sem stock";
+      } else if (minimum != null && available < minimum) {
+        stateLabel = "Abaixo do minimo";
+        alert = "Abaixo do minimo";
       }
       return {
-        id: m.id,
-        code: m.numero,
-        name: m.nome,
-        detail: [m.marca, m.modelo].filter(Boolean).join(" · "),
-        type: machineType(m.nome),
-        state: allocation ? "Em obra" : m.estado,
+        id: a.id,
+        code: a.codigoACRS,
+        name: a.descricao,
+        detail: [a.marca, a.familia, a.material].filter(Boolean).join(" - "),
+        family: a.familia || "Geral",
+        material: a.material || "-",
+        currentStock: available,
+        minimumStock: minimum,
+        state: stateLabel,
         alert,
-        location: allocation ? resolveWorkName(allocation.obraId) : "Armazém",
-        rule: "N.º de dias × custo diário",
-        value: `${money(m.custoDia)} / dia`,
+        location: a.localizacao ?? "Por confirmar",
+        unitPrice: a.precoUnitario,
+        internalValue: state.settings.valoresInternos[a.id] ?? a.precoUnitario,
+        article: a,
       };
     });
-    return [...articles,...machines];
-  },[state]);
+  }, [state]);
 
-  const filtered = rows.filter(r => (type === "Todos" || r.type === type) && (!lowOnly || r.alert !== "—") && includes(`${r.code} ${r.name} ${r.detail}`, q));
+  const filtered = rows.filter((r) => {
+    if (statusFilter === "Disponiveis" && r.state !== "Disponivel") return false;
+    if (statusFilter === "Abaixo do minimo" && r.state !== "Abaixo do minimo") return false;
+    if (statusFilter === "Sem stock" && r.state !== "Sem stock") return false;
+    if (familyFilter && r.family !== familyFilter) return false;
+    return includes(`${r.code} ${r.name} ${r.detail}`, q);
+  });
 
-  return <>
-    <PageHeader eyebrow="ARMAZÉM" title="Recursos" description="Uma lista para tudo o que entra, sai, regressa ou é atribuído a uma obra." actions={<Button onClick={() => router.push("/armazem/tablet")}>Registar movimento <ArrowUpRight size={16}/></Button>}/>
-    <Tabs
-      items={["Todos", "Consumíveis", "Ferramentas", "Máquinas e equipamentos"]}
-      value={type}
-      onChange={(t) => setType(t)}
-    />
-    <div className="filter-bar"><SearchInput value={q} onChange={setQ} placeholder="Pesquisar código, recurso, marca ou família…"/><Button secondary onClick={() => setLowOnly(!lowOnly)}>{lowOnly ? "Ver todos os recursos" : "Só abaixo do mínimo"}</Button></div>
-    <Table
-      rows={filtered}
-      rowKey={(r) => `${r.type}-${r.id}`}
-      onRow={(r) => {
-        if (r.type === "Consumíveis") {
-          const found = state.articles.find((a) => a.id === r.id);
-          if (found) setSelectedArticle(found);
-        } else {
-          const found = state.machines.find((m) => m.id === r.id);
-          if (found) setSelectedMachine(found);
+  return (
+    <>
+      <PageHeader
+        eyebrow="ARMAZEM"
+        title="Recursos"
+        description="Inventario de consumiveis, materiais, ferragens e artigos de armazem."
+        actions={
+          <Button onClick={() => router.push("/armazem/tablet")}>
+            Registar movimento <ArrowUpRight size={16} />
+          </Button>
         }
-      }}
-      columns={[
-      {label:"Referência",render:r => <b>{r.code}</b>},
-      {label:"Recurso",render:r => <div><b>{r.name}</b><small className="block muted">{r.detail}</small></div>},
-      {label:"Tipo",render:r => <Badge>{{Consumíveis:"Consumível",Ferramentas:"Ferramenta","Máquinas e equipamentos":"Máquina/equipamento"}[r.type]}</Badge>},
-      {label:"Estado",render:r => <Badge>{r.state}</Badge>},
-      {label:"Alerta",render:r => r.alert === "—" ? <span className="muted">—</span> : <Badge tone="amber">{r.alert}</Badge>},
-      {label:"Localização / obra",render:r => r.location},
-      ...(!hideCosts ? [
-        {label:"Regra de custo",render:(r: ResourceRow) => <span className="muted">{r.rule}</span>},
-        {label:"Disponibilidade / tarifa",render:(r: ResourceRow) => <b>{r.value}</b>,align:"right" as const},
-      ] : []),
-    ]}/>
-    {selectedArticle && (
-      <Modal
-        title={selectedArticle.descricao}
-        drawer
-        onClose={() => setSelectedArticle(null)}
-      >
-        <div className="drawer-body">
-          <div className="detail-hero">
-            <Badge tone={stock(state, selectedArticle.id) > 0 ? "green" : "red"}>
-              {stock(state, selectedArticle.id) > 0 ? "Disponivel" : "Sem stock"}
-            </Badge>
-            <h3>{selectedArticle.codigoACRS}</h3>
-            <p className="muted">
-              {[selectedArticle.marca, selectedArticle.familia].filter(Boolean).join(" - ")}
-            </p>
-          </div>
-          <DetailList
-            items={[
-              ["Codigo ACRS", <b>{selectedArticle.codigoACRS}</b>],
-              ["Descricao", selectedArticle.descricao],
-              ["Familia", selectedArticle.familia],
-              ["Material", selectedArticle.material || "-"],
-              ["Dimensoes / Tamanho", selectedArticle.tamanho || "-"],
-              ["Marca", selectedArticle.marca || "-"],
-              ["Localizacao no armazem", selectedArticle.localizacao || "Por confirmar"],
-              ["Stock disponivel", <b>{qty(stock(state, selectedArticle.id), selectedArticle)}</b>],
-              [
-                "Stock minimo",
-                state.settings.minimos[selectedArticle.id] != null
-                  ? qty(state.settings.minimos[selectedArticle.id], selectedArticle)
-                  : "Nao definido",
-              ],
-              ...(!hideCosts
-                ? ([
-                    ["Preco unitario compra", money(selectedArticle.precoUnitario)],
-                    [
-                      "Valor interno aplicado",
-                      money(state.settings.valoresInternos[selectedArticle.id] ?? selectedArticle.precoUnitario),
-                    ],
-                    [
-                      "Valor total em stock",
-                      money(
-                        stock(state, selectedArticle.id) *
-                          (state.settings.valoresInternos[selectedArticle.id] ?? selectedArticle.precoUnitario),
-                      ),
-                    ],
-                  ] as [string, React.ReactNode][])
-                : []),
-              ["Unidade", selectedArticle.unidade || "un"],
-              ["Origem do registo", selectedArticle.source === "ACRS" ? "Catalogo ACRS" : "Demonstracao"],
-            ]}
-          />
-          <div className="machine-actions">
-            <Button onClick={() => router.push("/armazem/tablet")}>
-              Registar no tablet <ArrowUpRight size={16} />
-            </Button>
-            <Button secondary onClick={() => router.push("/armazem/movimentos")}>
-              Ver movimentos <ArrowLeftRight size={16} />
-            </Button>
-          </div>
-          <h3 className="small-title">Ultimos movimentos deste material</h3>
-          {state.movements.filter((m) => m.artigoId === selectedArticle.id).length === 0 ? (
-            <p className="footnote muted">Sem movimentos registados para este artigo.</p>
-          ) : (
-            state.movements
-              .filter((m) => m.artigoId === selectedArticle.id)
-              .slice(0, 5)
-              .map((m) => (
-                <div key={m.id} className="history-card">
-                  <b>{m.tipo} - {resolveWorkName(m.obraId)}</b>
-                  <span>
-                    Data: {date(m.data)} | Quantidade: {m.quantidade > 0 ? `+${m.quantidade}` : m.quantidade} {selectedArticle.unidade || "un"}
-                  </span>
-                  <span>
-                    Utilizador: {m.utilizador || "Armazem"}{!hideCosts ? ` | Custo: ${money(m.valorUnitario)}` : ""}
-                  </span>
-                </div>
-              ))
-          )}
-        </div>
-      </Modal>
-    )}
-    {selectedMachine && (() => {
-      const activeAllocation = state.allocations.find((a) => a.maquinaId === selectedMachine.id && !a.devolucao);
-      const insp = machineInspectionStatus(selectedMachine);
-      return (
+      />
+      <Tabs
+        items={["Todos", "Disponiveis", "Abaixo do minimo", "Sem stock"]}
+        value={statusFilter}
+        onChange={setStatusFilter}
+      />
+      <div className="filter-bar">
+        <SearchInput
+          value={q}
+          onChange={setQ}
+          placeholder="Pesquisar codigo, artigo, marca ou familia..."
+        />
+        <Select
+          label="Filtrar por familia"
+          value={familyFilter}
+          onChange={setFamilyFilter}
+          placeholder="Todas as familias"
+          options={families}
+        />
+      </div>
+      <Table
+        rows={filtered}
+        rowKey={(r) => r.id}
+        onRow={(r) => setSelectedArticle(r.article)}
+        columns={[
+          { label: "Codigo", render: (r) => <b>{r.code}</b> },
+          {
+            label: "Artigo / Descricao",
+            render: (r) => (
+              <div>
+                <b>{r.name}</b>
+                <small className="block muted">{r.detail}</small>
+              </div>
+            ),
+          },
+          {
+            label: "Familia",
+            render: (r) => <Badge>{r.family}</Badge>,
+          },
+          {
+            label: "Localizacao",
+            render: (r) => r.location,
+          },
+          {
+            label: "Stock Disponivel",
+            render: (r) => (
+              <b style={{ color: r.currentStock <= 0 ? "#dc2626" : undefined }}>
+                {qty(r.currentStock, r.article)}
+              </b>
+            ),
+            align: "right",
+          },
+          {
+            label: "Stock Minimo",
+            render: (r) =>
+              r.minimumStock != null ? qty(r.minimumStock, r.article) : <span className="muted">-</span>,
+            align: "right",
+          },
+          {
+            label: "Estado",
+            render: (r) => (
+              <Badge
+                tone={
+                  r.state === "Disponivel"
+                    ? "green"
+                    : r.state === "Abaixo do minimo"
+                      ? "amber"
+                      : "red"
+                }
+              >
+                {r.state}
+              </Badge>
+            ),
+          },
+          ...(!hideCosts
+            ? [
+                {
+                  label: "Preco Compra",
+                  render: (r: ArticleRow) => <b>{money(r.unitPrice)}</b>,
+                  align: "right" as const,
+                },
+                {
+                  label: "Valor Interno",
+                  render: (r: ArticleRow) => (
+                    <span className="muted">{money(r.internalValue)}</span>
+                  ),
+                  align: "right" as const,
+                },
+              ]
+            : []),
+        ]}
+      />
+      {selectedArticle && (
         <Modal
-          title={selectedMachine.nome}
+          title={selectedArticle.descricao}
           drawer
-          onClose={() => setSelectedMachine(null)}
+          onClose={() => setSelectedArticle(null)}
         >
           <div className="drawer-body">
             <div className="detail-hero">
-              <Badge tone={activeAllocation ? "amber" : selectedMachine.estado === "Disponivel" ? "green" : "neutral"}>
-                {activeAllocation ? "Em obra" : selectedMachine.estado}
+              <Badge tone={stock(state, selectedArticle.id) > 0 ? "green" : "red"}>
+                {stock(state, selectedArticle.id) > 0 ? "Disponivel" : "Sem stock"}
               </Badge>
-              <h3>{selectedMachine.numero}</h3>
+              <h3>{selectedArticle.codigoACRS}</h3>
               <p className="muted">
-                {[selectedMachine.marca, selectedMachine.modelo].filter(Boolean).join(" - ")}
+                {[selectedArticle.marca, selectedArticle.familia].filter(Boolean).join(" - ")}
               </p>
             </div>
             <DetailList
               items={[
-                ["N. Identificacao", <b>{selectedMachine.numero}</b>],
-                ["Nome", selectedMachine.nome],
-                ["Tipo", selectedMachine.tipo],
-                ["Marca / Modelo", [selectedMachine.marca, selectedMachine.modelo].filter(Boolean).join(" / ") || "-"],
+                ["Codigo ACRS", <b>{selectedArticle.codigoACRS}</b>],
+                ["Descricao", selectedArticle.descricao],
+                ["Familia", selectedArticle.familia],
+                ["Material", selectedArticle.material || "-"],
+                ["Dimensoes / Tamanho", selectedArticle.tamanho || "-"],
+                ["Marca", selectedArticle.marca || "-"],
+                ["Localizacao no armazem", selectedArticle.localizacao || "Por confirmar"],
+                ["Stock disponivel", <b>{qty(stock(state, selectedArticle.id), selectedArticle)}</b>],
                 [
-                  "Localizacao atual",
-                  activeAllocation
-                    ? resolveWorkName(activeAllocation.obraId)
-                    : selectedMachine.estado === "Em reparacao"
-                      ? "Em reparacao"
-                      : "Armazem central",
-                ],
-                [
-                  "Obra atual",
-                  activeAllocation ? resolveWorkName(activeAllocation.obraId) : "-",
-                ],
-                [
-                  "Data de saida",
-                  activeAllocation ? date(activeAllocation.saida) : "-",
-                ],
-                [
-                  "Dias em obra",
-                  activeAllocation ? `${days(activeAllocation)} dias` : "-",
+                  "Stock minimo",
+                  state.settings.minimos[selectedArticle.id] != null
+                    ? qty(state.settings.minimos[selectedArticle.id], selectedArticle)
+                    : "Nao definido",
                 ],
                 ...(!hideCosts
                   ? ([
-                      ["Tarifa diaria a obra", `${money(activeAllocation?.custoDia ?? selectedMachine.custoDia)} / dia`],
+                      ["Preco unitario compra", money(selectedArticle.precoUnitario)],
                       [
-                        "Tarifa interna (amortizacao)",
-                        selectedMachine.custoInternoDia != null
-                          ? `${money(selectedMachine.custoInternoDia)} / dia`
-                          : "-",
+                        "Valor interno aplicado",
+                        money(state.settings.valoresInternos[selectedArticle.id] ?? selectedArticle.precoUnitario),
                       ],
                       [
-                        "Custo de aquisicao",
-                        selectedMachine.custoAquisicao ? money(selectedMachine.custoAquisicao) : "-",
-                      ],
-                      [
-                        "Data de aquisicao",
-                        selectedMachine.dataAquisicao ? date(selectedMachine.dataAquisicao) : "-",
-                      ],
-                      [
-                        "Periodo de amortizacao",
-                        selectedMachine.periodoAmortizacao
-                          ? `${selectedMachine.periodoAmortizacao} anos`
-                          : "-",
-                      ],
-                      [
-                        "Total faturado acumulado",
+                        "Valor total em stock",
                         money(
-                          sum(
-                            state.allocations.filter((a) => a.maquinaId === selectedMachine.id),
-                            (a) => days(a) * a.custoDia,
-                          ),
+                          stock(state, selectedArticle.id) *
+                            (state.settings.valoresInternos[selectedArticle.id] ?? selectedArticle.precoUnitario),
                         ),
                       ],
                     ] as [string, React.ReactNode][])
                   : []),
-                [
-                  "Inspecao periodica",
-                  insp.tone ? <Badge tone={insp.tone}>{insp.label}</Badge> : insp.label,
-                ],
-                [
-                  "Periodicidade de inspecao",
-                  selectedMachine.periodicidadeInspecao
-                    ? `${selectedMachine.periodicidadeInspecao} meses`
-                    : "12 meses (predefinido)",
-                ],
-                [
-                  "Ultima inspecao",
-                  selectedMachine.ultimaInspecao ? date(selectedMachine.ultimaInspecao) : "Sem registo",
-                ],
-                [
-                  "Proxima inspecao",
-                  selectedMachine.proximaInspecao ? date(selectedMachine.proximaInspecao) : "Nao agendada",
-                ],
+                ["Unidade", selectedArticle.unidade || "un"],
+                ["Origem do registo", selectedArticle.source === "ACRS" ? "Catalogo ACRS" : "Demonstracao"],
               ]}
             />
             <div className="machine-actions">
-              <Button onClick={() => router.push(`/armazem/maquinas?id=${selectedMachine.id}`)}>
-                Gerir equipamento <ArrowUpRight size={16} />
+              <Button onClick={() => router.push("/armazem/tablet")}>
+                Registar no tablet <ArrowUpRight size={16} />
               </Button>
-              <Button secondary onClick={() => router.push("/armazem/tablet")}>
-                Registar no tablet <Wrench size={16} />
+              <Button secondary onClick={() => router.push("/armazem/movimentos")}>
+                Ver movimentos <ArrowLeftRight size={16} />
               </Button>
             </div>
-            <h3 className="small-title">Historico de alocacoes</h3>
-            {state.allocations.filter((a) => a.maquinaId === selectedMachine.id).length === 0 ? (
-              <p className="footnote muted">Sem alocacoes registadas para este equipamento.</p>
+            <h3 className="small-title">Ultimos movimentos deste material</h3>
+            {state.movements.filter((m) => m.artigoId === selectedArticle.id).length === 0 ? (
+              <p className="footnote muted">Sem movimentos registados para este artigo.</p>
             ) : (
-              state.allocations
-                .filter((a) => a.maquinaId === selectedMachine.id)
+              state.movements
+                .filter((m) => m.artigoId === selectedArticle.id)
                 .slice(0, 5)
-                .map((a) => (
-                  <div key={a.id} className="history-card">
-                    <b>{resolveWorkName(a.obraId)}</b>
+                .map((m) => (
+                  <div key={m.id} className="history-card">
+                    <b>{m.tipo} - {resolveWorkName(m.obraId)}</b>
                     <span>
-                      {date(a.saida)} {"->"} {a.devolucao ? date(a.devolucao) : "Em curso"}
+                      Data: {date(m.data)} | Quantidade: {m.quantidade > 0 ? `+${m.quantidade}` : m.quantidade} {selectedArticle.unidade || "un"}
                     </span>
                     <span>
-                      {days(a)} dias x {money(a.custoDia)} = {money(days(a) * a.custoDia)}
+                      Utilizador: {m.utilizador || "Armazem"}{!hideCosts ? ` | Custo: ${money(m.valorUnitario)}` : ""}
                     </span>
                   </div>
                 ))
             )}
           </div>
         </Modal>
-      );
-    })()}
-  </>;
+      )}
+    </>
+  );
 }
